@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Dashboard Test - AEC Website</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        h1 {
+            color: #2C3E50;
+            border-bottom: 3px solid #8FD14F;
+            padding-bottom: 10px;
+        }
+        .test-section {
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .test-category {
+            margin: 20px 0;
+        }
+        .test-category h3 {
+            color: #8FD14F;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 5px;
+        }
+        .test-item {
+            margin: 15px 0;
+            padding: 15px;
+            background: #f8f9fa;
+            border-left: 4px solid #ddd;
+            border-radius: 4px;
+        }
+        .test-item.pass {
+            border-left-color: #8FD14F;
+            background: #f0f9f0;
+        }
+        .test-item.fail {
+            border-left-color: #E63946;
+            background: #fef0f0;
+        }
+        .test-item.warning {
+            border-left-color: #ffc107;
+            background: #fffef0;
+        }
+        .status {
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        .pass .status { color: #8FD14F; }
+        .fail .status { color: #E63946; }
+        .warning .status { color: #ffc107; }
+        button {
+            background: #8FD14F;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 5px;
+        }
+        button:hover {
+            background: #7AB83F;
+        }
+        button.secondary {
+            background: #6c757d;
+        }
+        button.secondary:hover {
+            background: #5a6268;
+        }
+        .iframe-container {
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            margin: 20px 0;
+            background: white;
+        }
+        iframe {
+            width: 100%;
+            height: 800px;
+            border: none;
+        }
+        pre {
+            background: #f4f4f4;
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+        .test-results {
+            margin-top: 20px;
+        }
+        #testResults {
+            white-space: pre-wrap;
+            font-family: monospace;
+        }
+        .test-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .stat-card {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .stat-number {
+            font-size: 2em;
+            font-weight: bold;
+            color: #8FD14F;
+        }
+        .stat-label {
+            color: #666;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>🧪 Teacher Dashboard Test Suite - AEC Website</h1>
+    
+    <div class="test-section">
+        <h2>Test Controls</h2>
+        <button onclick="runAllTests()">Run All Tests</button>
+        <button onclick="testInteractivity()">Test Interactive Features</button>
+        <button onclick="testTimer()">Test Timer Functions</button>
+        <button onclick="testNavigation()">Test Navigation</button>
+        <button onclick="testPrint()">Test Print Functions</button>
+        <button onclick="testResponsive('mobile')">Test Mobile (375px)</button>
+        <button onclick="testResponsive('tablet')">Test Tablet (768px)</button>
+        <button onclick="testResponsive('desktop')">Test Desktop (1280px)</button>
+        <button class="secondary" onclick="exportResults()">Export Results</button>
+        <button class="secondary" onclick="clearResults()">Clear Results</button>
+    </div>
+
+    <div class="test-section">
+        <h2>Test Statistics</h2>
+        <div class="test-stats">
+            <div class="stat-card">
+                <div class="stat-number" id="totalTests">0</div>
+                <div class="stat-label">Total Tests</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="passedTests" style="color: #8FD14F;">0</div>
+                <div class="stat-label">Passed</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="failedTests" style="color: #E63946;">0</div>
+                <div class="stat-label">Failed</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="warningTests" style="color: #ffc107;">0</div>
+                <div class="stat-label">Warnings</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>Automated Tests</h2>
+        
+        <!-- Page Structure Tests -->
+        <div class="test-category">
+            <h3>📐 Page Structure</h3>
+            <div id="structureTests">
+                <div class="test-item" id="test-header">
+                    <span class="status">⏳</span>
+                    <strong>Header:</strong> Checking header elements...
+                </div>
+                <div class="test-item" id="test-dashboard">
+                    <span class="status">⏳</span>
+                    <strong>Dashboard:</strong> Verifying dashboard overview...
+                </div>
+                <div class="test-item" id="test-navigation">
+                    <span class="status">⏳</span>
+                    <strong>Navigation:</strong> Checking quick navigation section...
+                </div>
+                <div class="test-item" id="test-footer">
+                    <span class="status">⏳</span>
+                    <strong>Footer:</strong> Verifying footer elements...
+                </div>
+            </div>
+        </div>
+        
+        <!-- Core Features Tests -->
+        <div class="test-category">
+            <h3>🎯 Core Features</h3>
+            <div id="featureTests">
+                <div class="test-item" id="test-weekplanner">
+                    <span class="status">⏳</span>
+                    <strong>Week Planner:</strong> Testing 7 week navigation...
+                </div>
+                <div class="test-item" id="test-timer">
+                    <span class="status">⏳</span>
+                    <strong>Timer Widget:</strong> Checking timer functionality...
+                </div>
+                <div class="test-item" id="test-didactic">
+                    <span class="status">⏳</span>
+                    <strong>Didactic Tools:</strong> Verifying intervention system...
+                </div>
+                <div class="test-item" id="test-assessment">
+                    <span class="status">⏳</span>
+                    <strong>Assessment Tools:</strong> Testing rubrics and scoring...
+                </div>
+                <div class="test-item" id="test-events">
+                    <span class="status">⏳</span>
+                    <strong>Event Cards:</strong> Checking event library...
+                </div>
+                <div class="test-item" id="test-notes">
+                    <span class="status">⏳</span>
+                    <strong>Notes System:</strong> Testing observation notes...
+                </div>
+                <div class="test-item" id="test-print">
+                    <span class="status">⏳</span>
+                    <strong>Print Layout:</strong> Verifying printable lessons...
+                </div>
+            </div>
+        </div>
+        
+        <!-- Interactive Elements Tests -->
+        <div class="test-category">
+            <h3>⚡ Interactive Elements</h3>
+            <div id="interactiveTests">
+                <div class="test-item" id="test-weeknav">
+                    <span class="status">⏳</span>
+                    <strong>Week Navigation:</strong> Testing week switching...
+                </div>
+                <div class="test-item" id="test-timercontrols">
+                    <span class="status">⏳</span>
+                    <strong>Timer Controls:</strong> Start/stop/reset functions...
+                </div>
+                <div class="test-item" id="test-shortcuts">
+                    <span class="status">⏳</span>
+                    <strong>Keyboard Shortcuts:</strong> Testing hotkeys...
+                </div>
+                <div class="test-item" id="test-modals">
+                    <span class="status">⏳</span>
+                    <strong>Modals:</strong> Event deployment & preview modals...
+                </div>
+                <div class="test-item" id="test-forms">
+                    <span class="status">⏳</span>
+                    <strong>Forms:</strong> Notes, assessment inputs...
+                </div>
+            </div>
+        </div>
+        
+        <!-- Data & Storage Tests -->
+        <div class="test-category">
+            <h3>💾 Data & Storage</h3>
+            <div id="dataTests">
+                <div class="test-item" id="test-localstorage">
+                    <span class="status">⏳</span>
+                    <strong>LocalStorage:</strong> Testing data persistence...
+                </div>
+                <div class="test-item" id="test-export">
+                    <span class="status">⏳</span>
+                    <strong>Export Functions:</strong> JSON/CSV/PDF exports...
+                </div>
+                <div class="test-item" id="test-weekdata">
+                    <span class="status">⏳</span>
+                    <strong>Week Data:</strong> All 7 weeks content loaded...
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>Visual Preview</h2>
+        <div class="iframe-container">
+            <iframe id="previewFrame" src="../docenten.html"></iframe>
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>Test Results</h2>
+        <div class="test-results">
+            <pre id="testResults">Test results will appear here...</pre>
+        </div>
+    </div>
+
+    <script>
+        let testResults = {
+            timestamp: new Date().toISOString(),
+            tests: {},
+            summary: {
+                total: 0,
+                passed: 0,
+                failed: 0,
+                warnings: 0
+            }
+        };
+
+        function updateTestItem(id, status, message) {
+            const item = document.getElementById(id);
+            if (!item) return;
+            
+            item.className = 'test-item ' + status;
+            const statusIcon = status === 'pass' ? '✅' : status === 'fail' ? '❌' : '⚠️';
+            item.querySelector('.status').textContent = statusIcon;
+            
+            if (message) {
+                item.innerHTML += '<div style="margin-top: 10px; font-size: 0.9em; color: #666;">' + message + '</div>';
+            }
+            
+            // Update results
+            testResults.tests[id] = { status, message, timestamp: new Date().toISOString() };
+            updateStatistics();
+        }
+
+        function updateStatistics() {
+            testResults.summary.total = Object.keys(testResults.tests).length;
+            testResults.summary.passed = Object.values(testResults.tests).filter(t => t.status === 'pass').length;
+            testResults.summary.failed = Object.values(testResults.tests).filter(t => t.status === 'fail').length;
+            testResults.summary.warnings = Object.values(testResults.tests).filter(t => t.status === 'warning').length;
+            
+            document.getElementById('totalTests').textContent = testResults.summary.total;
+            document.getElementById('passedTests').textContent = testResults.summary.passed;
+            document.getElementById('failedTests').textContent = testResults.summary.failed;
+            document.getElementById('warningTests').textContent = testResults.summary.warnings;
+        }
+
+        async function runAllTests() {
+            console.log('Starting teacher dashboard tests...');
+            
+            // Reset all test items
+            document.querySelectorAll('.test-item').forEach(item => {
+                item.className = 'test-item';
+                item.querySelector('.status').textContent = '⏳';
+                const msgDiv = item.querySelector('div[style]');
+                if (msgDiv) msgDiv.remove();
+            });
+            
+            testResults = {
+                timestamp: new Date().toISOString(),
+                tests: {},
+                summary: { total: 0, passed: 0, failed: 0, warnings: 0 }
+            };
+            
+            try {
+                const frame = document.getElementById('previewFrame');
+                const frameDoc = frame.contentDocument || frame.contentWindow.document;
+                const frameWin = frame.contentWindow;
+                
+                // Wait for frame to load
+                await new Promise(resolve => {
+                    if (frameDoc.readyState === 'complete') {
+                        resolve();
+                    } else {
+                        frame.onload = resolve;
+                    }
+                });
+                
+                // Page Structure Tests
+                testPageStructure(frameDoc);
+                
+                // Core Features Tests
+                testCoreFeatures(frameDoc, frameWin);
+                
+                // Interactive Elements Tests
+                testInteractiveElements(frameDoc, frameWin);
+                
+                // Data & Storage Tests
+                testDataStorage(frameDoc, frameWin);
+                
+                // Display results
+                displayResults();
+                
+            } catch (error) {
+                console.error('Test error:', error);
+                document.getElementById('testResults').textContent = 'Error running tests: ' + error.message;
+            }
+        }
+
+        function testPageStructure(doc) {
+            // Test Header
+            const header = doc.querySelector('.site-header');
+            const headerNav = doc.querySelector('.back-link');
+            if (header && headerNav) {
+                updateTestItem('test-header', 'pass', 'Header with navigation found');
+            } else {
+                updateTestItem('test-header', 'fail', 'Missing header elements');
+            }
+            
+            // Test Dashboard
+            const dashboard = doc.querySelector('.dashboard-overview');
+            const dashboardCards = doc.querySelectorAll('.dashboard-card');
+            if (dashboard && dashboardCards.length >= 3) {
+                updateTestItem('test-dashboard', 'pass', `Dashboard with ${dashboardCards.length} quick action cards`);
+            } else {
+                updateTestItem('test-dashboard', 'fail', 'Dashboard overview incomplete');
+            }
+            
+            // Test Navigation
+            const quickNav = doc.querySelector('.quick-navigation');
+            const weekJumper = doc.getElementById('weekJumper');
+            const shortcuts = doc.querySelector('.shortcuts-guide');
+            if (quickNav && weekJumper && shortcuts) {
+                updateTestItem('test-navigation', 'pass', 'Quick navigation with week selector and shortcuts');
+            } else {
+                updateTestItem('test-navigation', 'fail', 'Navigation components missing');
+            }
+            
+            // Test Footer
+            const footer = doc.querySelector('.site-footer');
+            if (footer) {
+                updateTestItem('test-footer', 'pass', 'Footer present');
+            } else {
+                updateTestItem('test-footer', 'warning', 'Footer not found');
+            }
+        }
+
+        function testCoreFeatures(doc, win) {
+            // Test Week Planner
+            const weekTabs = doc.querySelectorAll('.week-tab');
+            const weekPlans = doc.querySelectorAll('.week-plan');
+            if (weekTabs.length === 7) {
+                updateTestItem('test-weekplanner', 'pass', '7 week tabs with lesson plans');
+            } else {
+                updateTestItem('test-weekplanner', 'fail', `Only ${weekTabs.length} week tabs found`);
+            }
+            
+            // Test Timer
+            const timerDisplay = doc.querySelector('.timer-display');
+            const timerControls = doc.querySelectorAll('.timer-btn');
+            const phaseButtons = doc.querySelectorAll('.phase-btn');
+            if (timerDisplay && timerControls.length >= 3 && phaseButtons.length >= 5) {
+                updateTestItem('test-timer', 'pass', 'Timer with display, controls, and phase presets');
+            } else {
+                updateTestItem('test-timer', 'fail', 'Timer components incomplete');
+            }
+            
+            // Test Didactic Tools
+            const didacticSection = doc.querySelector('.didactic-tools');
+            const interventionLevels = doc.querySelectorAll('.intervention-level');
+            const toolCards = doc.querySelectorAll('.tool-card');
+            if (didacticSection && interventionLevels.length >= 3 && toolCards.length >= 4) {
+                updateTestItem('test-didactic', 'pass', `${interventionLevels.length} intervention levels, ${toolCards.length} tool cards`);
+            } else {
+                updateTestItem('test-didactic', 'fail', 'Didactic tools incomplete');
+            }
+            
+            // Test Assessment
+            const assessmentTools = doc.querySelector('.assessment-tools');
+            const rubricTables = doc.querySelectorAll('.rubric-table');
+            const scoreInputs = doc.querySelectorAll('#individualScore, #teamScore, #decisionScore, #presentationScore');
+            if (assessmentTools && rubricTables.length >= 3 && scoreInputs.length === 4) {
+                updateTestItem('test-assessment', 'pass', `${rubricTables.length} rubrics, weighted scoring system`);
+            } else {
+                updateTestItem('test-assessment', 'fail', 'Assessment tools incomplete');
+            }
+            
+            // Test Event Cards
+            const eventLibrary = doc.querySelector('.event-cards-library');
+            const eventCards = doc.querySelectorAll('.event-card');
+            const deploymentGuide = doc.querySelector('.event-deployment-guide');
+            if (eventLibrary && eventCards.length >= 12 && deploymentGuide) {
+                updateTestItem('test-events', 'pass', `${eventCards.length} event cards with deployment guide`);
+            } else {
+                updateTestItem('test-events', 'fail', `Only ${eventCards.length} event cards found`);
+            }
+            
+            // Test Notes
+            const notesSection = doc.querySelector('.teacher-notes');
+            const noteTabs = doc.querySelectorAll('.note-tab');
+            const templates = doc.querySelectorAll('.template-btn');
+            if (notesSection && noteTabs.length === 4 && templates.length >= 6) {
+                updateTestItem('test-notes', 'pass', `${noteTabs.length} note categories, ${templates.length} templates`);
+            } else {
+                updateTestItem('test-notes', 'fail', 'Notes system incomplete');
+            }
+            
+            // Test Print
+            const printSection = doc.querySelector('.printable-lessons');
+            const printSelect = doc.getElementById('printWeekSelect');
+            const printLayout = doc.getElementById('printLayout');
+            if (printSection && printSelect && printLayout) {
+                updateTestItem('test-print', 'pass', 'Print system with week selector and layout');
+            } else {
+                updateTestItem('test-print', 'fail', 'Print functionality missing');
+            }
+        }
+
+        function testInteractiveElements(doc, win) {
+            // Test Week Navigation
+            if (win.showWeekPlan && win.navigateWeek) {
+                try {
+                    win.showWeekPlan(3);
+                    updateTestItem('test-weeknav', 'pass', 'Week navigation functions available');
+                } catch (e) {
+                    updateTestItem('test-weeknav', 'fail', 'Week navigation error: ' + e.message);
+                }
+            } else {
+                updateTestItem('test-weeknav', 'fail', 'Week navigation functions not found');
+            }
+            
+            // Test Timer Controls
+            if (win.startTimer && win.pauseTimer && win.resetTimer) {
+                updateTestItem('test-timercontrols', 'pass', 'Timer control functions available');
+            } else {
+                updateTestItem('test-timercontrols', 'fail', 'Timer functions missing');
+            }
+            
+            // Test Keyboard Shortcuts
+            if (win.toggleShortcuts && win.setupEnhancedKeyboardShortcuts) {
+                updateTestItem('test-shortcuts', 'pass', 'Keyboard shortcut system implemented');
+            } else {
+                updateTestItem('test-shortcuts', 'warning', 'Some shortcut functions missing');
+            }
+            
+            // Test Modals
+            if (win.deployEventCard && win.togglePrintPreview) {
+                updateTestItem('test-modals', 'pass', 'Modal functions available');
+            } else {
+                updateTestItem('test-modals', 'fail', 'Modal functions missing');
+            }
+            
+            // Test Forms
+            const noteTextarea = doc.getElementById('generalNotesArea');
+            const assessmentInputs = doc.querySelectorAll('input[type="number"], input[type="checkbox"], textarea');
+            if (noteTextarea && assessmentInputs.length > 10) {
+                updateTestItem('test-forms', 'pass', `${assessmentInputs.length} form inputs found`);
+            } else {
+                updateTestItem('test-forms', 'warning', 'Some form elements missing');
+            }
+        }
+
+        function testDataStorage(doc, win) {
+            // Test LocalStorage
+            try {
+                localStorage.setItem('test', 'test');
+                localStorage.removeItem('test');
+                
+                if (win.saveNotes && win.saveAssessment) {
+                    updateTestItem('test-localstorage', 'pass', 'LocalStorage functions available');
+                } else {
+                    updateTestItem('test-localstorage', 'warning', 'Storage functions incomplete');
+                }
+            } catch (e) {
+                updateTestItem('test-localstorage', 'fail', 'LocalStorage error: ' + e.message);
+            }
+            
+            // Test Export Functions
+            if (win.exportNotes && win.exportAssessment) {
+                updateTestItem('test-export', 'pass', 'Export functions available');
+            } else {
+                updateTestItem('test-export', 'fail', 'Export functions missing');
+            }
+            
+            // Test Week Data
+            if (win.getWeekData) {
+                let allWeeksValid = true;
+                for (let i = 1; i <= 7; i++) {
+                    const weekData = win.getWeekData(i);
+                    if (!weekData.title || !weekData.objectives || !weekData.timing) {
+                        allWeeksValid = false;
+                        break;
+                    }
+                }
+                if (allWeeksValid) {
+                    updateTestItem('test-weekdata', 'pass', 'All 7 weeks data complete');
+                } else {
+                    updateTestItem('test-weekdata', 'fail', 'Some week data incomplete');
+                }
+            } else {
+                updateTestItem('test-weekdata', 'fail', 'Week data function not found');
+            }
+        }
+
+        function testInteractivity() {
+            console.log('Testing interactive features...');
+            const frame = document.getElementById('previewFrame');
+            const frameWin = frame.contentWindow;
+            const frameDoc = frameWin.document;
+            
+            // Test timer
+            if (frameWin.startTimer) {
+                frameWin.setTimerPhase('intro', 15);
+                frameWin.startTimer();
+                setTimeout(() => {
+                    frameWin.pauseTimer();
+                    console.log('Timer tested: start/pause working');
+                }, 1000);
+            }
+            
+            // Test week navigation
+            if (frameWin.showWeekPlan) {
+                frameWin.showWeekPlan(5);
+                console.log('Week navigation tested: switched to week 5');
+            }
+            
+            // Test event card
+            if (frameWin.generateEventCard) {
+                frameWin.generateEventCard();
+                console.log('Event card modal tested');
+            }
+            
+            alert('Interactivity tests completed. Check console for details.');
+        }
+
+        function testTimer() {
+            const frame = document.getElementById('previewFrame');
+            const frameWin = frame.contentWindow;
+            
+            console.log('Testing timer functions...');
+            
+            // Test phase presets
+            frameWin.setTimerPhase('discussion', 30);
+            console.log('Set discussion phase (30 min)');
+            
+            // Start timer
+            frameWin.startTimer();
+            console.log('Timer started');
+            
+            // Test pause after 2 seconds
+            setTimeout(() => {
+                frameWin.pauseTimer();
+                console.log('Timer paused');
+                
+                // Reset after 1 more second
+                setTimeout(() => {
+                    frameWin.resetTimer();
+                    console.log('Timer reset');
+                    
+                    // Ring bell
+                    frameWin.ringBell();
+                    console.log('Bell rung');
+                }, 1000);
+            }, 2000);
+        }
+
+        function testNavigation() {
+            const frame = document.getElementById('previewFrame');
+            const frameWin = frame.contentWindow;
+            
+            console.log('Testing navigation...');
+            
+            // Test week jumping
+            for (let i = 1; i <= 7; i++) {
+                frameWin.jumpToWeek(i);
+                console.log(`Jumped to week ${i}`);
+            }
+            
+            // Test section jumping
+            frameWin.jumpToSection('timer-section');
+            console.log('Jumped to timer section');
+            
+            // Toggle shortcuts
+            frameWin.toggleShortcuts();
+            console.log('Shortcuts toggled');
+        }
+
+        function testPrint() {
+            const frame = document.getElementById('previewFrame');
+            const frameWin = frame.contentWindow;
+            
+            console.log('Testing print functions...');
+            
+            // Prepare single week
+            frameWin.preparePrintLayout('3');
+            console.log('Prepared week 3 for printing');
+            
+            // Test preview
+            frameWin.togglePrintPreview();
+            console.log('Print preview opened');
+            
+            setTimeout(() => {
+                frameWin.togglePrintPreview();
+                console.log('Print preview closed');
+            }, 2000);
+        }
+
+        function testResponsive(size) {
+            const frame = document.getElementById('previewFrame');
+            const sizes = {
+                mobile: '375px',
+                tablet: '768px',
+                desktop: '1280px'
+            };
+            
+            frame.style.width = sizes[size];
+            console.log(`Testing ${size} view at ${sizes[size]}`);
+            
+            // Run visual tests after resize
+            setTimeout(() => {
+                const frameDoc = frame.contentDocument;
+                const isResponsive = frameDoc.querySelector('.dashboard-grid');
+                if (isResponsive) {
+                    console.log(`${size} layout: responsive grid working`);
+                }
+            }, 500);
+        }
+
+        function displayResults() {
+            const output = `Teacher Dashboard Test Results - ${new Date().toLocaleString()}
+===========================================
+Summary:
+  Total Tests: ${testResults.summary.total}
+  ✅ Passed: ${testResults.summary.passed}
+  ❌ Failed: ${testResults.summary.failed}
+  ⚠️ Warnings: ${testResults.summary.warnings}
+  
+Success Rate: ${((testResults.summary.passed / testResults.summary.total) * 100).toFixed(1)}%
+
+Individual Tests:
+${Object.entries(testResults.tests).map(([id, result]) => 
+  `  ${id}: ${result.status.toUpperCase()}${result.message ? '\n    → ' + result.message : ''}`
+).join('\n')}
+
+Test Categories:
+  Page Structure: ${getCategory('structure')}
+  Core Features: ${getCategory('feature')}
+  Interactive Elements: ${getCategory('interactive')}
+  Data & Storage: ${getCategory('data')}
+
+Overall Status: ${testResults.summary.failed === 0 ? '✅ ALL TESTS PASSING' : 
+                 testResults.summary.failed <= 2 ? '⚠️ MOSTLY PASSING' : '❌ NEEDS ATTENTION'}`;
+            
+            document.getElementById('testResults').textContent = output;
+        }
+
+        function getCategory(prefix) {
+            const categoryTests = Object.entries(testResults.tests)
+                .filter(([id]) => id.includes(prefix));
+            const passed = categoryTests.filter(([, r]) => r.status === 'pass').length;
+            return `${passed}/${categoryTests.length} passed`;
+        }
+
+        function exportResults() {
+            const dataStr = JSON.stringify(testResults, null, 2);
+            const dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
+            
+            const exportFileDefaultName = 'test-results-docenten.json';
+            
+            const linkElement = document.createElement('a');
+            linkElement.setAttribute('href', dataUri);
+            linkElement.setAttribute('download', exportFileDefaultName);
+            linkElement.click();
+        }
+
+        function clearResults() {
+            document.querySelectorAll('.test-item').forEach(item => {
+                item.className = 'test-item';
+                item.querySelector('.status').textContent = '⏳';
+                const msgDiv = item.querySelector('div[style]');
+                if (msgDiv) msgDiv.remove();
+            });
+            
+            testResults = {
+                timestamp: new Date().toISOString(),
+                tests: {},
+                summary: { total: 0, passed: 0, failed: 0, warnings: 0 }
+            };
+            
+            updateStatistics();
+            document.getElementById('testResults').textContent = 'Test results cleared. Ready to run new tests.';
+        }
+
+        // Auto-run tests on load
+        window.addEventListener('load', () => {
+            setTimeout(runAllTests, 2000);
+        });
+    </script>
+</body>
+</html>

@@ -52,17 +52,19 @@
   - [x] 3.10 Build feedback flow diagram
   - [x] 3.11 Test student interface with test-studenten.html
 
-- [ ] 4.0 Build Teacher Dashboard Interface
-  - [ ] 4.1 Create docenten.html with dashboard layout
-  - [ ] 4.2 Build week planner with voor/tijdens/na structure
-  - [ ] 4.3 Implement boardroom timer widget with preset phases
-  - [ ] 4.4 Create didactic help section with intervention suggestions
-  - [ ] 4.5 Add assessment tools with rubrics and checklists
-  - [ ] 4.6 Build event cards library for scenario introductions
-  - [ ] 4.7 Implement quick navigation between weeks
-  - [ ] 4.8 Add notes section for teacher observations
-  - [ ] 4.9 Create printable lesson plan layouts
-  - [ ] 4.10 Test teacher dashboard with test-docenten.html
+- [x] 4.0 Build Teacher Dashboard Interface
+  - [x] 4.1 Create docenten.html with dashboard layout
+  - [x] 4.2 Build week planner with voor/tijdens/na structure
+  - [x] 4.3 Implement boardroom timer widget with preset phases
+  - [x] 4.4 Create didactic help section with intervention suggestions
+  - [x] 4.5 Add assessment tools with rubrics and checklists
+  - [x] 4.6 Build event cards library for scenario introductions
+  - [x] 4.7 Implement quick navigation between weeks
+  - [x] 4.8 Add notes section for teacher observations
+  - [x] 4.9 Create printable lesson plan layouts
+  - [x] 4.10 Test teacher dashboard with test-docenten.html
+
+- [x] 4.0 Build Teacher Dashboard Interface
 
 - [ ] 5.0 Build Committee Portal
   - [ ] 5.1 Create commissie.html with professional layout
