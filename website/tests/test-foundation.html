@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Foundation Test - AEC Website</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        h1 {
+            color: #2C3E50;
+            border-bottom: 3px solid #8FD14F;
+            padding-bottom: 10px;
+        }
+        .test-section {
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .test-item {
+            margin: 15px 0;
+            padding: 15px;
+            background: #f8f9fa;
+            border-left: 4px solid #ddd;
+            border-radius: 4px;
+        }
+        .test-item.pass {
+            border-left-color: #8FD14F;
+            background: #f0f9f0;
+        }
+        .test-item.fail {
+            border-left-color: #E63946;
+            background: #fef0f0;
+        }
+        .test-item.warning {
+            border-left-color: #ffc107;
+            background: #fffef0;
+        }
+        .status {
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        .pass .status { color: #8FD14F; }
+        .fail .status { color: #E63946; }
+        .warning .status { color: #ffc107; }
+        button {
+            background: #8FD14F;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 5px;
+        }
+        button:hover {
+            background: #7AB83F;
+        }
+        .iframe-container {
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            margin: 20px 0;
+            background: white;
+        }
+        iframe {
+            width: 100%;
+            height: 600px;
+            border: none;
+        }
+        .responsive-test {
+            display: flex;
+            gap: 10px;
+            margin: 20px 0;
+        }
+        pre {
+            background: #f4f4f4;
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+        .test-results {
+            margin-top: 20px;
+        }
+        #testResults {
+            white-space: pre-wrap;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+    <h1>🧪 Foundation Test Suite - AEC Website</h1>
+    
+    <div class="test-section">
+        <h2>Test Controls</h2>
+        <button onclick="runAllTests()">Run All Tests</button>
+        <button onclick="testResponsive('mobile')">Test Mobile (375px)</button>
+        <button onclick="testResponsive('tablet')">Test Tablet (768px)</button>
+        <button onclick="testResponsive('desktop')">Test Desktop (1280px)</button>
+        <button onclick="exportResults()">Export Results</button>
+    </div>
+
+    <div class="test-section">
+        <h2>Automated Tests</h2>
+        <div id="automatedTests">
+            <div class="test-item" id="test-html">
+                <span class="status">⏳</span>
+                <strong>HTML Structure:</strong> Checking semantic elements...
+            </div>
+            <div class="test-item" id="test-meta">
+                <span class="status">⏳</span>
+                <strong>Meta Tags:</strong> Verifying SEO optimization...
+            </div>
+            <div class="test-item" id="test-css">
+                <span class="status">⏳</span>
+                <strong>CSS Loading:</strong> Checking stylesheet...
+            </div>
+            <div class="test-item" id="test-navigation">
+                <span class="status">⏳</span>
+                <strong>Navigation:</strong> Testing card links...
+            </div>
+            <div class="test-item" id="test-icons">
+                <span class="status">⏳</span>
+                <strong>Icons:</strong> Checking favicon and app icons...
+            </div>
+            <div class="test-item" id="test-responsive">
+                <span class="status">⏳</span>
+                <strong>Responsive:</strong> Testing viewport configurations...
+            </div>
+            <div class="test-item" id="test-accessibility">
+                <span class="status">⏳</span>
+                <strong>Accessibility:</strong> Checking ARIA labels and skip links...
+            </div>
+            <div class="test-item" id="test-performance">
+                <span class="status">⏳</span>
+                <strong>Performance:</strong> Checking load time and resources...
+            </div>
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>Visual Preview</h2>
+        <div class="iframe-container">
+            <iframe id="previewFrame" src="../index.html"></iframe>
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>Test Results</h2>
+        <div class="test-results">
+            <pre id="testResults">Test results will appear here...</pre>
+        </div>
+    </div>
+
+    <script>
+        let testResults = {
+            timestamp: new Date().toISOString(),
+            tests: {},
+            summary: {
+                total: 0,
+                passed: 0,
+                failed: 0,
+                warnings: 0
+            }
+        };
+
+        function updateTestItem(id, status, message) {
+            const item = document.getElementById(id);
+            if (!item) return;
+            
+            item.className = 'test-item ' + status;
+            const statusIcon = status === 'pass' ? '✅' : status === 'fail' ? '❌' : '⚠️';
+            item.querySelector('.status').textContent = statusIcon;
+            
+            if (message) {
+                item.innerHTML += '<div style="margin-top: 10px; font-size: 0.9em; color: #666;">' + message + '</div>';
+            }
+            
+            // Update results
+            testResults.tests[id] = { status, message };
+            testResults.summary.total++;
+            if (status === 'pass') testResults.summary.passed++;
+            else if (status === 'fail') testResults.summary.failed++;
+            else testResults.summary.warnings++;
+        }
+
+        async function runAllTests() {
+            console.log('Starting foundation tests...');
+            testResults = {
+                timestamp: new Date().toISOString(),
+                tests: {},
+                summary: { total: 0, passed: 0, failed: 0, warnings: 0 }
+            };
+            
+            try {
+                const frame = document.getElementById('previewFrame');
+                const frameDoc = frame.contentDocument || frame.contentWindow.document;
+                
+                // Test 1: HTML Structure
+                const hasHeader = frameDoc.querySelector('header.site-header');
+                const hasMain = frameDoc.querySelector('main.main-content');
+                const hasFooter = frameDoc.querySelector('footer.site-footer');
+                const hasNav = frameDoc.querySelector('nav.portal-navigation');
+                
+                if (hasHeader && hasMain && hasFooter && hasNav) {
+                    updateTestItem('test-html', 'pass', 'All semantic elements found: header, main, nav, footer');
+                } else {
+                    updateTestItem('test-html', 'fail', `Missing elements: ${!hasHeader ? 'header ' : ''}${!hasMain ? 'main ' : ''}${!hasNav ? 'nav ' : ''}${!hasFooter ? 'footer' : ''}`);
+                }
+                
+                // Test 2: Meta Tags
+                const metaDescription = frameDoc.querySelector('meta[name="description"]');
+                const ogTags = frameDoc.querySelectorAll('meta[property^="og:"]');
+                const twitterTags = frameDoc.querySelectorAll('meta[property^="twitter:"]');
+                const jsonLd = frameDoc.querySelector('script[type="application/ld+json"]');
+                
+                if (metaDescription && ogTags.length > 3 && twitterTags.length > 2 && jsonLd) {
+                    updateTestItem('test-meta', 'pass', `Found ${ogTags.length} Open Graph tags, ${twitterTags.length} Twitter tags, and structured data`);
+                } else {
+                    updateTestItem('test-meta', 'warning', 'Some meta tags may be missing');
+                }
+                
+                // Test 3: CSS Loading
+                const styles = frameDoc.querySelector('link[href="styles.css"]');
+                const computedStyle = frame.contentWindow.getComputedStyle(frameDoc.body);
+                const hasCustomFont = computedStyle.fontFamily.includes('Inter') || computedStyle.fontFamily.includes('-apple-system');
+                
+                if (styles && hasCustomFont) {
+                    updateTestItem('test-css', 'pass', 'Stylesheet loaded and applied successfully');
+                } else {
+                    updateTestItem('test-css', 'fail', 'CSS not loading properly');
+                }
+                
+                // Test 4: Navigation Cards
+                const studentCard = frameDoc.querySelector('.student-card');
+                const teacherCard = frameDoc.querySelector('.teacher-card');
+                const committeeCard = frameDoc.querySelector('.committee-card');
+                const cardLinks = frameDoc.querySelectorAll('.card-link');
+                
+                if (studentCard && teacherCard && committeeCard && cardLinks.length === 3) {
+                    updateTestItem('test-navigation', 'pass', 'All 3 navigation cards present with links');
+                } else {
+                    updateTestItem('test-navigation', 'fail', 'Navigation cards incomplete');
+                }
+                
+                // Test 5: Icons
+                const favicon = frameDoc.querySelector('link[rel="icon"]');
+                const manifest = frameDoc.querySelector('link[rel="manifest"]');
+                const appleTouchIcon = frameDoc.querySelector('link[rel="apple-touch-icon"]');
+                
+                if (favicon && manifest) {
+                    updateTestItem('test-icons', 'pass', 'Favicon and manifest configured');
+                } else {
+                    updateTestItem('test-icons', 'warning', 'Some icon configurations missing');
+                }
+                
+                // Test 6: Responsive
+                const viewport = frameDoc.querySelector('meta[name="viewport"]');
+                const hasResponsiveGrid = frameDoc.querySelector('.card-grid');
+                
+                if (viewport && viewport.content.includes('width=device-width') && hasResponsiveGrid) {
+                    updateTestItem('test-responsive', 'pass', 'Viewport meta tag and responsive grid found');
+                } else {
+                    updateTestItem('test-responsive', 'fail', 'Responsive configuration issues');
+                }
+                
+                // Test 7: Accessibility
+                const skipLink = frameDoc.querySelector('.skip-link');
+                const ariaLabels = frameDoc.querySelectorAll('[aria-label]');
+                const roles = frameDoc.querySelectorAll('[role]');
+                const lang = frameDoc.documentElement.lang;
+                
+                if (skipLink && ariaLabels.length > 0 && roles.length > 0 && lang === 'nl') {
+                    updateTestItem('test-accessibility', 'pass', `Skip link present, ${ariaLabels.length} ARIA labels, ${roles.length} roles, lang="${lang}"`);
+                } else {
+                    updateTestItem('test-accessibility', 'warning', 'Some accessibility features missing');
+                }
+                
+                // Test 8: Performance
+                const resources = frame.contentWindow.performance.getEntriesByType('resource');
+                const loadTime = frame.contentWindow.performance.timing.loadEventEnd - frame.contentWindow.performance.timing.navigationStart;
+                
+                if (loadTime < 3000 && resources.length < 20) {
+                    updateTestItem('test-performance', 'pass', `Page loaded in ${loadTime}ms with ${resources.length} resources`);
+                } else {
+                    updateTestItem('test-performance', 'warning', `Load time: ${loadTime}ms, Resources: ${resources.length}`);
+                }
+                
+                // Update results display
+                displayResults();
+                
+            } catch (error) {
+                console.error('Test error:', error);
+                document.getElementById('testResults').textContent = 'Error running tests: ' + error.message;
+            }
+        }
+
+        function testResponsive(size) {
+            const frame = document.getElementById('previewFrame');
+            const sizes = {
+                mobile: '375px',
+                tablet: '768px',
+                desktop: '1280px'
+            };
+            
+            frame.style.width = sizes[size];
+            console.log(`Testing ${size} view at ${sizes[size]}`);
+        }
+
+        function displayResults() {
+            const output = `Test Results - ${new Date().toLocaleString()}
+===========================================
+Summary:
+  Total Tests: ${testResults.summary.total}
+  ✅ Passed: ${testResults.summary.passed}
+  ❌ Failed: ${testResults.summary.failed}
+  ⚠️ Warnings: ${testResults.summary.warnings}
+
+Individual Tests:
+${Object.entries(testResults.tests).map(([id, result]) => 
+  `  ${id}: ${result.status.toUpperCase()}${result.message ? '\n    → ' + result.message : ''}`
+).join('\n')}
+
+Overall Status: ${testResults.summary.failed === 0 ? '✅ ALL TESTS PASSING' : '❌ SOME TESTS FAILING'}`;
+            
+            document.getElementById('testResults').textContent = output;
+        }
+
+        function exportResults() {
+            const dataStr = JSON.stringify(testResults, null, 2);
+            const dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
+            
+            const exportFileDefaultName = 'test-results-foundation.json';
+            
+            const linkElement = document.createElement('a');
+            linkElement.setAttribute('href', dataUri);
+            linkElement.setAttribute('download', exportFileDefaultName);
+            linkElement.click();
+        }
+
+        // Auto-run tests on load
+        window.addEventListener('load', () => {
+            setTimeout(runAllTests, 1000);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Icon Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f0f0f0;
+        }
+        .icon-container {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+        .icon-box {
+            background: white;
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        canvas {
+            border: 1px solid #ddd;
+            display: block;
+            margin: 10px 0;
+        }
+        button {
+            background: #8FD14F;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #7AB83F;
+        }
+        .instructions {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="instructions">
+        <h1>AEC Icon Generator</h1>
+        <p>This page generates PNG icons from the SVG favicon. Open this file in a browser, then right-click each canvas and "Save Image As" with the specified filename.</p>
+        <p><strong>Note:</strong> The SVG is embedded inline for easy generation.</p>
+    </div>
+
+    <div class="icon-container">
+        <div class="icon-box">
+            <h3>favicon-16x16.png</h3>
+            <canvas id="icon16" width="16" height="16"></canvas>
+        </div>
+        <div class="icon-box">
+            <h3>favicon-32x32.png</h3>
+            <canvas id="icon32" width="32" height="32"></canvas>
+        </div>
+        <div class="icon-box">
+            <h3>apple-touch-icon.png (180x180)</h3>
+            <canvas id="icon180" width="180" height="180"></canvas>
+        </div>
+        <div class="icon-box">
+            <h3>icon-192.png</h3>
+            <canvas id="icon192" width="192" height="192"></canvas>
+        </div>
+        <div class="icon-box">
+            <h3>icon-512.png</h3>
+            <canvas id="icon512" width="512" height="512"></canvas>
+        </div>
+    </div>
+
+    <script>
+        // SVG content
+        const svgString = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none">
+            <circle cx="256" cy="256" r="256" fill="#8FD14F"/>
+            <circle cx="256" cy="256" r="220" fill="white" opacity="0.95"/>
+            <path d="M180 320 L256 160 L332 320 M200 280 L312 280" 
+                  stroke="#8FD14F" 
+                  stroke-width="24" 
+                  stroke-linecap="round" 
+                  stroke-linejoin="round" 
+                  fill="none"/>
+            <path d="M256 340 L236 370 L276 370 Z" 
+                  fill="#E63946" 
+                  opacity="0.9"/>
+            <circle cx="226" cy="390" r="8" fill="#8FD14F"/>
+            <circle cx="256" cy="390" r="8" fill="#E63946"/>
+            <circle cx="286" cy="390" r="8" fill="#8FD14F"/>
+        </svg>`;
+
+        // Function to draw SVG to canvas
+        function drawIcon(canvasId, size) {
+            const canvas = document.getElementById(canvasId);
+            const ctx = canvas.getContext('2d');
+            
+            const img = new Image();
+            const blob = new Blob([svgString], {type: 'image/svg+xml'});
+            const url = URL.createObjectURL(blob);
+            
+            img.onload = function() {
+                ctx.drawImage(img, 0, 0, size, size);
+                URL.revokeObjectURL(url);
+            };
+            
+            img.src = url;
+        }
+
+        // Generate all icons
+        drawIcon('icon16', 16);
+        drawIcon('icon32', 32);
+        drawIcon('icon180', 180);
+        drawIcon('icon192', 192);
+        drawIcon('icon512', 512);
+    </script>
+</body>
+</html>

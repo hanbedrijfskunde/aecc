@@ -21,13 +21,13 @@
 
 ## Tasks
 
-- [ ] 1.0 Setup Project Foundation and Landing Page
-  - [ ] 1.1 Create base HTML5 structure for index.html with semantic elements
-  - [ ] 1.2 Add navigation cards for three stakeholder groups (Studenten, Docenten, Commissie)
-  - [ ] 1.3 Implement responsive grid layout for cards
-  - [ ] 1.4 Add meta tags and SEO optimization
-  - [ ] 1.5 Create favicon and app icons
-  - [ ] 1.6 Test foundation with test-foundation.html
+- [x] 1.0 Setup Project Foundation and Landing Page
+  - [x] 1.1 Create base HTML5 structure for index.html with semantic elements
+  - [x] 1.2 Add navigation cards for three stakeholder groups (Studenten, Docenten, Commissie)
+  - [x] 1.3 Implement responsive grid layout for cards
+  - [x] 1.4 Add meta tags and SEO optimization
+  - [x] 1.5 Create favicon and app icons
+  - [x] 1.6 Test foundation with test-foundation.html
 
 - [ ] 2.0 Implement Design System and Visual Identity
   - [ ] 2.1 Create CSS variables for color scheme (apple green #8FD14F, raspberry red #E63946)

@@ -1,0 +1,56 @@
+{
+    "name": "AEC - Algemene Economie C-cluster",
+    "short_name": "AEC",
+    "description": "Boardroom simulatie voor AI-proof HBO-onderwijs",
+    "start_url": "/aecc/",
+    "display": "standalone",
+    "background_color": "#F8F9FA",
+    "theme_color": "#8FD14F",
+    "orientation": "any",
+    "scope": "/aecc/",
+    "lang": "nl",
+    "dir": "ltr",
+    "categories": ["education", "business"],
+    "icons": [
+        {
+            "src": "favicon.svg",
+            "sizes": "any",
+            "type": "image/svg+xml",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "icon-192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "any"
+        },
+        {
+            "src": "icon-512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any"
+        },
+        {
+            "src": "apple-touch-icon.png",
+            "sizes": "180x180",
+            "type": "image/png",
+            "purpose": "any"
+        }
+    ],
+    "screenshots": [
+        {
+            "src": "screenshot-desktop.png",
+            "sizes": "1280x720",
+            "type": "image/png",
+            "label": "Desktop weergave van AEC portaal"
+        },
+        {
+            "src": "screenshot-mobile.png",
+            "sizes": "375x667",
+            "type": "image/png",
+            "label": "Mobiele weergave van AEC portaal"
+        }
+    ],
+    "related_applications": [],
+    "prefer_related_applications": false
+}
