@@ -447,6 +447,157 @@ Schrijf in Nederlands, executive summary stijl, max 2 A4.</pre>
                 </div>
             </section>
             
+            <!-- Resources Section -->
+            <section class="resources-section" aria-labelledby="resources-heading">
+                <h2 id="resources-heading" class="section-title">Resources & Templates</h2>
+                <div class="resources-grid">
+                    <div class="resource-card">
+                        <div class="resource-icon">📄</div>
+                        <h3>Strategische Analyse Template</h3>
+                        <p>Word template voor je wekelijkse individuele analyse</p>
+                        <button class="download-btn" onclick="downloadResource('analyse-template')">
+                            ⬇️ Download Template
+                        </button>
+                    </div>
+                    <div class="resource-card">
+                        <div class="resource-icon">📊</div>
+                        <h3>Boardroom Besluit Format</h3>
+                        <p>PowerPoint template voor team besluitvorming</p>
+                        <button class="download-btn" onclick="downloadResource('besluit-template')">
+                            ⬇️ Download Template
+                        </button>
+                    </div>
+                    <div class="resource-card">
+                        <div class="resource-icon">🎯</div>
+                        <h3>Strategische Pijler Canvas</h3>
+                        <p>Canvas voor het documenteren van strategische pijlers</p>
+                        <button class="download-btn" onclick="downloadResource('pijler-canvas')">
+                            ⬇️ Download Canvas
+                        </button>
+                    </div>
+                    <div class="resource-card">
+                        <div class="resource-icon">📈</div>
+                        <h3>Project Continuïteit Tracker</h3>
+                        <p>Excel sheet voor het bijhouden van beslissingen</p>
+                        <button class="download-btn" onclick="downloadResource('continuity-tracker')">
+                            ⬇️ Download Tracker
+                        </button>
+                    </div>
+                    <div class="resource-card">
+                        <div class="resource-icon">📚</div>
+                        <h3>Leeslijst & Artikelen</h3>
+                        <p>Achtergrondliteratuur over boardroom dynamics</p>
+                        <button class="download-btn" onclick="downloadResource('reading-list')">
+                            ⬇️ Download Lijst
+                        </button>
+                    </div>
+                    <div class="resource-card">
+                        <div class="resource-icon">🎥</div>
+                        <h3>Video Tutorials</h3>
+                        <p>Instructievideo's voor AI-gebruik en presentaties</p>
+                        <button class="download-btn" onclick="openVideoTutorials()">
+                            ▶️ Bekijk Video's
+                        </button>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Feedback Flow Diagram -->
+            <section class="feedback-flow" aria-labelledby="feedback-heading">
+                <h2 id="feedback-heading" class="section-title">Feedback & Beoordelingsflow</h2>
+                <div class="flow-container">
+                    <svg class="flow-diagram" viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Flow boxes -->
+                        <rect x="50" y="50" width="150" height="80" rx="10" fill="#8FD14F" opacity="0.9"/>
+                        <text x="125" y="85" text-anchor="middle" fill="white" font-weight="bold">1. Individuele</text>
+                        <text x="125" y="105" text-anchor="middle" fill="white" font-weight="bold">Analyse</text>
+                        
+                        <rect x="250" y="50" width="150" height="80" rx="10" fill="#FFD700" opacity="0.9"/>
+                        <text x="325" y="85" text-anchor="middle" fill="#2C3E50" font-weight="bold">2. Boardroom</text>
+                        <text x="325" y="105" text-anchor="middle" fill="#2C3E50" font-weight="bold">Simulatie</text>
+                        
+                        <rect x="450" y="50" width="150" height="80" rx="10" fill="#E63946" opacity="0.9"/>
+                        <text x="525" y="85" text-anchor="middle" fill="white" font-weight="bold">3. Team</text>
+                        <text x="525" y="105" text-anchor="middle" fill="white" font-weight="bold">Besluit</text>
+                        
+                        <rect x="650" y="50" width="150" height="80" rx="10" fill="#2C3E50" opacity="0.9"/>
+                        <text x="725" y="85" text-anchor="middle" fill="white" font-weight="bold">4. Pijler</text>
+                        <text x="725" y="105" text-anchor="middle" fill="white" font-weight="bold">Documentatie</text>
+                        
+                        <!-- Feedback loops -->
+                        <rect x="50" y="200" width="150" height="60" rx="10" fill="none" stroke="#8FD14F" stroke-width="2"/>
+                        <text x="125" y="235" text-anchor="middle" fill="#8FD14F" font-size="14">Peer Review</text>
+                        
+                        <rect x="250" y="200" width="150" height="60" rx="10" fill="none" stroke="#FFD700" stroke-width="2"/>
+                        <text x="325" y="235" text-anchor="middle" fill="#F39C12" font-size="14">Docentobservatie</text>
+                        
+                        <rect x="450" y="200" width="150" height="60" rx="10" fill="none" stroke="#E63946" stroke-width="2"/>
+                        <text x="525" y="235" text-anchor="middle" fill="#E63946" font-size="14">Groepsfeedback</text>
+                        
+                        <rect x="650" y="200" width="150" height="60" rx="10" fill="none" stroke="#2C3E50" stroke-width="2"/>
+                        <text x="725" y="235" text-anchor="middle" fill="#2C3E50" font-size="14">Eindbeordeling</text>
+                        
+                        <!-- Arrows -->
+                        <path d="M 200 90 L 250 90" stroke="#333" stroke-width="2" marker-end="url(#arrowhead)"/>
+                        <path d="M 400 90 L 450 90" stroke="#333" stroke-width="2" marker-end="url(#arrowhead)"/>
+                        <path d="M 600 90 L 650 90" stroke="#333" stroke-width="2" marker-end="url(#arrowhead)"/>
+                        
+                        <!-- Feedback arrows -->
+                        <path d="M 125 130 L 125 200" stroke="#8FD14F" stroke-width="2" stroke-dasharray="5,5"/>
+                        <path d="M 325 130 L 325 200" stroke="#FFD700" stroke-width="2" stroke-dasharray="5,5"/>
+                        <path d="M 525 130 L 525 200" stroke="#E63946" stroke-width="2" stroke-dasharray="5,5"/>
+                        <path d="M 725 130 L 725 200" stroke="#2C3E50" stroke-width="2" stroke-dasharray="5,5"/>
+                        
+                        <!-- Arrow marker -->
+                        <defs>
+                            <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+                                <polygon points="0 0, 10 3.5, 0 7" fill="#333"/>
+                            </marker>
+                        </defs>
+                        
+                        <!-- Timeline -->
+                        <text x="125" y="320" text-anchor="middle" fill="#5A6C7D" font-size="12">Maandag</text>
+                        <text x="325" y="320" text-anchor="middle" fill="#5A6C7D" font-size="12">Donderdag</text>
+                        <text x="525" y="320" text-anchor="middle" fill="#5A6C7D" font-size="12">Vrijdag</text>
+                        <text x="725" y="320" text-anchor="middle" fill="#5A6C7D" font-size="12">Zondag</text>
+                        
+                        <!-- Progress bar -->
+                        <rect x="50" y="340" width="700" height="20" rx="10" fill="#E0E0E0"/>
+                        <rect x="50" y="340" width="175" height="20" rx="10" fill="#8FD14F" class="progress-animation"/>
+                    </svg>
+                    
+                    <div class="flow-description">
+                        <h3>Feedback Momenten</h3>
+                        <div class="feedback-timeline">
+                            <div class="feedback-item">
+                                <span class="feedback-badge peer">Peer</span>
+                                <strong>Maandag:</strong> Upload individuele analyse → Peer review binnen team
+                            </div>
+                            <div class="feedback-item">
+                                <span class="feedback-badge docent">Docent</span>
+                                <strong>Donderdag:</strong> Boardroom simulatie → Directe observatie en interventies
+                            </div>
+                            <div class="feedback-item">
+                                <span class="feedback-badge groep">Groep</span>
+                                <strong>Vrijdag:</strong> Team besluit → Cross-team feedback sessie
+                            </div>
+                            <div class="feedback-item">
+                                <span class="feedback-badge finaal">Finaal</span>
+                                <strong>Zondag:</strong> Pijler documentatie → Formatieve beoordeling
+                            </div>
+                        </div>
+                        
+                        <h3>Beoordelingscriteria</h3>
+                        <ul class="criteria-list">
+                            <li><strong>Individueel (25%):</strong> Kwaliteit analyse, rol-perspectief, onderbouwing</li>
+                            <li><strong>Team (25%):</strong> Samenwerking, conflicthantering, consensusvorming</li>
+                            <li><strong>Besluit (25%):</strong> Coherentie, realisme, link naar driehoeksconflict</li>
+                            <li><strong>Continuïteit (25%):</strong> Verbinding met vorige weken, strategische lijn</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            
         </div>
     </main>
     

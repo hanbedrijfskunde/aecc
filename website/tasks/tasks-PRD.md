@@ -48,9 +48,9 @@
   - [x] 3.6 Add AI prompt template section with copy functionality
   - [x] 3.7 Implement Project Continuity timeline showing connected decisions
   - [x] 3.8 Create deadline countdown timers
-  - [ ] 3.9 Add resources section with downloadable templates
-  - [ ] 3.10 Build feedback flow diagram
-  - [ ] 3.11 Test student interface with test-studenten.html
+  - [x] 3.9 Add resources section with downloadable templates
+  - [x] 3.10 Build feedback flow diagram
+  - [x] 3.11 Test student interface with test-studenten.html
 
 - [ ] 4.0 Build Teacher Dashboard Interface
   - [ ] 4.1 Create docenten.html with dashboard layout

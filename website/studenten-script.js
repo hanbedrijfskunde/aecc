@@ -393,6 +393,119 @@ function calculateProgress() {
 }
 
 // ==========================================
+// Resource Download Functions
+// ==========================================
+function downloadResource(resourceType) {
+    // Simulate resource download
+    const resources = {
+        'analyse-template': 'Strategische_Analyse_Template.docx',
+        'besluit-template': 'Boardroom_Besluit_Format.pptx',
+        'pijler-canvas': 'Strategische_Pijler_Canvas.pdf',
+        'continuity-tracker': 'Project_Continuiteit_Tracker.xlsx',
+        'reading-list': 'Leeslijst_Boardroom_Dynamics.pdf'
+    };
+    
+    const filename = resources[resourceType] || 'resource.pdf';
+    
+    // Create a temporary download link
+    const link = document.createElement('a');
+    link.href = '#'; // In production, this would be the actual file URL
+    link.download = filename;
+    
+    // Show feedback
+    const button = event.target;
+    const originalText = button.innerHTML;
+    button.innerHTML = '✅ Download gestart!';
+    button.disabled = true;
+    
+    setTimeout(() => {
+        button.innerHTML = originalText;
+        button.disabled = false;
+    }, 2000);
+    
+    console.log(`Downloading ${filename}...`);
+    // In production, trigger actual download here
+}
+
+function openVideoTutorials() {
+    // Open video tutorial section or external link
+    const modalHTML = `
+        <div class="modal-overlay" id="videoModal">
+            <div class="modal-content">
+                <button class="modal-close" onclick="closeVideoModal()">×</button>
+                <h2>Video Tutorials</h2>
+                <div class="modal-body">
+                    <div class="video-list">
+                        <div class="video-item">
+                            <h3>1. Introductie AEC Module</h3>
+                            <p>Overzicht van de cursus en verwachtingen (10 min)</p>
+                            <button class="btn-primary" onclick="playVideo('intro')">▶️ Bekijk Video</button>
+                        </div>
+                        <div class="video-item">
+                            <h3>2. AI-Briefing Gebruiken</h3>
+                            <p>Hoe gebruik je AI voor strategische analyse (15 min)</p>
+                            <button class="btn-primary" onclick="playVideo('ai-briefing')">▶️ Bekijk Video</button>
+                        </div>
+                        <div class="video-item">
+                            <h3>3. Boardroom Simulatie Tips</h3>
+                            <p>Best practices voor effectieve boardroom discussies (12 min)</p>
+                            <button class="btn-primary" onclick="playVideo('boardroom')">▶️ Bekijk Video</button>
+                        </div>
+                        <div class="video-item">
+                            <h3>4. Presentatie Technieken</h3>
+                            <p>Je strategie overtuigend presenteren (20 min)</p>
+                            <button class="btn-primary" onclick="playVideo('presentation')">▶️ Bekijk Video</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+    
+    document.body.insertAdjacentHTML('beforeend', modalHTML);
+    
+    // Add styles if needed
+    if (!document.getElementById('videoModalStyles')) {
+        const styles = document.createElement('style');
+        styles.id = 'videoModalStyles';
+        styles.textContent = `
+            .video-list {
+                display: flex;
+                flex-direction: column;
+                gap: var(--space-lg);
+            }
+            .video-item {
+                background: var(--background-grey);
+                padding: var(--space-lg);
+                border-radius: var(--radius-md);
+            }
+            .video-item h3 {
+                color: var(--primary-green);
+                margin-bottom: var(--space-sm);
+            }
+            .video-item p {
+                color: var(--text-medium);
+                margin-bottom: var(--space-md);
+            }
+        `;
+        document.head.appendChild(styles);
+    }
+}
+
+function closeVideoModal() {
+    const modal = document.getElementById('videoModal');
+    if (modal) {
+        modal.remove();
+    }
+}
+
+function playVideo(videoId) {
+    console.log(`Playing video: ${videoId}`);
+    alert(`Video "${videoId}" zou hier afspelen in een embedded player.`);
+    // In production, this would open an actual video player
+}
+
+// ==========================================
 // Initialize Everything on Page Load
 // ==========================================
 document.addEventListener('DOMContentLoaded', () => {
