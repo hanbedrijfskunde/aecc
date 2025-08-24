@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <!-- Primary Meta Tags -->
+    <meta name="title" content="Studenten Portal - AEC | HANBK">
+    <meta name="description" content="Studentenportaal voor de AEC boardroom-simulatie. Toegang tot weekopdrachten, rolbeschrijvingen, AI-briefing tools en het driehoeksconflict framework.">
+    <meta name="keywords" content="AEC studenten, boardroom simulatie, CEO CFO COO CIO, AI briefing, Project Continuïteit">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://hanbedrijfskunde.github.io/aecc/studenten.html">
+    <meta property="og:title" content="Studenten Portal - AEC | HANBK">
+    <meta property="og:description" content="Jouw dashboard voor de AEC boardroom-simulatie met AI-integratie">
+    
+    <title>Studenten Portal - AEC Boardroom Simulatie | HANBK</title>
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="studenten-styles.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="manifest" href="site.webmanifest">
+    <meta name="theme-color" content="#8FD14F">
+</head>
+<body class="student-portal">
+    <!-- Skip to main content -->
+    <a href="#main" class="skip-link">Spring naar hoofdinhoud</a>
+    
+    <!-- Header -->
+    <header class="site-header" role="banner">
+        <div class="container">
+            <nav class="top-nav" aria-label="Hoofdnavigatie">
+                <a href="index.html" class="back-link">← Terug naar portaal</a>
+                <span class="current-page">Studenten Dashboard</span>
+            </nav>
+            <h1 class="page-title">
+                <span class="title-main">Boardroom Simulatie</span>
+                <span class="title-sub">AEC - Algemene Economie C-cluster</span>
+            </h1>
+        </div>
+    </header>
+    
+    <!-- Main Content -->
+    <main id="main" class="main-content" role="main">
+        <div class="container">
+            
+            <!-- Triangle Conflict Visualization -->
+            <section class="triangle-conflict" aria-labelledby="triangle-heading">
+                <h2 id="triangle-heading" class="section-title">Het Driehoeksconflict</h2>
+                <div class="triangle-container">
+                    <svg class="triangle-svg" viewBox="0 0 400 350" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Triangle -->
+                        <polygon points="200,50 100,250 300,250" 
+                                 fill="none" 
+                                 stroke="#8FD14F" 
+                                 stroke-width="2"
+                                 opacity="0.3"/>
+                        
+                        <!-- Exploit Corner (COO) -->
+                        <circle cx="100" cy="250" r="40" fill="#8FD14F" opacity="0.9" class="exploit-circle"/>
+                        <text x="100" y="255" text-anchor="middle" fill="white" font-weight="bold">Exploit</text>
+                        <text x="100" y="290" text-anchor="middle" fill="#5A6C7D" font-size="12">COO</text>
+                        
+                        <!-- Explore Corner (CIO) -->
+                        <circle cx="300" cy="250" r="40" fill="#E63946" opacity="0.9" class="explore-circle"/>
+                        <text x="300" y="255" text-anchor="middle" fill="white" font-weight="bold">Explore</text>
+                        <text x="300" y="290" text-anchor="middle" fill="#5A6C7D" font-size="12">CIO</text>
+                        
+                        <!-- Buyback Corner (CFO) -->
+                        <circle cx="200" cy="50" r="40" fill="#2C3E50" opacity="0.9" class="buyback-circle"/>
+                        <text x="200" y="55" text-anchor="middle" fill="white" font-weight="bold">Buyback</text>
+                        <text x="200" y="85" text-anchor="middle" fill="#5A6C7D" font-size="12">CFO</text>
+                        
+                        <!-- Balance Point (CEO) -->
+                        <circle cx="200" cy="183" r="25" fill="#FFD700" opacity="0.9" class="balance-point"/>
+                        <text x="200" y="188" text-anchor="middle" fill="#2C3E50" font-weight="bold" font-size="14">CEO</text>
+                    </svg>
+                    <div class="triangle-description">
+                        <p>Als <strong>Raad van Bestuur</strong> navigeer je constant tussen drie conflicterende strategieën:</p>
+                        <ul>
+                            <li><strong>Exploit (COO):</strong> Optimaliseer het huidige businessmodel</li>
+                            <li><strong>Explore (CIO):</strong> Innoveer en ontdek nieuwe mogelijkheden</li>
+                            <li><strong>Buyback (CFO):</strong> Maximaliseer aandeelhouderswaarde</li>
+                        </ul>
+                        <p>De <strong>CEO</strong> moet de balans bewaken en coherente beslissingen nemen.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Week Navigator -->
+            <section class="week-navigator" aria-labelledby="weeks-heading">
+                <h2 id="weeks-heading" class="section-title">7 Weken Programma</h2>
+                <div class="weeks-grid">
+                    <!-- Week 1 -->
+                    <article class="week-card" data-week="1">
+                        <div class="week-header">
+                            <span class="week-number">Week 1</span>
+                            <span class="week-status status-upcoming">Binnenkort</span>
+                        </div>
+                        <h3 class="week-title">Strategische Analyse</h3>
+                        <p class="week-description">Analyseer de huidige marktsituatie en identificeer kernuitdagingen</p>
+                        <div class="week-meta">
+                            <span class="deadline" data-deadline="2024-09-02">Deadline: 2 sept</span>
+                            <button class="week-btn" onclick="showWeekDetails(1)">Open Week →</button>
+                        </div>
+                    </article>
+                    
+                    <!-- Week 2 -->
+                    <article class="week-card" data-week="2">
+                        <div class="week-header">
+                            <span class="week-number">Week 2</span>
+                            <span class="week-status status-locked">Vergrendeld</span>
+                        </div>
+                        <h3 class="week-title">Marktpositionering</h3>
+                        <p class="week-description">Bepaal jullie unieke waardepropositie en concurrentievoordeel</p>
+                        <div class="week-meta">
+                            <span class="deadline" data-deadline="2024-09-09">Deadline: 9 sept</span>
+                            <button class="week-btn" disabled>Nog niet beschikbaar</button>
+                        </div>
+                    </article>
+                    
+                    <!-- Week 3 -->
+                    <article class="week-card" data-week="3">
+                        <div class="week-header">
+                            <span class="week-number">Week 3</span>
+                            <span class="week-status status-locked">Vergrendeld</span>
+                        </div>
+                        <h3 class="week-title">Innovatie vs Optimalisatie</h3>
+                        <p class="week-description">Eerste driehoeksconflict: balanceer tussen exploit en explore</p>
+                        <div class="week-meta">
+                            <span class="deadline" data-deadline="2024-09-16">Deadline: 16 sept</span>
+                            <button class="week-btn" disabled>Nog niet beschikbaar</button>
+                        </div>
+                    </article>
+                    
+                    <!-- Week 4 -->
+                    <article class="week-card" data-week="4">
+                        <div class="week-header">
+                            <span class="week-number">Week 4</span>
+                            <span class="week-status status-locked">Vergrendeld</span>
+                        </div>
+                        <h3 class="week-title">Financiële Strategie</h3>
+                        <p class="week-description">Kapitaalallocatie: investeren of terugkopen?</p>
+                        <div class="week-meta">
+                            <span class="deadline" data-deadline="2024-09-23">Deadline: 23 sept</span>
+                            <button class="week-btn" disabled>Nog niet beschikbaar</button>
+                        </div>
+                    </article>
+                    
+                    <!-- Week 5 -->
+                    <article class="week-card" data-week="5">
+                        <div class="week-header">
+                            <span class="week-number">Week 5</span>
+                            <span class="week-status status-locked">Vergrendeld</span>
+                        </div>
+                        <h3 class="week-title">Duurzaamheid & Groei</h3>
+                        <p class="week-description">Lange termijn visie vs korte termijn resultaten</p>
+                        <div class="week-meta">
+                            <span class="deadline" data-deadline="2024-09-30">Deadline: 30 sept</span>
+                            <button class="week-btn" disabled>Nog niet beschikbaar</button>
+                        </div>
+                    </article>
+                    
+                    <!-- Week 6 -->
+                    <article class="week-card" data-week="6">
+                        <div class="week-header">
+                            <span class="week-number">Week 6</span>
+                            <span class="week-status status-locked">Vergrendeld</span>
+                        </div>
+                        <h3 class="week-title">Integratie & Synthese</h3>
+                        <p class="week-description">Bouw je coherente strategie uit 5 pijlers</p>
+                        <div class="week-meta">
+                            <span class="deadline" data-deadline="2024-10-07">Deadline: 7 okt</span>
+                            <button class="week-btn" disabled>Nog niet beschikbaar</button>
+                        </div>
+                    </article>
+                    
+                    <!-- Week 7 -->
+                    <article class="week-card week-final" data-week="7">
+                        <div class="week-header">
+                            <span class="week-number">Week 7</span>
+                            <span class="week-status status-locked">Vergrendeld</span>
+                        </div>
+                        <h3 class="week-title">Presentatie & Verdediging</h3>
+                        <p class="week-description">Presenteer als RvB, evalueer als RvT</p>
+                        <div class="week-meta">
+                            <span class="deadline" data-deadline="2024-10-14">Deadline: 14 okt</span>
+                            <button class="week-btn" disabled>Nog niet beschikbaar</button>
+                        </div>
+                    </article>
+                </div>
+            </section>
+            
+            <!-- Role Cards Section -->
+            <section class="roles-section" aria-labelledby="roles-heading">
+                <h2 id="roles-heading" class="section-title">Jouw Rol in de Raad van Bestuur</h2>
+                <div class="roles-grid">
+                    <!-- CEO Role -->
+                    <article class="role-card ceo-card">
+                        <div class="role-icon">👔</div>
+                        <h3 class="role-title">CEO</h3>
+                        <p class="role-subtitle">De Balans-kunstenaar</p>
+                        <div class="role-content">
+                            <h4>Verantwoordelijkheden:</h4>
+                            <ul>
+                                <li>Leidt boardroom discussies</li>
+                                <li>Bewaakt strategische coherentie</li>
+                                <li>Balanceert conflicterende belangen</li>
+                                <li>Neemt finale beslissingen</li>
+                            </ul>
+                            <h4>Focus:</h4>
+                            <p>Langetermijnvisie en stakeholder management</p>
+                        </div>
+                    </article>
+                    
+                    <!-- CFO Role -->
+                    <article class="role-card cfo-card">
+                        <div class="role-icon">💰</div>
+                        <h3 class="role-title">CFO</h3>
+                        <p class="role-subtitle">De Kapitaal-Allocateur</p>
+                        <div class="role-content">
+                            <h4>Verantwoordelijkheden:</h4>
+                            <ul>
+                                <li>Beheer financiële resources</li>
+                                <li>Evalueer ROI van investeringen</li>
+                                <li>Champion voor buyback strategie</li>
+                                <li>Risk management</li>
+                            </ul>
+                            <h4>Focus:</h4>
+                            <p>Aandeelhouderswaarde en financiële discipline</p>
+                        </div>
+                    </article>
+                    
+                    <!-- COO Role -->
+                    <article class="role-card coo-card">
+                        <div class="role-icon">⚙️</div>
+                        <h3 class="role-title">COO</h3>
+                        <p class="role-subtitle">De Optimalisator</p>
+                        <div class="role-content">
+                            <h4>Verantwoordelijkheden:</h4>
+                            <ul>
+                                <li>Operationele excellentie</li>
+                                <li>Procesoptimalisatie</li>
+                                <li>Champion voor exploit strategie</li>
+                                <li>Efficiëntie verhogen</li>
+                            </ul>
+                            <h4>Focus:</h4>
+                            <p>Huidige business maximaliseren</p>
+                        </div>
+                    </article>
+                    
+                    <!-- CIO Role -->
+                    <article class="role-card cio-card">
+                        <div class="role-icon">💡</div>
+                        <h3 class="role-title">CIO</h3>
+                        <p class="role-subtitle">De Pionier</p>
+                        <div class="role-content">
+                            <h4>Verantwoordelijkheden:</h4>
+                            <ul>
+                                <li>Digitale transformatie</li>
+                                <li>Innovatie initiatieven</li>
+                                <li>Champion voor explore strategie</li>
+                                <li>Nieuwe businessmodellen</li>
+                            </ul>
+                            <h4>Focus:</h4>
+                            <p>Toekomstige groei en disruptie</p>
+                        </div>
+                    </article>
+                </div>
+            </section>
+            
+            <!-- WAAROM/HOE/WAT Structure -->
+            <section class="waarom-hoe-wat" aria-labelledby="whw-heading">
+                <h2 id="whw-heading" class="section-title">Week Structuur</h2>
+                <div class="whw-tabs">
+                    <button class="tab-btn active" onclick="showTab('waarom')">WAAROM</button>
+                    <button class="tab-btn" onclick="showTab('hoe')">HOE</button>
+                    <button class="tab-btn" onclick="showTab('wat')">WAT</button>
+                </div>
+                <div class="whw-content">
+                    <div id="waarom-content" class="tab-content active">
+                        <h3>WAAROM - Didactische Rationale</h3>
+                        <p>Elke week bouwt voort op de vorige, waarbij je strategische beslissingen elkaar beïnvloeden. Dit simuleert de realiteit van boardroom dynamics waar beslissingen consequenties hebben voor de lange termijn.</p>
+                        <ul>
+                            <li><strong>Week 1-2:</strong> Fundament leggen met analyse en positionering</li>
+                            <li><strong>Week 3-5:</strong> Navigeren door conflicten en trade-offs</li>
+                            <li><strong>Week 6-7:</strong> Integreren en verdedigen van coherente strategie</li>
+                        </ul>
+                    </div>
+                    <div id="hoe-content" class="tab-content">
+                        <h3>HOE - Werkwijze</h3>
+                        <ol>
+                            <li><strong>Voorbereiding:</strong> Ontvang AI-briefing op maandag</li>
+                            <li><strong>Analyse:</strong> Bestudeer vanuit je rol-perspectief</li>
+                            <li><strong>Boardroom:</strong> 90 minuten simulatie op donderdag</li>
+                            <li><strong>Besluit:</strong> Documenteer strategische pijler</li>
+                            <li><strong>Reflectie:</strong> Link naar Project Continuïteit</li>
+                        </ol>
+                    </div>
+                    <div id="wat-content" class="tab-content">
+                        <h3>WAT - Deliverables</h3>
+                        <p>Elke week lever je op:</p>
+                        <ul>
+                            <li>✅ Individuele rol-analyse (500 woorden)</li>
+                            <li>✅ Team boardroom besluit (1 A4)</li>
+                            <li>✅ Strategische pijler documentatie</li>
+                            <li>✅ Link naar vorige beslissingen</li>
+                        </ul>
+                        <p><strong>Eindproduct:</strong> Coherente 7-pijler strategie presentatie</p>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- AI Prompt Templates -->
+            <section class="ai-prompts" aria-labelledby="ai-heading">
+                <h2 id="ai-heading" class="section-title">AI Briefing Templates</h2>
+                <div class="prompt-container">
+                    <div class="prompt-card">
+                        <h3>Week 1: Strategische Analyse Prompt</h3>
+                        <div class="prompt-text">
+                            <pre>Je bent een business intelligence analist. Analyseer de volgende case voor een Nederlandse MKB-onderneming in de [SECTOR] industrie:
+
+Context: [BEDRIJFSNAAM] opereert al 10 jaar in deze markt met €50M omzet en 200 medewerkers.
+
+Genereer een executive briefing met:
+1. Marktanalyse: trends, kansen, bedreigingen
+2. Concurrentie overzicht: top 3 spelers
+3. Interne sterktes en zwaktes
+4. Drie strategische dilemma's voor de RvB
+5. Data visualisaties waar relevant
+
+Focus op het driehoeksconflict tussen:
+- Exploit (huidige business optimaliseren)
+- Explore (nieuwe markten/producten)
+- Buyback (kapitaal teruggeven aan aandeelhouders)
+
+Schrijf in Nederlands, executive summary stijl, max 2 A4.</pre>
+                        </div>
+                        <button class="copy-btn" onclick="copyPrompt(this)">📋 Kopieer Prompt</button>
+                    </div>
+                    
+                    <div class="prompt-info">
+                        <h4>💡 Tips voor AI-gebruik:</h4>
+                        <ul>
+                            <li>Vervang [SECTOR] en [BEDRIJFSNAAM] met je toegewezen case</li>
+                            <li>Vraag door op specifieke punten vanuit je rol-perspectief</li>
+                            <li>Laat AI verschillende scenario's genereren</li>
+                            <li>Gebruik de output als briefing, niet als beslissing</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Project Continuity Timeline -->
+            <section class="continuity-timeline" aria-labelledby="timeline-heading">
+                <h2 id="timeline-heading" class="section-title">Project Continuïteit</h2>
+                <div class="timeline-container">
+                    <div class="timeline-line"></div>
+                    <div class="timeline-items">
+                        <div class="timeline-item" data-week="1">
+                            <div class="timeline-marker"></div>
+                            <div class="timeline-content">
+                                <h4>Week 1: Fundament</h4>
+                                <p>Strategische uitgangspunten</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item" data-week="2">
+                            <div class="timeline-marker"></div>
+                            <div class="timeline-content">
+                                <h4>Week 2: Positionering</h4>
+                                <p>Marktpositie bepalen</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item" data-week="3">
+                            <div class="timeline-marker"></div>
+                            <div class="timeline-content">
+                                <h4>Week 3: Eerste Conflict</h4>
+                                <p>Exploit vs Explore</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item" data-week="4">
+                            <div class="timeline-marker"></div>
+                            <div class="timeline-content">
+                                <h4>Week 4: Kapitaal</h4>
+                                <p>Investeren vs Buyback</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item" data-week="5">
+                            <div class="timeline-marker"></div>
+                            <div class="timeline-content">
+                                <h4>Week 5: Balans</h4>
+                                <p>Duurzaamheid vs Groei</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item" data-week="6">
+                            <div class="timeline-marker"></div>
+                            <div class="timeline-content">
+                                <h4>Week 6: Synthese</h4>
+                                <p>Coherente strategie</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item final" data-week="7">
+                            <div class="timeline-marker"></div>
+                            <div class="timeline-content">
+                                <h4>Week 7: Presentatie</h4>
+                                <p>Verdediging & Evaluatie</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="continuity-explanation">
+                    <p><strong>Belangrijk:</strong> Elke beslissing bouwt voort op de vorige. Je kunt niet zomaar van koers veranderen zonder consequenties. Dit simuleert de werkelijkheid waarin strategische beslissingen langetermijneffecten hebben.</p>
+                </div>
+            </section>
+            
+            <!-- Deadline Countdown -->
+            <section class="deadline-section" aria-labelledby="deadline-heading">
+                <h2 id="deadline-heading" class="section-title">Volgende Deadline</h2>
+                <div class="countdown-container">
+                    <div class="countdown-display" id="countdown">
+                        <div class="countdown-item">
+                            <span class="countdown-value" id="days">00</span>
+                            <span class="countdown-label">Dagen</span>
+                        </div>
+                        <div class="countdown-item">
+                            <span class="countdown-value" id="hours">00</span>
+                            <span class="countdown-label">Uren</span>
+                        </div>
+                        <div class="countdown-item">
+                            <span class="countdown-value" id="minutes">00</span>
+                            <span class="countdown-label">Minuten</span>
+                        </div>
+                        <div class="countdown-item">
+                            <span class="countdown-value" id="seconds">00</span>
+                            <span class="countdown-label">Seconden</span>
+                        </div>
+                    </div>
+                    <div class="deadline-info">
+                        <h3 id="deadline-title">Week 1: Strategische Analyse</h3>
+                        <p id="deadline-date">Deadline: Maandag 2 september 2024, 23:59</p>
+                    </div>
+                </div>
+            </section>
+            
+        </div>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="site-footer" role="contentinfo">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="docenten.html">Docenten Portal</a></li>
+                        <li><a href="commissie.html">Curriculum Commissie</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <p>Voor vragen: <a href="mailto:aec@hanbk.nl">aec@hanbk.nl</a></p>
+                </div>
+            </div>
+            <p class="footer-copyright">&copy; 2024 HANBK - AEC Module</p>
+        </div>
+    </footer>
+    
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+    <script src="studenten-script.js"></script>
+</body>
+</html>

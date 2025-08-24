@@ -39,15 +39,15 @@
   - [x] 2.7 Create utility classes for spacing (generous padding/margins)
   - [x] 2.8 Add print styles for teacher materials
 
-- [ ] 3.0 Build Student Experience Portal
-  - [ ] 3.1 Create studenten.html with basic structure
-  - [ ] 3.2 Build Week Navigator with 7 week cards and progress indicators
-  - [ ] 3.3 Implement triangle conflict visualization (Exploit vs Explore vs Buyback)
-  - [ ] 3.4 Create role cards section (CEO, CFO, COO, CIO) with persona details
-  - [ ] 3.5 Build WAAROM/HOE/WAT structure for each week view
-  - [ ] 3.6 Add AI prompt template section with copy functionality
-  - [ ] 3.7 Implement Project Continuity timeline showing connected decisions
-  - [ ] 3.8 Create deadline countdown timers
+- [x] 3.0 Build Student Experience Portal
+  - [x] 3.1 Create studenten.html with basic structure
+  - [x] 3.2 Build Week Navigator with 7 week cards and progress indicators
+  - [x] 3.3 Implement triangle conflict visualization (Exploit vs Explore vs Buyback)
+  - [x] 3.4 Create role cards section (CEO, CFO, COO, CIO) with persona details
+  - [x] 3.5 Build WAAROM/HOE/WAT structure for each week view
+  - [x] 3.6 Add AI prompt template section with copy functionality
+  - [x] 3.7 Implement Project Continuity timeline showing connected decisions
+  - [x] 3.8 Create deadline countdown timers
   - [ ] 3.9 Add resources section with downloadable templates
   - [ ] 3.10 Build feedback flow diagram
   - [ ] 3.11 Test student interface with test-studenten.html
