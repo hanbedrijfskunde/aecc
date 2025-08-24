@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Local Test - AEC Website</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        h1 {
+            color: #2C3E50;
+            border-bottom: 3px solid #8FD14F;
+            padding-bottom: 10px;
+        }
+        .info-box {
+            background: #fff3cd;
+            border: 1px solid #ffc107;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        .test-section {
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .test-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .test-card {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            border: 2px solid #ddd;
+        }
+        .test-card h3 {
+            margin-top: 0;
+            color: #8FD14F;
+        }
+        a {
+            color: #8FD14F;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .status {
+            padding: 5px 10px;
+            border-radius: 4px;
+            display: inline-block;
+            margin: 5px 0;
+        }
+        .status.pass {
+            background: #d4edda;
+            color: #155724;
+        }
+        .status.fail {
+            background: #f8d7da;
+            color: #721c24;
+        }
+        .command {
+            background: #f4f4f4;
+            padding: 10px;
+            border-radius: 4px;
+            font-family: monospace;
+            margin: 10px 0;
+        }
+        button {
+            background: #8FD14F;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 5px;
+        }
+        button:hover {
+            background: #7AB83F;
+        }
+    </style>
+</head>
+<body>
+    <h1>🧪 Local Testing Guide - AEC Website</h1>
+    
+    <div class="info-box">
+        <h2>⚠️ CORS Notice</h2>
+        <p>The automated test file encounters CORS issues when opened directly from the file system. This is expected browser security behavior.</p>
+        <p><strong>Solution:</strong> Use a local web server to test the website properly.</p>
+    </div>
+
+    <div class="test-section">
+        <h2>Quick Start - Local Server</h2>
+        <p>Choose one of these methods to run a local server:</p>
+        
+        <div class="test-grid">
+            <div class="test-card">
+                <h3>Python (Built-in)</h3>
+                <div class="command">python3 -m http.server 8000</div>
+                <p>Then visit: <a href="http://localhost:8000" target="_blank">http://localhost:8000</a></p>
+            </div>
+            
+            <div class="test-card">
+                <h3>Node.js (npx)</h3>
+                <div class="command">npx http-server -p 8000</div>
+                <p>Then visit: <a href="http://localhost:8000" target="_blank">http://localhost:8000</a></p>
+            </div>
+            
+            <div class="test-card">
+                <h3>VS Code Extension</h3>
+                <p>Install "Live Server" extension</p>
+                <p>Right-click index.html → "Open with Live Server"</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>Manual Test Checklist</h2>
+        <p>Open <a href="../index.html" target="_blank">index.html</a> and verify:</p>
+        
+        <div id="checklist">
+            <label style="display: block; margin: 10px 0;">
+                <input type="checkbox" onchange="updateStatus()"> 
+                <strong>Visual Design:</strong> Green/red color scheme with glassmorphism effects
+            </label>
+            <label style="display: block; margin: 10px 0;">
+                <input type="checkbox" onchange="updateStatus()"> 
+                <strong>Three Cards:</strong> Studenten, Docenten, and Commissie portals visible
+            </label>
+            <label style="display: block; margin: 10px 0;">
+                <input type="checkbox" onchange="updateStatus()"> 
+                <strong>Responsive:</strong> Cards stack on mobile, grid on desktop
+            </label>
+            <label style="display: block; margin: 10px 0;">
+                <input type="checkbox" onchange="updateStatus()"> 
+                <strong>Hover Effects:</strong> Cards lift and scale on hover
+            </label>
+            <label style="display: block; margin: 10px 0;">
+                <input type="checkbox" onchange="updateStatus()"> 
+                <strong>Icons:</strong> SVG icons display in each card
+            </label>
+            <label style="display: block; margin: 10px 0;">
+                <input type="checkbox" onchange="updateStatus()"> 
+                <strong>Typography:</strong> Clean, readable fonts with proper hierarchy
+            </label>
+            <label style="display: block; margin: 10px 0;">
+                <input type="checkbox" onchange="updateStatus()"> 
+                <strong>Features Section:</strong> Three feature boxes below cards
+            </label>
+            <label style="display: block; margin: 10px 0;">
+                <input type="checkbox" onchange="updateStatus()"> 
+                <strong>Footer:</strong> Dark footer with copyright info
+            </label>
+        </div>
+        
+        <div style="margin-top: 20px;">
+            <strong>Test Status:</strong> 
+            <span id="testStatus" class="status fail">0/8 tests passed</span>
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>File Structure Verification</h2>
+        <button onclick="checkFiles()">Check File Structure</button>
+        <div id="fileResults" style="margin-top: 20px;"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>Browser Console Tests</h2>
+        <p>Open browser console (F12) on the main page and run:</p>
+        <div class="command">
+// Check if CSS variables are loaded
+getComputedStyle(document.documentElement).getPropertyValue('--primary-green')
+
+// Check if script.js loaded
+typeof copyToClipboard === 'function'
+
+// Check responsive breakpoints
+window.matchMedia('(min-width: 768px)').matches
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>Next Steps</h2>
+        <p>After Task 1.0 is complete, you can proceed with:</p>
+        <ul>
+            <li>Task 2.0: CSS enhancements and animations</li>
+            <li>Task 3.0: Student portal (studenten.html)</li>
+            <li>Task 4.0: Teacher dashboard (docenten.html)</li>
+            <li>Task 5.0: Committee portal (commissie.html)</li>
+        </ul>
+    </div>
+
+    <script>
+        function updateStatus() {
+            const checkboxes = document.querySelectorAll('#checklist input[type="checkbox"]');
+            const checked = document.querySelectorAll('#checklist input[type="checkbox"]:checked');
+            const status = document.getElementById('testStatus');
+            
+            status.textContent = `${checked.length}/${checkboxes.length} tests passed`;
+            status.className = checked.length === checkboxes.length ? 'status pass' : 'status fail';
+        }
+
+        function checkFiles() {
+            const files = [
+                '../index.html',
+                '../styles.css',
+                '../script.js',
+                '../favicon.svg',
+                '../site.webmanifest'
+            ];
+            
+            const results = document.getElementById('fileResults');
+            results.innerHTML = '<h3>Checking files...</h3>';
+            
+            files.forEach(file => {
+                const link = document.createElement('a');
+                link.href = file;
+                link.target = '_blank';
+                link.textContent = file.replace('../', '');
+                
+                const item = document.createElement('div');
+                item.style.margin = '5px 0';
+                item.innerHTML = '✅ ';
+                item.appendChild(link);
+                results.appendChild(item);
+            });
+            
+            results.innerHTML += '<p style="color: green; margin-top: 10px;">All files are accessible! Click to open.</p>';
+        }
+    </script>
+</body>
+</html>

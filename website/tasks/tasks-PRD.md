@@ -29,15 +29,15 @@
   - [x] 1.5 Create favicon and app icons
   - [x] 1.6 Test foundation with test-foundation.html
 
-- [ ] 2.0 Implement Design System and Visual Identity
-  - [ ] 2.1 Create CSS variables for color scheme (apple green #8FD14F, raspberry red #E63946)
-  - [ ] 2.2 Implement glassmorphism effects with backdrop-filter and transparency
-  - [ ] 2.3 Design card components with hover states and shadows
-  - [ ] 2.4 Create water-themed animations (ripple effects, wave patterns)
-  - [ ] 2.5 Set up typography hierarchy with fluid font sizes using clamp()
-  - [ ] 2.6 Implement smooth transitions (300ms ease) for all interactive elements
-  - [ ] 2.7 Create utility classes for spacing (generous padding/margins)
-  - [ ] 2.8 Add print styles for teacher materials
+- [x] 2.0 Implement Design System and Visual Identity
+  - [x] 2.1 Create CSS variables for color scheme (apple green #8FD14F, raspberry red #E63946)
+  - [x] 2.2 Implement glassmorphism effects with backdrop-filter and transparency
+  - [x] 2.3 Design card components with hover states and shadows
+  - [x] 2.4 Create water-themed animations (ripple effects, wave patterns)
+  - [x] 2.5 Set up typography hierarchy with fluid font sizes using clamp()
+  - [x] 2.6 Implement smooth transitions (300ms ease) for all interactive elements
+  - [x] 2.7 Create utility classes for spacing (generous padding/margins)
+  - [x] 2.8 Add print styles for teacher materials
 
 - [ ] 3.0 Build Student Experience Portal
   - [ ] 3.1 Create studenten.html with basic structure
