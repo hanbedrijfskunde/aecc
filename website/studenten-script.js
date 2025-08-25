@@ -34,8 +34,23 @@ function showTab(tabName) {
 async function showWeekDetails(weekNumber) {
     console.log(`Opening details for Week ${weekNumber} (type: ${typeof weekNumber})`);
     
-    // Ensure weekNumber is an integer
-    weekNumber = parseInt(weekNumber);
+    // Handle special cases for "Bekijk Resultaten" and "Project Continuïteit" cards
+    // These might pass strings that need special handling
+    if (typeof weekNumber === 'string') {
+        // Try to extract number from string if it contains one
+        const extracted = weekNumber.match(/\d+/);
+        if (extracted) {
+            weekNumber = parseInt(extracted[0]);
+        } else {
+            // Handle special card types
+            console.error(`Invalid week identifier: ${weekNumber}`);
+            alert('Deze functie is nog niet beschikbaar.');
+            return;
+        }
+    } else {
+        weekNumber = parseInt(weekNumber);
+    }
+    
     console.log(`Parsed week number: ${weekNumber}`);
     
     // Validate week number
@@ -46,7 +61,7 @@ async function showWeekDetails(weekNumber) {
     }
     
     // If content not loaded yet, try to load it
-    if (!window.contentData || !window.contentData.weeks) {
+    if (!window.contentData || !window.contentData.weeks || window.contentData.weeks.length === 0) {
         console.log('Content not loaded yet, loading now...');
         try {
             const response = await fetch('content.json');
@@ -55,28 +70,40 @@ async function showWeekDetails(weekNumber) {
             }
             const data = await response.json();
             window.contentData = data;
-            console.log('Content loaded successfully:', data);
+            console.log('Content loaded successfully. Found', data.weeks?.length || 0, 'weeks');
         } catch (error) {
             console.error('Failed to load content:', error);
-            alert('Fout bij het laden van cursusinhoud. Vernieuw de pagina en probeer opnieuw.');
-            window.contentData = { weeks: [], roles: {} };
-            return;
+            // Try alternative path for content.json
+            try {
+                const altResponse = await fetch('/content.json');
+                if (altResponse.ok) {
+                    const altData = await altResponse.json();
+                    window.contentData = altData;
+                    console.log('Content loaded from alternative path');
+                } else {
+                    throw new Error('Alternative path also failed');
+                }
+            } catch (altError) {
+                console.error('Alternative path failed:', altError);
+                alert('Fout bij het laden van cursusinhoud. Vernieuw de pagina en probeer opnieuw.');
+                window.contentData = { weeks: [], roles: {} };
+                return;
+            }
         }
     }
     
     // Get week data from content if available
     let weekData = null;
-    if (window.contentData && window.contentData.weeks) {
+    if (window.contentData && window.contentData.weeks && window.contentData.weeks.length > 0) {
         console.log('Available weeks:', window.contentData.weeks.map(w => w.number));
         weekData = window.contentData.weeks.find(w => w.number === weekNumber);
-        console.log('Found week data:', weekData);
-    }
-    
-    // If no week data found after loading content, show error
-    if (!weekData && window.contentData && window.contentData.weeks && window.contentData.weeks.length > 0) {
-        console.error(`Week ${weekNumber} not found in content data`);
-        alert(`Week ${weekNumber} is nog niet beschikbaar. Probeer later opnieuw.`);
-        return;
+        console.log('Found week data:', weekData ? 'Yes' : 'No');
+        
+        if (!weekData) {
+            console.warn(`Week ${weekNumber} not found in content data. Using fallback content.`);
+        }
+    } else {
+        console.warn('No weeks data available, will show fallback content');
     }
     
     // Create modal content
@@ -656,32 +683,169 @@ function initializeTimeline() {
 // Triangle Conflict Interaction
 // ==========================================
 function initializeTriangleInteraction() {
-    const circles = document.querySelectorAll('.triangle-svg circle');
+    const svg = document.querySelector('.triangle-svg');
+    const nodes = document.querySelectorAll('.strategy-node');
+    const strategyCards = document.querySelectorAll('.strategy-card');
     
-    circles.forEach(circle => {
-        circle.addEventListener('click', (e) => {
-            const classList = e.target.classList;
+    // Enhanced click interactions for nodes
+    nodes.forEach(node => {
+        node.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const circle = node.querySelector('circle');
+            const classList = circle.classList;
             let strategy = '';
             let description = '';
+            let details = {};
             
             if (classList.contains('exploit-circle')) {
                 strategy = 'Exploit Strategy';
                 description = 'Focus op het optimaliseren van bestaande processen en het maximaliseren van efficiëntie in de huidige business.';
+                details = {
+                    champion: 'COO',
+                    color: '#8FD14F',
+                    examples: ['Procesoptimalisatie', 'Kostenreductie', 'Lean management'],
+                    risks: ['Innovatie verwaarlozen', 'Marktdisruptie missen']
+                };
+                highlightStrategy('exploit');
             } else if (classList.contains('explore-circle')) {
                 strategy = 'Explore Strategy';
                 description = 'Investeer in innovatie, nieuwe markten en disruptieve technologieën voor toekomstige groei.';
+                details = {
+                    champion: 'CIO',
+                    color: '#E63946',
+                    examples: ['R&D investeringen', 'Nieuwe markten', 'Digitale transformatie'],
+                    risks: ['Hoge kosten', 'Onzekere ROI']
+                };
+                highlightStrategy('explore');
             } else if (classList.contains('buyback-circle')) {
                 strategy = 'Buyback Strategy';
                 description = 'Geef kapitaal terug aan aandeelhouders door middel van dividend en aandeleninkoop.';
+                details = {
+                    champion: 'CFO',
+                    color: '#2C3E50',
+                    examples: ['Dividend uitkering', 'Share buyback', 'Kapitaalstructuur optimalisatie'],
+                    risks: ['Groei beperken', 'Innovatie ondefinanciering']
+                };
+                highlightStrategy('buyback');
             } else if (classList.contains('balance-point')) {
                 strategy = 'CEO Balans';
                 description = 'Als CEO moet je de juiste balans vinden tussen alle drie de strategieën voor duurzaam succes.';
+                details = {
+                    champion: 'CEO',
+                    color: '#FFD700',
+                    examples: ['Portfolio management', 'Strategische allocatie', 'Stakeholder balans'],
+                    risks: ['Geen duidelijke richting', 'Iedereen ontevreden']
+                };
+                highlightAllStrategies();
             }
             
             if (strategy) {
-                showStrategyInfo(strategy, description);
+                showEnhancedStrategyInfo(strategy, description, details);
             }
         });
+        
+        // Hover effects
+        node.addEventListener('mouseenter', (e) => {
+            const circle = node.querySelector('circle');
+            circle.style.filter = 'brightness(1.2)';
+            circle.style.transform = 'scale(1.1)';
+        });
+        
+        node.addEventListener('mouseleave', (e) => {
+            const circle = node.querySelector('circle');
+            circle.style.filter = '';
+            circle.style.transform = '';
+        });
+    });
+    
+    // Connect strategy cards to visualization
+    strategyCards.forEach(card => {
+        card.addEventListener('click', () => {
+            if (card.classList.contains('exploit-card')) {
+                simulateNodeClick('exploit-circle');
+            } else if (card.classList.contains('explore-card')) {
+                simulateNodeClick('explore-circle');
+            } else if (card.classList.contains('buyback-card')) {
+                simulateNodeClick('buyback-circle');
+            }
+        });
+    });
+    
+    // Add keyboard navigation
+    document.addEventListener('keydown', (e) => {
+        if (e.key === '1') simulateNodeClick('exploit-circle');
+        if (e.key === '2') simulateNodeClick('explore-circle');
+        if (e.key === '3') simulateNodeClick('buyback-circle');
+        if (e.key === '0') simulateNodeClick('balance-point');
+    });
+}
+
+function simulateNodeClick(circleClass) {
+    const circle = document.querySelector(`.${circleClass}`);
+    if (circle) {
+        const node = circle.closest('.strategy-node');
+        if (node) {
+            node.click();
+        }
+    }
+}
+
+function highlightStrategy(strategy) {
+    // Dim other strategies
+    const allNodes = document.querySelectorAll('.strategy-node');
+    const allCards = document.querySelectorAll('.strategy-card');
+    
+    allNodes.forEach(node => {
+        node.style.opacity = '0.3';
+    });
+    allCards.forEach(card => {
+        card.style.opacity = '0.3';
+    });
+    
+    // Highlight selected strategy
+    const selectedNode = document.querySelector(`.${strategy}-node`);
+    const selectedCard = document.querySelector(`.${strategy}-card`);
+    
+    if (selectedNode) selectedNode.style.opacity = '1';
+    if (selectedCard) {
+        selectedCard.style.opacity = '1';
+        selectedCard.style.transform = 'scale(1.05)';
+    }
+    
+    // Reset after 3 seconds
+    setTimeout(() => {
+        allNodes.forEach(node => {
+            node.style.opacity = '';
+        });
+        allCards.forEach(card => {
+            card.style.opacity = '';
+            card.style.transform = '';
+        });
+    }, 3000);
+}
+
+function highlightAllStrategies() {
+    const allNodes = document.querySelectorAll('.strategy-node');
+    const allCards = document.querySelectorAll('.strategy-card');
+    
+    allNodes.forEach((node, index) => {
+        setTimeout(() => {
+            node.style.transform = 'scale(1.1)';
+            setTimeout(() => {
+                node.style.transform = '';
+            }, 500);
+        }, index * 200);
+    });
+    
+    allCards.forEach((card, index) => {
+        setTimeout(() => {
+            card.style.transform = 'scale(1.05)';
+            card.style.boxShadow = '0 8px 32px rgba(0,0,0,0.2)';
+            setTimeout(() => {
+                card.style.transform = '';
+                card.style.boxShadow = '';
+            }, 500);
+        }, index * 200);
     });
 }
 
@@ -703,6 +867,84 @@ function showStrategyInfo(strategy, description) {
         popup.classList.add('fade-out');
         setTimeout(() => popup.remove(), 300);
     }, 3000);
+}
+
+function showEnhancedStrategyInfo(strategy, description, details) {
+    // Remove any existing popup
+    const existingPopup = document.querySelector('.strategy-popup-enhanced');
+    if (existingPopup) {
+        existingPopup.remove();
+    }
+    
+    // Create enhanced info popup
+    const popup = document.createElement('div');
+    popup.className = 'strategy-popup-enhanced';
+    popup.style.borderTop = `4px solid ${details.color}`;
+    
+    popup.innerHTML = `
+        <button class="popup-close" onclick="this.parentElement.remove()">×</button>
+        <h3 style="color: ${details.color}">${strategy}</h3>
+        <p class="popup-champion">Champion: <strong>${details.champion}</strong></p>
+        <p class="popup-description">${description}</p>
+        
+        <div class="popup-details">
+            <div class="popup-examples">
+                <h4>Voorbeelden:</h4>
+                <ul>
+                    ${details.examples.map(ex => `<li>${ex}</li>`).join('')}
+                </ul>
+            </div>
+            <div class="popup-risks">
+                <h4>Risico's:</h4>
+                <ul>
+                    ${details.risks.map(risk => `<li>${risk}</li>`).join('')}
+                </ul>
+            </div>
+        </div>
+        
+        <div class="popup-action">
+            <button class="btn-explore-strategy" onclick="exploreStrategy('${details.champion.toLowerCase()}')">
+                Verken ${details.champion} Perspectief →
+            </button>
+        </div>
+    `;
+    
+    // Add to triangle container
+    const container = document.querySelector('.triangle-container');
+    container.appendChild(popup);
+    
+    // Add animation
+    requestAnimationFrame(() => {
+        popup.classList.add('show');
+    });
+    
+    // Auto-remove after 8 seconds
+    setTimeout(() => {
+        popup.classList.add('fade-out');
+        setTimeout(() => popup.remove(), 300);
+    }, 8000);
+}
+
+function exploreStrategy(role) {
+    // Scroll to role section or show more info
+    const roleSection = document.querySelector(`#roles-section`);
+    if (roleSection) {
+        roleSection.scrollIntoView({ behavior: 'smooth' });
+        // Highlight specific role card
+        setTimeout(() => {
+            const roleCards = document.querySelectorAll('.role-card');
+            roleCards.forEach(card => {
+                if (card.textContent.toLowerCase().includes(role)) {
+                    card.style.transform = 'scale(1.05)';
+                    card.style.boxShadow = '0 8px 32px rgba(143, 209, 79, 0.3)';
+                    setTimeout(() => {
+                        card.style.transform = '';
+                        card.style.boxShadow = '';
+                    }, 2000);
+                }
+            });
+        }, 500);
+    }
 }
 
 // ==========================================
@@ -846,7 +1088,21 @@ function playVideo(videoId) {
 // ==========================================
 // Initialize Everything on Page Load
 // ==========================================
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
+    // Load content.json first
+    console.log('Loading course content...');
+    try {
+        const response = await fetch('content.json');
+        if (response.ok) {
+            window.contentData = await response.json();
+            console.log('Course content loaded successfully:', window.contentData.weeks?.length || 0, 'weeks found');
+        } else {
+            console.error('Failed to load content.json:', response.status);
+        }
+    } catch (error) {
+        console.error('Error loading content:', error);
+    }
+    
     // Start countdown timer
     startCountdown();
     

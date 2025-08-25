@@ -46,17 +46,18 @@ This workplan addresses the UX/UI issues that can be fixed without backend imple
 ## Sprint 2: User Experience Enhancements (Week 2)
 **Goal**: Improve navigation and provide guidance for new users
 
-### 🟠 Issue #4: Create onboarding flow for new students
+### 🟠 Issue #4: Create persistent onboarding tile for students
 **Priority**: HIGH  
 **Estimated Time**: 8 hours  
 **Tasks**:
-- [ ] Design welcome modal for first-time visitors
-- [ ] Create step-by-step course introduction
-- [ ] Add role selection/explanation interface
-- [ ] Implement "Getting Started" checklist
-- [ ] Add tooltips for key interface elements
-- [ ] Store onboarding completion in localStorage
-- [ ] Add "Help" button to replay onboarding
+- [ ] Design persistent "Onboarding & Help" tile on student dashboard
+- [ ] Create expandable reference card with course overview
+- [ ] Add role explanations in accessible format
+- [ ] Implement "Getting Started" checklist that stays visible
+- [ ] Add quick reference guides for each week
+- [ ] Make tile collapsible but always accessible
+- [ ] Include tooltips and contextual help throughout interface
+- [ ] Style as prominent dashboard widget students can always consult
 
 ### 🟢 Issue #10: Add help/FAQ section
 **Priority**: LOW  
@@ -119,7 +120,7 @@ This workplan addresses the UX/UI issues that can be fixed without backend imple
 
 ### Week 2 (13 hours)
 **Sprint 2: User Experience**
-- Monday-Tuesday: Create onboarding flow (Issue #4)
+- Monday-Tuesday: Create persistent onboarding tile (Issue #4)
 - Wednesday: Add FAQ section (Issue #10)
 - Thursday: Fix duplicate week cards (Issue #9)
 - Friday: Testing and bug fixes
@@ -141,8 +142,9 @@ This workplan addresses the UX/UI issues that can be fixed without backend imple
 - ✅ No duplicate week cards
 
 ### User Experience Improvements
-- ✅ New users understand how to start
-- ✅ Help is easily accessible
+- ✅ Students have persistent access to onboarding information
+- ✅ Help tile always visible on dashboard
+- ✅ Reference materials easily accessible
 - ✅ Mobile users can navigate effectively
 - ✅ Keyboard users can access all features
 
@@ -194,7 +196,7 @@ git push origin fix/issue-3-modal-content
 
 ### Fallback Plans
 - If triangle visualization is too complex: Start with static image
-- If onboarding is too time-consuming: Create simple welcome message first
+- If onboarding tile is too complex: Create simple help card first
 - If mobile fixes break desktop: Use progressive enhancement approach
 
 ---

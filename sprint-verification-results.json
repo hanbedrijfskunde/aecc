@@ -1,0 +1,36 @@
+{
+  "timestamp": "2025-08-25T16:10:56.216Z",
+  "url": "https://hanbedrijfskunde.github.io/aecc/studenten.html",
+  "tests": [
+    {
+      "name": "Onboarding Flow",
+      "status": "FAIL",
+      "description": "Onboarding modal does not appear when localStorage is cleared"
+    },
+    {
+      "name": "Help Button",
+      "status": "FAIL",
+      "description": "Help button is not visible on the page"
+    },
+    {
+      "name": "FAQ System",
+      "status": "FAIL",
+      "description": "FAQ button is not visible on the page"
+    },
+    {
+      "name": "Week Detail Modals",
+      "status": "FAIL",
+      "description": "Timeline items do not open modals when clicked"
+    },
+    {
+      "name": "Triangle Conflict Visualization",
+      "status": "FAIL",
+      "description": "Triangle conflict visualization section not found"
+    },
+    {
+      "name": "AI Prompt Copy Functionality",
+      "status": "PASS",
+      "description": "1 copy buttons found and functional"
+    }
+  ]
+}
