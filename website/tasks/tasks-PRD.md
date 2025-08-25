@@ -79,17 +79,17 @@
 
 - [x] 5.0 Build Committee Portal
 
-- [ ] 6.0 Create Content Management System
-  - [ ] 6.1 Design comprehensive JSON structure for all course content
-  - [ ] 6.2 Create content.json with week 1-7 data
-  - [ ] 6.3 Add all RvB role descriptions and personas
-  - [ ] 6.4 Include all RvT specialist persona cards
-  - [ ] 6.5 Add risk management data and mitigation strategies
-  - [ ] 6.6 Implement JavaScript content loader with fetch API
-  - [ ] 6.7 Create content rendering functions for each page
-  - [ ] 6.8 Add error handling for missing or malformed data
-  - [ ] 6.9 Implement LocalStorage for user preferences and bookmarks
-  - [ ] 6.10 Create content update mechanism
+- [x] 6.0 Create Content Management System
+  - [x] 6.1 Design comprehensive JSON structure for all course content
+  - [x] 6.2 Create content.json with week 1-7 data
+  - [x] 6.3 Add all RvB role descriptions and personas
+  - [x] 6.4 Include all RvT specialist persona cards
+  - [x] 6.5 Add risk management data and mitigation strategies
+  - [x] 6.6 Implement JavaScript content loader with fetch API
+  - [x] 6.7 Create content rendering functions for each page
+  - [x] 6.8 Add error handling for missing or malformed data
+  - [x] 6.9 Implement LocalStorage for user preferences and bookmarks
+  - [x] 6.10 Create content update mechanism
 
 - [ ] 7.0 Testing, Optimization and Deployment
   - [ ] 7.1 Run HTML validation on all pages
