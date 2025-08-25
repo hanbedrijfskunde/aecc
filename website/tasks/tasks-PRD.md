@@ -2,16 +2,21 @@
 
 - `website/index.html` - Landing page with navigation cards to three stakeholder portals
 - `website/studenten.html` - Student interface with week overview and role system
+- `website/studenten-script.js` - Student portal JavaScript with modal and interaction handlers
+- `website/studenten-styles.css` - Student portal specific styles with role cards and timeline
 - `website/docenten.html` - Teacher dashboard with lesson plans and timing tools
+- `website/docenten-script.js` - Teacher dashboard JavaScript with timer and navigation
+- `website/docenten-styles.css` - Teacher dashboard specific styles
 - `website/commissie.html` - Committee portal with risk matrix and accountability
-- `website/styles.css` - Shared styling with glassmorphism and theme colors
+- `website/commissie-script.js` - Committee portal JavaScript for risk matrix
+- `website/commissie-styles.css` - Committee portal specific styles
+- `website/styles.css` - Shared styling with theme colors (simplified for performance)
 - `website/script.js` - Shared JavaScript for navigation and utilities
-- `website/content.json` - Complete course content database
-- `website/tests/test-foundation.html` - Test file for basic structure
-- `website/tests/test-studenten.html` - Test file for student interface
-- `website/tests/test-docenten.html` - Test file for teacher dashboard
-- `website/tests/test-commissie.html` - Test file for committee portal
-- `website/tests/test-results.json` - Test results storage
+- `website/content.json` - Complete course content database with all week details
+- `website/content-loader.js` - JavaScript content loading and rendering system
+- `website/test-playwright.js` - Automated test suite structure for Playwright MCP
+- `docs/` - GitHub Pages deployment folder (mirror of website/)
+- `.github/workflows/static.yml` - GitHub Pages deployment configuration
 
 ### Notes
 
@@ -104,3 +109,24 @@
   - [x] 7.10 Generate comprehensive test report with screenshots
   - [x] 7.11 Configure and deploy to GitHub Pages
   - [x] 7.12 Final production validation and documentation
+
+- [x] 8.0 Performance Optimization (Post-Deployment)
+  - [x] 8.1 Identified hardware acceleration dependency issue in Chrome
+  - [x] 8.2 Removed all backdrop-filter CSS properties for glassmorphism
+  - [x] 8.3 Simplified shadows and gradients to solid colors
+  - [x] 8.4 Removed complex animations (wave, float, shimmer, pulse)
+  - [x] 8.5 Replaced transparent backgrounds with solid colors
+  - [x] 8.6 Optimized for older computers without GPU acceleration
+
+- [x] 9.0 Bug Fixes and Enhancements (Post-Deployment)
+  - [x] 9.1 Fixed hover issue on role cards (z-index problem with ::after element)
+  - [x] 9.2 Added z-index properties to ensure content stays visible on hover
+  - [x] 9.3 Updated both website/ and docs/ folders with fixes
+
+- [x] 10.0 Week Details Modal Implementation
+  - [x] 10.1 Created dynamic modal for displaying week details
+  - [x] 10.2 Integrated week data from content.json
+  - [x] 10.3 Added WAAROM/HOE/WAT tabs for structured information
+  - [x] 10.4 Implemented AI prompt display with copy-to-clipboard functionality
+  - [x] 10.5 Added proper styling for tabs, prompts, and modal elements
+  - [x] 10.6 Connected modal to existing "Open Week" buttons
