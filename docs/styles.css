@@ -4,8 +4,7 @@
    Version: 2.0 - Unified Design System
    ========================================== */
 
-/* Import the unified design system */
-@import url('design-system.css');
+/* Design system now loaded directly via <link> tag in HTML for better reliability */
 
 /* ==========================================
    AEC-Specific Customizations
@@ -71,8 +70,8 @@
 }
 
 .section-title {
+    /* Inherits spacing from design-system.css */
     text-align: center;
-    margin-bottom: var(--space-2xl);
     color: var(--text-dark);
 }
 

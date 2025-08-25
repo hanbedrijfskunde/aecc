@@ -951,47 +951,57 @@ body {
     gap: 1rem;
 }
 
-.btn {
-    padding: 0.75rem 1.5rem;
-    border-radius: 10px;
+/* Committee-specific button overrides - extend design system instead of replacing */
+.commissie-btn {
+    /* Inherits from universal button styles in design-system.css */
+    padding: var(--space-sm) var(--space-lg);
+    border-radius: var(--radius-lg);
     border: none;
     cursor: pointer;
-    font-size: 1rem;
+    font-family: 'Poppins', sans-serif;
+    font-size: var(--font-size-base);
     font-weight: 500;
-    transition: all 0.3s ease;
+    letter-spacing: 0.025em;
+    transition: var(--transition);
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
+    justify-content: center;
+    gap: var(--space-xs);
+    min-height: 48px;
+    box-shadow: var(--shadow-sm);
 }
 
-.btn-primary {
+.commissie-btn-primary {
     background: var(--committee-accent);
     color: white;
 }
 
-.btn-primary:hover {
+.commissie-btn-primary:hover {
     background: #2980B9;
-    transform: translateY(-2px);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
 }
 
-.btn-secondary {
+.commissie-btn-secondary {
     background: transparent;
     color: var(--committee-accent);
     border: 2px solid var(--committee-accent);
 }
 
-.btn-secondary:hover {
+.commissie-btn-secondary:hover {
     background: var(--committee-accent);
     color: white;
 }
 
-.btn-success {
+.commissie-btn-success {
     background: var(--success-green);
     color: white;
 }
 
-.btn-success:hover {
+.commissie-btn-success:hover {
     background: #27AE60;
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
 }
 
 .last-updated {
@@ -1080,7 +1090,7 @@ body {
         flex-direction: column;
     }
     
-    .btn {
+    .commissie-btn {
         width: 100%;
         justify-content: center;
     }

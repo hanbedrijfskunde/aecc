@@ -55,6 +55,7 @@
 }
 
 .toggle-btn {
+    /* Extend design system button typography */
     background: var(--primary);
     color: white;
     border: none;
@@ -62,15 +63,19 @@
     width: 40px;
     height: 40px;
     cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
     transition: var(--transition);
     display: flex;
     align-items: center;
     justify-content: center;
+    box-shadow: var(--shadow-sm);
 }
 
 .toggle-btn:hover {
     background: var(--primary-light);
     transform: scale(1.1);
+    box-shadow: var(--shadow-md);
 }
 
 .toggle-icon {
@@ -104,7 +109,10 @@
     background: none;
     border: none;
     cursor: pointer;
-    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: var(--font-size-base);
+    letter-spacing: 0.025em;
     color: var(--text-medium);
     transition: var(--transition);
     position: relative;
@@ -222,19 +230,30 @@
 }
 
 .quick-btn {
-    background: linear-gradient(45deg, var(--primary), var(--primary-light));
+    /* Extend design system .btn-primary styles */
+    background: var(--primary);
     color: white;
     border: none;
-    padding: var(--space-sm) var(--space-md);
-    border-radius: var(--radius-md);
+    padding: var(--space-sm) var(--space-lg);
+    border-radius: var(--radius-lg);
     cursor: pointer;
-    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: var(--font-size-base);
+    letter-spacing: 0.025em;
     transition: var(--transition);
     text-align: left;
+    box-shadow: var(--shadow-sm);
+    min-height: 48px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: var(--space-xs);
 }
 
 .quick-btn:hover {
-    transform: translateY(-2px);
+    background: var(--primary-light);
+    transform: translateY(-1px);
     box-shadow: var(--shadow-md);
 }
 
@@ -519,8 +538,8 @@
 }
 
 @keyframes glow {
-    0%, 100% { filter: drop-shadow(0 0 5px #FFD700); }
-    50% { filter: drop-shadow(0 0 15px #FFD700); }
+    0%, 100% { filter: drop-shadow(0 0 5px var(--primary)); }
+    50% { filter: drop-shadow(0 0 15px var(--primary)); }
 }
 
 /* Strategy Information Cards */
@@ -579,7 +598,7 @@
 
 /* CEO Balance Information */
 .ceo-balance-info {
-    background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
     color: white;
     padding: var(--space-xl);
     border-radius: var(--radius-lg);
@@ -749,19 +768,29 @@
 }
 
 .week-btn {
+    /* Extend design system button styles */
     background: var(--primary);
     color: white;
     border: none;
     padding: var(--space-sm) var(--space-lg);
-    border-radius: var(--radius-md);
+    border-radius: var(--radius-lg);
     cursor: pointer;
-    font-weight: 600;
-    transition: all var(--transition);
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: var(--font-size-base);
+    letter-spacing: 0.025em;
+    transition: var(--transition);
+    box-shadow: var(--shadow-sm);
+    min-height: 48px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .week-btn:hover:not(:disabled) {
-    background: var(--primary-dark);
-    transform: translateX(4px);
+    background: var(--primary-light);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
 }
 
 .week-btn:disabled {
@@ -776,6 +805,7 @@
 .roles-section {
     margin-bottom: var(--space-3xl);
 }
+
 
 .roles-grid {
     display: grid;
@@ -833,7 +863,7 @@
     z-index: 1;
 }
 
-.ceo-card .role-title { color: #FFD700; }
+.ceo-card .role-title { color: var(--primary); }
 .cfo-card .role-title { color: var(--text-dark); }
 .coo-card .role-title { color: var(--primary); }
 .cio-card .role-title { color: var(--accent-red); }
@@ -884,6 +914,7 @@
     /* backdrop-filter removed for performance */
     border-radius: var(--radius-xl);
     padding: var(--space-2xl);
+    margin-top: var(--space-3xl);
     margin-bottom: var(--space-3xl);
     box-shadow: var(--shadow-lg);
 }
@@ -896,14 +927,18 @@
 }
 
 .tab-btn {
+    /* Tab buttons inherit base typography from design system */
     background: none;
     border: none;
     padding: var(--space-md) var(--space-xl);
-    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: var(--font-size-base);
+    letter-spacing: 0.025em;
     color: var(--text-medium);
     cursor: pointer;
     position: relative;
-    transition: all var(--transition);
+    transition: var(--transition);
 }
 
 .tab-btn::after {
@@ -1002,25 +1037,31 @@
 }
 
 .copy-btn {
-    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+    /* Extend design system button styles */
+    background: var(--primary);
     color: white;
     border: none;
-    padding: var(--space-md) var(--space-xl);
-    border-radius: var(--radius-md);
+    padding: var(--space-sm) var(--space-lg);
+    border-radius: var(--radius-lg);
     cursor: pointer;
-    font-weight: 600;
-    font-size: 1rem;
-    transition: all var(--transition);
-    box-shadow: 0 2px 8px rgba(143, 209, 79, 0.3);
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: var(--font-size-base);
+    letter-spacing: 0.025em;
+    transition: var(--transition);
+    box-shadow: var(--shadow-sm);
     display: inline-flex;
     align-items: center;
-    gap: var(--space-sm);
+    justify-content: center;
+    gap: var(--space-xs);
+    min-height: 48px;
 }
 
 .copy-btn:hover {
-    background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(143, 209, 79, 0.4);
+    background: var(--primary-light);
+    color: white;  /* Ensure text remains white on hover */
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
 }
 
 .copy-btn:active {
@@ -1030,6 +1071,38 @@
 .copy-btn.copied {
     background: linear-gradient(135deg, #27AE60 0%, #2ECC71 100%);
     animation: successPulse 0.5s ease;
+}
+
+/* Secondary Button - for modal actions (high specificity to override inherited styles) */
+button.btn-secondary {
+    background: var(--primary) !important;
+    color: white !important;
+    border: none;
+    padding: var(--space-sm) var(--space-lg);
+    border-radius: var(--radius-lg);
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: var(--font-size-base);
+    letter-spacing: 0.025em;
+    transition: var(--transition);
+    box-shadow: var(--shadow-sm);
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-xs);
+}
+
+button.btn-secondary:hover {
+    background: var(--primary-dark) !important;
+    color: white !important;  /* Explicitly maintain white text on hover */
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+}
+
+button.btn-secondary:active {
+    transform: translateY(0);
 }
 
 @keyframes successPulse {
@@ -1128,8 +1201,8 @@
 }
 
 .timeline-item.final .timeline-marker {
-    border-color: #FFD700;
-    background: #FFD700;
+    border-color: var(--primary);
+    background: var(--primary);
 }
 
 .timeline-content {
@@ -1266,20 +1339,30 @@
 }
 
 .download-btn {
-    background: linear-gradient(135deg, var(--primary), var(--primary-light));
+    /* Extend design system button styles */
+    background: var(--primary);
     color: white;
     border: none;
     padding: var(--space-sm) var(--space-lg);
-    border-radius: var(--radius-md);
+    border-radius: var(--radius-lg);
     cursor: pointer;
-    font-weight: 600;
-    transition: all var(--transition);
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: var(--font-size-base);
+    letter-spacing: 0.025em;
+    transition: var(--transition);
+    box-shadow: var(--shadow-sm);
+    min-height: 48px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     width: 100%;
 }
 
 .download-btn:hover {
-    background: linear-gradient(135deg, var(--primary-dark), var(--primary));
-    transform: scale(1.05);
+    background: var(--primary-light);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
 }
 
 /* ==========================================

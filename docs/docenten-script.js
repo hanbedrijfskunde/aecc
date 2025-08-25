@@ -19,9 +19,6 @@ function showWeekPlan(weekNumber) {
     document.querySelectorAll('.week-tab').forEach(tab => {
         tab.classList.remove('active');
     });
-    document.querySelectorAll('.week-plan').forEach(plan => {
-        plan.classList.remove('active');
-    });
     
     // Add active class to selected tab
     const selectedTab = document.querySelector(`.week-tab[data-week="${weekNumber}"]`);
@@ -29,18 +26,230 @@ function showWeekPlan(weekNumber) {
         selectedTab.classList.add('active');
     }
     
-    // Show selected week plan (for now just showing week 3 as example)
-    const selectedPlan = document.querySelector(`.week-plan[data-week="${weekNumber}"]`);
-    if (selectedPlan) {
-        selectedPlan.classList.add('active');
-    } else {
-        // If specific week plan doesn't exist, show default week 3 with updated title
-        const defaultPlan = document.querySelector('.week-plan[data-week="3"]');
-        if (defaultPlan) {
-            defaultPlan.classList.add('active');
-            defaultPlan.querySelector('h3').textContent = `Week ${weekNumber}: Inhoud wordt geladen...`;
+    // Load and display week content from ContentLoader
+    loadAndDisplayWeekContent(weekNumber);
+}
+
+async function loadAndDisplayWeekContent(weekNumber) {
+    const weekContentContainer = document.getElementById('week-content');
+    
+    try {
+        // Ensure content is loaded
+        if (!window.contentLoader) {
+            console.error('ContentLoader not available');
+            showLoadingMessage(weekContentContainer, weekNumber);
+            return;
         }
+        
+        await window.contentLoader.loadContent();
+        const weekData = window.contentLoader.getWeek(weekNumber);
+        
+        if (!weekData) {
+            showErrorMessage(weekContentContainer, weekNumber);
+            return;
+        }
+        
+        // Render the week content for teachers
+        weekContentContainer.innerHTML = renderTeacherWeekContent(weekData);
+        
+    } catch (error) {
+        console.error('Error loading week content:', error);
+        showErrorMessage(weekContentContainer, weekNumber);
     }
+}
+
+function renderTeacherWeekContent(week) {
+    return `
+        <div class="week-plan active" data-week="${week.number}">
+            <h3>Week ${week.number}: ${week.title}</h3>
+            
+            <!-- WAAROM/HOE/WAT Structure for Teachers -->
+            <div class="teacher-whw">
+                <div class="whw-section waarom">
+                    <h4>WAAROM - Didactische Rationale</h4>
+                    <p>${week.waarom}</p>
+                    
+                    ${week.docentNotes ? `
+                        <div class="teaching-notes">
+                            <h5>Docent Aandachtspunten:</h5>
+                            <ul>
+                                ${week.docentNotes.map(note => `<li>${note}</li>`).join('')}
+                            </ul>
+                        </div>
+                    ` : ''}
+                </div>
+                
+                <div class="whw-section hoe">
+                    <h4>HOE - Lesstructuur</h4>
+                    <div class="lesson-phases">
+                        <div class="phase voor">
+                            <h5>VOOR (Voorbereiding)</h5>
+                            <ul>
+                                ${week.hoe.zelfstudie.map(item => `<li>${item}</li>`).join('')}
+                            </ul>
+                        </div>
+                        <div class="phase tijdens">
+                            <h5>TIJDENS (Werkcollege)</h5>
+                            <ul>
+                                ${week.hoe.werkcollege.map(item => `<li>${item}</li>`).join('')}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="whw-section wat">
+                    <h4>WAT - Deliverables & Assessment</h4>
+                    <div class="deliverables-section">
+                        <h5>Verwachte Deliverables:</h5>
+                        <ul>
+                            ${week.wat.deliverables.map(item => `<li>${item}</li>`).join('')}
+                        </ul>
+                        <div class="assessment-criteria">
+                            <h5>Assessment Focus:</h5>
+                            <p>${week.wat.assessment}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            ${week.aiPrompt ? `
+                <div class="ai-prompt-section">
+                    <h4>🤖 AI Prompt voor Studenten</h4>
+                    <div class="prompt-container">
+                        <p class="prompt-text">${escapeHtml(week.aiPrompt)}</p>
+                        <button class="copy-prompt" data-prompt="${escapeForAttribute(week.aiPrompt)}" onclick="copyPromptFromButton(this)">
+                            📋 Kopieer Prompt
+                        </button>
+                    </div>
+                </div>
+            ` : ''}
+            
+            <!-- Placeholder for other existing content like timing tools -->
+            <div class="lesson-tools">
+                <h4>🛠️ Les Tools</h4>
+                <p>Boardroom Timer en andere tools blijven beschikbaar ongeacht de geselecteerde week.</p>
+            </div>
+        </div>
+    `;
+}
+
+// Helper functions for safe HTML rendering
+function escapeHtml(text) {
+    if (!text) return '';
+    return text
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+}
+
+function escapeForAttribute(text) {
+    if (!text) return '';
+    return text
+        .replace(/&/g, '&amp;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;')
+        .replace(/\n/g, '\\n')
+        .replace(/\r/g, '\\r');
+}
+
+function copyPromptFromButton(buttonElement) {
+    const promptText = buttonElement.getAttribute('data-prompt');
+    if (!promptText) {
+        console.error('No prompt text found');
+        return;
+    }
+    
+    navigator.clipboard.writeText(promptText).then(() => {
+        // Show feedback
+        const originalText = buttonElement.textContent;
+        buttonElement.textContent = '✅ Gekopieerd!';
+        setTimeout(() => {
+            buttonElement.textContent = originalText;
+        }, 2000);
+    }).catch(err => {
+        console.error('Could not copy text: ', err);
+        // Fallback for older browsers
+        const textArea = document.createElement('textarea');
+        textArea.value = promptText;
+        document.body.appendChild(textArea);
+        textArea.select();
+        try {
+            document.execCommand('copy');
+            const originalText = buttonElement.textContent;
+            buttonElement.textContent = '✅ Gekopieerd!';
+            setTimeout(() => {
+                buttonElement.textContent = originalText;
+            }, 2000);
+        } catch (err) {
+            console.error('Fallback copy failed', err);
+        }
+        document.body.removeChild(textArea);
+    });
+}
+
+function showLoadingMessage(container, weekNumber) {
+    container.innerHTML = `
+        <div class="week-plan active" data-week="${weekNumber}">
+            <h3>Week ${weekNumber}: Inhoud wordt geladen...</h3>
+            <div class="loading-message">
+                <p>📚 Content wordt geladen vanaf content.json...</p>
+            </div>
+        </div>
+    `;
+}
+
+function showErrorMessage(container, weekNumber) {
+    container.innerHTML = `
+        <div class="week-plan active" data-week="${weekNumber}">
+            <h3>Week ${weekNumber}: Fout bij laden</h3>
+            <div class="error-message">
+                <p>❌ Kon weekinhoud niet laden. Controleer of content.json beschikbaar is.</p>
+                <button onclick="loadAndDisplayWeekContent(${weekNumber})" class="retry-btn">
+                    🔄 Probeer opnieuw
+                </button>
+            </div>
+        </div>
+    `;
+}
+
+function copyPromptToClipboard(promptText, buttonElement) {
+    // If buttonElement is not passed, try to get it from event
+    if (!buttonElement && window.event) {
+        buttonElement = window.event.target;
+    }
+    
+    navigator.clipboard.writeText(promptText).then(() => {
+        // Show feedback
+        if (buttonElement) {
+            const originalText = buttonElement.textContent;
+            buttonElement.textContent = '✅ Gekopieerd!';
+            setTimeout(() => {
+                buttonElement.textContent = originalText;
+            }, 2000);
+        }
+    }).catch(err => {
+        console.error('Could not copy text: ', err);
+        // Fallback for older browsers
+        const textArea = document.createElement('textarea');
+        textArea.value = promptText;
+        document.body.appendChild(textArea);
+        textArea.select();
+        try {
+            document.execCommand('copy');
+            if (buttonElement) {
+                const originalText = buttonElement.textContent;
+                buttonElement.textContent = '✅ Gekopieerd!';
+                setTimeout(() => {
+                    buttonElement.textContent = originalText;
+                }, 2000);
+            }
+        } catch (err) {
+            console.error('Fallback copy failed', err);
+        }
+        document.body.removeChild(textArea);
+    });
 }
 
 // ==========================================

@@ -38,6 +38,7 @@
     --space-lg: 2rem;
     --space-xl: 3rem;
     --space-2xl: 4rem;
+    --space-3xl: 3rem;  /* 48px - Large section spacing */
     
     /* Typography Scale */
     --font-size-xs: 0.75rem;
@@ -134,10 +135,24 @@ body {
    Typography System
    ========================================== */
 h1, h2, h3, h4, h5, h6 {
+    font-family: 'Poppins', sans-serif;
     font-weight: 600;
     line-height: 1.2;
     margin-bottom: var(--space-md);
     color: var(--text-dark);
+}
+
+/* Apply letter-spacing to actual h1-h6 elements */
+h1 {
+    font-size: var(--font-size-4xl);
+    font-weight: 700;
+    letter-spacing: -0.025em;
+}
+
+h2 {
+    font-size: var(--font-size-3xl);
+    font-weight: 600;
+    letter-spacing: -0.015em;
 }
 
 .h1 {
@@ -221,6 +236,62 @@ a:hover {
     padding: var(--space-2xl) 0;
 }
 
+/* Consistent section title spacing */
+.section-title,
+h2.section-title {
+    margin-top: var(--space-3xl);
+    margin-bottom: var(--space-2xl);
+    color: var(--text-dark);
+}
+
+/* First section title should not have top margin */
+.section-title:first-child,
+h2.section-title:first-child,
+section:first-of-type .section-title,
+section:first-of-type h2.section-title {
+    margin-top: 0;
+}
+
+/* Additional spacing between major sections */
+section + section {
+    margin-top: var(--space-3xl);
+}
+
+/* ==========================================
+   Unified Section Spacing System
+   ========================================== */
+/* Standard page section with consistent spacing */
+.page-section {
+    margin-top: var(--space-3xl);
+    margin-bottom: var(--space-2xl);
+}
+
+/* First section on page should not have top margin */
+.page-section:first-child,
+.page-section:first-of-type {
+    margin-top: 0;
+}
+
+/* Ensure sections with specific classes also get proper spacing */
+.onboarding-tile,
+.triangle-conflict,
+.week-navigator,
+.roles-section,
+.waarom-hoe-wat,
+.ai-prompts,
+.continuity-timeline,
+.deadline-section,
+.resources-section,
+.feedback-flow {
+    margin-top: var(--space-3xl);
+    margin-bottom: var(--space-2xl);
+}
+
+/* First section should not have top margin */
+.onboarding-tile:first-of-type {
+    margin-top: 0;
+}
+
 .grid {
     display: grid;
     gap: var(--space-lg);
@@ -233,6 +304,27 @@ a:hover {
 /* ==========================================
    Button System - Simplified for Performance
    ========================================== */
+
+/* Universal button styles - apply to ALL buttons with stronger specificity */
+button,
+input[type="button"],
+input[type="submit"],
+input[type="reset"],
+.btn {
+    font-family: 'Poppins', sans-serif !important;
+    font-weight: 500;
+    letter-spacing: 0.025em;
+}
+
+/* Force button consistency - catch any missed buttons */
+button:not([class*="no-style"]),
+input[type="button"]:not([class*="no-style"]),
+input[type="submit"]:not([class*="no-style"]) {
+    font-family: 'Poppins', sans-serif !important;
+    font-weight: 500;
+    letter-spacing: 0.025em;
+}
+
 .btn {
     display: inline-flex;
     align-items: center;

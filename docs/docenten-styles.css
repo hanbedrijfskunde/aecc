@@ -97,19 +97,29 @@
 }
 
 .action-btn {
-    background: linear-gradient(135deg, var(--primary), var(--primary-light));
+    /* Extend design system button styles */
+    background: var(--primary);
     color: white;
     border: none;
-    padding: var(--space-md);
-    border-radius: var(--radius-md);
+    padding: var(--space-sm) var(--space-lg);
+    border-radius: var(--radius-lg);
     cursor: pointer;
-    font-weight: 600;
-    transition: all var(--transition);
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: var(--font-size-base);
+    letter-spacing: 0.025em;
+    transition: var(--transition);
+    box-shadow: var(--shadow-sm);
+    min-height: 48px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-start;
     text-align: left;
 }
 
 .action-btn:hover {
-    transform: translateX(4px);
+    background: var(--primary-light);
+    transform: translateY(-1px);
     box-shadow: var(--shadow-md);
 }
 
@@ -193,9 +203,11 @@
     border: 2px solid transparent;
     padding: var(--space-sm) var(--space-lg);
     border-radius: var(--radius-md);
-    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
     font-weight: 600;
+    letter-spacing: 0.025em;
     color: var(--text-medium);
+    cursor: pointer;
     transition: all var(--transition);
     white-space: nowrap;
 }
@@ -489,8 +501,10 @@
     color: var(--primary);
     padding: var(--space-md);
     border-radius: var(--radius-md);
-    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
     font-weight: 600;
+    letter-spacing: 0.025em;
+    cursor: pointer;
     transition: all var(--transition);
 }
 
@@ -516,8 +530,10 @@
     border: none;
     padding: var(--space-md) var(--space-xl);
     border-radius: var(--radius-md);
-    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
     font-weight: 600;
+    letter-spacing: 0.025em;
+    cursor: pointer;
     transition: all var(--transition);
     display: inline-flex;
     align-items: center;
@@ -1101,7 +1117,9 @@
     background: white;
     border: 2px solid var(--border-light);
     border-radius: var(--radius-md);
+    font-family: 'Poppins', sans-serif;
     font-weight: 600;
+    letter-spacing: 0.025em;
     cursor: pointer;
     transition: all var(--transition);
 }
@@ -1135,7 +1153,10 @@
     background: rgba(143, 209, 79, 0.1);
     border: 1px solid var(--primary-light);
     border-radius: var(--radius-sm);
+    font-family: 'Poppins', sans-serif;
     font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 0.025em;
     cursor: pointer;
     transition: all var(--transition);
 }
@@ -1158,7 +1179,9 @@
     color: white;
     border: none;
     border-radius: var(--radius-md);
+    font-family: 'Poppins', sans-serif;
     font-weight: 600;
+    letter-spacing: 0.025em;
     cursor: pointer;
     transition: all var(--transition);
 }
@@ -2281,4 +2304,96 @@ kbd {
         display: block !important;
         page-break-before: always;
     }
+}
+
+/* ==========================================
+   AI Prompt Section Styles
+   ========================================== */
+
+/* AI Prompt Section - matches the WHW section design */
+.ai-prompt-section {
+    background: white;
+    padding: var(--space-xl);
+    border-radius: var(--radius-lg);
+    margin-top: var(--space-xl);  /* Proper spacing from previous section */
+    position: relative;
+    box-shadow: var(--shadow-sm);
+}
+
+.ai-prompt-section::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: var(--primary);  /* Green accent to match design system */
+    border-radius: var(--radius-lg) 0 0 var(--radius-lg);
+}
+
+.ai-prompt-section h4 {
+    color: var(--text-dark);
+    margin-bottom: var(--space-lg);
+    font-size: 1.25rem;
+}
+
+.prompt-container {
+    background: rgba(143, 209, 79, 0.08);  /* Light green background matching primary */
+    padding: var(--space-lg);
+    border-radius: var(--radius-md);
+    border: 1px solid rgba(143, 209, 79, 0.25);
+}
+
+.prompt-text {
+    color: var(--text-dark);
+    line-height: 1.6;
+    margin-bottom: var(--space-lg);
+    font-size: var(--font-size-base);
+}
+
+/* Copy Prompt Button - consistent with action-btn style */
+.copy-prompt {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: var(--space-sm) var(--space-lg);
+    border-radius: var(--radius-lg);
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: var(--font-size-base);
+    letter-spacing: 0.025em;
+    transition: var(--transition);
+    box-shadow: var(--shadow-sm);
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-xs);
+}
+
+.copy-prompt:hover {
+    background: var(--primary-dark);
+    color: white;  /* Ensure text remains white on hover */
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+}
+
+.copy-prompt:active {
+    transform: translateY(0);
+}
+
+/* Lesson Tools Section */
+.lesson-tools {
+    background: white;
+    padding: var(--space-xl);
+    border-radius: var(--radius-lg);
+    margin-top: var(--space-xl);
+    box-shadow: var(--shadow-sm);
+}
+
+.lesson-tools h4 {
+    color: var(--text-dark);
+    margin-bottom: var(--space-md);
+    font-size: 1.25rem;
 }
