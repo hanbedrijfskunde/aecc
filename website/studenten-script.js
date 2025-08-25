@@ -32,32 +32,100 @@ function showTab(tabName) {
 // Week Details Modal
 // ==========================================
 function showWeekDetails(weekNumber) {
-    // This would typically open a modal or navigate to a detailed week page
     console.log(`Opening details for Week ${weekNumber}`);
     
+    // Get week data from content if available
+    let weekData = null;
+    if (window.contentData && window.contentData.weeks) {
+        weekData = window.contentData.weeks.find(w => w.number === weekNumber);
+    }
+    
     // Create modal content
+    let modalContent = '';
+    
+    if (weekData) {
+        // Use actual data from content.json
+        modalContent = `
+            <h3>${weekData.icon} ${weekData.title}</h3>
+            <p class="theme-tag">Thema: ${weekData.theme}</p>
+            <p>${weekData.description}</p>
+            
+            <div class="week-tabs">
+                <button class="tab-btn active" onclick="switchTab(event, 'waarom')">WAAROM</button>
+                <button class="tab-btn" onclick="switchTab(event, 'hoe')">HOE</button>
+                <button class="tab-btn" onclick="switchTab(event, 'wat')">WAT</button>
+            </div>
+            
+            <div id="waarom" class="tab-content active">
+                <h4>Didactische Rationale</h4>
+                <p>${weekData.waarom || 'Informatie volgt...'}</p>
+            </div>
+            
+            <div id="hoe" class="tab-content" style="display:none;">
+                <h4>Aanpak</h4>
+                ${weekData.hoe ? `
+                    <h5>Zelfstudie:</h5>
+                    <ul>
+                        ${weekData.hoe.zelfstudie.map(item => `<li>${item}</li>`).join('')}
+                    </ul>
+                    <h5>Werkcollege:</h5>
+                    <ul>
+                        ${weekData.hoe.werkcollege.map(item => `<li>${item}</li>`).join('')}
+                    </ul>
+                ` : '<p>Informatie volgt...</p>'}
+            </div>
+            
+            <div id="wat" class="tab-content" style="display:none;">
+                <h4>Deliverables</h4>
+                ${weekData.wat ? `
+                    <ul>
+                        ${weekData.wat.deliverables.map(item => `<li>${item}</li>`).join('')}
+                    </ul>
+                    <p><strong>Assessment:</strong> ${weekData.wat.assessment}</p>
+                ` : '<p>Informatie volgt...</p>'}
+            </div>
+            
+            ${weekData.aiPrompt ? `
+                <div class="ai-prompt-section">
+                    <h4>AI Briefing Prompt:</h4>
+                    <div class="prompt-box">
+                        <pre>${weekData.aiPrompt}</pre>
+                        <button class="btn-secondary" onclick="copyToClipboard('${weekData.aiPrompt.replace(/'/g, "\\'")}')">
+                            📋 Kopieer Prompt
+                        </button>
+                    </div>
+                </div>
+            ` : ''}
+        `;
+    } else {
+        // Fallback content if no data available
+        modalContent = `
+            <h3>Deze Week</h3>
+            <p>Gedetailleerde informatie over week ${weekNumber} komt hier...</p>
+            
+            <h4>Opdracht:</h4>
+            <ul>
+                <li>Download de AI-briefing</li>
+                <li>Analyseer vanuit jouw rol-perspectief</li>
+                <li>Bereid je boardroom presentatie voor</li>
+            </ul>
+            
+            <h4>Deliverables:</h4>
+            <ul>
+                <li>Individuele analyse (500 woorden)</li>
+                <li>Team besluit documentatie</li>
+                <li>Link naar vorige week</li>
+            </ul>
+        `;
+    }
+    
     const modalHTML = `
         <div class="modal-overlay" id="weekModal">
             <div class="modal-content">
                 <button class="modal-close" onclick="closeModal()">×</button>
                 <h2>Week ${weekNumber}: Details</h2>
                 <div class="modal-body">
-                    <h3>Deze Week</h3>
-                    <p>Gedetailleerde informatie over week ${weekNumber} komt hier...</p>
-                    
-                    <h4>Opdracht:</h4>
-                    <ul>
-                        <li>Download de AI-briefing</li>
-                        <li>Analyseer vanuit jouw rol-perspectief</li>
-                        <li>Bereid je boardroom presentatie voor</li>
-                    </ul>
-                    
-                    <h4>Deliverables:</h4>
-                    <ul>
-                        <li>Individuele analyse (500 woorden)</li>
-                        <li>Team besluit documentatie</li>
-                        <li>Link naar vorige week</li>
-                    </ul>
+                    ${modalContent}
                     
                     <button class="btn-primary" onclick="downloadBriefing(${weekNumber})">
                         Download AI Briefing
@@ -138,6 +206,96 @@ function showWeekDetails(weekNumber) {
                 transform: translateY(-2px);
             }
             
+            .btn-secondary {
+                background: #FFFFFF;
+                color: var(--text-dark);
+                border: 1px solid var(--border-color);
+                padding: var(--space-sm) var(--space-lg);
+                border-radius: var(--radius-md);
+                cursor: pointer;
+                font-weight: 500;
+                transition: all var(--transition-base);
+                margin-left: var(--space-md);
+            }
+            
+            .btn-secondary:hover {
+                background: var(--primary-green);
+                color: white;
+            }
+            
+            .week-tabs {
+                display: flex;
+                gap: var(--space-sm);
+                margin: var(--space-xl) 0;
+                border-bottom: 2px solid var(--border-color);
+            }
+            
+            .tab-btn {
+                background: none;
+                border: none;
+                padding: var(--space-md) var(--space-lg);
+                cursor: pointer;
+                font-weight: 600;
+                color: var(--text-medium);
+                transition: all var(--transition-base);
+                border-bottom: 3px solid transparent;
+                margin-bottom: -2px;
+            }
+            
+            .tab-btn:hover {
+                color: var(--primary-green);
+            }
+            
+            .tab-btn.active {
+                color: var(--primary-green);
+                border-bottom-color: var(--primary-green);
+            }
+            
+            .tab-content {
+                padding: var(--space-xl) 0;
+            }
+            
+            .tab-content h5 {
+                color: var(--text-dark);
+                margin-top: var(--space-lg);
+                margin-bottom: var(--space-md);
+            }
+            
+            .theme-tag {
+                display: inline-block;
+                background: var(--primary-green);
+                color: white;
+                padding: var(--space-xs) var(--space-md);
+                border-radius: var(--radius-sm);
+                font-size: 0.9rem;
+                margin: var(--space-md) 0;
+            }
+            
+            .ai-prompt-section {
+                margin-top: var(--space-2xl);
+                padding: var(--space-xl);
+                background: #F8F9FA;
+                border-radius: var(--radius-lg);
+                border: 1px solid var(--border-color);
+            }
+            
+            .prompt-box {
+                margin-top: var(--space-md);
+            }
+            
+            .prompt-box pre {
+                background: white;
+                padding: var(--space-lg);
+                border-radius: var(--radius-md);
+                border: 1px solid var(--border-color);
+                white-space: pre-wrap;
+                word-wrap: break-word;
+                font-size: 0.9rem;
+                line-height: 1.6;
+                margin-bottom: var(--space-md);
+                font-family: monospace;
+            }
+            
             @keyframes fadeIn {
                 from { opacity: 0; }
                 to { opacity: 1; }
@@ -157,6 +315,60 @@ function closeModal() {
     if (modal) {
         modal.remove();
     }
+}
+
+// Tab switching function for week details
+function switchTab(event, tabName) {
+    // Hide all tab contents
+    const tabContents = document.querySelectorAll('.tab-content');
+    tabContents.forEach(tab => {
+        tab.style.display = 'none';
+        tab.classList.remove('active');
+    });
+    
+    // Remove active class from all buttons
+    const tabButtons = document.querySelectorAll('.tab-btn');
+    tabButtons.forEach(btn => btn.classList.remove('active'));
+    
+    // Show selected tab
+    const selectedTab = document.getElementById(tabName);
+    if (selectedTab) {
+        selectedTab.style.display = 'block';
+        selectedTab.classList.add('active');
+    }
+    
+    // Add active class to clicked button
+    if (event && event.target) {
+        event.target.classList.add('active');
+    }
+}
+
+// Copy to clipboard function
+function copyToClipboard(text) {
+    // Create temporary textarea
+    const textarea = document.createElement('textarea');
+    textarea.value = text;
+    textarea.style.position = 'fixed';
+    textarea.style.opacity = '0';
+    document.body.appendChild(textarea);
+    
+    // Select and copy
+    textarea.select();
+    document.execCommand('copy');
+    
+    // Remove textarea
+    document.body.removeChild(textarea);
+    
+    // Show feedback
+    const button = event.target;
+    const originalText = button.textContent;
+    button.textContent = '✓ Gekopieerd!';
+    button.style.background = 'var(--primary-green)';
+    
+    setTimeout(() => {
+        button.textContent = originalText;
+        button.style.background = '';
+    }, 2000);
 }
 
 function downloadBriefing(weekNumber) {
