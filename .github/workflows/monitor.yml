@@ -1,0 +1,188 @@
+name: Site Monitor
+
+on:
+  schedule:
+    # Run health checks every 30 minutes
+    - cron: '*/30 * * * *'
+    # Run performance audit daily at 9 AM
+    - cron: '0 9 * * *'
+  workflow_dispatch:
+
+jobs:
+  health-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        
+      - name: Site availability check
+        run: |
+          echo "Checking site availability..."
+          HTTP_CODE=$(curl -s -o /dev/null -w "%{http_code}" https://hanbedrijfskunde.github.io/aecc/)
+          if [ "$HTTP_CODE" != "200" ]; then
+            echo "❌ Site unavailable - HTTP $HTTP_CODE"
+            exit 1
+          else
+            echo "✅ Site is available - HTTP $HTTP_CODE"
+          fi
+          
+      - name: Response time check
+        run: |
+          echo "Checking response time..."
+          RESPONSE_TIME=$(curl -s -o /dev/null -w "%{time_total}" https://hanbedrijfskunde.github.io/aecc/)
+          RESPONSE_MS=$(echo "$RESPONSE_TIME * 1000" | bc)
+          echo "Response time: ${RESPONSE_MS%.*}ms"
+          if (( $(echo "$RESPONSE_TIME > 5" | bc -l) )); then
+            echo "⚠️ Slow response time: ${RESPONSE_MS%.*}ms"
+            exit 1
+          fi
+          
+      - name: Critical pages check
+        run: |
+          echo "Checking critical pages..."
+          PAGES=("" "studenten.html" "docenten.html" "commissie.html")
+          FAILED_PAGES=()
+          
+          for page in "${PAGES[@]}"; do
+            URL="https://hanbedrijfskunde.github.io/aecc/${page}"
+            HTTP_CODE=$(curl -s -o /dev/null -w "%{http_code}" --max-time 10 "$URL" || echo "000")
+            
+            if [ "$HTTP_CODE" = "200" ]; then
+              echo "✅ $URL - OK"
+            else
+              echo "❌ $URL - HTTP $HTTP_CODE"
+              FAILED_PAGES+=("$page")
+            fi
+          done
+          
+          if [ ${#FAILED_PAGES[@]} -ne 0 ]; then
+            echo "Failed pages: ${FAILED_PAGES[*]}"
+            exit 1
+          fi
+          
+      - name: Create incident issue on failure
+        if: failure()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const title = '🚨 Site Health Check Failed';
+            const body = `
+            ## Site Health Check Failure
+            
+            **Time**: ${new Date().toISOString()}
+            **Workflow**: Site Monitor
+            **Run**: ${{ github.run_id }}
+            
+            The automated health check has detected an issue with the site.
+            Please investigate immediately.
+            
+            ### Investigation Steps
+            1. Check site manually: https://hanbedrijfskunde.github.io/aecc/
+            2. Review recent commits: \`git log --oneline -5\`
+            3. Check GitHub Pages status
+            4. Run local health check: \`npm run health\`
+            
+            ### Auto-generated Issue
+            This issue was created automatically by the monitoring workflow.
+            `;
+            
+            github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: title,
+              body: body,
+              labels: ['incident', 'monitoring', 'P2']
+            });
+
+  performance-audit:
+    if: github.event.schedule == '0 9 * * *' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: 'npm'
+          
+      - name: Install dependencies
+        run: npm ci
+        
+      - name: Run Lighthouse audit
+        run: |
+          npm run lighthouse > lighthouse-results.txt
+          cat lighthouse-results.txt
+          
+      - name: Extract scores
+        run: |
+          PERFORMANCE=$(grep -o "Performance: [0-9]*" lighthouse-results.txt | cut -d' ' -f2 || echo "0")
+          ACCESSIBILITY=$(grep -o "Accessibility: [0-9]*" lighthouse-results.txt | cut -d' ' -f2 || echo "0")
+          BEST_PRACTICES=$(grep -o "Best Practices: [0-9]*" lighthouse-results.txt | cut -d' ' -f2 || echo "0")
+          SEO=$(grep -o "SEO: [0-9]*" lighthouse-results.txt | cut -d' ' -f2 || echo "0")
+          
+          echo "PERFORMANCE_SCORE=$PERFORMANCE" >> $GITHUB_ENV
+          echo "ACCESSIBILITY_SCORE=$ACCESSIBILITY" >> $GITHUB_ENV
+          echo "BEST_PRACTICES_SCORE=$BEST_PRACTICES" >> $GITHUB_ENV
+          echo "SEO_SCORE=$SEO" >> $GITHUB_ENV
+          
+          echo "📊 Lighthouse Scores:"
+          echo "Performance: $PERFORMANCE/100"
+          echo "Accessibility: $ACCESSIBILITY/100"
+          echo "Best Practices: $BEST_PRACTICES/100"
+          echo "SEO: $SEO/100"
+          
+      - name: Check performance thresholds
+        run: |
+          if [ "$PERFORMANCE_SCORE" -lt 90 ]; then
+            echo "⚠️ Performance score below threshold: $PERFORMANCE_SCORE < 90"
+            echo "PERFORMANCE_ALERT=true" >> $GITHUB_ENV
+          fi
+          if [ "$ACCESSIBILITY_SCORE" -lt 100 ]; then
+            echo "⚠️ Accessibility score below threshold: $ACCESSIBILITY_SCORE < 100"  
+            echo "ACCESSIBILITY_ALERT=true" >> $GITHUB_ENV
+          fi
+          
+      - name: Upload Lighthouse report
+        uses: actions/upload-artifact@v4
+        with:
+          name: lighthouse-report
+          path: lighthouse-report.html
+          retention-days: 30
+          
+      - name: Create performance issue on threshold breach
+        if: env.PERFORMANCE_ALERT == 'true' || env.ACCESSIBILITY_ALERT == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const title = '📉 Performance Alert - Lighthouse Scores Below Threshold';
+            const body = `
+            ## Performance Alert
+            
+            **Date**: ${new Date().toISOString()}
+            **Scores**:
+            - Performance: ${process.env.PERFORMANCE_SCORE}/100
+            - Accessibility: ${process.env.ACCESSIBILITY_SCORE}/100
+            - Best Practices: ${process.env.BEST_PRACTICES_SCORE}/100
+            - SEO: ${process.env.SEO_SCORE}/100
+            
+            **Thresholds**:
+            - Performance: 90/100
+            - Accessibility: 100/100
+            
+            ### Action Required
+            Please investigate performance issues and optimize the site.
+            
+            ### Resources
+            - Lighthouse report available in workflow artifacts
+            - Performance guide: [DEVELOPMENT.md](DEVELOPMENT.md#performance-issues)
+            `;
+            
+            github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: title,
+              body: body,
+              labels: ['performance', 'monitoring', 'P3']
+            });

@@ -1,6 +1,6 @@
-# CLAUDE.md
+# CLAUDE.md - AI-Assisted DevOps Guide
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides guidance to Claude Code for AI-assisted development and operations in the AEC project.
 
 ## Project Overview
 
@@ -22,12 +22,19 @@ This is the **AEC (Algemene Economie C-cluster)** repository containing educatio
 4. **Phase 4**: "Dual Role" - Students as both RvB and RvT (PIVOT 2)
 5. **Phase 5**: Website implementation (current version 5)
 
-## Repository Structure
+## DevOps-Optimized Structure
 
-- `start-docs/` - Course documentation and module plans
-  - `Moduleplan Project Continuïteit.md` - Complete 7-week course structure with detailed lesson plans
-  - `De RvT Persona Kaarten.md` - Seven specialized supervisory board persona cards for peer evaluation
-  - `Toetsoverzicht AEC.md` - Weekly assessment overview with specific assignment requirements
+- `README.md` - Main documentation hub with quick start
+- `DEVELOPMENT.md` - Developer workflow and standards  
+- `DEPLOYMENT.md` - Production operations and CI/CD
+- `TESTING.md` - Testing strategy and procedures
+- `package.json` - NPM scripts for automation
+- `.github/workflows/` - CI/CD pipelines
+- `scripts/` - Automation scripts (deploy, health-check)
+- `ops/` - Operational runbooks and procedures
+- `docs/` - Production website (GitHub Pages)
+- `tests/` - Playwright test suites
+- `course-docs/` - Educational content
 
 ## Course Architecture
 

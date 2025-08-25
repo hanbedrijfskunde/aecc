@@ -1,0 +1,118 @@
+{
+  "name": "aec-boardroom-simulation",
+  "version": "2.0.0",
+  "description": "AEC Boardroom Simulation - AI-proof HBO education platform",
+  "main": "docs/index.html",
+  "scripts": {
+    "dev": "python -m http.server 8000 --directory docs",
+    "serve": "npx serve docs --port 8000",
+    "test": "playwright test",
+    "test:ui": "playwright test --ui",
+    "test:debug": "playwright test --debug",
+    "test:headed": "playwright test --headed",
+    "test:report": "playwright show-report",
+    "deploy": "./scripts/deploy.sh",
+    "validate": "html-validate docs/*.html",
+    "lighthouse": "lighthouse https://hanbedrijfskunde.github.io/aecc/ --output=html --output-path=./lighthouse-report.html",
+    "lighthouse:local": "lighthouse http://localhost:8000 --output=html --output-path=./lighthouse-local.html",
+    "format": "prettier --write docs/*.{html,css,js}",
+    "format:check": "prettier --check docs/*.{html,css,js}",
+    "lint:css": "stylelint docs/*.css",
+    "lint:js": "eslint docs/*.js",
+    "lint": "npm run lint:css && npm run lint:js",
+    "precommit": "npm run format && npm run lint && npm test",
+    "clean": "rm -rf test-results/ playwright-report/ lighthouse-*.html screenshots/test-*",
+    "backup": "tar -czf backup-$(date +%Y%m%d-%H%M%S).tar.gz docs/ course-docs/ README.md",
+    "watch": "npx nodemon --watch docs --ext html,css,js --exec 'npm test'",
+    "start": "npm run dev",
+    "build": "echo 'No build step required for static site'",
+    "security:audit": "npm audit",
+    "security:fix": "npm audit fix",
+    "deps:update": "npm update",
+    "deps:check": "npm outdated",
+    "perf:analyze": "npm run lighthouse && npm run test",
+    "ci": "npm run lint && npm test && npm run validate",
+    "postinstall": "npx playwright install",
+    "health": "./scripts/health-check.sh",
+    "logs": "gh run list --limit 10",
+    "status": "curl -sI https://hanbedrijfskunde.github.io/aecc/ | head -1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hanbedrijfskunde/aecc.git"
+  },
+  "keywords": [
+    "education",
+    "boardroom-simulation",
+    "ai-integration",
+    "dutch",
+    "hbo",
+    "business-economics",
+    "devops"
+  ],
+  "author": "HANBK Business School",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hanbedrijfskunde/aecc/issues"
+  },
+  "homepage": "https://hanbedrijfskunde.github.io/aecc/",
+  "devDependencies": {
+    "@playwright/test": "^1.40.0",
+    "@axe-core/playwright": "^4.8.0",
+    "eslint": "^8.55.0",
+    "html-validate": "^8.7.0",
+    "lighthouse": "^11.4.0",
+    "nodemon": "^3.0.0",
+    "prettier": "^3.1.0",
+    "serve": "^14.2.0",
+    "stylelint": "^15.11.0",
+    "stylelint-config-standard": "^34.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ],
+  "prettier": {
+    "semi": true,
+    "singleQuote": true,
+    "tabWidth": 2,
+    "trailingComma": "es5",
+    "printWidth": 80
+  },
+  "eslintConfig": {
+    "env": {
+      "browser": true,
+      "es6": true
+    },
+    "extends": ["eslint:recommended"],
+    "parserOptions": {
+      "ecmaVersion": 2022,
+      "sourceType": "module"
+    },
+    "rules": {
+      "no-unused-vars": "error",
+      "no-console": "warn",
+      "prefer-const": "error",
+      "no-var": "error"
+    }
+  },
+  "stylelint": {
+    "extends": ["stylelint-config-standard"],
+    "rules": {
+      "selector-class-pattern": null,
+      "custom-property-pattern": null
+    }
+  },
+  "html-validate": {
+    "extends": ["html-validate:recommended"],
+    "rules": {
+      "void-style": ["error", { "style": "omit" }],
+      "class-pattern": "off"
+    }
+  }
+}
