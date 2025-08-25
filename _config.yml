@@ -1,0 +1,24 @@
+# GitHub Pages Configuration
+title: AEC - Algemene Economie C-cluster
+description: Boardroom Simulatie voor AI-proof HBO-onderwijs
+theme: null
+baseurl: /aecc
+url: https://hanbedrijfskunde.github.io
+
+# Build settings
+source: .
+destination: ./_site
+
+# Include docs folder
+include:
+  - docs
+
+# Exclude files from build
+exclude:
+  - start-docs
+  - website
+  - CLAUDE.md
+  - README.md
+  - .git
+  - .claude
+  - .playwright-mcp
