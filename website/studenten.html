@@ -49,6 +49,168 @@
     <main id="main" class="main-content" role="main">
         <div class="container">
             
+            <!-- Persistent Onboarding & Help Tile -->
+            <section class="onboarding-tile" id="onboarding-tile" aria-labelledby="onboarding-heading">
+                <div class="onboarding-header">
+                    <h2 id="onboarding-heading" class="onboarding-title">
+                        <span class="onboarding-icon">🎯</span>
+                        Onboarding & Help
+                    </h2>
+                    <button class="toggle-btn" id="onboarding-toggle" aria-label="Toggle onboarding panel">
+                        <span class="toggle-icon">▼</span>
+                    </button>
+                </div>
+                
+                <div class="onboarding-content" id="onboarding-content">
+                    <div class="onboarding-tabs">
+                        <button class="onboarding-tab active" onclick="showOnboardingTab('getting-started')">
+                            Getting Started
+                        </button>
+                        <button class="onboarding-tab" onclick="showOnboardingTab('roles')">
+                            Jouw Rol
+                        </button>
+                        <button class="onboarding-tab" onclick="showOnboardingTab('process')">
+                            Werkproces
+                        </button>
+                        <button class="onboarding-tab" onclick="showOnboardingTab('help')">
+                            FAQ
+                        </button>
+                    </div>
+                    
+                    <div class="onboarding-tab-content">
+                        <!-- Getting Started Tab -->
+                        <div id="getting-started" class="tab-panel active">
+                            <h3>🚀 Welkom bij de AEC Boardroom Simulatie</h3>
+                            <p>Deze 7-week simulatie plaatst je in de boardroom van een Nederlandse MKB-onderneming. Je neemt strategische beslissingen die elkaar beïnvloeden over tijd.</p>
+                            
+                            <div class="getting-started-checklist">
+                                <h4>✅ Je eerste stappen:</h4>
+                                <div class="checklist">
+                                    <label class="checklist-item">
+                                        <input type="checkbox" id="check-role">
+                                        <span class="checkmark"></span>
+                                        Begrijp je toegewezen rol (CEO, CFO, COO, of CIO)
+                                    </label>
+                                    <label class="checklist-item">
+                                        <input type="checkbox" id="check-conflict">
+                                        <span class="checkmark"></span>
+                                        Bestudeer het driehoeksconflict hieronder
+                                    </label>
+                                    <label class="checklist-item">
+                                        <input type="checkbox" id="check-ai">
+                                        <span class="checkmark"></span>
+                                        Test de AI-prompt templates voor Week 1
+                                    </label>
+                                    <label class="checklist-item">
+                                        <input type="checkbox" id="check-team">
+                                        <span class="checkmark"></span>
+                                        Vorm een team met andere studenten (4 personen)
+                                    </label>
+                                    <label class="checklist-item">
+                                        <input type="checkbox" id="check-deadline">
+                                        <span class="checkmark"></span>
+                                        Noteer de deadline voor Week 1 in je agenda
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="quick-links">
+                                <h4>🔗 Snelle toegang:</h4>
+                                <div class="quick-link-buttons">
+                                    <button onclick="scrollToSection('triangle-conflict')" class="quick-btn">
+                                        🔺 Driehoeksconflict
+                                    </button>
+                                    <button onclick="scrollToSection('week-navigator')" class="quick-btn">
+                                        📅 Weken Overzicht
+                                    </button>
+                                    <button onclick="scrollToSection('ai-prompts')" class="quick-btn">
+                                        🤖 AI Prompts
+                                    </button>
+                                    <button onclick="scrollToSection('resources-section')" class="quick-btn">
+                                        📄 Templates
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Roles Tab -->
+                        <div id="roles" class="tab-panel">
+                            <h3>👥 Rol Uitleg</h3>
+                            <div class="role-selector">
+                                <label for="role-dropdown">Selecteer je rol:</label>
+                                <select id="role-dropdown" onchange="showRoleDetails()">
+                                    <option value="">-- Kies je rol --</option>
+                                    <option value="ceo">CEO - De Balans-kunstenaar</option>
+                                    <option value="cfo">CFO - De Kapitaal-Allocateur</option>
+                                    <option value="coo">COO - De Optimalisator</option>
+                                    <option value="cio">CIO - De Pionier</option>
+                                </select>
+                            </div>
+                            
+                            <div id="role-details" class="role-details">
+                                <p>Selecteer je rol hierboven om specifieke informatie te zien.</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Process Tab -->
+                        <div id="process" class="tab-panel">
+                            <h3>⚙️ Wekelijks Werkproces</h3>
+                            <div class="process-steps">
+                                <div class="process-step">
+                                    <div class="step-number">1</div>
+                                    <div class="step-content">
+                                        <h4>Maandag: AI Briefing</h4>
+                                        <p>Ontvang AI-gegenereerde intelligence briefing voor de week</p>
+                                        <small>⏰ Verwachte tijd: 2 uur</small>
+                                    </div>
+                                </div>
+                                <div class="process-step">
+                                    <div class="step-number">2</div>
+                                    <div class="step-content">
+                                        <h4>Dinsdag-Woensdag: Individuele Analyse</h4>
+                                        <p>Analyseer vanuit je rolperspectief, bereid boardroom voor</p>
+                                        <small>⏰ Verwachte tijd: 3 uur</small>
+                                    </div>
+                                </div>
+                                <div class="process-step">
+                                    <div class="step-number">3</div>
+                                    <div class="step-content">
+                                        <h4>Donderdag: Boardroom Simulatie</h4>
+                                        <p>90 minuten intensieve discussie en besluitvorming</p>
+                                        <small>⏰ Verwachte tijd: 1.5 uur</small>
+                                    </div>
+                                </div>
+                                <div class="process-step">
+                                    <div class="step-number">4</div>
+                                    <div class="step-content">
+                                        <h4>Vrijdag: Documentatie</h4>
+                                        <p>Documenteer besluit als strategische pijler</p>
+                                        <small>⏰ Verwachte tijd: 1 uur</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- FAQ Tab -->
+                        <div id="help" class="tab-panel">
+                            <h3>❓ Veelgestelde Vragen</h3>
+                            <div class="faq-search">
+                                <input type="text" id="faq-search" placeholder="Zoek in FAQ..." onkeyup="filterFAQ()">
+                            </div>
+                            <div class="faq-items" id="faq-items">
+                                <!-- FAQ items will be populated by JavaScript -->
+                            </div>
+                            
+                            <div class="help-contact">
+                                <h4>📞 Hulp nodig?</h4>
+                                <p>Voor technische vragen: <a href="mailto:aec@hanbk.nl">aec@hanbk.nl</a></p>
+                                <p>Voor inhoudelijke vragen: stel ze tijdens de volgende les</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
             <!-- Triangle Conflict Visualization -->
             <section class="triangle-conflict" id="triangle-conflict" aria-labelledby="triangle-heading">
                 <h2 id="triangle-heading" class="section-title">Het Driehoeksconflict</h2>
@@ -723,11 +885,5 @@ Schrijf in Nederlands, executive summary stijl, max 2 A4.</pre>
     
     <!-- Now load page-specific script -->
     <script src="studenten-script.js"></script>
-    
-    <!-- Onboarding flow for new students -->
-    <script src="onboarding.js"></script>
-    
-    <!-- FAQ System -->
-    <script src="faq.js"></script>
 </body>
 </html>

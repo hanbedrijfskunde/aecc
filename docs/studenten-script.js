@@ -3,6 +3,331 @@
    ========================================== */
 
 // ==========================================
+// Onboarding Tile Functionality
+// ==========================================
+
+// Initialize onboarding tile
+document.addEventListener('DOMContentLoaded', function() {
+    initializeOnboardingTile();
+    populateRoleData();
+    populateFAQData();
+    loadOnboardingProgress();
+});
+
+function initializeOnboardingTile() {
+    const toggleBtn = document.getElementById('onboarding-toggle');
+    const onboardingTile = document.getElementById('onboarding-tile');
+    
+    if (!toggleBtn || !onboardingTile) return;
+    
+    // Toggle collapse/expand
+    toggleBtn.addEventListener('click', function() {
+        onboardingTile.classList.toggle('collapsed');
+        
+        // Save state to localStorage
+        const isCollapsed = onboardingTile.classList.contains('collapsed');
+        localStorage.setItem('onboardingCollapsed', isCollapsed);
+    });
+    
+    // Restore previous state
+    const isCollapsed = localStorage.getItem('onboardingCollapsed') === 'true';
+    if (isCollapsed) {
+        onboardingTile.classList.add('collapsed');
+    }
+}
+
+function showOnboardingTab(tabName) {
+    // Hide all tab panels
+    const tabPanels = document.querySelectorAll('.tab-panel');
+    tabPanels.forEach(panel => {
+        panel.classList.remove('active');
+    });
+    
+    // Remove active class from all tab buttons
+    const tabButtons = document.querySelectorAll('.onboarding-tab');
+    tabButtons.forEach(btn => {
+        btn.classList.remove('active');
+    });
+    
+    // Show selected tab panel
+    const selectedPanel = document.getElementById(tabName);
+    if (selectedPanel) {
+        selectedPanel.classList.add('active');
+    }
+    
+    // Add active class to clicked button
+    const clickedTab = document.querySelector(`[onclick="showOnboardingTab('${tabName}')"]`);
+    if (clickedTab) {
+        clickedTab.classList.add('active');
+    }
+}
+
+function scrollToSection(sectionId) {
+    const section = document.getElementById(sectionId);
+    if (section) {
+        section.scrollIntoView({ 
+            behavior: 'smooth', 
+            block: 'start' 
+        });
+        
+        // Add a highlight effect
+        section.style.transition = 'box-shadow 0.3s ease';
+        section.style.boxShadow = '0 0 20px rgba(143, 209, 79, 0.5)';
+        setTimeout(() => {
+            section.style.boxShadow = '';
+        }, 2000);
+    }
+}
+
+// Role details functionality
+function showRoleDetails() {
+    const roleDropdown = document.getElementById('role-dropdown');
+    const roleDetails = document.getElementById('role-details');
+    
+    if (!roleDropdown || !roleDetails) return;
+    
+    const selectedRole = roleDropdown.value;
+    
+    if (!selectedRole) {
+        roleDetails.innerHTML = '<p>Selecteer je rol hierboven om specifieke informatie te zien.</p>';
+        return;
+    }
+    
+    const roleData = getRoleData(selectedRole);
+    if (roleData) {
+        roleDetails.innerHTML = `
+            <div class="role-detail-content">
+                <h4>${roleData.title} - ${roleData.subtitle}</h4>
+                <div class="role-responsibilities">
+                    <h5>🎯 Hoofdverantwoordelijkheden:</h5>
+                    <ul>
+                        ${roleData.responsibilities.map(resp => `<li>${resp}</li>`).join('')}
+                    </ul>
+                </div>
+                <div class="role-focus">
+                    <h5>🔍 Focus Gebied:</h5>
+                    <p>${roleData.focus}</p>
+                </div>
+                <div class="role-strategy">
+                    <h5>⚔️ Strategische Voorkeur:</h5>
+                    <p><strong>${roleData.strategy}:</strong> ${roleData.strategyDescription}</p>
+                </div>
+                <div class="role-tips">
+                    <h5>💡 Tips voor je rol:</h5>
+                    <ul>
+                        ${roleData.tips.map(tip => `<li>${tip}</li>`).join('')}
+                    </ul>
+                </div>
+            </div>
+        `;
+        
+        // Save selected role
+        localStorage.setItem('selectedRole', selectedRole);
+    }
+}
+
+function getRoleData(role) {
+    const roles = {
+        'ceo': {
+            title: 'CEO',
+            subtitle: 'De Balans-kunstenaar',
+            responsibilities: [
+                'Leidt boardroom discussies en faciliteert besluitvorming',
+                'Bewaakt strategische coherentie tussen alle beslissingen',
+                'Balanceert conflicterende belangen van verschillende stakeholders',
+                'Neemt finale beslissingen wanneer het team geen consensus bereikt',
+                'Communiceert naar externe stakeholders (aandeelhouders, media)'
+            ],
+            focus: 'Langetermijnvisie, stakeholder management en organisatie-brede coherentie',
+            strategy: 'Balans',
+            strategyDescription: 'Geen voorkeur voor één specifieke strategie, maar zoekt naar de optimale mix tussen Exploit, Explore en Buyback afhankelijk van de situatie',
+            tips: [
+                'Vraag altijd door op de langetermijn consequenties van beslissingen',
+                'Zorg dat elk teamlid hun perspectief kan inbrengen',
+                'Focus op hoe beslissingen elkaar beïnvloeden (Project Continuïteit)',
+                'Denk vanuit verschillende stakeholder perspectieven',
+                'Wees de moderator, niet de dominante stem'
+            ]
+        },
+        'cfo': {
+            title: 'CFO',
+            subtitle: 'De Kapitaal-Allocateur',
+            responsibilities: [
+                'Beheer van financiële resources en budgettering',
+                'Evaluatie van ROI voor alle investeringsvoorstellen',
+                'Champion voor buyback strategie en dividend beleid',
+                'Risk management en financial compliance',
+                'Communicatie naar financiële stakeholders en banken'
+            ],
+            focus: 'Aandeelhouderswaarde, financiële discipline en kapitaalefficiëntie',
+            strategy: 'Buyback',
+            strategyDescription: 'Voorkeur voor kapitaal teruggeven aan aandeelhouders via dividenden of aandeleninkoop wanneer er geen aantrekkelijke investeringsmogelijkheden zijn',
+            tips: [
+                'Vraag altijd naar concrete financiële projecties en business cases',
+                'Challenge investeringen die geen duidelijke ROI hebben',
+                'Breng risico\'s ter sprake die anderen misschien over het hoofd zien',
+                'Denk aan cash flow en liquiditeit, niet alleen winst',
+                'Verdedig de belangen van aandeelhouders'
+            ]
+        },
+        'coo': {
+            title: 'COO',
+            subtitle: 'De Optimalisator',
+            responsibilities: [
+                'Operationele excellentie en procesverbetering',
+                'Efficiency programma\'s en kostenbesparing',
+                'Champion voor exploit strategie en core business optimalisatie',
+                'Supply chain management en operations',
+                'Implementatie van strategische beslissingen'
+            ],
+            focus: 'Huidige business maximaliseren door operationele verbeteringen',
+            strategy: 'Exploit',
+            strategyDescription: 'Voorkeur voor het optimaliseren van bestaande processen, producten en markten om de huidige business te maximaliseren',
+            tips: [
+                'Focus op concrete, implementeerbare verbeteringen',
+                'Vraag naar de praktische uitvoerbaarheid van voorstellen',
+                'Breng operationele constraints en uitdagingen naar voren',
+                'Denk aan efficiency en kostenbeheersing',
+                'Challenge "te innovatieve" plannen die de core business verstoren'
+            ]
+        },
+        'cio': {
+            title: 'CIO',
+            subtitle: 'De Pionier',
+            responsibilities: [
+                'Digitale transformatie en technologie strategie',
+                'Innovatie initiatieven en R&D portfolio',
+                'Champion voor explore strategie en nieuwe businessmodellen',
+                'Identificatie van disruptieve trends en kansen',
+                'Partnerships met startups en tech bedrijven'
+            ],
+            focus: 'Toekomstige groei door innovatie en nieuwe technologieën',
+            strategy: 'Explore',
+            strategyDescription: 'Voorkeur voor investeringen in nieuwe markten, producten of technologieën om toekomstige groei te realiseren',
+            tips: [
+                'Breng toekomstige trends en technologische ontwikkelingen in',
+                'Challenge status quo en "business as usual" denken',
+                'Focus op nieuwe kansen en groei potentieel',
+                'Vraag naar investeringen in R&D en innovatie',
+                'Denk aan disruptie van de eigen industrie'
+            ]
+        }
+    };
+    
+    return roles[role];
+}
+
+// FAQ functionality
+function populateFAQData() {
+    const faqItems = document.getElementById('faq-items');
+    if (!faqItems) return;
+    
+    const faqs = [
+        {
+            question: 'Wat is het driehoeksconflict precies?',
+            answer: 'Het driehoeksconflict vertegenwoordigt de fundamentele spanning in bedrijfsstrategie: Exploit (huidige business optimaliseren), Explore (nieuwe kansen ontdekken), en Buyback (kapitaal teruggeven aan aandeelhouders). Elk RvB lid championed één strategie, wat natuurlijke conflicten creëert die je als team moet oplossen.'
+        },
+        {
+            question: 'Hoe werkt Project Continuïteit?',
+            answer: 'Elke week bouw je voort op je vorige beslissingen. Je kunt niet zomaar van koers veranderen zonder consequenties. Dit simuleert de realiteit waarin strategische beslissingen langetermijneffecten hebben. Je eindpresentatie moet een coherente 7-pijler strategie laten zien.'
+        },
+        {
+            question: 'Mag ik van rol wisselen tijdens de simulatie?',
+            answer: 'Nee, je houdt dezelfde rol gedurende de hele simulatie (Week 1-6). Dit zorgt voor consistentie en helpt je je rolperspectief te ontwikkelen. Alleen in Week 7 wissel je naar een RvT persona voor de evaluatie van andere teams.'
+        },
+        {
+            question: 'Hoe gebruik ik AI voor de briefings?',
+            answer: 'Gebruik de AI-prompt templates op deze pagina. Kopieer de prompt, vervang de placeholders ([SECTOR], [BEDRIJFSNAAM]) met je toegewezen case, en plak in je AI tool (ChatGPT, Claude, etc.). Gebruik de output als briefing voor je analyse, niet als definitief antwoord.'
+        },
+        {
+            question: 'Wat als ons team geen consensus bereikt?',
+            answer: 'Dat is normaal en gewenst! De CEO heeft de finale beslissingsbevoegdheid, maar moet wel alle perspectieven meewegen. Documenteer dissenting opinions in jullie besluitdocument - dit toont volwassen boardroom dynamics.'
+        },
+        {
+            question: 'Hoe word ik beoordeeld?',
+            answer: 'Je wordt beoordeeld op: (25%) Individuele analyses vanuit rolperspectief, (25%) Bijdrage aan teamdiscussies, (25%) Kwaliteit van teambeslissingen, en (25%) Continuïteit tussen weken. Zie de feedback flow diagram voor details.'
+        },
+        {
+            question: 'Wat als ik een week mis?',
+            answer: 'Elke week bouwt voort op de vorige, dus gemiste weken creëren problemen. Neem direct contact op met je docent. Je team kan verdergaan, maar je mist belangrijke context voor volgende weken.'
+        },
+        {
+            question: 'Kan ik templates downloaden?',
+            answer: 'Ja, scroll naar de Resources sectie voor templates voor individuele analyses, teambesluiten, strategische pijlers en continuïteit tracking. Gebruik deze voor consistente documentatie.'
+        }
+    ];
+    
+    faqItems.innerHTML = faqs.map(faq => `
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+                <span>${faq.question}</span>
+                <span class="faq-arrow">▼</span>
+            </div>
+            <div class="faq-answer">
+                <p>${faq.answer}</p>
+            </div>
+        </div>
+    `).join('');
+}
+
+function toggleFAQ(questionElement) {
+    const faqItem = questionElement.parentElement;
+    const arrow = questionElement.querySelector('.faq-arrow');
+    
+    faqItem.classList.toggle('open');
+    arrow.style.transform = faqItem.classList.contains('open') ? 'rotate(180deg)' : 'rotate(0deg)';
+}
+
+function filterFAQ() {
+    const searchInput = document.getElementById('faq-search');
+    const faqItems = document.querySelectorAll('.faq-item');
+    
+    if (!searchInput) return;
+    
+    const searchTerm = searchInput.value.toLowerCase();
+    
+    faqItems.forEach(item => {
+        const question = item.querySelector('.faq-question span').textContent.toLowerCase();
+        const answer = item.querySelector('.faq-answer p').textContent.toLowerCase();
+        
+        if (question.includes(searchTerm) || answer.includes(searchTerm)) {
+            item.style.display = 'block';
+        } else {
+            item.style.display = 'none';
+        }
+    });
+}
+
+// Load and save onboarding progress
+function loadOnboardingProgress() {
+    const checkboxes = document.querySelectorAll('#onboarding-content input[type="checkbox"]');
+    checkboxes.forEach(checkbox => {
+        const saved = localStorage.getItem(checkbox.id);
+        if (saved === 'true') {
+            checkbox.checked = true;
+        }
+        
+        // Save on change
+        checkbox.addEventListener('change', function() {
+            localStorage.setItem(this.id, this.checked);
+        });
+    });
+    
+    // Restore selected role
+    const savedRole = localStorage.getItem('selectedRole');
+    const roleDropdown = document.getElementById('role-dropdown');
+    if (savedRole && roleDropdown) {
+        roleDropdown.value = savedRole;
+        showRoleDetails(); // Show details for saved role
+    }
+}
+
+function populateRoleData() {
+    // This function can be expanded to populate role-specific content throughout the page
+    console.log('Role data populated');
+}
+
+// ==========================================
 // Tab Functionality for WAAROM/HOE/WAT
 // ==========================================
 function showTab(tabName) {
