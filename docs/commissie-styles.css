@@ -1,7 +1,8 @@
 /* Committee Portal Styles - commissie-styles.css */
+/* Using Design System Components */
 
-/* Import shared styles */
-@import url('styles.css');
+/* Import design system */
+@import url('design-system.css');
 
 /* Custom Properties for Committee Theme */
 :root {

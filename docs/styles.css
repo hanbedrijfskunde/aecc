@@ -1,184 +1,20 @@
 /* ==========================================
    AEC - Algemene Economie C-cluster
-   Global Styles & Design System
-   Version: 1.0
+   Global Styles with Design System
+   Version: 2.0 - Unified Design System
    ========================================== */
+
+/* Import the unified design system */
+@import url('design-system.css');
 
 /* ==========================================
-   CSS Variables & Theme
+   AEC-Specific Customizations
    ========================================== */
-:root {
-    /* Color Palette */
-    --primary-green: #8FD14F;
-    --primary-green-light: #A8E06A;
-    --primary-green-dark: #7AB83F;
-    --accent-red: #E63946;
-    --accent-red-light: #FF6B6B;
-    --accent-red-dark: #D62828;
-    
-    /* Base Colors */
-    --base-white: rgba(255, 255, 255, 0.9);
-    --base-white-solid: #FFFFFF;
-    --background-grey: #F8F9FA;
-    --background-light: #FEFEFE;
-    
-    /* Text Colors */
-    --text-dark: #2C3E50;
-    --text-medium: #5A6C7D;
-    --text-light: #6C757D;
-    --text-muted: #95A5A6;
-    
-    /* Simplified Shadows */
-    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
-    --shadow-md: 0 2px 4px rgba(0, 0, 0, 0.06);
-    --shadow-lg: 0 4px 6px rgba(0, 0, 0, 0.07);
-    --shadow-xl: 0 8px 10px rgba(0, 0, 0, 0.08);
-    
-    /* Simplified backgrounds (no glassmorphism) */
-    --glass-bg: #FFFFFF;
-    --glass-border: #E5E7EB;
-    --glass-blur: 0px;
-    
-    /* Spacing Scale */
-    --space-xs: 0.25rem;
-    --space-sm: 0.5rem;
-    --space-md: 1rem;
-    --space-lg: 1.5rem;
-    --space-xl: 2rem;
-    --space-2xl: 3rem;
-    --space-3xl: 4rem;
-    
-    /* Typography */
-    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
-    --font-mono: 'Fira Code', 'Courier New', monospace;
-    
-    /* Faster Transitions */
-    --transition-fast: 100ms ease;
-    --transition-base: 200ms ease;
-    --transition-slow: 300ms ease;
-    
-    /* Border Radius */
-    --radius-sm: 4px;
-    --radius-md: 8px;
-    --radius-lg: 16px;
-    --radius-xl: 24px;
-    --radius-full: 9999px;
-    
-    /* Container Widths */
-    --container-sm: 640px;
-    --container-md: 768px;
-    --container-lg: 1024px;
-    --container-xl: 1280px;
-}
 
-/* ==========================================
-   Reset & Base Styles
-   ========================================== */
-*, *::before, *::after {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-html {
-    font-size: 16px;
-    scroll-behavior: smooth;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-}
-
-body {
-    font-family: var(--font-sans);
-    font-size: 1rem;
-    line-height: 1.8;
-    color: var(--text-dark);
-    background-color: var(--background-grey);
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-}
-
-/* ==========================================
-   Typography
-   ========================================== */
-h1, h2, h3, h4, h5, h6 {
-    font-weight: 600;
-    line-height: 1.2;
-    margin-bottom: var(--space-md);
-    color: var(--text-dark);
-}
-
-h1 {
-    font-size: clamp(1.75rem, 4vw, 2.5rem);
-}
-
-h2 {
-    font-size: clamp(1.5rem, 3vw, 2rem);
-}
-
-h3 {
-    font-size: clamp(1.25rem, 2.5vw, 1.5rem);
-}
-
-p {
-    margin-bottom: var(--space-md);
-}
-
-a {
-    color: inherit;
-    text-decoration: none;
-    transition: color var(--transition-base);
-}
-
-a:hover {
-    color: var(--primary-green);
-}
-
-/* ==========================================
-   Utility Classes
-   ========================================== */
-.container {
-    width: 100%;
-    max-width: var(--container-xl);
-    margin: 0 auto;
-    padding: 0 var(--space-lg);
-}
-
-.visually-hidden {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border: 0;
-}
-
-.skip-link {
-    position: absolute;
-    top: -100px;
-    left: 0;
-    background: var(--primary-green);
-    color: white;
-    padding: var(--space-sm) var(--space-md);
-    z-index: 100;
-    text-decoration: none;
-    border-radius: var(--radius-md);
-}
-
-.skip-link:focus {
-    top: var(--space-md);
-}
-
-/* ==========================================
-   Header Styles
-   ========================================== */
+/* Header Styles - Using design system */
 .site-header {
-    background: var(--base-white-solid);
-    /* Removed backdrop-filter for performance */
-    border-bottom: 1px solid var(--glass-border);
+    background: var(--base);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
     padding: var(--space-2xl) 0;
     text-align: center;
 }
@@ -190,7 +26,7 @@ a:hover {
 .site-title abbr {
     font-size: clamp(2rem, 5vw, 3rem);
     font-weight: 700;
-    color: var(--primary-green);
+    color: var(--primary);
     text-decoration: none;
     display: block;
 }
@@ -209,18 +45,16 @@ a:hover {
     margin: 0;
 }
 
-/* ==========================================
-   Main Content
-   ========================================== */
+/* Main Content */
 .main-content {
     flex: 1;
-    padding: var(--space-3xl) 0;
+    padding: var(--space-2xl) 0;
 }
 
 /* Intro Section */
 .intro-section {
     text-align: center;
-    margin-bottom: var(--space-3xl);
+    margin-bottom: var(--space-2xl);
 }
 
 .intro-text {
@@ -231,11 +65,9 @@ a:hover {
     line-height: 1.8;
 }
 
-/* ==========================================
-   Portal Navigation Cards - Responsive Grid
-   ========================================== */
+/* Portal Navigation Cards */
 .portal-navigation {
-    margin-bottom: var(--space-3xl);
+    margin-bottom: var(--space-2xl);
 }
 
 .section-title {
@@ -244,37 +76,29 @@ a:hover {
     color: var(--text-dark);
 }
 
-/* Responsive Card Grid */
+/* Card Grid - Override design system grid for specific layout */
 .card-grid {
     display: grid;
     gap: var(--space-xl);
     margin-bottom: var(--space-2xl);
-    
-    /* Mobile: 1 column */
     grid-template-columns: 1fr;
 }
 
-/* Tablet: 2 columns */
 @media (min-width: 768px) {
     .card-grid {
         grid-template-columns: repeat(2, 1fr);
     }
 }
 
-/* Desktop: 3 columns */
 @media (min-width: 1024px) {
     .card-grid {
         grid-template-columns: repeat(3, 1fr);
     }
 }
 
-/* Portal Cards - Simplified */
+/* Portal Cards - Enhanced with AEC branding */
 .portal-card {
-    background: var(--base-white-solid);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-md);
-    border: 1px solid var(--glass-border);
-    transition: transform var(--transition-base), box-shadow var(--transition-base);
+    position: relative;
     overflow: hidden;
 }
 
@@ -291,44 +115,24 @@ a:hover {
     color: inherit;
 }
 
-/* Card Icon */
+/* Card Icons with AEC colors */
 .card-icon {
     width: 48px;
     height: 48px;
     margin-bottom: var(--space-lg);
-    color: var(--primary-green);
+    color: var(--primary);
     opacity: 0.9;
 }
 
 .teacher-card .card-icon {
-    color: var(--accent-red);
+    color: var(--accent);
 }
 
 .committee-card .card-icon {
     color: var(--text-medium);
 }
 
-/* Card Content */
-.card-content {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-}
-
-.card-title {
-    font-size: clamp(1.25rem, 2.5vw, 1.5rem);
-    margin-bottom: var(--space-md);
-    color: var(--text-dark);
-}
-
-.card-description {
-    color: var(--text-medium);
-    margin-bottom: var(--space-lg);
-    flex-grow: 1;
-    line-height: 1.6;
-}
-
-/* Card Features List */
+/* Card Features */
 .card-features {
     list-style: none;
     margin-bottom: var(--space-lg);
@@ -347,7 +151,7 @@ a:hover {
     content: "✓";
     position: absolute;
     left: 0;
-    color: var(--primary-green);
+    color: var(--primary);
     font-weight: bold;
 }
 
@@ -356,9 +160,9 @@ a:hover {
     display: inline-flex;
     align-items: center;
     gap: var(--space-sm);
-    color: var(--primary-green);
+    color: var(--primary);
     font-weight: 600;
-    transition: gap var(--transition-base);
+    transition: gap var(--transition);
 }
 
 .portal-card:hover .card-cta {
@@ -366,7 +170,7 @@ a:hover {
 }
 
 .teacher-card .card-cta {
-    color: var(--accent-red);
+    color: var(--accent);
 }
 
 .committee-card .card-cta {
@@ -374,19 +178,17 @@ a:hover {
 }
 
 .cta-arrow {
-    transition: transform var(--transition-base);
+    transition: transform var(--transition);
 }
 
 .portal-card:hover .cta-arrow {
     transform: translateX(4px);
 }
 
-/* ==========================================
-   Features Section
-   ========================================== */
+/* Features Section */
 .features-section {
-    padding: var(--space-3xl) 0;
-    background: var(--base-white-solid);
+    padding: var(--space-2xl) 0;
+    background: var(--base);
     border-radius: var(--radius-xl);
 }
 
@@ -394,12 +196,9 @@ a:hover {
     display: grid;
     gap: var(--space-xl);
     margin-top: var(--space-2xl);
-    
-    /* Mobile: 1 column */
     grid-template-columns: 1fr;
 }
 
-/* Tablet and up: 3 columns */
 @media (min-width: 768px) {
     .features-grid {
         grid-template-columns: repeat(3, 1fr);
@@ -412,9 +211,9 @@ a:hover {
 }
 
 .feature-title {
-    font-size: 1.125rem;
+    font-size: var(--font-size-lg);
     margin-bottom: var(--space-sm);
-    color: var(--primary-green);
+    color: var(--primary);
 }
 
 .feature-description {
@@ -423,12 +222,10 @@ a:hover {
     margin: 0;
 }
 
-/* ==========================================
-   Footer
-   ========================================== */
+/* Footer */
 .site-footer {
     background: var(--text-dark);
-    color: var(--base-white-solid);
+    color: var(--base);
     padding: var(--space-xl) 0;
     text-align: center;
     margin-top: auto;
@@ -442,211 +239,3 @@ a:hover {
     color: rgba(255, 255, 255, 0.7);
 }
 
-/* ==========================================
-   Responsive Adjustments
-   ========================================== */
-@media (max-width: 767px) {
-    .container {
-        padding: 0 var(--space-md);
-    }
-    
-    .main-content {
-        padding: var(--space-2xl) 0;
-    }
-    
-    .card-link {
-        padding: var(--space-lg);
-    }
-    
-    .features-section {
-        padding: var(--space-2xl) var(--space-lg);
-    }
-}
-
-/* ==========================================
-   Water-Themed Animations
-   ========================================== */
-
-/* Removed wave animation for performance */
-
-/* Ripple Effect */
-@keyframes ripple {
-    0% {
-        transform: scale(0);
-        opacity: 1;
-    }
-    100% {
-        transform: scale(4);
-        opacity: 0;
-    }
-}
-
-/* Removed float animation for performance */
-
-/* Removed shimmer animation for performance */
-
-/* Water Drop Effect */
-@keyframes drop {
-    0% {
-        transform: translateY(-100%) scale(0);
-        opacity: 0;
-    }
-    50% {
-        transform: translateY(0) scale(1);
-        opacity: 1;
-    }
-    100% {
-        transform: translateY(100%) scale(0.8);
-        opacity: 0;
-    }
-}
-
-/* Simplified background - no animation */
-body::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(180deg, 
-        rgba(143, 209, 79, 0.02) 0%, 
-        rgba(255, 255, 255, 0) 100%);
-    /* Removed animation for performance */
-    pointer-events: none;
-    z-index: -1;
-}
-
-/* Ripple Container */
-.ripple-container {
-    position: relative;
-    overflow: hidden;
-}
-
-.ripple-effect {
-    position: absolute;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(255,255,255,0.5) 0%, transparent 70%);
-    transform: scale(0);
-    animation: ripple 0.6s ease-out;
-    pointer-events: none;
-}
-
-/* Removed floating animation for performance */
-.features-grid .feature {
-    /* Static positioning for better performance */
-    transition: transform var(--transition-base);
-}
-
-.features-grid .feature:hover {
-    transform: translateY(-2px);
-}
-
-/* Removed shimmer effect for performance */
-.portal-card::before {
-    display: none; /* Completely removed for performance */
-}
-
-/* Water Drop Loading Animation */
-.loading-drop {
-    width: 20px;
-    height: 20px;
-    border-radius: 50% 50% 50% 0;
-    background: var(--primary-green);
-    transform: rotate(45deg);
-    animation: drop 2s ease-in-out infinite;
-}
-
-/* Removed pulse animation for performance */
-
-.card-cta {
-    position: relative;
-}
-
-.card-cta::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 100%;
-    height: 100%;
-    transform: translate(-50%, -50%);
-    border-radius: var(--radius-md);
-    pointer-events: none;
-}
-
-.portal-card:hover .card-cta::after {
-    /* Removed pulse animation for performance */
-    display: none;
-}
-
-/* Liquid Fill Effect */
-@keyframes liquid-fill {
-    0% {
-        height: 0;
-        opacity: 0;
-    }
-    50% {
-        opacity: 0.5;
-    }
-    100% {
-        height: 100%;
-        opacity: 0.1;
-    }
-}
-
-.portal-card {
-    position: relative;
-}
-
-.portal-card::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 0;
-    background: #F8F9FA;
-    border-radius: var(--radius-lg);
-    pointer-events: none;
-    transition: height 0.5s ease;
-}
-
-.portal-card:hover::after {
-    animation: liquid-fill 0.5s ease forwards;
-}
-
-/* ==========================================
-   Print Styles
-   ========================================== */
-@media print {
-    body::before {
-        display: none;
-    }
-    
-    .site-header,
-    .site-footer,
-    .skip-link {
-        display: none;
-    }
-    
-    .main-content {
-        padding: 0;
-    }
-    
-    .portal-card {
-        break-inside: avoid;
-        box-shadow: none;
-        border: 1px solid #ddd;
-        animation: none;
-    }
-    
-    .portal-card::before,
-    .portal-card::after {
-        display: none;
-    }
-    
-    .features-grid .feature {
-        animation: none;
-    }
-}

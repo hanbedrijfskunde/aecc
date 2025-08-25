@@ -1,6 +1,10 @@
 /* ==========================================
    Docenten Portal Specific Styles
+   Using Design System Components
    ========================================== */
+
+/* Import design system */
+@import url('design-system.css');
 
 /* Teacher Portal Body */
 .teacher-portal {
@@ -29,7 +33,7 @@
 }
 
 .card-header {
-    background: linear-gradient(135deg, var(--primary-green), var(--primary-green-light));
+    background: linear-gradient(135deg, var(--primary), var(--primary-light));
     color: white;
     padding: var(--space-md) var(--space-lg);
     display: flex;
@@ -56,7 +60,7 @@
 
 /* Current Week Card */
 .current-week h4 {
-    color: var(--primary-green);
+    color: var(--primary);
     margin-bottom: var(--space-sm);
 }
 
@@ -76,7 +80,7 @@
     display: block;
     font-size: 1.8rem;
     font-weight: bold;
-    color: var(--primary-green);
+    color: var(--primary);
 }
 
 .stat-label {
@@ -93,14 +97,14 @@
 }
 
 .action-btn {
-    background: linear-gradient(135deg, var(--primary-green), var(--primary-green-light));
+    background: linear-gradient(135deg, var(--primary), var(--primary-light));
     color: white;
     border: none;
     padding: var(--space-md);
     border-radius: var(--radius-md);
     cursor: pointer;
     font-weight: 600;
-    transition: all var(--transition-base);
+    transition: all var(--transition);
     text-align: left;
 }
 
@@ -122,7 +126,7 @@
     top: 0;
     bottom: 0;
     width: 2px;
-    background: linear-gradient(180deg, var(--primary-green), var(--accent-red));
+    background: linear-gradient(180deg, var(--primary), var(--accent));
 }
 
 .timeline-item {
@@ -131,7 +135,7 @@
     padding: var(--space-sm) 0;
     position: relative;
     opacity: 0.6;
-    transition: all var(--transition-base);
+    transition: all var(--transition);
 }
 
 .timeline-item::before {
@@ -143,7 +147,7 @@
     width: 12px;
     height: 12px;
     background: white;
-    border: 2px solid var(--primary-green);
+    border: 2px solid var(--primary);
     border-radius: 50%;
 }
 
@@ -153,12 +157,12 @@
 }
 
 .timeline-item.active::before {
-    background: var(--primary-green);
+    background: var(--primary);
     box-shadow: 0 0 0 4px rgba(143, 209, 79, 0.2);
 }
 
 .time {
-    color: var(--primary-green);
+    color: var(--primary);
     font-weight: 600;
     min-width: 50px;
 }
@@ -192,19 +196,19 @@
     cursor: pointer;
     font-weight: 600;
     color: var(--text-medium);
-    transition: all var(--transition-base);
+    transition: all var(--transition);
     white-space: nowrap;
 }
 
 .week-tab:hover {
-    background: var(--primary-green-light);
+    background: var(--primary-light);
     color: white;
 }
 
 .week-tab.active {
-    background: var(--primary-green);
+    background: var(--primary);
     color: white;
-    border-color: var(--primary-green-dark);
+    border-color: var(--primary-dark);
 }
 
 .week-content {
@@ -221,11 +225,11 @@
 
 .week-plan.active {
     display: block;
-    animation: fadeIn var(--transition-base);
+    animation: fadeIn var(--transition);
 }
 
 .week-plan h3 {
-    color: var(--primary-green);
+    color: var(--primary);
     margin-bottom: var(--space-xl);
     font-size: 1.5rem;
 }
@@ -255,11 +259,11 @@
 }
 
 .whw-section.waarom::before {
-    background: var(--primary-green);
+    background: var(--primary);
 }
 
 .whw-section.hoe::before {
-    background: var(--accent-red);
+    background: var(--accent);
 }
 
 .whw-section.wat::before {
@@ -273,7 +277,7 @@
 }
 
 .whw-section h5 {
-    color: var(--primary-green);
+    color: var(--primary);
     margin-top: var(--space-lg);
     margin-bottom: var(--space-md);
 }
@@ -301,7 +305,7 @@
     content: "✓";
     position: absolute;
     left: 0;
-    color: var(--primary-green);
+    color: var(--primary);
     font-weight: bold;
 }
 
@@ -331,11 +335,11 @@
 }
 
 .phase.voor::after {
-    background: linear-gradient(90deg, var(--primary-green), var(--primary-green-light));
+    background: linear-gradient(90deg, var(--primary), var(--primary-light));
 }
 
 .phase.tijdens::after {
-    background: linear-gradient(90deg, var(--accent-red), var(--accent-red-light));
+    background: linear-gradient(90deg, var(--accent), var(--accent-red-light));
 }
 
 .phase.na::after {
@@ -356,7 +360,7 @@
 }
 
 .phase strong {
-    color: var(--primary-green);
+    color: var(--primary);
 }
 
 /* Activity Checklist */
@@ -368,7 +372,7 @@
 }
 
 .activity-checklist h5 {
-    color: var(--primary-green);
+    color: var(--primary);
     margin-bottom: var(--space-md);
 }
 
@@ -377,7 +381,7 @@
     padding: var(--space-sm);
     margin-bottom: var(--space-xs);
     cursor: pointer;
-    transition: all var(--transition-base);
+    transition: all var(--transition);
 }
 
 .activity-checklist label:hover {
@@ -402,11 +406,11 @@
     background: rgba(230, 57, 70, 0.05);
     padding: var(--space-lg);
     border-radius: var(--radius-md);
-    border-left: 4px solid var(--accent-red);
+    border-left: 4px solid var(--accent);
 }
 
 .intervention-moments h5 {
-    color: var(--accent-red);
+    color: var(--accent);
 }
 
 .intervention-moments ul {
@@ -424,7 +428,7 @@
 }
 
 .intervention-moments strong {
-    color: var(--accent-red);
+    color: var(--accent);
     display: inline-block;
     min-width: 60px;
 }
@@ -481,22 +485,22 @@
 
 .phase-btn {
     background: white;
-    border: 2px solid var(--primary-green);
-    color: var(--primary-green);
+    border: 2px solid var(--primary);
+    color: var(--primary);
     padding: var(--space-md);
     border-radius: var(--radius-md);
     cursor: pointer;
     font-weight: 600;
-    transition: all var(--transition-base);
+    transition: all var(--transition);
 }
 
 .phase-btn:hover {
-    background: var(--primary-green);
+    background: var(--primary);
     color: white;
 }
 
 .phase-btn.active {
-    background: var(--primary-green);
+    background: var(--primary);
     color: white;
 }
 
@@ -507,14 +511,14 @@
 }
 
 .timer-btn {
-    background: var(--primary-green);
+    background: var(--primary);
     color: white;
     border: none;
     padding: var(--space-md) var(--space-xl);
     border-radius: var(--radius-md);
     cursor: pointer;
     font-weight: 600;
-    transition: all var(--transition-base);
+    transition: all var(--transition);
     display: inline-flex;
     align-items: center;
     gap: var(--space-sm);
@@ -526,7 +530,7 @@
 }
 
 .timer-btn.pause {
-    background: var(--accent-red);
+    background: var(--accent);
 }
 
 .timer-btn.reset {
@@ -551,25 +555,25 @@
 .custom-timer input {
     width: 80px;
     padding: var(--space-sm);
-    border: 2px solid var(--primary-green);
+    border: 2px solid var(--primary);
     border-radius: var(--radius-sm);
     font-size: 1rem;
     text-align: center;
 }
 
 .custom-timer button {
-    background: var(--primary-green);
+    background: var(--primary);
     color: white;
     border: none;
     padding: var(--space-sm) var(--space-lg);
     border-radius: var(--radius-md);
     cursor: pointer;
     font-weight: 600;
-    transition: all var(--transition-base);
+    transition: all var(--transition);
 }
 
 .custom-timer button:hover {
-    background: var(--primary-green-dark);
+    background: var(--primary-dark);
 }
 
 /* ==========================================
@@ -594,7 +598,7 @@
 }
 
 .tool-card h3 {
-    color: var(--primary-green);
+    color: var(--primary);
     margin-bottom: var(--space-lg);
     font-size: 1.25rem;
 }
@@ -617,12 +621,12 @@
     background: white;
     padding: var(--space-md);
     border-radius: var(--radius-md);
-    border-left: 3px solid var(--primary-green);
+    border-left: 3px solid var(--primary);
 }
 
 .intervention-item strong {
     display: block;
-    color: var(--primary-green);
+    color: var(--primary);
     margin-bottom: var(--space-xs);
 }
 
@@ -638,7 +642,7 @@
     padding: var(--space-sm);
     margin-bottom: var(--space-xs);
     cursor: pointer;
-    transition: all var(--transition-base);
+    transition: all var(--transition);
 }
 
 .observation-checklist label:hover {
@@ -667,7 +671,7 @@
 
 .question-category h4 {
     margin-top: 0;
-    color: var(--primary-green);
+    color: var(--primary);
 }
 
 .question-category ul {
@@ -701,7 +705,7 @@
 }
 
 .assessment-overview h3 {
-    color: var(--primary-green);
+    color: var(--primary);
     margin-bottom: var(--space-lg);
 }
 
@@ -724,7 +728,7 @@
     position: absolute;
     top: -10px;
     right: 10px;
-    background: var(--primary-green);
+    background: var(--primary);
     color: white;
     padding: var(--space-xs) var(--space-md);
     border-radius: var(--radius-full);
@@ -750,7 +754,7 @@
 }
 
 .rubrics-section h3 {
-    color: var(--primary-green);
+    color: var(--primary);
     margin-bottom: var(--space-lg);
 }
 
@@ -763,7 +767,7 @@
 }
 
 .rubric-card h4 {
-    color: var(--accent-red);
+    color: var(--accent);
     margin-bottom: var(--space-lg);
 }
 
@@ -773,7 +777,7 @@
 }
 
 .rubric-table thead {
-    background: linear-gradient(135deg, var(--primary-green), var(--primary-green-light));
+    background: linear-gradient(135deg, var(--primary), var(--primary-light));
     color: white;
 }
 
@@ -798,7 +802,7 @@
 
 .rubric-table td:first-child {
     font-weight: 600;
-    color: var(--primary-green);
+    color: var(--primary);
 }
 
 /* Quick Assessment */
@@ -810,7 +814,7 @@
 }
 
 .quick-assessment h3 {
-    color: var(--primary-green);
+    color: var(--primary);
     margin-bottom: var(--space-lg);
 }
 
@@ -826,7 +830,7 @@
 }
 
 .team-input {
-    border: 2px solid var(--primary-green);
+    border: 2px solid var(--primary);
     border-radius: var(--radius-sm);
     padding: var(--space-xs) var(--space-sm);
     font-size: 1rem;
@@ -841,7 +845,7 @@
 }
 
 .checklist-section h5 {
-    color: var(--primary-green);
+    color: var(--primary);
     margin-bottom: var(--space-sm);
 }
 
@@ -870,14 +874,14 @@
 .score-input {
     width: 100%;
     padding: var(--space-sm);
-    border: 2px solid var(--primary-green);
+    border: 2px solid var(--primary);
     border-radius: var(--radius-sm);
     font-size: 1.2rem;
     text-align: center;
 }
 
 .total-score {
-    background: linear-gradient(135deg, var(--primary-green), var(--primary-green-light));
+    background: linear-gradient(135deg, var(--primary), var(--primary-light));
     color: white;
     padding: var(--space-lg);
     border-radius: var(--radius-md);
@@ -895,7 +899,7 @@
 }
 
 .calculate-btn {
-    background: var(--accent-red);
+    background: var(--accent);
     color: white;
     border: none;
     padding: var(--space-md) var(--space-xl);
@@ -903,7 +907,7 @@
     cursor: pointer;
     font-weight: 600;
     width: 100%;
-    transition: all var(--transition-base);
+    transition: all var(--transition);
 }
 
 .calculate-btn:hover {
@@ -924,7 +928,7 @@
     width: 100%;
     min-height: 200px;
     padding: var(--space-md);
-    border: 2px solid var(--primary-green);
+    border: 2px solid var(--primary);
     border-radius: var(--radius-md);
     font-size: 1rem;
     line-height: 1.6;
@@ -939,18 +943,18 @@
 
 .assessment-actions button {
     flex: 1;
-    background: var(--primary-green);
+    background: var(--primary);
     color: white;
     border: none;
     padding: var(--space-md);
     border-radius: var(--radius-md);
     cursor: pointer;
     font-weight: 600;
-    transition: all var(--transition-base);
+    transition: all var(--transition);
 }
 
 .assessment-actions button:hover {
-    background: var(--primary-green-dark);
+    background: var(--primary-dark);
     transform: translateY(-2px);
 }
 
@@ -962,7 +966,7 @@
 }
 
 .grade-distribution h3 {
-    color: var(--primary-green);
+    color: var(--primary);
     margin-bottom: var(--space-lg);
 }
 
@@ -981,18 +985,18 @@
 
 .bar {
     flex: 1;
-    background: linear-gradient(180deg, var(--primary-green-light), var(--primary-green));
+    background: linear-gradient(180deg, var(--primary-light), var(--primary));
     margin: 0 5px;
     border-radius: var(--radius-sm) var(--radius-sm) 0 0;
     position: relative;
-    transition: all var(--transition-base);
+    transition: all var(--transition);
     display: flex;
     align-items: flex-end;
     justify-content: center;
 }
 
 .bar:hover {
-    background: linear-gradient(180deg, var(--accent-red-light), var(--accent-red));
+    background: linear-gradient(180deg, var(--accent-red-light), var(--accent));
 }
 
 .bar span {
@@ -1039,7 +1043,7 @@
     display: block;
     font-size: 1.5rem;
     font-weight: bold;
-    color: var(--primary-green);
+    color: var(--primary);
 }
 
 /* ==========================================
@@ -1077,12 +1081,12 @@
     background: white;
     font-size: 1rem;
     cursor: pointer;
-    transition: all var(--transition-base);
+    transition: all var(--transition);
 }
 
 #weekJumper:hover,
 #weekJumper:focus {
-    border-color: var(--primary-green);
+    border-color: var(--primary);
     outline: none;
 }
 
@@ -1099,24 +1103,24 @@
     border-radius: var(--radius-md);
     font-weight: 600;
     cursor: pointer;
-    transition: all var(--transition-base);
+    transition: all var(--transition);
 }
 
 .nav-btn:hover {
-    border-color: var(--primary-green);
+    border-color: var(--primary);
     transform: translateY(-2px);
     box-shadow: var(--shadow-sm);
 }
 
 .nav-btn.current-week {
-    background: var(--primary-green);
+    background: var(--primary);
     color: white;
-    border-color: var(--primary-green);
+    border-color: var(--primary);
 }
 
 .nav-btn.current-week:hover {
-    background: var(--primary-green-dark);
-    border-color: var(--primary-green-dark);
+    background: var(--primary-dark);
+    border-color: var(--primary-dark);
 }
 
 .section-jumpers {
@@ -1129,15 +1133,15 @@
 .jump-btn {
     padding: var(--space-sm) var(--space-md);
     background: rgba(143, 209, 79, 0.1);
-    border: 1px solid var(--primary-green-light);
+    border: 1px solid var(--primary-light);
     border-radius: var(--radius-sm);
     font-size: 0.9rem;
     cursor: pointer;
-    transition: all var(--transition-base);
+    transition: all var(--transition);
 }
 
 .jump-btn:hover {
-    background: var(--primary-green);
+    background: var(--primary);
     color: white;
     transform: translateY(-2px);
 }
@@ -1150,13 +1154,13 @@
 
 .toggle-shortcuts {
     padding: var(--space-sm) var(--space-lg);
-    background: var(--accent-red);
+    background: var(--accent);
     color: white;
     border: none;
     border-radius: var(--radius-md);
     font-weight: 600;
     cursor: pointer;
-    transition: all var(--transition-base);
+    transition: all var(--transition);
 }
 
 .toggle-shortcuts:hover {
@@ -1173,7 +1177,7 @@
 }
 
 .shortcuts-list h4 {
-    color: var(--primary-green-dark);
+    color: var(--primary-dark);
     margin-bottom: var(--space-lg);
 }
 
@@ -1218,7 +1222,7 @@ kbd {
 }
 
 .week-progress h4 {
-    color: var(--primary-green-dark);
+    color: var(--primary-dark);
     margin-bottom: var(--space-md);
 }
 
@@ -1232,11 +1236,11 @@ kbd {
 
 .progress-fill {
     height: 100%;
-    background: linear-gradient(90deg, var(--primary-green), var(--primary-green-dark));
+    background: linear-gradient(90deg, var(--primary), var(--primary-dark));
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: width var(--transition-base);
+    transition: width var(--transition);
 }
 
 .progress-text {
@@ -1252,11 +1256,11 @@ kbd {
 }
 
 .progress-details .completed {
-    color: var(--primary-green);
+    color: var(--primary);
 }
 
 .progress-details .current {
-    color: var(--accent-red);
+    color: var(--accent);
     font-weight: 600;
 }
 
@@ -1298,16 +1302,16 @@ kbd {
     color: var(--text-medium);
     font-weight: 600;
     cursor: pointer;
-    transition: all var(--transition-base);
+    transition: all var(--transition);
 }
 
 .note-tab:hover {
-    color: var(--primary-green);
+    color: var(--primary);
 }
 
 .note-tab.active {
-    color: var(--primary-green);
-    border-bottom-color: var(--primary-green);
+    color: var(--primary);
+    border-bottom-color: var(--primary);
 }
 
 .note-panel {
@@ -1325,12 +1329,12 @@ kbd {
     border-radius: var(--radius-md);
     font-size: 1rem;
     resize: vertical;
-    transition: border-color var(--transition-base);
+    transition: border-color var(--transition);
 }
 
 .note-panel textarea:focus {
     outline: none;
-    border-color: var(--primary-green);
+    border-color: var(--primary);
 }
 
 .note-actions {
@@ -1342,21 +1346,21 @@ kbd {
 .save-note-btn,
 .timestamp-btn {
     padding: var(--space-sm) var(--space-lg);
-    background: var(--primary-green);
+    background: var(--primary);
     color: white;
     border: none;
     border-radius: var(--radius-md);
     font-weight: 600;
     cursor: pointer;
-    transition: all var(--transition-base);
+    transition: all var(--transition);
 }
 
 .timestamp-btn {
-    background: var(--accent-red);
+    background: var(--accent);
 }
 
 .save-note-btn:hover {
-    background: var(--primary-green-dark);
+    background: var(--primary-dark);
 }
 
 .timestamp-btn:hover {
@@ -1402,12 +1406,12 @@ kbd {
     border: 2px solid var(--border-light);
     border-radius: var(--radius-sm);
     cursor: pointer;
-    transition: all var(--transition-base);
+    transition: all var(--transition);
 }
 
 .tag-btn:hover,
 .tag-btn.active {
-    border-color: var(--primary-green);
+    border-color: var(--primary);
     background: rgba(143, 209, 79, 0.1);
 }
 
@@ -1434,13 +1438,13 @@ kbd {
     border: 2px solid var(--border-light);
     border-radius: var(--radius-md);
     cursor: pointer;
-    transition: all var(--transition-base);
+    transition: all var(--transition);
 }
 
 .template-btn:hover {
     transform: translateY(-2px);
     box-shadow: var(--shadow-sm);
-    border-color: var(--primary-green);
+    border-color: var(--primary);
 }
 
 .template-icon {
@@ -1466,14 +1470,14 @@ kbd {
     border: 1px solid var(--border-light);
     border-radius: var(--radius-sm);
     cursor: pointer;
-    transition: all var(--transition-base);
+    transition: all var(--transition);
 }
 
 .filter-btn:hover,
 .filter-btn.active {
-    background: var(--primary-green);
+    background: var(--primary);
     color: white;
-    border-color: var(--primary-green);
+    border-color: var(--primary);
 }
 
 .notes-list {
@@ -1503,7 +1507,7 @@ kbd {
 }
 
 .note-type {
-    background: var(--primary-green);
+    background: var(--primary);
     color: white;
     padding: 2px 8px;
     border-radius: var(--radius-sm);
@@ -1515,7 +1519,7 @@ kbd {
     border: none;
     cursor: pointer;
     font-size: 1.2rem;
-    transition: transform var(--transition-base);
+    transition: transform var(--transition);
 }
 
 .star-btn:hover {
@@ -1541,11 +1545,11 @@ kbd {
     border: none;
     border-radius: var(--radius-sm);
     cursor: pointer;
-    transition: all var(--transition-base);
+    transition: all var(--transition);
 }
 
 .expand-btn:hover {
-    background: var(--primary-green);
+    background: var(--primary);
     color: white;
 }
 
@@ -1554,7 +1558,7 @@ kbd {
 }
 
 .delete-btn:hover {
-    background: var(--accent-red);
+    background: var(--accent);
     color: white;
 }
 
@@ -1568,16 +1572,16 @@ kbd {
 .export-btn {
     padding: var(--space-sm) var(--space-lg);
     background: white;
-    border: 2px solid var(--primary-green);
-    color: var(--primary-green);
+    border: 2px solid var(--primary);
+    color: var(--primary);
     border-radius: var(--radius-md);
     font-weight: 600;
     cursor: pointer;
-    transition: all var(--transition-base);
+    transition: all var(--transition);
 }
 
 .export-btn:hover {
-    background: var(--primary-green);
+    background: var(--primary);
     color: white;
 }
 
@@ -1600,14 +1604,14 @@ kbd {
     align-items: center;
     gap: var(--space-sm);
     padding: var(--space-md) var(--space-xl);
-    background: var(--accent-red);
+    background: var(--accent);
     color: white;
     border: none;
     border-radius: var(--radius-md);
     font-size: 1.1rem;
     font-weight: 600;
     cursor: pointer;
-    transition: all var(--transition-base);
+    transition: all var(--transition);
 }
 
 .voice-btn:hover {
@@ -1638,7 +1642,7 @@ kbd {
 .recording-time {
     font-size: 1.2rem;
     font-weight: bold;
-    color: var(--primary-green);
+    color: var(--primary);
 }
 
 .voice-transcription {
@@ -1658,17 +1662,17 @@ kbd {
 
 .add-to-notes-btn {
     padding: var(--space-sm) var(--space-lg);
-    background: var(--primary-green);
+    background: var(--primary);
     color: white;
     border: none;
     border-radius: var(--radius-md);
     font-weight: 600;
     cursor: pointer;
-    transition: all var(--transition-base);
+    transition: all var(--transition);
 }
 
 .add-to-notes-btn:hover {
-    background: var(--primary-green-dark);
+    background: var(--primary-dark);
 }
 
 /* ==========================================
@@ -1704,7 +1708,7 @@ kbd {
 }
 
 .event-category h3 {
-    color: var(--primary-green);
+    color: var(--primary);
     margin-bottom: var(--space-lg);
     font-size: 1.5rem;
 }
@@ -1720,22 +1724,22 @@ kbd {
     border-radius: var(--radius-md);
     overflow: hidden;
     box-shadow: var(--shadow-sm);
-    transition: all var(--transition-base);
+    transition: all var(--transition);
     border: 2px solid transparent;
 }
 
 .event-card:hover {
     transform: translateY(-4px);
     box-shadow: var(--shadow-md);
-    border-color: var(--primary-green);
+    border-color: var(--primary);
 }
 
 .event-card.opportunity {
-    border-color: var(--primary-green-light);
+    border-color: var(--primary-light);
 }
 
 .event-card-header {
-    background: linear-gradient(135deg, var(--primary-green), var(--primary-green-dark));
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
     padding: var(--space-md);
     display: flex;
     align-items: center;
@@ -1772,7 +1776,7 @@ kbd {
     padding: var(--space-sm);
     border-radius: var(--radius-sm);
     margin-bottom: var(--space-md);
-    color: var(--primary-green-dark);
+    color: var(--primary-dark);
 }
 
 .event-questions {
@@ -1781,7 +1785,7 @@ kbd {
 }
 
 .event-questions strong {
-    color: var(--accent-red);
+    color: var(--accent);
     display: block;
     margin-bottom: var(--space-sm);
 }
@@ -1802,22 +1806,22 @@ kbd {
     content: "▸";
     position: absolute;
     left: 0;
-    color: var(--accent-red);
+    color: var(--accent);
 }
 
 .use-event-btn {
     width: 100%;
     padding: var(--space-md);
-    background: var(--primary-green);
+    background: var(--primary);
     color: white;
     border: none;
     font-weight: 600;
     cursor: pointer;
-    transition: all var(--transition-base);
+    transition: all var(--transition);
 }
 
 .use-event-btn:hover {
-    background: var(--primary-green-dark);
+    background: var(--primary-dark);
 }
 
 /* Event Deployment Guide */
@@ -1829,7 +1833,7 @@ kbd {
 }
 
 .event-deployment-guide h3 {
-    color: var(--accent-red);
+    color: var(--accent);
     margin-bottom: var(--space-lg);
 }
 
@@ -1847,7 +1851,7 @@ kbd {
 .step-number {
     width: 40px;
     height: 40px;
-    background: var(--primary-green);
+    background: var(--primary);
     color: white;
     border-radius: 50%;
     display: flex;
@@ -1858,7 +1862,7 @@ kbd {
 }
 
 .step-content h4 {
-    color: var(--primary-green-dark);
+    color: var(--primary-dark);
     margin-bottom: var(--space-xs);
 }
 
@@ -1950,23 +1954,23 @@ kbd {
 .print-btn,
 .preview-btn {
     padding: var(--space-md) var(--space-xl);
-    background: var(--primary-green);
+    background: var(--primary);
     color: white;
     border: none;
     border-radius: var(--radius-md);
     font-weight: 600;
     cursor: pointer;
-    transition: all var(--transition-base);
+    transition: all var(--transition);
     display: inline-block;
     margin-right: var(--space-md);
 }
 
 .preview-btn {
-    background: var(--accent-red);
+    background: var(--accent);
 }
 
 .print-btn:hover {
-    background: var(--primary-green-dark);
+    background: var(--primary-dark);
 }
 
 .preview-btn:hover {
@@ -2008,7 +2012,7 @@ kbd {
 }
 
 .preview-header button {
-    background: var(--accent-red);
+    background: var(--accent);
     color: white;
     border: none;
     padding: var(--space-sm) var(--space-md);
