@@ -50,44 +50,123 @@
         <div class="container">
             
             <!-- Triangle Conflict Visualization -->
-            <section class="triangle-conflict" aria-labelledby="triangle-heading">
+            <section class="triangle-conflict" id="triangle-conflict" aria-labelledby="triangle-heading">
                 <h2 id="triangle-heading" class="section-title">Het Driehoeksconflict</h2>
                 <div class="triangle-container">
                     <svg class="triangle-svg" viewBox="0 0 400 350" xmlns="http://www.w3.org/2000/svg">
-                        <!-- Triangle -->
+                        <!-- Gradient definitions -->
+                        <defs>
+                            <linearGradient id="exploitGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#8FD14F;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#6BA644;stop-opacity:1" />
+                            </linearGradient>
+                            <linearGradient id="exploreGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#E63946;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#C1121F;stop-opacity:1" />
+                            </linearGradient>
+                            <linearGradient id="buybackGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#2C3E50;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#1A252F;stop-opacity:1" />
+                            </linearGradient>
+                            <linearGradient id="ceoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#FFD700;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#FFA500;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        
+                        <!-- Triangle with animated stroke -->
                         <polygon points="200,50 100,250 300,250" 
                                  fill="none" 
                                  stroke="#8FD14F" 
-                                 stroke-width="2"
-                                 opacity="0.3"/>
+                                 stroke-width="3"
+                                 stroke-dasharray="5,5"
+                                 opacity="0.4">
+                            <animate attributeName="stroke-dashoffset" 
+                                     values="0;10" 
+                                     dur="2s" 
+                                     repeatCount="indefinite"/>
+                        </polygon>
                         
-                        <!-- Exploit Corner (COO) -->
-                        <circle cx="100" cy="250" r="40" fill="#8FD14F" opacity="0.9" class="exploit-circle"/>
-                        <text x="100" y="255" text-anchor="middle" fill="white" font-weight="bold">Exploit</text>
-                        <text x="100" y="290" text-anchor="middle" fill="#5A6C7D" font-size="12">COO</text>
+                        <!-- Connection lines from CEO to corners -->
+                        <line x1="200" y1="183" x2="100" y2="250" stroke="#FFD700" stroke-width="1" opacity="0.3" stroke-dasharray="2,2"/>
+                        <line x1="200" y1="183" x2="300" y2="250" stroke="#FFD700" stroke-width="1" opacity="0.3" stroke-dasharray="2,2"/>
+                        <line x1="200" y1="183" x2="200" y2="50" stroke="#FFD700" stroke-width="1" opacity="0.3" stroke-dasharray="2,2"/>
                         
-                        <!-- Explore Corner (CIO) -->
-                        <circle cx="300" cy="250" r="40" fill="#E63946" opacity="0.9" class="explore-circle"/>
-                        <text x="300" y="255" text-anchor="middle" fill="white" font-weight="bold">Explore</text>
-                        <text x="300" y="290" text-anchor="middle" fill="#5A6C7D" font-size="12">CIO</text>
+                        <!-- Exploit Corner (COO) - Bottom Left -->
+                        <g class="strategy-node exploit-node" style="cursor: pointer;">
+                            <circle cx="100" cy="250" r="45" fill="url(#exploitGradient)" opacity="0.9" class="exploit-circle">
+                                <animate attributeName="r" values="45;48;45" dur="3s" repeatCount="indefinite"/>
+                            </circle>
+                            <text x="100" y="250" text-anchor="middle" fill="white" font-weight="bold" font-size="16" pointer-events="none">EXPLOIT</text>
+                            <text x="100" y="268" text-anchor="middle" fill="white" font-size="12" opacity="0.9" pointer-events="none">COO</text>
+                        </g>
                         
-                        <!-- Buyback Corner (CFO) -->
-                        <circle cx="200" cy="50" r="40" fill="#2C3E50" opacity="0.9" class="buyback-circle"/>
-                        <text x="200" y="55" text-anchor="middle" fill="white" font-weight="bold">Buyback</text>
-                        <text x="200" y="85" text-anchor="middle" fill="#5A6C7D" font-size="12">CFO</text>
+                        <!-- Explore Corner (CIO) - Bottom Right -->
+                        <g class="strategy-node explore-node" style="cursor: pointer;">
+                            <circle cx="300" cy="250" r="45" fill="url(#exploreGradient)" opacity="0.9" class="explore-circle">
+                                <animate attributeName="r" values="45;48;45" dur="3s" repeatCount="indefinite" begin="1s"/>
+                            </circle>
+                            <text x="300" y="250" text-anchor="middle" fill="white" font-weight="bold" font-size="16" pointer-events="none">EXPLORE</text>
+                            <text x="300" y="268" text-anchor="middle" fill="white" font-size="12" opacity="0.9" pointer-events="none">CIO</text>
+                        </g>
                         
-                        <!-- Balance Point (CEO) -->
-                        <circle cx="200" cy="183" r="25" fill="#FFD700" opacity="0.9" class="balance-point"/>
-                        <text x="200" y="188" text-anchor="middle" fill="#2C3E50" font-weight="bold" font-size="14">CEO</text>
+                        <!-- Buyback Corner (CFO) - Top -->
+                        <g class="strategy-node buyback-node" style="cursor: pointer;">
+                            <circle cx="200" cy="50" r="45" fill="url(#buybackGradient)" opacity="0.9" class="buyback-circle">
+                                <animate attributeName="r" values="45;48;45" dur="3s" repeatCount="indefinite" begin="2s"/>
+                            </circle>
+                            <text x="200" y="50" text-anchor="middle" fill="white" font-weight="bold" font-size="16" pointer-events="none">BUYBACK</text>
+                            <text x="200" y="68" text-anchor="middle" fill="white" font-size="12" opacity="0.9" pointer-events="none">CFO</text>
+                        </g>
+                        
+                        <!-- Balance Point (CEO) - Center -->
+                        <g class="strategy-node ceo-node" style="cursor: pointer;">
+                            <circle cx="200" cy="183" r="30" fill="url(#ceoGradient)" opacity="0.95" class="balance-point">
+                                <animate attributeName="opacity" values="0.95;1;0.95" dur="2s" repeatCount="indefinite"/>
+                            </circle>
+                            <text x="200" y="188" text-anchor="middle" fill="#2C3E50" font-weight="bold" font-size="18" pointer-events="none">CEO</text>
+                        </g>
                     </svg>
-                    <div class="triangle-description">
-                        <p>Als <strong>Raad van Bestuur</strong> navigeer je constant tussen drie conflicterende strategieën:</p>
-                        <ul>
-                            <li><strong>Exploit (COO):</strong> Optimaliseer het huidige businessmodel</li>
-                            <li><strong>Explore (CIO):</strong> Innoveer en ontdek nieuwe mogelijkheden</li>
-                            <li><strong>Buyback (CFO):</strong> Maximaliseer aandeelhouderswaarde</li>
-                        </ul>
-                        <p>De <strong>CEO</strong> moet de balans bewaken en coherente beslissingen nemen.</p>
+                    
+                    <!-- Strategy Information Cards -->
+                    <div class="triangle-info">
+                        <div class="strategy-cards">
+                            <div class="strategy-card exploit-card">
+                                <h3>🎯 Exploit Strategy</h3>
+                                <p><strong>Champion:</strong> COO (Chief Operating Officer)</p>
+                                <p><strong>Focus:</strong> Operationele excellentie, kostenreductie, procesoptimalisatie</p>
+                                <p><strong>Tijdshorizon:</strong> Kort termijn (1-2 jaar)</p>
+                                <p><strong>KPI's:</strong> EBITDA marge, kostenbesparing, efficiëntie ratio's</p>
+                            </div>
+                            
+                            <div class="strategy-card explore-card">
+                                <h3>🚀 Explore Strategy</h3>
+                                <p><strong>Champion:</strong> CIO (Chief Innovation Officer)</p>
+                                <p><strong>Focus:</strong> Innovatie, nieuwe markten, disruptieve technologieën</p>
+                                <p><strong>Tijdshorizon:</strong> Lang termijn (3-5 jaar)</p>
+                                <p><strong>KPI's:</strong> R&D investering, nieuwe producten, marktaandeel groei</p>
+                            </div>
+                            
+                            <div class="strategy-card buyback-card">
+                                <h3>💰 Buyback Strategy</h3>
+                                <p><strong>Champion:</strong> CFO (Chief Financial Officer)</p>
+                                <p><strong>Focus:</strong> Kapitaalrendement, dividend, aandeleninkoop</p>
+                                <p><strong>Tijdshorizon:</strong> Middellang termijn (2-3 jaar)</p>
+                                <p><strong>KPI's:</strong> ROE, dividend yield, share price performance</p>
+                            </div>
+                        </div>
+                        
+                        <div class="ceo-balance-info">
+                            <h3>⚖️ CEO: De Balanskunstenaar</h3>
+                            <p>Als CEO moet je de spanning tussen deze drie strategieën managen. Geen enkele strategie mag domineren, maar ze kunnen ook niet gelijk gewogen worden. Je succes hangt af van:</p>
+                            <ul>
+                                <li>Marktcontext en timing</li>
+                                <li>Stakeholder verwachtingen</li>
+                                <li>Organisatie capaciteiten</li>
+                                <li>Competitieve dynamiek</li>
+                            </ul>
+                            <p class="ceo-quote">"De kunst is niet om te kiezen, maar om te integreren."</p>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -644,5 +723,11 @@ Schrijf in Nederlands, executive summary stijl, max 2 A4.</pre>
     
     <!-- Now load page-specific script -->
     <script src="studenten-script.js"></script>
+    
+    <!-- Onboarding flow for new students -->
+    <script src="onboarding.js"></script>
+    
+    <!-- FAQ System -->
+    <script src="faq.js"></script>
 </body>
 </html>

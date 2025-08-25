@@ -32,26 +32,51 @@ function showTab(tabName) {
 // Week Details Modal
 // ==========================================
 async function showWeekDetails(weekNumber) {
-    console.log(`Opening details for Week ${weekNumber}`);
+    console.log(`Opening details for Week ${weekNumber} (type: ${typeof weekNumber})`);
+    
+    // Ensure weekNumber is an integer
+    weekNumber = parseInt(weekNumber);
+    console.log(`Parsed week number: ${weekNumber}`);
+    
+    // Validate week number
+    if (isNaN(weekNumber) || weekNumber < 1 || weekNumber > 7) {
+        console.error(`Invalid week number: ${weekNumber}`);
+        alert('Ongeldige week nummer. Probeer het opnieuw.');
+        return;
+    }
     
     // If content not loaded yet, try to load it
-    if (!window.contentData) {
+    if (!window.contentData || !window.contentData.weeks) {
         console.log('Content not loaded yet, loading now...');
         try {
             const response = await fetch('content.json');
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
             const data = await response.json();
             window.contentData = data;
-            console.log('Content loaded successfully');
+            console.log('Content loaded successfully:', data);
         } catch (error) {
             console.error('Failed to load content:', error);
+            alert('Fout bij het laden van cursusinhoud. Vernieuw de pagina en probeer opnieuw.');
             window.contentData = { weeks: [], roles: {} };
+            return;
         }
     }
     
     // Get week data from content if available
     let weekData = null;
     if (window.contentData && window.contentData.weeks) {
+        console.log('Available weeks:', window.contentData.weeks.map(w => w.number));
         weekData = window.contentData.weeks.find(w => w.number === weekNumber);
+        console.log('Found week data:', weekData);
+    }
+    
+    // If no week data found after loading content, show error
+    if (!weekData && window.contentData && window.contentData.weeks && window.contentData.weeks.length > 0) {
+        console.error(`Week ${weekNumber} not found in content data`);
+        alert(`Week ${weekNumber} is nog niet beschikbaar. Probeer later opnieuw.`);
+        return;
     }
     
     // Create modal content
@@ -65,9 +90,9 @@ async function showWeekDetails(weekNumber) {
             <p>${weekData.description}</p>
             
             <div class="week-tabs">
-                <button class="tab-btn active" onclick="switchTab(event, 'waarom')">WAAROM</button>
-                <button class="tab-btn" onclick="switchTab(event, 'hoe')">HOE</button>
-                <button class="tab-btn" onclick="switchTab(event, 'wat')">WAT</button>
+                <button class="tab-btn active" onclick="switchModalTab(event, 'waarom')">WAAROM</button>
+                <button class="tab-btn" onclick="switchModalTab(event, 'hoe')">HOE</button>
+                <button class="tab-btn" onclick="switchModalTab(event, 'wat')">WAT</button>
             </div>
             
             <div id="waarom" class="tab-content active">
@@ -103,8 +128,8 @@ async function showWeekDetails(weekNumber) {
                 <div class="ai-prompt-section">
                     <h4>AI Briefing Prompt:</h4>
                     <div class="prompt-box">
-                        <pre>${weekData.aiPrompt}</pre>
-                        <button class="btn-secondary" onclick="copyToClipboard('${weekData.aiPrompt.replace(/'/g, "\\'")}')">
+                        <pre id="aiPromptText">${weekData.aiPrompt}</pre>
+                        <button class="btn-secondary" onclick="copyModalPrompt()">
                             📋 Kopieer Prompt
                         </button>
                     </div>
@@ -328,6 +353,93 @@ function closeModal() {
     const modal = document.getElementById('weekModal');
     if (modal) {
         modal.remove();
+    }
+}
+
+// Copy function for modal AI prompts
+function copyModalPrompt() {
+    const promptElement = document.getElementById('aiPromptText');
+    if (!promptElement) {
+        alert('Prompt niet gevonden');
+        return;
+    }
+    
+    const promptText = promptElement.textContent;
+    
+    // Use navigator.clipboard API if available
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(promptText).then(() => {
+            const button = event.target;
+            const originalText = button.innerHTML;
+            button.innerHTML = '✅ Gekopieerd!';
+            button.classList.add('copied');
+            
+            setTimeout(() => {
+                button.innerHTML = originalText;
+                button.classList.remove('copied');
+            }, 2000);
+        }).catch(err => {
+            console.error('Failed to copy:', err);
+            fallbackCopy(promptText);
+        });
+    } else {
+        fallbackCopy(promptText);
+    }
+}
+
+// Fallback copy method for older browsers
+function fallbackCopy(text) {
+    const textArea = document.createElement('textarea');
+    textArea.value = text;
+    textArea.style.position = 'fixed';
+    textArea.style.left = '-999999px';
+    textArea.style.top = '-999999px';
+    document.body.appendChild(textArea);
+    textArea.focus();
+    textArea.select();
+    
+    try {
+        document.execCommand('copy');
+        alert('Prompt gekopieerd naar klembord!');
+    } catch (err) {
+        alert('Kopiëren mislukt. Selecteer de tekst handmatig.');
+    }
+    
+    document.body.removeChild(textArea);
+}
+
+// Tab switching function for modals
+function switchModalTab(event, tabName) {
+    // Prevent event bubbling
+    event.preventDefault();
+    event.stopPropagation();
+    
+    // Hide all tab contents within the modal
+    const modal = document.getElementById('weekModal');
+    if (!modal) return;
+    
+    const tabContents = modal.querySelectorAll('.tab-content');
+    tabContents.forEach(tab => {
+        tab.style.display = 'none';
+        tab.classList.remove('active');
+    });
+    
+    // Remove active class from all buttons within the modal
+    const tabButtons = modal.querySelectorAll('.tab-btn');
+    tabButtons.forEach(btn => {
+        btn.classList.remove('active');
+    });
+    
+    // Show selected tab content
+    const selectedTab = modal.querySelector(`#${tabName}`);
+    if (selectedTab) {
+        selectedTab.style.display = 'block';
+        selectedTab.classList.add('active');
+    }
+    
+    // Add active class to clicked button
+    if (event.target) {
+        event.target.classList.add('active');
     }
 }
 
