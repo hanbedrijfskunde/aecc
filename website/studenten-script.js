@@ -383,39 +383,59 @@ function closeModal() {
     }
 }
 
-// Copy function for modal AI prompts
+// Enhanced copy function for modal AI prompts
 function copyModalPrompt() {
     const promptElement = document.getElementById('aiPromptText');
     if (!promptElement) {
-        alert('Prompt niet gevonden');
+        showCopyFeedback(event.target, false, 'Prompt niet gevonden');
         return;
     }
     
     const promptText = promptElement.textContent;
-    
+    copyWithFeedback(promptText, event.target);
+}
+
+// Universal copy function with visual feedback
+function copyWithFeedback(text, buttonElement) {
     // Use navigator.clipboard API if available
     if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(promptText).then(() => {
-            const button = event.target;
-            const originalText = button.innerHTML;
-            button.innerHTML = '✅ Gekopieerd!';
-            button.classList.add('copied');
-            
-            setTimeout(() => {
-                button.innerHTML = originalText;
-                button.classList.remove('copied');
-            }, 2000);
+        navigator.clipboard.writeText(text).then(() => {
+            showCopyFeedback(buttonElement, true);
         }).catch(err => {
             console.error('Failed to copy:', err);
-            fallbackCopy(promptText);
+            fallbackCopy(text, buttonElement);
         });
     } else {
-        fallbackCopy(promptText);
+        fallbackCopy(text, buttonElement);
     }
 }
 
-// Fallback copy method for older browsers
-function fallbackCopy(text) {
+// Visual feedback helper
+function showCopyFeedback(button, success, message = null) {
+    if (!button) return;
+    
+    const originalHTML = button.innerHTML;
+    const originalClass = button.className;
+    
+    if (success) {
+        button.innerHTML = '✅ Gekopieerd!';
+        button.classList.add('copy-success');
+        // Add ripple effect
+        button.style.transform = 'scale(1.05)';
+    } else {
+        button.innerHTML = message || '❌ Kopiëren mislukt';
+        button.classList.add('copy-error');
+    }
+    
+    setTimeout(() => {
+        button.innerHTML = originalHTML;
+        button.className = originalClass;
+        button.style.transform = '';
+    }, 2000);
+}
+
+// Enhanced fallback copy method for older browsers
+function fallbackCopy(text, buttonElement = null) {
     const textArea = document.createElement('textarea');
     textArea.value = text;
     textArea.style.position = 'fixed';
@@ -426,10 +446,20 @@ function fallbackCopy(text) {
     textArea.select();
     
     try {
-        document.execCommand('copy');
-        alert('Prompt gekopieerd naar klembord!');
+        const successful = document.execCommand('copy');
+        if (buttonElement) {
+            showCopyFeedback(buttonElement, successful);
+        } else if (successful) {
+            alert('Prompt gekopieerd naar klembord!');
+        } else {
+            alert('Kopiëren mislukt. Selecteer de tekst handmatig.');
+        }
     } catch (err) {
-        alert('Kopiëren mislukt. Selecteer de tekst handmatig.');
+        if (buttonElement) {
+            showCopyFeedback(buttonElement, false, 'Selecteer handmatig');
+        } else {
+            alert('Kopiëren mislukt. Selecteer de tekst handmatig.');
+        }
     }
     
     document.body.removeChild(textArea);
@@ -536,24 +566,25 @@ function downloadBriefing(weekNumber) {
 // ==========================================
 function copyPrompt(button) {
     const promptCard = button.parentElement;
-    const promptText = promptCard.querySelector('pre').textContent;
+    const promptElement = promptCard.querySelector('pre');
     
-    // Use the global copyToClipboard function from script.js
-    window.copyToClipboard(promptText).then(success => {
-        if (success) {
-            // Change button text temporarily
-            const originalText = button.textContent;
-            button.textContent = '✅ Gekopieerd!';
-            button.classList.add('copied');
-            
-            setTimeout(() => {
-                button.textContent = originalText;
-                button.classList.remove('copied');
-            }, 2000);
-        } else {
-            alert('Kopiëren mislukt. Selecteer de tekst handmatig.');
-        }
-    });
+    if (!promptElement) {
+        showCopyFeedback(button, false, 'Prompt niet gevonden');
+        return;
+    }
+    
+    const promptText = promptElement.textContent;
+    
+    // Check if global copyToClipboard exists, otherwise use our enhanced function
+    if (window.copyToClipboard && typeof window.copyToClipboard === 'function') {
+        window.copyToClipboard(promptText).then(success => {
+            showCopyFeedback(button, success);
+        }).catch(() => {
+            copyWithFeedback(promptText, button);
+        });
+    } else {
+        copyWithFeedback(promptText, button);
+    }
 }
 
 // ==========================================

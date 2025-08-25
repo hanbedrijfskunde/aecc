@@ -176,11 +176,13 @@ document.addEventListener('DOMContentLoaded', function() {
  * @param {string} text - Text to copy
  * @returns {Promise<boolean>} - Success status
  */
-window.copyToClipboard = async function(text) {
+window.copyToClipboard = async function(text, buttonElement = null) {
     try {
+        let success = false;
+        
         if (navigator.clipboard && window.isSecureContext) {
             await navigator.clipboard.writeText(text);
-            return true;
+            success = true;
         } else {
             // Fallback for older browsers
             const textArea = document.createElement('textarea');
@@ -190,12 +192,23 @@ window.copyToClipboard = async function(text) {
             document.body.appendChild(textArea);
             textArea.focus();
             textArea.select();
-            const successful = document.execCommand('copy');
+            success = document.execCommand('copy');
             document.body.removeChild(textArea);
-            return successful;
         }
+        
+        // Visual feedback if button element provided
+        if (buttonElement && success && window.showCopySuccess) {
+            window.showCopySuccess(buttonElement);
+        } else if (buttonElement && !success && window.showCopyError) {
+            window.showCopyError(buttonElement);
+        }
+        
+        return success;
     } catch (err) {
         console.error('Failed to copy text: ', err);
+        if (buttonElement && window.showCopyError) {
+            window.showCopyError(buttonElement);
+        }
         return false;
     }
 };
