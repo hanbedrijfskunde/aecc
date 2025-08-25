@@ -31,8 +31,22 @@ function showTab(tabName) {
 // ==========================================
 // Week Details Modal
 // ==========================================
-function showWeekDetails(weekNumber) {
+async function showWeekDetails(weekNumber) {
     console.log(`Opening details for Week ${weekNumber}`);
+    
+    // If content not loaded yet, try to load it
+    if (!window.contentData) {
+        console.log('Content not loaded yet, loading now...');
+        try {
+            const response = await fetch('content.json');
+            const data = await response.json();
+            window.contentData = data;
+            console.log('Content loaded successfully');
+        } catch (error) {
+            console.error('Failed to load content:', error);
+            window.contentData = { weeks: [], roles: {} };
+        }
+    }
     
     // Get week data from content if available
     let weekData = null;

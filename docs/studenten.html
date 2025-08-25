@@ -624,20 +624,25 @@ Schrijf in Nederlands, executive summary stijl, max 2 A4.</pre>
     
     <!-- JavaScript -->
     <script src="script.js"></script>
-    <script src="studenten-script.js"></script>
     
-    <!-- Load content data -->
+    <!-- Load content data BEFORE other scripts -->
     <script>
-        // Load content.json
-        fetch('content.json')
-            .then(response => response.json())
-            .then(data => {
+        // Load content.json immediately
+        (async function() {
+            try {
+                const response = await fetch('content.json');
+                const data = await response.json();
                 window.contentData = data;
                 console.log('Content data loaded successfully');
-            })
-            .catch(error => {
+            } catch (error) {
                 console.error('Failed to load content data:', error);
-            });
+                // Set empty content data as fallback
+                window.contentData = { weeks: [], roles: {} };
+            }
+        })();
     </script>
+    
+    <!-- Now load page-specific script -->
+    <script src="studenten-script.js"></script>
 </body>
 </html>
