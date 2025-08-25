@@ -35,7 +35,7 @@ body {
 /* Header Styling */
 .committee-header {
     background: var(--committee-glass);
-    backdrop-filter: blur(10px);
+    /* backdrop-filter removed for performance */
     border-radius: 20px;
     padding: 2rem;
     margin-bottom: 2rem;
@@ -371,15 +371,15 @@ body {
 }
 
 .grid-cell.low-risk {
-    background: linear-gradient(135deg, rgba(46, 204, 113, 0.1) 0%, rgba(46, 204, 113, 0.2) 100%);
+    background: #F8F9FA;
 }
 
 .grid-cell.medium-risk {
-    background: linear-gradient(135deg, rgba(243, 156, 18, 0.1) 0%, rgba(243, 156, 18, 0.2) 100%);
+    background: #F8F9FA;
 }
 
 .grid-cell.high-risk {
-    background: linear-gradient(135deg, rgba(231, 76, 60, 0.1) 0%, rgba(231, 76, 60, 0.2) 100%);
+    background: #F8F9FA;
 }
 
 .risk-item {
@@ -500,7 +500,7 @@ body {
 }
 
 .phase-card {
-    background: linear-gradient(135deg, rgba(52, 152, 219, 0.1) 0%, rgba(52, 152, 219, 0.05) 100%);
+    background: #F8F9FA;
     border-radius: 10px;
     padding: 1.5rem;
     border-left: 4px solid var(--committee-accent);

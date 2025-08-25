@@ -28,16 +28,16 @@
     --text-light: #6C757D;
     --text-muted: #95A5A6;
     
-    /* Shadows & Effects */
-    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
-    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
-    --shadow-lg: 0 10px 40px rgba(0, 0, 0, 0.1);
-    --shadow-xl: 0 20px 60px rgba(0, 0, 0, 0.15);
+    /* Simplified Shadows */
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 2px 4px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 4px 6px rgba(0, 0, 0, 0.07);
+    --shadow-xl: 0 8px 10px rgba(0, 0, 0, 0.08);
     
-    /* Glassmorphism */
-    --glass-bg: rgba(255, 255, 255, 0.85);
-    --glass-border: rgba(255, 255, 255, 0.18);
-    --glass-blur: 10px;
+    /* Simplified backgrounds (no glassmorphism) */
+    --glass-bg: #FFFFFF;
+    --glass-border: #E5E7EB;
+    --glass-blur: 0px;
     
     /* Spacing Scale */
     --space-xs: 0.25rem;
@@ -52,10 +52,10 @@
     --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
     --font-mono: 'Fira Code', 'Courier New', monospace;
     
-    /* Transitions */
-    --transition-fast: 150ms ease;
-    --transition-base: 300ms ease;
-    --transition-slow: 500ms ease;
+    /* Faster Transitions */
+    --transition-fast: 100ms ease;
+    --transition-base: 200ms ease;
+    --transition-slow: 300ms ease;
     
     /* Border Radius */
     --radius-sm: 4px;
@@ -176,9 +176,8 @@ a:hover {
    Header Styles
    ========================================== */
 .site-header {
-    background: var(--glass-bg);
-    backdrop-filter: blur(var(--glass-blur));
-    -webkit-backdrop-filter: blur(var(--glass-blur));
+    background: var(--base-white-solid);
+    /* Removed backdrop-filter for performance */
     border-bottom: 1px solid var(--glass-border);
     padding: var(--space-2xl) 0;
     text-align: center;
@@ -269,21 +268,19 @@ a:hover {
     }
 }
 
-/* Portal Cards */
+/* Portal Cards - Simplified */
 .portal-card {
-    background: var(--glass-bg);
-    backdrop-filter: blur(var(--glass-blur));
-    -webkit-backdrop-filter: blur(var(--glass-blur));
+    background: var(--base-white-solid);
     border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-lg);
+    box-shadow: var(--shadow-md);
     border: 1px solid var(--glass-border);
-    transition: all var(--transition-base);
+    transition: transform var(--transition-base), box-shadow var(--transition-base);
     overflow: hidden;
 }
 
 .portal-card:hover {
-    transform: translateY(-4px) scale(1.02);
-    box-shadow: var(--shadow-xl);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
 }
 
 .card-link {
@@ -470,29 +467,7 @@ a:hover {
    Water-Themed Animations
    ========================================== */
 
-/* Wave Animation for Background */
-@keyframes wave {
-    0% {
-        transform: translateX(0) translateY(0) rotate(0deg);
-        opacity: 0.5;
-    }
-    25% {
-        transform: translateX(-20px) translateY(-10px) rotate(-5deg);
-        opacity: 0.7;
-    }
-    50% {
-        transform: translateX(20px) translateY(5px) rotate(3deg);
-        opacity: 0.6;
-    }
-    75% {
-        transform: translateX(-10px) translateY(-5px) rotate(-2deg);
-        opacity: 0.8;
-    }
-    100% {
-        transform: translateX(0) translateY(0) rotate(0deg);
-        opacity: 0.5;
-    }
-}
+/* Removed wave animation for performance */
 
 /* Ripple Effect */
 @keyframes ripple {
@@ -506,28 +481,9 @@ a:hover {
     }
 }
 
-/* Float Animation for Cards */
-@keyframes float {
-    0% {
-        transform: translateY(0px);
-    }
-    50% {
-        transform: translateY(-10px);
-    }
-    100% {
-        transform: translateY(0px);
-    }
-}
+/* Removed float animation for performance */
 
-/* Shimmer Effect for Glass */
-@keyframes shimmer {
-    0% {
-        background-position: -200% center;
-    }
-    100% {
-        background-position: 200% center;
-    }
-}
+/* Removed shimmer animation for performance */
 
 /* Water Drop Effect */
 @keyframes drop {
@@ -545,7 +501,7 @@ a:hover {
     }
 }
 
-/* Apply Wave Background */
+/* Simplified background - no animation */
 body::before {
     content: '';
     position: fixed;
@@ -553,12 +509,10 @@ body::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(45deg, 
-        rgba(143, 209, 79, 0.03) 0%, 
-        rgba(168, 224, 106, 0.03) 25%, 
-        rgba(230, 57, 70, 0.02) 75%, 
-        rgba(255, 107, 107, 0.02) 100%);
-    animation: wave 20s ease-in-out infinite;
+    background: linear-gradient(180deg, 
+        rgba(143, 209, 79, 0.02) 0%, 
+        rgba(255, 255, 255, 0) 100%);
+    /* Removed animation for performance */
     pointer-events: none;
     z-index: -1;
 }
@@ -578,42 +532,19 @@ body::before {
     pointer-events: none;
 }
 
-/* Floating Animation for Feature Cards */
+/* Removed floating animation for performance */
 .features-grid .feature {
-    animation: float 6s ease-in-out infinite;
+    /* Static positioning for better performance */
+    transition: transform var(--transition-base);
 }
 
-.features-grid .feature:nth-child(2) {
-    animation-delay: 2s;
+.features-grid .feature:hover {
+    transform: translateY(-2px);
 }
 
-.features-grid .feature:nth-child(3) {
-    animation-delay: 4s;
-}
-
-/* Shimmer on Hover for Glass Elements */
+/* Removed shimmer effect for performance */
 .portal-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-        105deg,
-        transparent 40%,
-        rgba(255, 255, 255, 0.2) 50%,
-        transparent 60%
-    );
-    background-size: 200% 100%;
-    background-position: -200% center;
-    transition: background-position 1s;
-    pointer-events: none;
-    border-radius: var(--radius-lg);
-}
-
-.portal-card:hover::before {
-    animation: shimmer 1s ease-out;
+    display: none; /* Completely removed for performance */
 }
 
 /* Water Drop Loading Animation */
@@ -626,18 +557,7 @@ body::before {
     animation: drop 2s ease-in-out infinite;
 }
 
-/* Pulse Animation for CTAs */
-@keyframes pulse {
-    0% {
-        box-shadow: 0 0 0 0 rgba(143, 209, 79, 0.4);
-    }
-    70% {
-        box-shadow: 0 0 0 10px rgba(143, 209, 79, 0);
-    }
-    100% {
-        box-shadow: 0 0 0 0 rgba(143, 209, 79, 0);
-    }
-}
+/* Removed pulse animation for performance */
 
 .card-cta {
     position: relative;
@@ -656,7 +576,8 @@ body::before {
 }
 
 .portal-card:hover .card-cta::after {
-    animation: pulse 1.5s infinite;
+    /* Removed pulse animation for performance */
+    display: none;
 }
 
 /* Liquid Fill Effect */
@@ -685,7 +606,7 @@ body::before {
     left: 0;
     width: 100%;
     height: 0;
-    background: linear-gradient(180deg, transparent, rgba(143, 209, 79, 0.1));
+    background: #F8F9FA;
     border-radius: var(--radius-lg);
     pointer-events: none;
     transition: height 0.5s ease;

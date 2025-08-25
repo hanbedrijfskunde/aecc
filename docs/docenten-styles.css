@@ -21,8 +21,8 @@
 }
 
 .dashboard-card {
-    background: var(--glass-bg);
-    backdrop-filter: blur(var(--glass-blur));
+    background: #FFFFFF;
+    /* backdrop-filter removed for performance */
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-lg);
     overflow: hidden;
@@ -178,7 +178,7 @@
     display: flex;
     gap: var(--space-sm);
     margin-bottom: var(--space-xl);
-    background: var(--glass-bg);
+    background: #FFFFFF;
     padding: var(--space-sm);
     border-radius: var(--radius-lg);
     overflow-x: auto;
@@ -208,8 +208,8 @@
 }
 
 .week-content {
-    background: var(--glass-bg);
-    backdrop-filter: blur(var(--glass-blur));
+    background: #FFFFFF;
+    /* backdrop-filter removed for performance */
     border-radius: var(--radius-xl);
     padding: var(--space-2xl);
     box-shadow: var(--shadow-lg);
@@ -437,8 +437,8 @@
 }
 
 .timer-container {
-    background: var(--glass-bg);
-    backdrop-filter: blur(var(--glass-blur));
+    background: #FFFFFF;
+    /* backdrop-filter removed for performance */
     border-radius: var(--radius-xl);
     padding: var(--space-2xl);
     box-shadow: var(--shadow-lg);
@@ -586,8 +586,8 @@
 }
 
 .tool-card {
-    background: var(--glass-bg);
-    backdrop-filter: blur(var(--glass-blur));
+    background: #FFFFFF;
+    /* backdrop-filter removed for performance */
     border-radius: var(--radius-lg);
     padding: var(--space-xl);
     box-shadow: var(--shadow-lg);
@@ -688,8 +688,8 @@
 }
 
 .assessment-container {
-    background: var(--glass-bg);
-    backdrop-filter: blur(var(--glass-blur));
+    background: #FFFFFF;
+    /* backdrop-filter removed for performance */
     border-radius: var(--radius-xl);
     padding: var(--space-2xl);
     box-shadow: var(--shadow-lg);
@@ -1047,7 +1047,7 @@
    ========================================== */
 .quick-navigation {
     margin-bottom: var(--space-3xl);
-    background: var(--glass-bg);
+    background: #FFFFFF;
     padding: var(--space-xl);
     border-radius: var(--radius-lg);
 }
@@ -1278,7 +1278,7 @@ kbd {
 
 /* Quick Notes */
 .quick-notes {
-    background: var(--glass-bg);
+    background: #FFFFFF;
     padding: var(--space-xl);
     border-radius: var(--radius-lg);
 }
@@ -1413,7 +1413,7 @@ kbd {
 
 /* Observation Templates */
 .observation-templates {
-    background: var(--glass-bg);
+    background: #FFFFFF;
     padding: var(--space-xl);
     border-radius: var(--radius-lg);
 }
@@ -1449,7 +1449,7 @@ kbd {
 
 /* Saved Notes */
 .saved-notes {
-    background: var(--glass-bg);
+    background: #FFFFFF;
     padding: var(--space-xl);
     border-radius: var(--radius-lg);
 }
@@ -1583,7 +1583,7 @@ kbd {
 
 /* Voice Notes */
 .voice-notes {
-    background: var(--glass-bg);
+    background: #FFFFFF;
     padding: var(--space-xl);
     border-radius: var(--radius-lg);
 }
@@ -1679,7 +1679,7 @@ kbd {
 }
 
 .event-intro {
-    background: var(--glass-bg);
+    background: #FFFFFF;
     padding: var(--space-xl);
     border-radius: var(--radius-lg);
     margin-bottom: var(--space-2xl);
@@ -1698,7 +1698,7 @@ kbd {
 }
 
 .event-category {
-    background: var(--glass-bg);
+    background: #FFFFFF;
     padding: var(--space-xl);
     border-radius: var(--radius-lg);
 }
@@ -1823,7 +1823,7 @@ kbd {
 /* Event Deployment Guide */
 .event-deployment-guide {
     margin-top: var(--space-2xl);
-    background: var(--glass-bg);
+    background: #FFFFFF;
     padding: var(--space-xl);
     border-radius: var(--radius-lg);
 }
@@ -1910,7 +1910,7 @@ kbd {
 }
 
 .print-controls {
-    background: var(--glass-bg);
+    background: #FFFFFF;
     padding: var(--space-xl);
     border-radius: var(--radius-lg);
     margin-bottom: var(--space-2xl);

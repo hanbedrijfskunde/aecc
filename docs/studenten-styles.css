@@ -56,8 +56,8 @@
    Triangle Conflict Visualization
    ========================================== */
 .triangle-conflict {
-    background: var(--glass-bg);
-    backdrop-filter: blur(var(--glass-blur));
+    background: #FFFFFF;
+    /* backdrop-filter removed for performance */
     border-radius: var(--radius-xl);
     padding: var(--space-2xl);
     margin-bottom: var(--space-3xl);
@@ -143,8 +143,8 @@
 }
 
 .week-card {
-    background: var(--glass-bg);
-    backdrop-filter: blur(var(--glass-blur));
+    background: #FFFFFF;
+    /* backdrop-filter removed for performance */
     border-radius: var(--radius-lg);
     padding: var(--space-xl);
     box-shadow: var(--shadow-md);
@@ -175,7 +175,7 @@
 }
 
 .week-card.week-final {
-    background: linear-gradient(135deg, rgba(255,215,0,0.1), rgba(255,215,0,0.05));
+    background: #F8F9FA;
     border: 2px solid rgba(255,215,0,0.3);
 }
 
@@ -288,8 +288,8 @@
 }
 
 .role-card {
-    background: var(--glass-bg);
-    backdrop-filter: blur(var(--glass-blur));
+    background: #FFFFFF;
+    /* backdrop-filter removed for performance */
     border-radius: var(--radius-lg);
     padding: var(--space-xl);
     box-shadow: var(--shadow-md);
@@ -308,10 +308,10 @@
     transition: height var(--transition-base);
 }
 
-.ceo-card::after { background: linear-gradient(180deg, transparent, rgba(255,215,0,0.1)); }
-.cfo-card::after { background: linear-gradient(180deg, transparent, rgba(46,62,80,0.1)); }
-.coo-card::after { background: linear-gradient(180deg, transparent, rgba(143,209,79,0.1)); }
-.cio-card::after { background: linear-gradient(180deg, transparent, rgba(230,57,70,0.1)); }
+.ceo-card::after { background: #F8F9FA; }
+.cfo-card::after { background: #F8F9FA; }
+.coo-card::after { background: #F8F9FA; }
+.cio-card::after { background: #F8F9FA; }
 
 .role-card:hover::after {
     height: 100%;
@@ -372,8 +372,8 @@
    WAAROM/HOE/WAT Tabs
    ========================================== */
 .waarom-hoe-wat {
-    background: var(--glass-bg);
-    backdrop-filter: blur(var(--glass-blur));
+    background: #FFFFFF;
+    /* backdrop-filter removed for performance */
     border-radius: var(--radius-xl);
     padding: var(--space-2xl);
     margin-bottom: var(--space-3xl);
@@ -459,8 +459,8 @@
 }
 
 .prompt-container {
-    background: var(--glass-bg);
-    backdrop-filter: blur(var(--glass-blur));
+    background: #FFFFFF;
+    /* backdrop-filter removed for performance */
     border-radius: var(--radius-xl);
     padding: var(--space-2xl);
     box-shadow: var(--shadow-lg);
@@ -551,8 +551,8 @@
 .timeline-container {
     position: relative;
     padding: var(--space-2xl) 0;
-    background: var(--glass-bg);
-    backdrop-filter: blur(var(--glass-blur));
+    background: #FFFFFF;
+    /* backdrop-filter removed for performance */
     border-radius: var(--radius-xl);
     box-shadow: var(--shadow-lg);
     overflow: hidden;
@@ -710,8 +710,8 @@
 }
 
 .resource-card {
-    background: var(--glass-bg);
-    backdrop-filter: blur(var(--glass-blur));
+    background: #FFFFFF;
+    /* backdrop-filter removed for performance */
     border-radius: var(--radius-lg);
     padding: var(--space-xl);
     text-align: center;
@@ -764,8 +764,8 @@
 }
 
 .flow-container {
-    background: var(--glass-bg);
-    backdrop-filter: blur(var(--glass-blur));
+    background: #FFFFFF;
+    /* backdrop-filter removed for performance */
     border-radius: var(--radius-xl);
     padding: var(--space-2xl);
     box-shadow: var(--shadow-lg);
