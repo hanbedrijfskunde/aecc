@@ -523,7 +523,7 @@ function initializeTimeline() {
     
     timelineItems.forEach((item, index) => {
         item.addEventListener('click', () => {
-            const weekNumber = item.dataset.week;
+            const weekNumber = parseInt(item.dataset.week);
             showWeekDetails(weekNumber);
         });
         
