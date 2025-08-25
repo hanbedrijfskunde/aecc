@@ -66,16 +66,18 @@
 
 - [x] 4.0 Build Teacher Dashboard Interface
 
-- [ ] 5.0 Build Committee Portal
-  - [ ] 5.1 Create commissie.html with professional layout
-  - [ ] 5.2 Build educational accountability section with learning objectives matrix
-  - [ ] 5.3 Implement risk management matrix with heat map visualization
-  - [ ] 5.4 Create mitigation strategies table
-  - [ ] 5.5 Add innovation rationale section explaining AI integration
-  - [ ] 5.6 Build KPI dashboard with measurable outcomes
-  - [ ] 5.7 Add pedagogical innovation context section
-  - [ ] 5.8 Create design evolution timeline
-  - [ ] 5.9 Test committee portal with test-commissie.html
+- [x] 5.0 Build Committee Portal
+  - [x] 5.1 Create commissie.html with professional layout
+  - [x] 5.2 Build educational accountability section with learning objectives matrix
+  - [x] 5.3 Implement risk management matrix with heat map visualization
+  - [x] 5.4 Create mitigation strategies table
+  - [x] 5.5 Add innovation rationale section explaining AI integration
+  - [x] 5.6 Build KPI dashboard with measurable outcomes
+  - [x] 5.7 Add pedagogical innovation context section
+  - [x] 5.8 Create design evolution timeline
+  - [x] 5.9 Test committee portal with test-commissie.html
+
+- [x] 5.0 Build Committee Portal
 
 - [ ] 6.0 Create Content Management System
   - [ ] 6.1 Design comprehensive JSON structure for all course content
