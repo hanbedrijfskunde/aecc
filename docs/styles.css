@@ -238,3 +238,103 @@
     color: rgba(255, 255, 255, 0.7);
 }
 
+/* ==========================================
+   AI Mode Toggle
+   ========================================== */
+
+.ai-mode-toggle {
+    position: absolute;
+    top: var(--space-md);
+    right: var(--space-md);
+    z-index: 1000;
+    background: rgba(255, 255, 255, 0.95);
+    padding: var(--space-sm) var(--space-md);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+.mode-label {
+    font-size: 0.875rem;
+    color: var(--text-dark);
+    font-weight: 500;
+    margin-right: var(--space-sm);
+}
+
+.mode-select {
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: var(--radius-sm);
+    padding: var(--space-xs) var(--space-sm);
+    font-size: 0.875rem;
+    color: var(--text-dark);
+    font-family: 'Poppins', sans-serif;
+    cursor: pointer;
+    transition: border-color var(--transition);
+    min-width: 140px;
+}
+
+.mode-select:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 2px rgba(143, 209, 79, 0.2);
+}
+
+.mode-select:hover {
+    border-color: var(--primary);
+}
+
+/* Different mode indicators */
+body[data-mode="traditional"] .ai-mode-toggle {
+    border-left: 4px solid #6B7280;
+}
+
+body[data-mode="ai-assisted"] .ai-mode-toggle {
+    border-left: 4px solid #3B82F6;
+}
+
+body[data-mode="ai-integrated"] .ai-mode-toggle {
+    border-left: 4px solid var(--primary);
+}
+
+body[data-mode="ai-first"] .ai-mode-toggle {
+    border-left: 4px solid var(--accent);
+}
+
+/* Mode-specific content visibility */
+.mode-content {
+    display: none;
+}
+
+body[data-mode="traditional"] .mode-content[data-mode="traditional"],
+body[data-mode="ai-assisted"] .mode-content[data-mode="ai-assisted"],
+body[data-mode="ai-integrated"] .mode-content[data-mode="ai-integrated"],
+body[data-mode="ai-first"] .mode-content[data-mode="ai-first"] {
+    display: block;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .ai-mode-toggle {
+        position: relative;
+        top: auto;
+        right: auto;
+        margin-bottom: var(--space-md);
+        width: 100%;
+        text-align: center;
+    }
+    
+    .mode-label {
+        display: block;
+        margin-bottom: var(--space-xs);
+        margin-right: 0;
+    }
+    
+    .mode-select {
+        width: 100%;
+        max-width: 200px;
+    }
+}
+

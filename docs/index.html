@@ -108,6 +108,16 @@
     <!-- Header with site branding -->
     <header class="site-header" role="banner">
         <div class="container">
+            <!-- AI Mode Toggle -->
+            <div class="ai-mode-toggle" id="ai-mode-toggle">
+                <label for="mode-select" class="mode-label">Weergavemodus:</label>
+                <select id="mode-select" class="mode-select" onchange="switchMode()">
+                    <option value="traditional">Traditioneel</option>
+                    <option value="ai-assisted">AI-Ondersteund</option>
+                    <option value="ai-integrated">AI-Geïntegreerd</option>
+                </select>
+            </div>
+            
             <h1 class="site-title">
                 <abbr title="Algemene Economie C-cluster">AEC</abbr>
                 <span class="full-title">Algemene Economie C-cluster</span>
@@ -122,11 +132,30 @@
             <!-- Introduction section -->
             <section class="intro-section" aria-labelledby="intro-heading">
                 <h2 id="intro-heading" class="visually-hidden">Introductie</h2>
-                <p class="intro-text">
-                    Welkom bij de cursus Algemene Economie C-cluster. Deze innovatieve module traint studenten 
-                    in vaardigheden die AI niet kan vervangen: strategische besluitvorming onder onzekerheid, 
-                    belangenafweging en coherente strategieopbouw.
-                </p>
+                <!-- Mode-specific intro text -->
+                <div class="mode-content" data-mode="traditional">
+                    <p class="intro-text">
+                        Welkom bij de cursus Algemene Economie C-cluster. Deze innovatieve module traint studenten 
+                        in strategische besluitvorming onder onzekerheid, belangenafweging en coherente strategieopbouw 
+                        door middel van handmatige analyse en boardroom simulaties.
+                    </p>
+                </div>
+                
+                <div class="mode-content" data-mode="ai-assisted">
+                    <p class="intro-text">
+                        Welkom bij de cursus Algemene Economie C-cluster. Deze module combineert AI-ondersteunde analyse 
+                        met menselijke strategische besluitvorming. Studenten leren AI-tools effectief in te zetten 
+                        voor economische analyse, terwijl ze kritisch denken en boardroom vaardigheden ontwikkelen.
+                    </p>
+                </div>
+                
+                <div class="mode-content" data-mode="ai-integrated">
+                    <p class="intro-text">
+                        Welkom bij de cursus Algemene Economie C-cluster. Deze geavanceerde module integreert AI 
+                        volledig in het leerproces. Studenten werken met real-time AI-briefings en leren strategische 
+                        besluitvorming in een AI-geïntegreerde bedrijfsomgeving.
+                    </p>
+                </div>
             </section>
             
             <!-- Navigation cards section -->
@@ -145,16 +174,45 @@
                             </div>
                             <div class="card-content">
                                 <h3 class="card-title">Studenten</h3>
-                                <p class="card-description">
-                                    Toegang tot weekopdrachten, rolbeschrijvingen, AI-briefing tools 
-                                    en het driehoeksconflict framework
-                                </p>
-                                <ul class="card-features">
-                                    <li>7 weken boardroom simulatie</li>
-                                    <li>CEO, CFO, COO & CIO rollen</li>
-                                    <li>AI prompt templates</li>
-                                    <li>Project Continuïteit tracker</li>
-                                </ul>
+                                <!-- Mode-specific student card content -->
+                                <div class="mode-content" data-mode="traditional">
+                                    <p class="card-description">
+                                        Toegang tot weekopdrachten, rolbeschrijvingen, briefing templates 
+                                        en het driehoeksconflict framework
+                                    </p>
+                                    <ul class="card-features">
+                                        <li>7 weken boardroom simulatie</li>
+                                        <li>CEO, CFO, COO & CIO rollen</li>
+                                        <li>Analyse templates</li>
+                                        <li>Project Continuïteit tracker</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="mode-content" data-mode="ai-assisted">
+                                    <p class="card-description">
+                                        Toegang tot weekopdrachten, rolbeschrijvingen, AI-briefing tools 
+                                        en het driehoeksconflict framework
+                                    </p>
+                                    <ul class="card-features">
+                                        <li>7 weken boardroom simulatie</li>
+                                        <li>CEO, CFO, COO & CIO rollen</li>
+                                        <li>AI prompt templates</li>
+                                        <li>Project Continuïteit tracker</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="mode-content" data-mode="ai-integrated">
+                                    <p class="card-description">
+                                        Toegang tot geïntegreerde AI-workflows, dynamische rolbeschrijvingen 
+                                        en real-time conflictanalyse
+                                    </p>
+                                    <ul class="card-features">
+                                        <li>7 weken AI-geïntegreerde simulatie</li>
+                                        <li>Adaptieve executive rollen</li>
+                                        <li>AI briefing systemen</li>
+                                        <li>Predictive continuity tracker</li>
+                                    </ul>
+                                </div>
                                 <span class="card-cta" aria-label="Ga naar studentenportaal">
                                     <span class="cta-text">Start hier</span>
                                     <span class="cta-arrow">→</span>

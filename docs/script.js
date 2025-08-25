@@ -281,4 +281,159 @@ style.textContent = `
 `;
 document.head.appendChild(style);
 
+// ==========================================
+// AI Mode Switching Functionality
+// ==========================================
+
+/**
+ * Initialize AI mode functionality when DOM is ready
+ */
+document.addEventListener('DOMContentLoaded', function() {
+    initializeAIMode();
+});
+
+/**
+ * Initialize AI mode toggle functionality
+ */
+function initializeAIMode() {
+    // Load saved mode from localStorage or default to traditional
+    const savedMode = localStorage.getItem('aiMode') || 'traditional';
+    
+    // Validate the saved mode - remove ai-first if it exists
+    const validModes = ['traditional', 'ai-assisted', 'ai-integrated'];
+    const mode = validModes.includes(savedMode) ? savedMode : 'traditional';
+    
+    // Update localStorage if we had to fallback
+    if (mode !== savedMode) {
+        localStorage.setItem('aiMode', mode);
+    }
+    
+    setAIMode(mode);
+    
+    // Set the select value to match the valid mode
+    const modeSelect = document.getElementById('mode-select');
+    if (modeSelect) {
+        modeSelect.value = mode;
+    }
+}
+
+/**
+ * Switch between AI modes
+ */
+function switchMode() {
+    const modeSelect = document.getElementById('mode-select');
+    if (!modeSelect) return;
+    
+    const selectedMode = modeSelect.value;
+    setAIMode(selectedMode);
+    
+    // Save preference to localStorage
+    localStorage.setItem('aiMode', selectedMode);
+    
+    // Broadcast mode change to other pages
+    window.dispatchEvent(new CustomEvent('aiModeChanged', { 
+        detail: { mode: selectedMode }
+    }));
+}
+
+/**
+ * Set AI mode and update UI accordingly
+ * @param {string} mode - The AI mode to set (traditional, ai-assisted, ai-integrated)
+ */
+function setAIMode(mode) {
+    // Set body data attribute for CSS targeting
+    document.body.setAttribute('data-mode', mode);
+    
+    // Update content visibility based on mode
+    updateContentForMode(mode);
+    
+    // Update select value if it exists
+    const modeSelect = document.getElementById('mode-select');
+    if (modeSelect && modeSelect.value !== mode) {
+        modeSelect.value = mode;
+    }
+    
+    console.log(`AI Mode switched to: ${mode}`);
+}
+
+/**
+ * Update content visibility and text based on current mode
+ * @param {string} mode - Current AI mode
+ */
+function updateContentForMode(mode) {
+    // Hide all mode-specific content first
+    const modeContents = document.querySelectorAll('.mode-content');
+    modeContents.forEach(content => {
+        content.style.display = 'none';
+    });
+    
+    // Show content for current mode
+    const currentModeContents = document.querySelectorAll(`.mode-content[data-mode="${mode}"]`);
+    currentModeContents.forEach(content => {
+        content.style.display = 'block';
+    });
+    
+    // Update dynamic text based on mode
+    updateDynamicText(mode);
+}
+
+/**
+ * Update text content dynamically based on AI mode
+ * @param {string} mode - Current AI mode
+ */
+function updateDynamicText(mode) {
+    const modeTexts = {
+        traditional: {
+            'analyze-term': 'analyseren',
+            'briefing-tool': 'Analyse & Briefing Tools',
+            'intelligence-term': 'intelligence briefing',
+            'analysis-method': 'handmatige analyse'
+        },
+        'ai-assisted': {
+            'analyze-term': 'AI-ondersteund analyseren',
+            'briefing-tool': 'AI-Ondersteunde Analyse Tools',
+            'intelligence-term': 'AI-gegenereerde briefing',
+            'analysis-method': 'AI-ondersteunde analyse'
+        },
+        'ai-integrated': {
+            'analyze-term': 'AI-geïntegreerde analyse',
+            'briefing-tool': 'AI-Geïntegreerde Briefing Systeem',
+            'intelligence-term': 'AI intelligence briefing',
+            'analysis-method': 'volledig AI-geïntegreerde analyse'
+        }
+    };
+    
+    // Update elements with data-mode-text attribute
+    const dynamicTexts = document.querySelectorAll('[data-mode-text]');
+    dynamicTexts.forEach(element => {
+        const textKey = element.getAttribute('data-mode-text');
+        if (modeTexts[mode] && modeTexts[mode][textKey]) {
+            element.textContent = modeTexts[mode][textKey];
+        }
+    });
+}
+
+/**
+ * Get current AI mode
+ * @returns {string} Current AI mode
+ */
+function getCurrentAIMode() {
+    return document.body.getAttribute('data-mode') || 'traditional';
+}
+
+/**
+ * Check if AI features should be visible in current mode
+ * @returns {boolean} Whether AI features are visible
+ */
+function shouldShowAIFeatures() {
+    const mode = getCurrentAIMode();
+    return mode !== 'traditional';
+}
+
+// Make functions globally available
+window.switchMode = switchMode;
+window.setAIMode = setAIMode;
+window.getCurrentAIMode = getCurrentAIMode;
+window.shouldShowAIFeatures = shouldShowAIFeatures;
+
 console.log('AEC Website JavaScript loaded successfully');

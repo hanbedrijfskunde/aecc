@@ -1979,9 +1979,9 @@ function getWeekData(weekNum) {
             ]
         },
         2: {
-            title: "Marktanalyse & Positioning",
+            title: "Omgevingsanalyse & Positioning",
             objectives: [
-                "Analyseren van marktpositionering",
+                "Analyseren van concurrentiepositie",
                 "Identificeren van competitieve voordelen",
                 "Ontwikkelen van strategische opties",
                 "Rolgebonden argumentatie versterken"

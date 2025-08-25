@@ -18,6 +18,16 @@
     <!-- Header -->
     <header class="site-header" role="banner">
         <div class="container">
+            <!-- AI Mode Toggle -->
+            <div class="ai-mode-toggle" id="ai-mode-toggle">
+                <label for="mode-select" class="mode-label">Weergavemodus:</label>
+                <select id="mode-select" class="mode-select" onchange="switchMode()">
+                    <option value="traditional">Traditioneel</option>
+                    <option value="ai-assisted">AI-Ondersteund</option>
+                    <option value="ai-integrated">AI-Geïntegreerd</option>
+                </select>
+            </div>
+            
             <nav class="back-link">
                 <a href="index.html">← Terug naar Home</a>
             </nav>
@@ -344,6 +354,243 @@
                 </table>
             </section>
             
+            <!-- AI-Transition Roadmap -->
+            <section class="ai-transition-roadmap" aria-labelledby="transition-heading">
+                <h2 id="transition-heading" class="section-title">🚀 AI-Transitie Roadmap</h2>
+                
+                <div class="roadmap-intro">
+                    <p class="section-description">
+                        Deze module is ontworpen met een toekomstbestendige architectuur die naadloze integratie van AI-tools mogelijk maakt 
+                        wanneer institutionele beleidswijzigingen dit toestaan. De huidige opzet biedt vier configuraties die flexibele 
+                        implementatie mogelijk maken.
+                    </p>
+                </div>
+                
+                <div class="roadmap-modes">
+                    <div class="mode-card traditional-card">
+                        <div class="mode-header">
+                            <h3>1. Traditionele Modus</h3>
+                            <span class="mode-status current">Huidige Configuratie</span>
+                        </div>
+                        <div class="mode-content">
+                            <p><strong>Beschrijving:</strong> Studenten voeren handmatige analyse uit met traditionele onderzoeksmethoden.</p>
+                            <div class="mode-features">
+                                <h4>Kenmerken:</h4>
+                                <ul>
+                                    <li>Handmatige economische analyse en data verzameling</li>
+                                    <li>Traditionele business intelligence methoden</li>
+                                    <li>Focus op bron-verificatie en validatie vaardigheden</li>
+                                    <li>Volledig compliant met huidige AI-beleid</li>
+                                </ul>
+                            </div>
+                            <div class="blooms-mapping">
+                                <h4>Bloom's Taxonomy Niveaus:</h4>
+                                <div class="bloom-levels">
+                                    <span class="bloom-level primary">Remember</span>
+                                    <span class="bloom-level primary">Understand</span>
+                                    <span class="bloom-level primary">Apply</span>
+                                    <span class="bloom-level secondary">Analyze</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mode-card assisted-card">
+                        <div class="mode-header">
+                            <h3>2. AI-Ondersteunde Modus</h3>
+                            <span class="mode-status future">Fase 1 Transitie</span>
+                        </div>
+                        <div class="mode-content">
+                            <p><strong>Beschrijving:</strong> AI wordt gebruikt als onderzoeksassistent, maar studenten behouden primaire verantwoordelijkheid voor analyse.</p>
+                            <div class="mode-features">
+                                <h4>Kenmerken:</h4>
+                                <ul>
+                                    <li>AI-tools voor data gathering en voorbereidende analyse</li>
+                                    <li>Verplichte verificatie van AI-output door studenten</li>
+                                    <li>Ontwikkeling van AI-literacy vaardigheden</li>
+                                    <li>Behoud van kritische denkcapaciteiten</li>
+                                </ul>
+                            </div>
+                            <div class="blooms-mapping">
+                                <h4>Bloom's Taxonomy Niveaus:</h4>
+                                <div class="bloom-levels">
+                                    <span class="bloom-level secondary">Understand</span>
+                                    <span class="bloom-level primary">Apply</span>
+                                    <span class="bloom-level primary">Analyze</span>
+                                    <span class="bloom-level primary">Evaluate</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mode-card integrated-card">
+                        <div class="mode-header">
+                            <h3>3. AI-Geïntegreerde Modus</h3>
+                            <span class="mode-status future">Fase 2 Transitie</span>
+                        </div>
+                        <div class="mode-content">
+                            <p><strong>Beschrijving:</strong> AI is volledig geïntegreerd in de workflow, studenten focussen op strategische interpretatie en besluitvorming.</p>
+                            <div class="mode-features">
+                                <h4>Kenmerken:</h4>
+                                <ul>
+                                    <li>Real-time AI briefings en dashboard analytics</li>
+                                    <li>Multi-model AI chains voor comprehensive analysis</li>
+                                    <li>Focus op pattern recognition en strategic synthesis</li>
+                                    <li>Advanced human-AI collaboration patterns</li>
+                                </ul>
+                            </div>
+                            <div class="blooms-mapping">
+                                <h4>Bloom's Taxonomy Niveaus:</h4>
+                                <div class="bloom-levels">
+                                    <span class="bloom-level secondary">Apply</span>
+                                    <span class="bloom-level primary">Analyze</span>
+                                    <span class="bloom-level primary">Evaluate</span>
+                                    <span class="bloom-level primary">Create</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mode-card first-card">
+                        <div class="mode-header">
+                            <h3>4. AI-First Modus</h3>
+                            <span class="mode-status future">Toekomstige Configuratie</span>
+                        </div>
+                        <div class="mode-content">
+                            <p><strong>Beschrijving:</strong> AI voert primaire analyse uit, studenten ontwikkelen meta-cognitieve vaardigheden en AI-governance competenties.</p>
+                            <div class="mode-features">
+                                <h4>Kenmerken:</h4>
+                                <ul>
+                                    <li>Autonomous AI analysis pipelines</li>
+                                    <li>Student focus op AI oversight en governance</li>
+                                    <li>Meta-analytical skills development</li>
+                                    <li>Training voor AI-native organisatieomgevingen</li>
+                                </ul>
+                            </div>
+                            <div class="blooms-mapping">
+                                <h4>Bloom's Taxonomy Niveaus:</h4>
+                                <div class="bloom-levels">
+                                    <span class="bloom-level secondary">Analyze</span>
+                                    <span class="bloom-level primary">Evaluate</span>
+                                    <span class="bloom-level primary">Create</span>
+                                    <span class="bloom-level advanced">Meta-Cognitive</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="transition-timeline">
+                    <h3>Implementatie Timeline</h3>
+                    <div class="timeline-roadmap">
+                        <div class="timeline-phase current">
+                            <div class="phase-marker">Aug 2025 - Jan 2026</div>
+                            <div class="phase-content">
+                                <h4>Fase 1: Pilot Implementatie</h4>
+                                <p>Traditionele modus uitrol met complete technische infrastructuur voor toekomstige AI-integratie. Focus op boardroom simulatie en Project Continuïteit.</p>
+                                <span class="phase-status active">Actief</span>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-phase planned">
+                            <div class="phase-marker">Feb 2026 - Aug 2026</div>
+                            <div class="phase-content">
+                                <h4>Fase 2: AI-Assisted Integratie</h4>
+                                <p>Introductie van AI junior analist rol wanneer institutioneel beleid wijzigt. Studenten maken briefings op basis van AI-analyses.</p>
+                                <span class="phase-status pending">Voorbereid</span>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-phase planned">
+                            <div class="phase-marker">Sep 2026 - Jan 2027</div>
+                            <div class="phase-content">
+                                <h4>Fase 3: Volledige AI-Integratie</h4>
+                                <p>AI-geïntegreerde configuratie met volledige briefing generatie. Focus verschuift naar strategische besluitvorming en kritische evaluatie.</p>
+                                <span class="phase-status pending">Voorbereid</span>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-phase future">
+                            <div class="phase-marker">Feb 2027+</div>
+                            <div class="phase-content">
+                                <h4>Fase 4: Evaluatie & Optimalisatie</h4>
+                                <p>Continue verbetering op basis van ervaringen. Mogelijke uitbreiding naar andere modules en opleidingen.</p>
+                                <span class="phase-status future">Planning</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="assessment-evolution">
+                    <h3>Assessment Evolutie per Modus</h3>
+                    <div class="assessment-grid">
+                        <div class="assessment-item">
+                            <h4>Traditioneel</h4>
+                            <ul>
+                                <li>Handmatige analyse kwaliteit</li>
+                                <li>Bron-verificatie proces</li>
+                                <li>Strategische interpretatie</li>
+                            </ul>
+                        </div>
+                        <div class="assessment-item">
+                            <h4>AI-Assisted</h4>
+                            <ul>
+                                <li>AI-output verificatie vaardigheden</li>
+                                <li>Human-AI collaboration effectiviteit</li>
+                                <li>Kritische evaluatie van AI-bevindingen</li>
+                            </ul>
+                        </div>
+                        <div class="assessment-item">
+                            <h4>AI-Integrated</h4>
+                            <ul>
+                                <li>Strategic synthesis capabilities</li>
+                                <li>Pattern recognition in AI-data</li>
+                                <li>Cross-model validation skills</li>
+                            </ul>
+                        </div>
+                        <div class="assessment-item">
+                            <h4>AI-First</h4>
+                            <ul>
+                                <li>Meta-cognitive analysis skills</li>
+                                <li>AI governance competenties</li>
+                                <li>Strategic oversight vaardigheden</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="transition-readiness">
+                    <h3>Implementatie Gereedheid</h3>
+                    <div class="readiness-indicators">
+                        <div class="readiness-item ready">
+                            <div class="indicator-icon">✅</div>
+                            <h4>Technische Infrastructuur</h4>
+                            <p>Website architectuur ondersteunt alle modi via toggle-functionaliteit</p>
+                        </div>
+                        <div class="readiness-item ready">
+                            <div class="indicator-icon">✅</div>
+                            <h4>Content Framework</h4>
+                            <p>Alle lesmateriaal beschikbaar in mode-specifieke varianten</p>
+                        </div>
+                        <div class="readiness-item ready">
+                            <div class="indicator-icon">✅</div>
+                            <h4>Assessment Rubrics</h4>
+                            <p>Beoordelingscriteria ontwikkeld voor elke AI-modus</p>
+                        </div>
+                        <div class="readiness-item pending">
+                            <div class="indicator-icon">⏳</div>
+                            <h4>Docententraining</h4>
+                            <p>Training programma gereed voor implementatie bij beleidswijziging</p>
+                        </div>
+                        <div class="readiness-item pending">
+                            <div class="indicator-icon">🔄</div>
+                            <h4>Institutioneel Beleid</h4>
+                            <p>Wacht op goedkeuring voor AI-integratie in onderwijs</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
             <!-- Pedagogical Innovation Rationale -->
             <section class="innovation-rationale" aria-labelledby="innovation-heading">
                 <h2 id="innovation-heading" class="section-title">💡 Pedagogische Innovatie Rationale</h2>
@@ -356,7 +603,7 @@
                             <div class="timeline-marker">1</div>
                             <div class="timeline-content">
                                 <h4>Probleem Identificatie</h4>
-                                <p>Traditioneel onderwijs wordt obsoleet wanneer studenten AI kunnen gebruiken voor opdrachten</p>
+                                <p>Traditioneel onderwijs wordt achterhaald wanneer studenten AI kunnen gebruiken voor opdrachten</p>
                             </div>
                         </div>
                         

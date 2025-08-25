@@ -7,14 +7,14 @@
     
     <!-- Primary Meta Tags -->
     <meta name="title" content="Studenten Portal - AEC | HANBK">
-    <meta name="description" content="Studentenportaal voor de AEC boardroom-simulatie. Toegang tot weekopdrachten, rolbeschrijvingen, AI-briefing tools en het driehoeksconflict framework.">
-    <meta name="keywords" content="AEC studenten, boardroom simulatie, CEO CFO COO CIO, AI briefing, Project Continuïteit">
+    <meta name="description" content="Studentenportaal voor de AEC boardroom-simulatie. Toegang tot weekopdrachten, rolbeschrijvingen, briefing templates en het driehoeksconflict framework.">
+    <meta name="keywords" content="AEC studenten, boardroom simulatie, CEO CFO COO CIO, business briefing, Project Continuïteit">
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://hanbedrijfskunde.github.io/aecc/studenten.html">
     <meta property="og:title" content="Studenten Portal - AEC | HANBK">
-    <meta property="og:description" content="Jouw dashboard voor de AEC boardroom-simulatie met AI-integratie">
+    <meta property="og:description" content="Jouw dashboard voor de AEC boardroom-simulatie met strategische analyse tools">
     
     <title>Studenten Portal - AEC Boardroom Simulatie | HANBK</title>
     
@@ -40,6 +40,16 @@
     <!-- Header -->
     <header class="site-header" role="banner">
         <div class="container">
+            <!-- AI Mode Toggle -->
+            <div class="ai-mode-toggle" id="ai-mode-toggle">
+                <label for="mode-select" class="mode-label">Weergavemodus:</label>
+                <select id="mode-select" class="mode-select" onchange="switchMode()">
+                    <option value="traditional">Traditioneel</option>
+                    <option value="ai-assisted">AI-Ondersteund</option>
+                    <option value="ai-integrated">AI-Geïntegreerd</option>
+                </select>
+            </div>
+            
             <nav class="top-nav" aria-label="Hoofdnavigatie">
                 <a href="index.html" class="back-link">← Terug naar portaal</a>
                 <span class="current-page">Studenten Dashboard</span>
@@ -105,7 +115,7 @@
                                     <label class="checklist-item">
                                         <input type="checkbox" id="check-ai">
                                         <span class="checkmark"></span>
-                                        Test de AI-prompt templates voor Week 1
+                                        Test de analyse templates voor Week 1
                                     </label>
                                     <label class="checklist-item">
                                         <input type="checkbox" id="check-team">
@@ -130,7 +140,7 @@
                                         📅 Weken Overzicht
                                     </button>
                                     <button onclick="scrollToSection('ai-prompts')" class="quick-btn">
-                                        🤖 AI Prompts
+                                        📋 Analyse Opdrachten
                                     </button>
                                     <button onclick="scrollToSection('resources-section')" class="quick-btn">
                                         📄 Templates
@@ -542,7 +552,7 @@
                     <div id="hoe-content" class="tab-content">
                         <h3>HOE - Werkwijze</h3>
                         <ol>
-                            <li><strong>Voorbereiding:</strong> Ontvang AI-briefing op maandag</li>
+                            <li><strong>Voorbereiding:</strong> Ontvang intelligence briefing op maandag</li>
                             <li><strong>Analyse:</strong> Bestudeer vanuit je rol-perspectief</li>
                             <li><strong>Boardroom:</strong> 90 minuten simulatie op donderdag</li>
                             <li><strong>Besluit:</strong> Documenteer strategische pijler</li>
@@ -563,19 +573,64 @@
                 </div>
             </section>
             
-            <!-- AI Prompt Templates -->
+            <!-- Analyse & Briefing Tools -->
             <section class="ai-prompts" aria-labelledby="ai-heading">
-                <h2 id="ai-heading" class="section-title">AI Briefing Templates</h2>
-                <div class="prompt-container">
-                    <div class="prompt-card">
-                        <h3>Week 1: Strategische Analyse Prompt</h3>
-                        <div class="prompt-text">
-                            <pre>Je bent een business intelligence analist. Analyseer de volgende case voor een Nederlandse MKB-onderneming in de [SECTOR] industrie:
+                <h2 id="ai-heading" class="section-title">
+                    <span data-mode-text="briefing-tool">Analyse & Briefing Tools</span>
+                </h2>
+                
+                <!-- Traditional Mode Content -->
+                <div class="mode-content" data-mode="traditional">
+                    <div class="prompt-container">
+                        <div class="prompt-card">
+                            <h3>Week 1: Strategische Analyse Framework</h3>
+                            <div class="prompt-text">
+                                <pre>Structuur voor handmatige economische analyse voor [BEDRIJFSNAAM] in de [SECTOR]:
+
+1. EXTERNE ANALYSE
+   - Economische trends identificatie (3-5 punten)
+   - Concurrentieanalyse (top 3 spelers)
+   - PESTLE factoren (politiek, economisch, sociaal, technologisch, legaal, milieu)
+
+2. INTERNE ANALYSE  
+   - Sterktes en zwaktes inventarisatie
+   - Resource audit (financieel, human capital, assets)
+   - Core competencies identificatie
+
+3. STRATEGISCHE DILEMMA'S
+   - Exploit vs Explore spanning
+   - Buyback vs investeren beslissingen
+   - Korte vs lange termijn afwegingen
+
+DELIVERABLE: Executive briefing (2 A4), Nederlandse samenvatting stijl</pre>
+                            </div>
+                            <button class="copy-btn" onclick="copyPrompt(this)">📋 Kopieer Framework</button>
+                        </div>
+                        
+                        <div class="prompt-info">
+                            <h4>💡 Tips voor handmatige analyse:</h4>
+                            <ul>
+                                <li>Gebruik betrouwbare databronnen (CBS, sector rapporten)</li>
+                                <li>Interview stakeholders waar mogelijk</li>
+                                <li>Trianguleer bevindingen uit meerdere bronnen</li>
+                                <li>Documenteer aannames en limitaties</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- AI-Assisted Mode Content -->
+                <div class="mode-content" data-mode="ai-assisted">
+                    <div class="prompt-container">
+                        <div class="prompt-card">
+                            <h3>Week 1: AI-Ondersteunde Analyse Template</h3>
+                            <div class="prompt-text">
+                                <pre>Je bent een business intelligence analist. Analyseer de volgende case voor een Nederlandse MKB-onderneming in de [SECTOR] industrie:
 
 Context: [BEDRIJFSNAAM] opereert al 10 jaar in deze markt met €50M omzet en 200 medewerkers.
 
 Genereer een executive briefing met:
-1. Marktanalyse: trends, kansen, bedreigingen
+1. Economische analyse: trends, kansen, bedreigingen
 2. Concurrentie overzicht: top 3 spelers
 3. Interne sterktes en zwaktes
 4. Drie strategische dilemma's voor de RvB
@@ -587,20 +642,64 @@ Focus op het driehoeksconflict tussen:
 - Buyback (kapitaal teruggeven aan aandeelhouders)
 
 Schrijf in Nederlands, executive summary stijl, max 2 A4.</pre>
+                            </div>
+                            <button class="copy-btn" onclick="copyPrompt(this)">📋 Kopieer AI Prompt</button>
                         </div>
-                        <button class="copy-btn" onclick="copyPrompt(this)">📋 Kopieer Prompt</button>
-                    </div>
-                    
-                    <div class="prompt-info">
-                        <h4>💡 Tips voor AI-gebruik:</h4>
-                        <ul>
-                            <li>Vervang [SECTOR] en [BEDRIJFSNAAM] met je toegewezen case</li>
-                            <li>Vraag door op specifieke punten vanuit je rol-perspectief</li>
-                            <li>Laat AI verschillende scenario's genereren</li>
-                            <li>Gebruik de output als briefing, niet als beslissing</li>
-                        </ul>
+                        
+                        <div class="prompt-info">
+                            <h4>💡 Tips voor AI-ondersteunde analyse:</h4>
+                            <ul>
+                                <li>Vervang [SECTOR] en [BEDRIJFSNAAM] met je toegewezen case</li>
+                                <li>Verifieer AI output met betrouwbare bronnen</li>
+                                <li>Vraag door op specifieke punten vanuit je rol-perspectief</li>
+                                <li>Gebruik de analyse als startpunt, niet als eindresultaat</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
+                
+                <!-- AI-Integrated Mode Content -->
+                <div class="mode-content" data-mode="ai-integrated">
+                    <div class="prompt-container">
+                        <div class="prompt-card">
+                            <h3>Week 1: Geïntegreerd AI Briefing Systeem</h3>
+                            <div class="prompt-text">
+                                <pre>GEÏNTEGREERDE AI WORKFLOW voor [BEDRIJFSNAAM] analyse:
+
+STAP 1: Context Setup
+- Bedrijfsprofiel: [BEDRIJFSNAAM], [SECTOR], €50M omzet, 200 FTE
+- Analysedatum: [DATUM]
+- Strategische horizon: 3-5 jaar
+
+STAP 2: Multi-model Analysis Chain
+1. Markt AI → trendanalyse + voorspellingen
+2. Concurrentie AI → benchmark + positioning
+3. Financieel AI → ratio analysis + projections  
+4. Scenario AI → 3 strategische paths genereren
+
+STAP 3: Driehoek Conflict Mapping
+- Exploit score (0-10) met onderbouwing
+- Explore score (0-10) met onderbouwing  
+- Buyback score (0-10) met onderbouwing
+- Conflict intensiteit matrix
+
+OUTPUT: Interactive dashboard + executive summary</pre>
+                            </div>
+                            <button class="copy-btn" onclick="copyPrompt(this)">📋 Kopieer Workflow</button>
+                        </div>
+                        
+                        <div class="prompt-info">
+                            <h4>💡 Tips voor geïntegreerde AI:</h4>
+                            <ul>
+                                <li>Calibreer AI models met actuele marktdata</li>
+                                <li>Cross-valideer tussen verschillende AI outputs</li>
+                                <li>Monitor voor bias en blindspots</li>
+                                <li>Interpreteer patronen, niet alleen conclusies</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
             </section>
             
             <!-- Project Continuity Timeline -->

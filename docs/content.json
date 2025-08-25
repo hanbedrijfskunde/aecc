@@ -10,14 +10,14 @@
   "course": {
     "name": "Algemene Economie C-cluster",
     "abbreviation": "AEC",
-    "description": "Een innovatief onderwijsconcept waarbij studenten als Raad van Bestuur strategische beslissingen nemen op basis van AI-gegenereerde intelligence briefings.",
+    "description": "Een innovatief onderwijsconcept waarbij studenten als Raad van Bestuur strategische beslissingen nemen op basis van intelligence briefings en economische analyses.",
     "duration": "7 weken",
     "format": "Boardroom Simulatie",
     "learningGoals": [
       {
         "id": "lg1",
         "title": "Analyse naar Actie",
-        "description": "Studenten leren om data (van AI) niet te reproduceren, maar te gebruiken voor strategische besluitvorming."
+        "description": "Studenten leren om data uit analyses niet te reproduceren, maar te gebruiken voor strategische besluitvorming."
       },
       {
         "id": "lg2",
@@ -194,13 +194,13 @@
       {
         "id": "technology",
         "title": "De Technologie Auditor",
-        "theme": "AI en digitale transformatie",
+        "theme": "Automatisering en digitale transformatie",
         "persona": "U begrijpt technologie diep en tolereert geen buzzword bingo. U wilt concrete implementatieplannen.",
-        "coreQuestion": "Hoe zorgt u dat AI-adoptie leidt tot echte waardecreatie, niet tot hype?",
+        "coreQuestion": "Hoe zorgt u dat automatisering leidt tot echte waardecreatie, niet tot hype?",
         "exampleQuestions": [
           "Wat is uw data governance strategie?",
-          "Hoe meet u ROI van AI-investeringen?",
-          "Welke ethische richtlijnen hanteert u voor AI?"
+          "Hoe meet u ROI van automatisering-investeringen?",
+          "Welke ethische richtlijnen hanteert u voor automatisering?"
         ]
       },
       {
@@ -242,7 +242,7 @@
       
       "hoe": {
         "zelfstudie": [
-          "Genereer als team een macro-economische analyse met AI",
+          "Genereer als team een macro-economische analyse",
           "Bestudeer individueel de analyse vanuit je rol (CEO/CFO/COO/CIO)",
           "Bereid een pitch voor: hoeveel van €100M claim jij voor jouw prioriteit?",
           "CEO bereidt zich voor om de meeting te leiden"
@@ -257,7 +257,7 @@
       
       "wat": {
         "deliverables": [
-          "Macro-economische analyse (AI-generated)",
+          "Macro-economische analyse",
           "Kapitaalallocatie besluit (€100M verdeling)",
           "Strategyzer plot met 3 initiatieven",
           "Pijler 1: Strategisch fundament"
@@ -265,7 +265,19 @@
         "assessment": "Kwaliteit van onderbouwing, realisme van allocatie, teamdynamiek"
       },
       
-      "aiPrompt": "Analyseer de huidige macro-economische situatie in Nederland/Europa. Focus op: rentestanden, inflatie, consumentenvertrouwen, arbeidsmarkt, en geopolitieke risico's. Geef concrete implicaties voor strategische besluitvorming in een middelgroot bedrijf.",
+      "analyseOpdracht": "Analyseer de huidige macro-economische situatie in Nederland/Europa. Focus op: rentestanden, inflatie, consumentenvertrouwen, arbeidsmarkt, en geopolitieke risico's. Geef concrete implicaties voor strategische besluitvorming in een middelgroot bedrijf.",
+      
+      "analyseOpdracht_traditioneel": "Voer handmatig uit:\n\n1. Wat is de plaats van de sector in de bedrijfskolom?\n2. Breng de relevante macro-economische variabelen van Nederland in kaart.\n   • Bijvoorbeeld: BBP, bestedingen van consumenten, bedrijven, overheid, export - import, werkgelegenheid, inflatie, conjunctuur, consumenten/producentenvertrouwen, etc. En wat zijn de relevante ontwikkelingen hierin.\n3. Beschrijf duidelijk wat de invloeden van macro-economische variabelen zijn op de gekozen sector.\n   • Denk aan rente, kapitaalintensiteit, vertrouwensindicatoren, grondstofprijzen, wisselkoersen, wereldhandel, conjunctuur, werkgelegenheid, inflatie, etc.\n4. Bepaal de conjunctuurgevoeligheid van de **sector** en geef een conclusie op basis van de volgende criteria:\n   • Mogelijke invloeden: kapitaalintensiteit, grondstofprijzen, wisselkoersen, wereldhandel, werkgelegenheid, inflatie, aard van producten, positie in de bedrijfskolom, etc.\n5. Bepaal voor de gekozen **bedrijven** uit de sector de conjunctuurgevoeligheid en geef een conclusie op basis van de criteria:\n   • Wat is de mate van geografische spreiding omzet?\n   • Wat is de mate van productdiversificatie?\n   • Wat is de mate van marktmacht?\n\nConclusie",
+      
+      "analyseOpdracht_ondersteund": "Opdracht voor AI junior analist:\n\n1. Wat is de plaats van de sector in de bedrijfskolom?\n2. Breng de relevante macro-economische variabelen van Nederland in kaart.\n   • Bijvoorbeeld: BBP, bestedingen van consumenten, bedrijven, overheid, export - import, werkgelegenheid, inflatie, conjunctuur, consumenten/producentenvertrouwen, etc. En wat zijn de relevante ontwikkelingen hierin.\n3. Beschrijf duidelijk wat de invloeden van macro-economische variabelen zijn op de gekozen sector.\n   • Denk aan rente, kapitaalintensiteit, vertrouwensindicatoren, grondstofprijzen, wisselkoersen, wereldhandel, conjunctuur, werkgelegenheid, inflatie, etc.\n4. Bepaal de conjunctuurgevoeligheid van de **sector** en geef een conclusie op basis van de volgende criteria:\n   • Mogelijke invloeden: kapitaalintensiteit, grondstofprijzen, wisselkoersen, wereldhandel, werkgelegenheid, inflatie, aard van producten, positie in de bedrijfskolom, etc.\n5. Bepaal voor de gekozen **bedrijven** uit de sector de conjunctuurgevoeligheid en geef een conclusie op basis van de criteria:\n   • Wat is de mate van geografische spreiding omzet?\n   • Wat is de mate van productdiversificatie?\n   • Wat is de mate van marktmacht?\n\nConclusie\n\nJij maakt op basis van deze analyse een executive briefing voor de Raad van Bestuur.",
+      
+      "analyseOpdracht_geintegreerd": "Opdracht voor AI junior analist:\n\n1. Wat is de plaats van de sector in de bedrijfskolom?\n2. Breng de relevante macro-economische variabelen van Nederland in kaart.\n   • Bijvoorbeeld: BBP, bestedingen van consumenten, bedrijven, overheid, export - import, werkgelegenheid, inflatie, conjunctuur, consumenten/producentenvertrouwen, etc. En wat zijn de relevante ontwikkelingen hierin.\n3. Beschrijf duidelijk wat de invloeden van macro-economische variabelen zijn op de gekozen sector.\n   • Denk aan rente, kapitaalintensiteit, vertrouwensindicatoren, grondstofprijzen, wisselkoersen, wereldhandel, conjunctuur, werkgelegenheid, inflatie, etc.\n4. Bepaal de conjunctuurgevoeligheid van de **sector** en geef een conclusie op basis van de volgende criteria:\n   • Mogelijke invloeden: kapitaalintensiteit, grondstofprijzen, wisselkoersen, wereldhandel, werkgelegenheid, inflatie, aard van producten, positie in de bedrijfskolom, etc.\n5. Bepaal voor de gekozen **bedrijven** uit de sector de conjunctuurgevoeligheid en geef een conclusie op basis van de criteria:\n   • Wat is de mate van geografische spreiding omzet?\n   • Wat is de mate van productdiversificatie?\n   • Wat is de mate van marktmacht?\n\nConclusie\n\nMaak ook een executive briefing voor de Raad van Bestuur met strategische implicaties en aanbevelingen.",
+      
+      "buttonText": {
+        "traditioneel": "📋 Kopieer Framework",
+        "ondersteund": "📋 Kopieer Analyse Prompt", 
+        "geintegreerd": "📋 Kopieer Volledige Prompt"
+      },
       
       "docentNotes": [
         "Let op rolvastheid - corrigeer als studenten uit rol vallen",
@@ -287,7 +299,7 @@
       "hoe": {
         "zelfstudie": [
           "Lees samenvatting Draghi-rapport (provided)",
-          "Genereer met AI een analyse van productiviteitsuitdagingen in jullie sector",
+          "Genereer een analyse van productiviteitsuitdagingen in jullie sector",
           "Bereid vanuit je rol voor: wat betekent dit voor onze strategie?",
           "Identificeer 3 concrete productiviteitsverbeteringen"
         ],
@@ -309,12 +321,24 @@
         "assessment": "Diepgang analyse, creativiteit oplossingen, consistentie met week 1"
       },
       
-      "aiPrompt": "Analyseer de productiviteitsuitdagingen in de [SECTOR] sector, gebaseerd op het Draghi-rapport. Wat zijn de 5 belangrijkste oorzaken van productiviteitsachterstand? Geef concrete, implementeerbare oplossingen.",
+      "analyseOpdracht": "Analyseer de productiviteitsuitdagingen in de [SECTOR] sector, gebaseerd op het Draghi-rapport. Wat zijn de 5 belangrijkste oorzaken van productiviteitsachterstand? Geef concrete, implementeerbare oplossingen.",
+      
+      "analyseOpdracht_traditioneel": "Voer handmatig uit:\n\n1. Beargumenteer de marktvorm in de sector.\n2. Analyseer de bijbehorende structuur, gedrag en resultaatkenmerken bij de gekozen marktvorm.\n3. Beschrijf welke vormen van overheidsregulering aankomend zijn en geef aan hoe die vormend kunnen zijn voor deze sector.\n4. Beschrijf de markt:\n   • Tot welk soort consumptiegoederen (convenience, shopping, specialty of unsought goods & basis-goederen of luxegoederen) behoren de eindproducten van de gekozen bedrijven in de bedrijfstak?\n   • Aan wie levert de sector?\n     Maak hierbij gebruik van definities zoals: consumenten- (B2C) en/of producentenmarkten (B2B);\n   • Wat is de mate van prijsgevoeligheid?\n     Denk hierbij bijv. aan prijselasticiteit, inkomenselasticiteit en kruislingse elasticiteit\n\nConclusie",
+      
+      "analyseOpdracht_ondersteund": "Opdracht voor AI junior analist:\n\n1. Beargumenteer de marktvorm in de sector.\n2. Analyseer de bijbehorende structuur, gedrag en resultaatkenmerken bij de gekozen marktvorm.\n3. Beschrijf welke vormen van overheidsregulering aankomend zijn en geef aan hoe die vormend kunnen zijn voor deze sector.\n4. Beschrijf de markt:\n   • Tot welk soort consumptiegoederen (convenience, shopping, specialty of unsought goods & basis-goederen of luxegoederen) behoren de eindproducten van de gekozen bedrijven in de bedrijfstak?\n   • Aan wie levert de sector?\n     Maak hierbij gebruik van definities zoals: consumenten- (B2C) en/of producentenmarkten (B2B);\n   • Wat is de mate van prijsgevoeligheid?\n     Denk hierbij bijv. aan prijselasticiteit, inkomenselasticiteit en kruislingse elasticiteit\n\nConclusie\n\nJij maakt op basis van deze analyse een executive briefing voor de Raad van Bestuur.",
+      
+      "analyseOpdracht_geintegreerd": "Opdracht voor AI junior analist:\n\n1. Beargumenteer de marktvorm in de sector.\n2. Analyseer de bijbehorende structuur, gedrag en resultaatkenmerken bij de gekozen marktvorm.\n3. Beschrijf welke vormen van overheidsregulering aankomend zijn en geef aan hoe die vormend kunnen zijn voor deze sector.\n4. Beschrijf de markt:\n   • Tot welk soort consumptiegoederen (convenience, shopping, specialty of unsought goods & basis-goederen of luxegoederen) behoren de eindproducten van de gekozen bedrijven in de bedrijfstak?\n   • Aan wie levert de sector?\n     Maak hierbij gebruik van definities zoals: consumenten- (B2C) en/of producentenmarkten (B2B);\n   • Wat is de mate van prijsgevoeligheid?\n     Denk hierbij bijv. aan prijselasticiteit, inkomenselasticiteit en kruislingse elasticiteit\n\nConclusie\n\nMaak ook een executive briefing voor de Raad van Bestuur met strategische implicaties en aanbevelingen.",
+      
+      "buttonText": {
+        "traditioneel": "📋 Kopieer Framework",
+        "ondersteund": "📋 Kopieer Analyse Prompt", 
+        "geintegreerd": "📋 Kopieer Volledige Prompt"
+      },
       
       "eventCard": {
-        "title": "Breaking: Concurrent kondigt mega-investering in AI aan",
-        "description": "Uw grootste concurrent heeft zojuist €500M AI-investering aangekondigd. De markt reageert positief, aandeel +15%.",
-        "dilemma": "Volgen met eigen AI-investering (Explore) of focus op huidige superieure operatie (Exploit)?"
+        "title": "Breaking: Concurrent kondigt mega-investering in automatisering aan",
+        "description": "Uw grootste concurrent heeft zojuist €500M automatisering-investering aangekondigd. De markt reageert positief, aandeel +15%.",
+        "dilemma": "Volgen met eigen automatisering-investering (Explore) of focus op huidige superieure operatie (Exploit)?"
       },
       
       "docentNotes": [
@@ -337,7 +361,7 @@
       "hoe": {
         "zelfstudie": [
           "Bestudeer True Price methodiek (provided materials)",
-          "Bereken met AI de 'true cost' van jullie hoofdproduct",
+          "Bereken de 'true cost' van jullie hoofdproduct",
           "Analyseer impact op competitieve positie",
           "Ontwikkel duurzaamheidsopties vanuit je rol"
         ],
@@ -359,7 +383,19 @@
         "assessment": "Realisme berekeningen, ambitieniveau, financiële onderbouwing"
       },
       
-      "aiPrompt": "Bereken de True Price voor [PRODUCT] inclusief CO2-uitstoot, watergebruik, sociale kosten, en afvalproductie. Vergelijk met conventionele kostprijs. Wat zijn realistische reductiemogelijkheden?",
+      "analyseOpdracht": "Bereken de True Price voor [PRODUCT] inclusief CO2-uitstoot, watergebruik, sociale kosten, en afvalproductie. Vergelijk met conventionele kostprijs. Wat zijn realistische reductiemogelijkheden?",
+      
+      "analyseOpdracht_traditioneel": "Voer handmatig uit:\n\n1. Verklaar de impact van de constante en variabele kosten op het aanpassingsvermogen van de bedrijven.\n2. Welke vormen van innovatief gedrag komen voor en wat zijn de gevolgen hiervan voor het aanbod (tabel 3.6)?\n\nConclusie",
+      
+      "analyseOpdracht_ondersteund": "Opdracht voor AI junior analist:\n\n1. Verklaar de impact van de constante en variabele kosten op het aanpassingsvermogen van de bedrijven.\n2. Welke vormen van innovatief gedrag komen voor en wat zijn de gevolgen hiervan voor het aanbod (tabel 3.6)?\n\nConclusie\n\nJij maakt op basis van deze analyse een executive briefing voor de Raad van Bestuur.",
+      
+      "analyseOpdracht_geintegreerd": "Opdracht voor AI junior analist:\n\n1. Verklaar de impact van de constante en variabele kosten op het aanpassingsvermogen van de bedrijven.\n2. Welke vormen van innovatief gedrag komen voor en wat zijn de gevolgen hiervan voor het aanbod (tabel 3.6)?\n\nConclusie\n\nMaak ook een executive briefing voor de Raad van Bestuur met strategische implicaties en aanbevelingen.",
+      
+      "buttonText": {
+        "traditioneel": "📋 Kopieer Framework",
+        "ondersteund": "📋 Kopieer Analyse Prompt", 
+        "geintegreerd": "📋 Kopieer Volledige Prompt"
+      },
       
       "eventCard": {
         "title": "Crisis: Grootste klant eist 50% CO2 reductie",
@@ -380,13 +416,13 @@
       "title": "De Menselijke Factor",
       "theme": "War for Talent",
       "icon": "👥",
-      "description": "Vergrijzing, AI-angst, en Gen Z met nieuwe eisen. Hoe blijf je een aantrekkelijke werkgever?",
+      "description": "Vergrijzing, automatiseringsangst, en Gen Z met nieuwe eisen. Hoe blijf je een aantrekkelijke werkgever?",
       
       "waarom": "Human capital is de grootste asset maar ook grootste uitdaging. Teams moeten balanceren tussen automatisering (efficiency) en menselijke ontwikkeling (innovation capacity).",
       
       "hoe": {
         "zelfstudie": [
-          "Analyseer met AI de demografische uitdagingen in jullie sector",
+          "Analyseer de demografische uitdagingen in jullie sector",
           "Onderzoek Gen Z werkvoorkeuren",
           "Bereid HR-strategie voor vanuit je rol",
           "Identificeer 3 unieke employer brand proposities"
@@ -409,7 +445,19 @@
         "assessment": "Originaliteit EVP, realisme, consistentie met eerdere pijlers"
       },
       
-      "aiPrompt": "Analyseer de 'War for Talent' in [SECTOR]. Wat willen Gen Z werknemers? Hoe balanceer je automatisering met human development? Geef 5 innovatieve HR-praktijken.",
+      "analyseOpdracht": "Analyseer de 'War for Talent' in [SECTOR]. Wat willen Gen Z werknemers? Hoe balanceer je automatisering met human development? Geef 5 innovatieve HR-praktijken.",
+      
+      "analyseOpdracht_traditioneel": "Voer handmatig uit:\n\n1. Opdracht Maatschappelijke kosten\n• Analyseer jouw gekozen sector op de brede welvaart dimensies.\n• Kies de 4 belangrijkste onderdelen uit (van de 10) en werk dit uit met de sub-onderdelen.\n• Schenk hierbij aandacht aan de maatschappelijk kosten en maak een afweging of dit een bedreiging vormt voor de sector.\n\n2. Opdracht True Pricing\n• Maak middels desk research inzichtelijk of jouw bedrijf verborgen kosten heeft. Splits dit uit naar ecologische (milieu) en maatschappelijke (social) kosten. Verdiep de analyse met de 8 milieu-dimensies en 9 sociale dimensies. Zie hiervoor het rapport van de ABNAMRO de verborgen kosten van een spijkerbroek, \"het verkleinen van de true price gap\".\n\nConclusie",
+      
+      "analyseOpdracht_ondersteund": "Opdracht voor AI junior analist:\n\n1. Opdracht Maatschappelijke kosten\n• Analyseer jouw gekozen sector op de brede welvaart dimensies.\n• Kies de 4 belangrijkste onderdelen uit (van de 10) en werk dit uit met de sub-onderdelen.\n• Schenk hierbij aandacht aan de maatschappelijk kosten en maak een afweging of dit een bedreiging vormt voor de sector.\n\n2. Opdracht True Pricing\n• Maak middels desk research inzichtelijk of jouw bedrijf verborgen kosten heeft. Splits dit uit naar ecologische (milieu) en maatschappelijke (social) kosten. Verdiep de analyse met de 8 milieu-dimensies en 9 sociale dimensies. Zie hiervoor het rapport van de ABNAMRO de verborgen kosten van een spijkerbroek, \"het verkleinen van de true price gap\".\n\nConclusie\n\nJij maakt op basis van deze analyse een executive briefing voor de Raad van Bestuur.",
+      
+      "analyseOpdracht_geintegreerd": "Opdracht voor AI junior analist:\n\n1. Opdracht Maatschappelijke kosten\n• Analyseer jouw gekozen sector op de brede welvaart dimensies.\n• Kies de 4 belangrijkste onderdelen uit (van de 10) en werk dit uit met de sub-onderdelen.\n• Schenk hierbij aandacht aan de maatschappelijk kosten en maak een afweging of dit een bedreiging vormt voor de sector.\n\n2. Opdracht True Pricing\n• Maak middels desk research inzichtelijk of jouw bedrijf verborgen kosten heeft. Splits dit uit naar ecologische (milieu) en maatschappelijke (social) kosten. Verdiep de analyse met de 8 milieu-dimensies en 9 sociale dimensies. Zie hiervoor het rapport van de ABNAMRO de verborgen kosten van een spijkerbroek, \"het verkleinen van de true price gap\".\n\nConclusie\n\nMaak ook een executive briefing voor de Raad van Bestuur met strategische implicaties en aanbevelingen.",
+      
+      "buttonText": {
+        "traditioneel": "📋 Kopieer Framework",
+        "ondersteund": "📋 Kopieer Analyse Prompt", 
+        "geintegreerd": "📋 Kopieer Volledige Prompt"
+      },
       
       "eventCard": {
         "title": "Schokkend: 40% medewerkers overweegt ontslag",
@@ -436,7 +484,7 @@
       
       "hoe": {
         "zelfstudie": [
-          "Creëer met AI drie geopolitieke scenario's (best/realistic/worst case)",
+          "Creëer drie geopolitieke scenario's (best/realistic/worst case)",
           "Analyseer impact op supply chain en markttoegang",
           "Ontwikkel contingency plannen per scenario",
           "Bereid 'war room' presentatie voor"
@@ -459,7 +507,19 @@
         "assessment": "Scenario realisme, contingency planning kwaliteit, decisiveness"
       },
       
-      "aiPrompt": "Ontwikkel 3 geopolitieke scenario's voor komende 5 jaar. Focus op: China-Taiwan, Rusland-Europa, Trump 2.0, klimaat-migratie. Wat betekent dit voor een [SECTOR] bedrijf?",
+      "analyseOpdracht": "Ontwikkel 3 geopolitieke scenario's voor komende 5 jaar. Focus op: China-Taiwan, Rusland-Europa, Trump 2.0, klimaat-migratie. Wat betekent dit voor een [SECTOR] bedrijf?",
+      
+      "analyseOpdracht_traditioneel": "Voer handmatig uit:\n\n1. Opdracht ESG\n• Werk een ESG framework uit waarbij je kansen en bedreigingen detecteert met de 10 thematische (topical) standaarden voor milieu, social en governance. Aanvullend, reduceer de 10 thema's tot een shortlist van 4 thema's die volgens jou de meeste impact hebben als bedreiging of kans. Max 2 a4.\n\nConclusie",
+      
+      "analyseOpdracht_ondersteund": "Opdracht voor AI junior analist:\n\n1. Opdracht ESG\n• Werk een ESG framework uit waarbij je kansen en bedreigingen detecteert met de 10 thematische (topical) standaarden voor milieu, social en governance. Aanvullend, reduceer de 10 thema's tot een shortlist van 4 thema's die volgens jou de meeste impact hebben als bedreiging of kans. Max 2 a4.\n\nConclusie\n\nJij maakt op basis van deze analyse een executive briefing voor de Raad van Bestuur.",
+      
+      "analyseOpdracht_geintegreerd": "Opdracht voor AI junior analist:\n\n1. Opdracht ESG\n• Werk een ESG framework uit waarbij je kansen en bedreigingen detecteert met de 10 thematische (topical) standaarden voor milieu, social en governance. Aanvullend, reduceer de 10 thema's tot een shortlist van 4 thema's die volgens jou de meeste impact hebben als bedreiging of kans. Max 2 a4.\n\nConclusie\n\nMaak ook een executive briefing voor de Raad van Bestuur met strategische implicaties en aanbevelingen.",
+      
+      "buttonText": {
+        "traditioneel": "📋 Kopieer Framework",
+        "ondersteund": "📋 Kopieer Analyse Prompt", 
+        "geintegreerd": "📋 Kopieer Volledige Prompt"
+      },
       
       "eventCard": {
         "title": "BREAKING: Taiwan Crisis - Chip shortage dreigt",
@@ -601,7 +661,7 @@
         "name": "Individuele Voorbereiding",
         "weight": 0.25,
         "criteria": [
-          "AI-opdrachten volledig en op tijd",
+          "Analyse-opdrachten volledig en op tijd",
           "Rolvastheid in voorbereiding",
           "Kwaliteit van analyse",
           "Originaliteit van inzichten"
@@ -663,13 +723,13 @@
     {
       "id": "r1",
       "category": "Onderwijskundig",
-      "title": "Studentenweerstand tegen AI-integratie",
+      "title": "Studentenweerstand tegen nieuwe aanpak",
       "probability": "high",
       "impact": "medium",
       "score": 6,
       "mitigation": [
-        "Duidelijke uitleg waarom AI-integratie toekomstbestendig maakt",
-        "Benadruk focus op besluitvorming, niet AI-output",
+        "Duidelijke uitleg waarom strategische analyse toekomstbestendig maakt",
+        "Benadruk focus op besluitvorming, niet analyse-output",
         "Toon real-world relevantie met actuele voorbeelden"
       ]
     },
@@ -689,12 +749,12 @@
     {
       "id": "r3",
       "category": "Technisch",
-      "title": "AI-tool uitval of onbeschikbaarheid",
+      "title": "Analyse-tool uitval of onbeschikbaarheid",
       "probability": "medium",
       "impact": "high",
       "score": 6,
       "mitigation": [
-        "Backup AI-tools identificeren",
+        "Backup analyse-tools identificeren",
         "Offline alternatieven voorbereiden",
         "Buffer tijd inbouwen voor technische issues"
       ]
@@ -736,9 +796,9 @@
         "week": 1
       },
       {
-        "name": "AI Prompt Library",
+        "name": "Analyse Template Library",
         "type": "Document",
-        "description": "Verzameling geteste prompts per week",
+        "description": "Verzameling geteste analyse templates per week",
         "week": "all"
       },
       {
@@ -773,7 +833,7 @@
         "required": true
       },
       {
-        "title": "Competing in the Age of AI",
+        "title": "Competing in the Age of Automation",
         "author": "Marco Iansiti & Karim Lakhani",
         "type": "HBR Article",
         "pages": "10",

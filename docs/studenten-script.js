@@ -236,8 +236,8 @@ function populateFAQData() {
             answer: 'Nee, je houdt dezelfde rol gedurende de hele simulatie (Week 1-6). Dit zorgt voor consistentie en helpt je je rolperspectief te ontwikkelen. Alleen in Week 7 wissel je naar een RvT persona voor de evaluatie van andere teams.'
         },
         {
-            question: 'Hoe gebruik ik AI voor de briefings?',
-            answer: 'Gebruik de AI-prompt templates op deze pagina. Kopieer de prompt, vervang de placeholders ([SECTOR], [BEDRIJFSNAAM]) met je toegewezen case, en plak in je AI tool (ChatGPT, Claude, etc.). Gebruik de output als briefing voor je analyse, niet als definitief antwoord.'
+            question: 'Hoe maak ik een effectieve briefing?',
+            answer: 'Gebruik de analyse templates op deze pagina. Kopieer de template, vervang de placeholders ([SECTOR], [BEDRIJFSNAAM]) met je toegewezen case, en gebruik dit als basis voor je onderzoek. Gebruik de resultaten als briefing voor je analyse, niet als definitief antwoord.'
         },
         {
             question: 'Wat als ons team geen consensus bereikt?',
@@ -476,17 +476,45 @@ async function showWeekDetails(weekNumber) {
                 ` : '<p>Informatie volgt...</p>'}
             </div>
             
-            ${weekData.aiPrompt ? `
-                <div class="ai-prompt-section">
-                    <h4>AI Briefing Prompt:</h4>
-                    <div class="prompt-box">
-                        <pre id="aiPromptText">${weekData.aiPrompt}</pre>
-                        <button class="btn-secondary" onclick="copyModalPrompt()">
-                            📋 Kopieer Prompt
-                        </button>
-                    </div>
-                </div>
-            ` : ''}
+            ${(() => {
+                // Get current mode from localStorage or default
+                const currentMode = localStorage.getItem('aiMode') || 'traditional';
+                
+                // Map mode to field names
+                const modeFieldMapping = {
+                    'traditional': 'traditioneel',
+                    'ai-assisted': 'ondersteund', 
+                    'ai-integrated': 'geintegreerd'
+                };
+                
+                // Get mode-specific content
+                const modeField = modeFieldMapping[currentMode];
+                const analyseOpdracht = weekData[`analyseOpdracht_${modeField}`] || weekData.analyseOpdracht;
+                const buttonText = weekData.buttonText ? weekData.buttonText[modeField] : '📋 Kopieer Template';
+                
+                // Generate title based on mode
+                const sectionTitles = {
+                    'traditional': 'Analyse Framework',
+                    'ai-assisted': 'AI Analyse Opdracht',
+                    'ai-integrated': 'Volledige AI Opdracht'
+                };
+                const sectionTitle = sectionTitles[currentMode] || 'Analyse Template';
+                
+                if (analyseOpdracht) {
+                    return `
+                        <div class="ai-prompt-section">
+                            <h4>${sectionTitle}:</h4>
+                            <div class="prompt-box">
+                                <pre id="aiPromptText">${analyseOpdracht}</pre>
+                                <button class="btn-secondary" onclick="copyModalPrompt()">
+                                    ${buttonText}
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                }
+                return '';
+            })()}
         `;
     } else {
         // Fallback content if no data available
@@ -496,7 +524,7 @@ async function showWeekDetails(weekNumber) {
             
             <h4>Opdracht:</h4>
             <ul>
-                <li>Download de AI-briefing</li>
+                <li>Download de intelligence briefing</li>
                 <li>Analyseer vanuit jouw rol-perspectief</li>
                 <li>Bereid je boardroom presentatie voor</li>
             </ul>
@@ -519,7 +547,7 @@ async function showWeekDetails(weekNumber) {
                     ${modalContent}
                     
                     <button class="btn-primary" onclick="downloadBriefing(${weekNumber})">
-                        Download AI Briefing
+                        Download Intelligence Briefing
                     </button>
                 </div>
             </div>
@@ -708,7 +736,7 @@ function closeModal() {
     }
 }
 
-// Enhanced copy function for modal AI prompts
+// Enhanced copy function for modal analysis templates
 function copyModalPrompt() {
     const promptElement = document.getElementById('aiPromptText');
     if (!promptElement) {
@@ -882,7 +910,7 @@ function copyToClipboard(text) {
 function downloadBriefing(weekNumber) {
     console.log(`Downloading briefing for week ${weekNumber}`);
     // This would trigger a download of the week's briefing materials
-    alert(`AI Briefing voor Week ${weekNumber} wordt gedownload...`);
+    alert(`Intelligence Briefing voor Week ${weekNumber} wordt gedownload...`);
     closeModal();
 }
 
@@ -1378,8 +1406,8 @@ function openVideoTutorials() {
                             <button class="btn-primary" onclick="playVideo('intro')">▶️ Bekijk Video</button>
                         </div>
                         <div class="video-item">
-                            <h3>2. AI-Briefing Gebruiken</h3>
-                            <p>Hoe gebruik je AI voor strategische analyse (15 min)</p>
+                            <h3>2. Intelligence Briefing Maken</h3>
+                            <p>Hoe gebruik je templates voor strategische analyse (15 min)</p>
                             <button class="btn-primary" onclick="playVideo('ai-briefing')">▶️ Bekijk Video</button>
                         </div>
                         <div class="video-item">

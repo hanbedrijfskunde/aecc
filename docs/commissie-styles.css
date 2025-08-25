@@ -109,6 +109,23 @@ body {
     color: white;
 }
 
+/* Section Spacing & Styling */
+.accountability-section {
+    margin-bottom: 3rem;
+    background: var(--committee-glass);
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: var(--committee-shadow);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.accountability-section h3 {
+    color: var(--committee-primary);
+    font-size: 1.6rem;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+}
+
 /* Executive Summary Section */
 .executive-summary {
     margin-bottom: 3rem;
@@ -276,6 +293,69 @@ body {
     color: white;
     border-radius: 5px;
     font-size: 0.85rem;
+}
+
+/* Assessment Validity Section */
+.validity-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.validity-card {
+    background: var(--committee-glass);
+    border-radius: 15px;
+    padding: 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: var(--committee-shadow);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.validity-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(44, 62, 80, 0.15);
+}
+
+.validity-card h4 {
+    color: var(--committee-primary);
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.validity-card .progress-bar {
+    width: 100%;
+    height: 12px;
+    background: rgba(44, 62, 80, 0.1);
+    border-radius: 6px;
+    overflow: hidden;
+    margin: 1rem 0;
+    position: relative;
+}
+
+.validity-card .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--committee-accent), var(--success-green));
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 0.5rem;
+    color: white;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    transition: width 0.8s ease-in-out;
+}
+
+.validity-card p {
+    color: var(--committee-secondary);
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin: 0;
 }
 
 /* Risk Management Matrix */
@@ -1220,4 +1300,422 @@ body {
     display: flex;
     justify-content: flex-end;
     gap: 1rem;
+}
+
+/* ==========================================
+   AI-Transition Roadmap Styles
+   ========================================== */
+
+.ai-transition-roadmap {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    padding: var(--space-2xl);
+    border-radius: var(--radius-xl);
+    margin-bottom: var(--space-2xl);
+}
+
+.roadmap-intro .section-description {
+    background: white;
+    padding: var(--space-lg);
+    border-radius: var(--radius-lg);
+    border-left: 4px solid var(--primary);
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: var(--space-2xl);
+}
+
+/* Mode Cards Grid */
+.roadmap-modes {
+    display: grid;
+    gap: var(--space-lg);
+    margin-bottom: var(--space-2xl);
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.mode-card {
+    background: white;
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg);
+    box-shadow: var(--shadow-md);
+    transition: transform var(--transition), box-shadow var(--transition);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.mode-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+/* Mode-specific styling */
+.traditional-card {
+    border-left: 4px solid #6B7280;
+}
+
+.traditional-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, #6B7280, #9CA3AF);
+}
+
+.assisted-card {
+    border-left: 4px solid #3B82F6;
+}
+
+.assisted-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, #3B82F6, #60A5FA);
+}
+
+.integrated-card {
+    border-left: 4px solid var(--primary);
+}
+
+.integrated-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary), #A8E06A);
+}
+
+.first-card {
+    border-left: 4px solid var(--accent);
+}
+
+.first-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent), #FF6B6B);
+}
+
+.mode-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-md);
+}
+
+.mode-header h3 {
+    margin: 0;
+    color: var(--text-dark);
+    font-size: 1.25rem;
+}
+
+.mode-status {
+    padding: var(--space-xs) var(--space-sm);
+    border-radius: var(--radius-sm);
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.mode-status.current {
+    background: #10B981;
+    color: white;
+}
+
+.mode-status.future {
+    background: #F59E0B;
+    color: white;
+}
+
+.mode-content p {
+    margin-bottom: var(--space-md);
+    line-height: 1.6;
+}
+
+.mode-features h4,
+.blooms-mapping h4 {
+    font-size: 0.95rem;
+    margin: var(--space-md) 0 var(--space-sm) 0;
+    color: var(--text-medium);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.mode-features ul {
+    list-style: none;
+    padding: 0;
+    margin-bottom: var(--space-lg);
+}
+
+.mode-features li {
+    position: relative;
+    padding-left: var(--space-md);
+    margin-bottom: var(--space-xs);
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.mode-features li::before {
+    content: "▸";
+    position: absolute;
+    left: 0;
+    color: var(--primary);
+    font-weight: bold;
+}
+
+/* Bloom's Taxonomy Levels */
+.bloom-levels {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+}
+
+.bloom-level {
+    padding: var(--space-xs) var(--space-sm);
+    border-radius: var(--radius-sm);
+    font-size: 0.8rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.bloom-level.primary {
+    background: var(--primary);
+    color: white;
+}
+
+.bloom-level.secondary {
+    background: #E5E7EB;
+    color: var(--text-medium);
+}
+
+.bloom-level.advanced {
+    background: var(--accent);
+    color: white;
+}
+
+/* Timeline Roadmap */
+.transition-timeline {
+    margin-bottom: var(--space-2xl);
+}
+
+.timeline-roadmap {
+    display: flex;
+    gap: var(--space-lg);
+    padding: var(--space-lg);
+    background: white;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+}
+
+.timeline-phase {
+    flex: 1;
+    text-align: center;
+    position: relative;
+}
+
+.timeline-phase:not(:last-child)::after {
+    content: '→';
+    position: absolute;
+    right: -1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.5rem;
+    color: var(--primary);
+    z-index: 1;
+}
+
+.phase-marker {
+    background: var(--primary);
+    color: white;
+    padding: var(--space-sm) var(--space-md);
+    border-radius: var(--radius-md);
+    font-weight: bold;
+    margin-bottom: var(--space-sm);
+    display: inline-block;
+    font-size: 0.9rem;
+}
+
+.timeline-phase.current .phase-marker {
+    background: #10B981;
+}
+
+.timeline-phase.future .phase-marker {
+    background: #6B7280;
+}
+
+.phase-content h4 {
+    margin: var(--space-sm) 0;
+    color: var(--text-dark);
+    font-size: 1.1rem;
+}
+
+.phase-content p {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-bottom: var(--space-sm);
+    color: var(--text-medium);
+}
+
+.phase-status {
+    padding: var(--space-xs) var(--space-sm);
+    border-radius: var(--radius-sm);
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.phase-status.active {
+    background: #10B981;
+    color: white;
+}
+
+.phase-status.pending {
+    background: #F59E0B;
+    color: white;
+}
+
+.phase-status.future {
+    background: #6B7280;
+    color: white;
+}
+
+/* Assessment Evolution Grid */
+.assessment-evolution {
+    margin-bottom: var(--space-2xl);
+}
+
+.assessment-grid {
+    display: grid;
+    gap: var(--space-md);
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+.assessment-item {
+    background: white;
+    padding: var(--space-lg);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.assessment-item h4 {
+    margin-bottom: var(--space-md);
+    color: var(--text-dark);
+    font-size: 1.1rem;
+    text-align: center;
+    padding-bottom: var(--space-sm);
+    border-bottom: 2px solid var(--primary);
+}
+
+.assessment-item ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.assessment-item li {
+    position: relative;
+    padding-left: var(--space-md);
+    margin-bottom: var(--space-sm);
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.assessment-item li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: var(--primary);
+    font-weight: bold;
+}
+
+/* Readiness Indicators */
+.transition-readiness {
+    background: white;
+    padding: var(--space-lg);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+}
+
+.readiness-indicators {
+    display: grid;
+    gap: var(--space-md);
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.readiness-item {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-md);
+    padding: var(--space-md);
+    border-radius: var(--radius-md);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.readiness-item.ready {
+    background: rgba(16, 185, 129, 0.05);
+    border-color: rgba(16, 185, 129, 0.3);
+}
+
+.readiness-item.pending {
+    background: rgba(245, 158, 11, 0.05);
+    border-color: rgba(245, 158, 11, 0.3);
+}
+
+.indicator-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+
+.readiness-item h4 {
+    margin: 0 0 var(--space-xs) 0;
+    color: var(--text-dark);
+    font-size: 1rem;
+}
+
+.readiness-item p {
+    margin: 0;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: var(--text-medium);
+}
+
+/* Responsive Design for Roadmap */
+@media (max-width: 768px) {
+    .timeline-roadmap {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .timeline-phase:not(:last-child)::after {
+        content: '↓';
+        position: static;
+        display: block;
+        margin: var(--space-md) auto;
+        transform: none;
+    }
+    
+    .roadmap-modes {
+        grid-template-columns: 1fr;
+    }
+    
+    .assessment-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .readiness-indicators {
+        grid-template-columns: 1fr;
+    }
 }

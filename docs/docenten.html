@@ -40,6 +40,16 @@
     <!-- Header -->
     <header class="site-header" role="banner">
         <div class="container">
+            <!-- AI Mode Toggle -->
+            <div class="ai-mode-toggle" id="ai-mode-toggle">
+                <label for="mode-select" class="mode-label">Weergavemodus:</label>
+                <select id="mode-select" class="mode-select" onchange="switchMode()">
+                    <option value="traditional">Traditioneel</option>
+                    <option value="ai-assisted">AI-Ondersteund</option>
+                    <option value="ai-integrated">AI-Geïntegreerd</option>
+                </select>
+            </div>
+            
             <nav class="top-nav" aria-label="Hoofdnavigatie">
                 <a href="index.html" class="back-link">← Terug naar portaal</a>
                 <span class="current-page">Docenten Dashboard</span>
@@ -149,7 +159,7 @@
                         <select id="weekJumper" onchange="jumpToWeek(this.value)">
                             <option value="">Selecteer week...</option>
                             <option value="1">Week 1: Introductie & Rolverdeling</option>
-                            <option value="2">Week 2: Marktanalyse & Positioning</option>
+                            <option value="2">Week 2: Omgevingsanalyse & Positioning</option>
                             <option value="3">Week 3: Innovatie vs Optimalisatie</option>
                             <option value="4">Week 4: Kapitaalallocatie</option>
                             <option value="5">Week 5: Crisis Management</option>
@@ -759,7 +769,7 @@
                             <div class="scenario-card">
                                 <h4>Scenario: Tech Disruption</h4>
                                 <div class="scenario-content">
-                                    <p><strong>Setup:</strong> AI maakt 50% van jullie business model obsoleet binnen 6 maanden.</p>
+                                    <p><strong>Setup:</strong> AI maakt 50% van jullie business model achterhaald binnen 6 maanden.</p>
                                     <p><strong>Twist:</strong> De CIO zag dit aankomen maar heeft het verzwegen.</p>
                                     <p><strong>Observeer:</strong> Explore vs Exploit conflict onder extreme druk.</p>
                                     <button onclick="activateScenario('disruption')">Activeer Scenario</button>
@@ -1598,7 +1608,7 @@
                         <select id="printWeekSelect" onchange="preparePrintLayout(this.value)">
                             <option value="">Kies week...</option>
                             <option value="1">Week 1: Introductie & Rolverdeling</option>
-                            <option value="2">Week 2: Marktanalyse & Positioning</option>
+                            <option value="2">Week 2: Omgevingsanalyse & Positioning</option>
                             <option value="3">Week 3: Innovatie vs Optimalisatie</option>
                             <option value="4">Week 4: Kapitaalallocatie</option>
                             <option value="5">Week 5: Crisis Management</option>
