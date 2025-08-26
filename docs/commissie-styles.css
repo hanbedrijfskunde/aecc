@@ -1719,3 +1719,106 @@ body {
         grid-template-columns: 1fr;
     }
 }
+
+/* Communication Templates Tab Styling */
+.template-tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(44, 62, 80, 0.1);
+}
+
+.template-tab {
+    background: transparent;
+    border: none;
+    padding: 12px 20px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--committee-secondary);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 8px 8px 0 0;
+    position: relative;
+    font-family: 'Poppins', sans-serif;
+}
+
+.template-tab:hover {
+    background: rgba(44, 62, 80, 0.05);
+    color: var(--committee-primary);
+    transform: translateY(-1px);
+}
+
+.template-tab.active {
+    background: var(--committee-primary);
+    color: white;
+    box-shadow: 0 2px 8px rgba(44, 62, 80, 0.2);
+}
+
+.template-tab.active::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--committee-primary);
+}
+
+.template-content {
+    background: white;
+    border-radius: 0 8px 8px 8px;
+    box-shadow: var(--committee-shadow);
+}
+
+.template-panel {
+    padding: 2rem;
+    display: none;
+}
+
+.template-panel.active {
+    display: block;
+}
+
+.template-panel h3 {
+    color: var(--committee-primary);
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.template-box {
+    background: #f8f9fa;
+    border: 1px solid rgba(44, 62, 80, 0.1);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-top: 1rem;
+}
+
+.template-box pre {
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: var(--committee-secondary);
+    margin: 0;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+/* Responsive tabs */
+@media (max-width: 768px) {
+    .template-tabs {
+        flex-wrap: wrap;
+        gap: 4px;
+    }
+    
+    .template-tab {
+        flex: 1;
+        min-width: calc(50% - 2px);
+        font-size: 0.85rem;
+        padding: 10px 12px;
+    }
+    
+    .template-panel {
+        padding: 1.5rem;
+    }
+}
