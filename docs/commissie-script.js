@@ -244,8 +244,59 @@ function updateOverallQAStatus() {
     }
 }
 
+/**
+ * Switch between different communication template tabs
+ * @param {string} templateType - The type of template to show ('management', 'students', 'external', 'crisis')
+ * Called from HTML onclick handlers in commissie.html
+ */
+function showTemplate(templateType) {
+    // Stap 1: Verwijder 'active' class van alle tabs
+    const allTabs = document.querySelectorAll('.template-tab');
+    allTabs.forEach(tab => {
+        tab.classList.remove('active');
+    });
+    
+    // Stap 2: Voeg 'active' class toe aan geklikte tab
+    const clickedTab = event.target;
+    if (clickedTab && clickedTab.classList.contains('template-tab')) {
+        clickedTab.classList.add('active');
+    }
+    
+    // Stap 3: Verberg alle template panels
+    const allPanels = document.querySelectorAll('.template-panel');
+    allPanels.forEach(panel => {
+        panel.classList.remove('active');
+        panel.style.display = 'none';
+    });
+    
+    // Stap 4: Toon het geselecteerde panel
+    const selectedPanel = document.getElementById(templateType + '-template');
+    if (selectedPanel) {
+        selectedPanel.classList.add('active');
+        selectedPanel.style.display = 'block';
+    }
+}
+
 // Communication Templates
 function initializeCommunicationTemplates() {
+    // Initialize first tab as active on page load
+    const firstTab = document.querySelector('.template-tab');
+    const firstPanel = document.querySelector('.template-panel');
+    
+    if (firstTab) {
+        firstTab.classList.add('active');
+    }
+    
+    if (firstPanel) {
+        firstPanel.classList.add('active');
+        firstPanel.style.display = 'block';
+    }
+    
+    // Hide all other panels initially
+    const allPanels = document.querySelectorAll('.template-panel:not(:first-child)');
+    allPanels.forEach(panel => {
+        panel.style.display = 'none';
+    });
     const templates = {
         management: {
             subject: 'Update: AEC Innovatief Onderwijsproject',
@@ -817,3 +868,6 @@ document.addEventListener('DOMContentLoaded', function() {
         exportBtn.addEventListener('click', exportReport);
     }
 });
+
+// Make showTemplate globally available
+window.showTemplate = showTemplate;
