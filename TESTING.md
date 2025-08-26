@@ -314,12 +314,17 @@ test.describe('Mobile responsiveness', () => {
 ```
 tests/
 ├── comprehensive-ux-audit.spec.js    # Full user journey tests
-├── quick-ux-audit.spec.js            # Smoke tests
-├── performance.spec.js               # Performance benchmarks
-├── accessibility.spec.js             # A11y compliance
-├── mobile.spec.js                    # Mobile-specific tests
-├── cross-browser.spec.js             # Browser compatibility
-└── visual-regression.spec.js         # Visual tests
+├── quick-ux-audit.spec.js            # Smoke tests  
+├── ux-test-simple.spec.js            # Basic UX validations
+├── test-week-modals.spec.js          # Week modal functionality
+├── test-sprint2-ux.spec.js           # Sprint 2 feature tests
+├── ux-testing.spec.js                # General UX test suite
+└── manual/                           # Manual verification scripts
+    ├── test-duplicate-weeks.js       # Week duplication checks
+    ├── test-onboarding-faq.js        # FAQ functionality
+    ├── test-onboarding-tile.js       # Onboarding tile tests
+    ├── test-specific-elements.js     # Element-specific tests
+    └── test-sprint-verification.js   # Sprint verification
 ```
 
 ### Best Practices
@@ -507,6 +512,7 @@ on:
 
 ---
 
-**Last Updated:** 2024-08-25  
+**Last Updated:** 2024-08-26  
 **Review Schedule:** Monthly  
+**Recent Changes:** Reorganized test files, updated Playwright config
 **Contact:** Create GitHub issue for testing questions

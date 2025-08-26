@@ -63,8 +63,8 @@ aecc/
 │   ├── content.json     # Course content database
 │   └── *.css, *.js      # Assets and scripts
 ├── tests/                # Test suites
-│   ├── *.spec.js        # Playwright tests
-│   └── manual/          # Manual test scripts
+│   ├── *.spec.js        # Playwright E2E tests
+│   └── manual/          # Manual verification scripts
 ├── scripts/             # Automation scripts
 ├── course-docs/         # Educational content
 └── screenshots/         # Documentation images
@@ -260,6 +260,7 @@ npm run dev
 
 ---
 
-**Last Updated:** 2024-08-25  
-**Version:** 2.0.0  
+**Last Updated:** 2024-08-26  
+**Version:** 2.0.1  
+**Recent Fixes:** Quick Access buttons, Dutch language corrections
 © 2024 HANBK - Hogeschool Arnhem en Nijmegen Business School

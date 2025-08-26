@@ -411,5 +411,6 @@ npx playwright test --debug
 
 ---
 
-**Last Updated:** 2024-08-25  
+**Last Updated:** 2024-08-26  
 **Next Review:** Weekly during development
+**Recent Updates:** Test directory reorganization, configuration updates
