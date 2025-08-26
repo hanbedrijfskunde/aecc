@@ -1,0 +1,91 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - link "Spring naar hoofdinhoud" [ref=e2] [cursor=pointer]:
+    - /url: "#main"
+  - banner [ref=e3]:
+    - generic [ref=e4]:
+      - generic [ref=e5]:
+        - generic [ref=e6]: "Weergavemodus:"
+        - combobox "Weergavemodus:" [ref=e7] [cursor=pointer]:
+          - option "Traditioneel" [selected]
+          - option "AI-Ondersteund"
+          - option "AI-Geïntegreerd"
+      - heading "AEC Algemene Economie C-cluster" [level=1] [ref=e8]:
+        - generic "Algemene Economie C-cluster" [ref=e9]: AEC
+        - generic [ref=e10]: Algemene Economie C-cluster
+      - paragraph [ref=e11]: AI-proof HBO-onderwijs door strategische besluitvorming
+  - main [ref=e12]:
+    - generic [ref=e13]:
+      - region "Introductie" [ref=e14]:
+        - heading "Introductie" [level=2] [ref=e15]
+        - paragraph [ref=e17]: Welkom bij de cursus Algemene Economie C-cluster. Deze innovatieve module traint studenten in strategische besluitvorming onder onzekerheid, belangenafweging en coherente strategieopbouw door middel van handmatige analyse en boardroom simulaties.
+      - navigation "Hoofdnavigatie" [ref=e18]:
+        - heading "Kies je portal" [level=2] [ref=e19]
+        - generic [ref=e20]:
+          - article [ref=e21]:
+            - link "Studenten Toegang tot weekopdrachten, rolbeschrijvingen, briefing templates en het driehoeksconflict framework ✓ 7 weken boardroom simulatie ✓ CEO, CFO, COO & CIO rollen ✓ Analyse templates ✓ Project Continuïteit tracker Ga naar studentenportaal" [ref=e22] [cursor=pointer]:
+              - /url: studenten.html
+              - img [ref=e24] [cursor=pointer]
+              - generic [ref=e28] [cursor=pointer]:
+                - heading "Studenten" [level=3] [ref=e29] [cursor=pointer]
+                - generic [ref=e30] [cursor=pointer]:
+                  - paragraph [ref=e31] [cursor=pointer]: Toegang tot weekopdrachten, rolbeschrijvingen, briefing templates en het driehoeksconflict framework
+                  - list [ref=e32] [cursor=pointer]:
+                    - listitem [ref=e33] [cursor=pointer]: ✓ 7 weken boardroom simulatie
+                    - listitem [ref=e34] [cursor=pointer]: ✓ CEO, CFO, COO & CIO rollen
+                    - listitem [ref=e35] [cursor=pointer]: ✓ Analyse templates
+                    - listitem [ref=e36] [cursor=pointer]: ✓ Project Continuïteit tracker
+                - text: ✓ ✓ ✓ ✓ ✓ ✓ ✓ ✓
+                - generic "Ga naar studentenportaal" [ref=e37] [cursor=pointer]:
+                  - generic [ref=e38] [cursor=pointer]: Start hier
+                  - generic [ref=e39] [cursor=pointer]: →
+          - article [ref=e40]:
+            - link "Docenten Lesplannen met WAAROM/HOE/WAT structuur, boardroom timer, didactische aanwijzingen en assessment tools ✓ Complete lesplannen per week ✓ Boardroom simulatie timer ✓ Interventie suggesties ✓ Beoordelingsrubrics Ga naar docentenportaal" [ref=e41] [cursor=pointer]:
+              - /url: docenten.html
+              - img [ref=e43] [cursor=pointer]
+              - generic [ref=e48] [cursor=pointer]:
+                - heading "Docenten" [level=3] [ref=e49] [cursor=pointer]
+                - paragraph [ref=e50] [cursor=pointer]: Lesplannen met WAAROM/HOE/WAT structuur, boardroom timer, didactische aanwijzingen en assessment tools
+                - list [ref=e51] [cursor=pointer]:
+                  - listitem [ref=e52] [cursor=pointer]: ✓ Complete lesplannen per week
+                  - listitem [ref=e53] [cursor=pointer]: ✓ Boardroom simulatie timer
+                  - listitem [ref=e54] [cursor=pointer]: ✓ Interventie suggesties
+                  - listitem [ref=e55] [cursor=pointer]: ✓ Beoordelingsrubrics
+                - generic "Ga naar docentenportaal" [ref=e56] [cursor=pointer]:
+                  - generic [ref=e57] [cursor=pointer]: Open dashboard
+                  - generic [ref=e58] [cursor=pointer]: →
+          - article [ref=e59]:
+            - link "Curriculum Commissie Onderwijskundige verantwoording, risicomanagement en pedagogische innovatie rationale ✓ Leerdoelen matrix ✓ Risico & mitigatie overzicht ✓ AI-integratie motivatie ✓ KPI dashboard Ga naar commissieportaal" [ref=e60] [cursor=pointer]:
+              - /url: commissie.html
+              - img [ref=e62] [cursor=pointer]
+              - generic [ref=e65] [cursor=pointer]:
+                - heading "Curriculum Commissie" [level=3] [ref=e66] [cursor=pointer]
+                - paragraph [ref=e67] [cursor=pointer]: Onderwijskundige verantwoording, risicomanagement en pedagogische innovatie rationale
+                - list [ref=e68] [cursor=pointer]:
+                  - listitem [ref=e69] [cursor=pointer]: ✓ Leerdoelen matrix
+                  - listitem [ref=e70] [cursor=pointer]: ✓ Risico & mitigatie overzicht
+                  - listitem [ref=e71] [cursor=pointer]: ✓ AI-integratie motivatie
+                  - listitem [ref=e72] [cursor=pointer]: ✓ KPI dashboard
+                - generic "Ga naar commissieportaal" [ref=e73] [cursor=pointer]:
+                  - generic [ref=e74] [cursor=pointer]: Bekijk documenten
+                  - generic [ref=e75] [cursor=pointer]: →
+      - region "Kernconcepten" [ref=e76]:
+        - heading "Kernconcepten" [level=2] [ref=e77]
+        - generic [ref=e78]:
+          - generic [ref=e79]:
+            - heading "Boardroom Simulatie" [level=3] [ref=e80]
+            - paragraph [ref=e81]: Studenten vormen een Raad van Bestuur met conflicterende rollen en nemen wekelijks strategische beslissingen
+          - generic [ref=e82]:
+            - heading "AI als Gegeven" [level=3] [ref=e83]
+            - paragraph [ref=e84]: AI-gegenereerde briefings worden geaccepteerd als volledig. Focus ligt op menselijke besluitvorming
+          - generic [ref=e85]:
+            - heading "Project Continuïteit" [level=3] [ref=e86]
+            - paragraph [ref=e87]: Zeven weken bouwen aan één coherente strategie waarbij elke beslissing voortbouwt op de vorige
+  - contentinfo [ref=e88]:
+    - generic [ref=e89]:
+      - paragraph [ref=e90]: © 2024 HANBK - Algemene Economie C-cluster
+      - paragraph [ref=e91]:
+        - generic [ref=e92]: Versie 5.0 | Pedagogische innovatie voor AI-proof onderwijs
+```

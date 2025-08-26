@@ -1,0 +1,447 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - link "Spring naar hoofdinhoud" [ref=e2] [cursor=pointer]:
+    - /url: "#main"
+  - banner [ref=e3]:
+    - generic [ref=e4]:
+      - generic [ref=e5]:
+        - generic [ref=e6]: "Weergavemodus:"
+        - combobox "Weergavemodus:" [ref=e7] [cursor=pointer]:
+          - option "Traditioneel" [selected]
+          - option "AI-Ondersteund"
+          - option "AI-Geïntegreerd"
+      - navigation "Hoofdnavigatie" [ref=e8]:
+        - link "← Terug naar portaal" [ref=e9] [cursor=pointer]:
+          - /url: index.html
+        - generic [ref=e10]: Studenten Dashboard
+      - heading "Boardroom Simulatie AEC - Algemene Economie C-cluster" [level=1] [ref=e11]:
+        - generic [ref=e12]: Boardroom Simulatie
+        - generic [ref=e13]: AEC - Algemene Economie C-cluster
+  - main [ref=e14]:
+    - generic [ref=e15]:
+      - generic [ref=e16]:
+        - heading "Jouw Voortgang" [level=3] [ref=e17]
+        - paragraph [ref=e20]: 7 van 7 weken voltooid
+      - region "🎯 Onboarding & Help" [ref=e21]:
+        - generic [ref=e22]:
+          - heading "🎯 Onboarding & Help" [level=2] [ref=e23]:
+            - generic [ref=e24]: 🎯
+            - text: Onboarding & Help
+          - button "Toggle onboarding panel" [ref=e25] [cursor=pointer]:
+            - generic [ref=e26] [cursor=pointer]: ▼
+        - generic [ref=e27]:
+          - generic [ref=e28]:
+            - button "Getting Started" [ref=e29] [cursor=pointer]
+            - button "Jouw Rol" [ref=e30] [cursor=pointer]
+            - button "Werkproces" [ref=e31] [cursor=pointer]
+            - button "FAQ" [ref=e32] [cursor=pointer]
+          - generic [ref=e34]:
+            - heading "🚀 Welkom bij de AEC Boardroom Simulatie" [level=3] [ref=e35]
+            - paragraph [ref=e36]: Deze 7-week simulatie plaatst je in de boardroom van een Nederlandse MKB-onderneming. Je neemt strategische beslissingen die elkaar beïnvloeden over tijd.
+            - generic [ref=e37]:
+              - heading "✅ Je eerste stappen:" [level=4] [ref=e38]
+              - generic [ref=e39]:
+                - generic [ref=e40] [cursor=pointer]:
+                  - checkbox "Begrijp je toegewezen rol (CEO, CFO, COO, of CIO)" [ref=e41]
+                  - text: Begrijp je toegewezen rol (CEO, CFO, COO, of CIO)
+                - generic [ref=e43] [cursor=pointer]:
+                  - checkbox "Bestudeer het driehoeksconflict hieronder" [ref=e44]
+                  - text: Bestudeer het driehoeksconflict hieronder
+                - generic [ref=e46] [cursor=pointer]:
+                  - checkbox "Bereid je analyse voor Week 1 voor" [ref=e47]
+                  - generic [ref=e49] [cursor=pointer]: Bereid je analyse voor Week 1 voor
+                - generic [ref=e50] [cursor=pointer]:
+                  - checkbox "Vorm een team met andere studenten (4 personen)" [ref=e51]
+                  - text: Vorm een team met andere studenten (4 personen)
+                - generic [ref=e53] [cursor=pointer]:
+                  - checkbox "Noteer de deadline voor Week 1 in je agenda" [ref=e54]
+                  - text: Noteer de deadline voor Week 1 in je agenda
+            - generic [ref=e56]:
+              - heading "🔗 Snelle toegang:" [level=4] [ref=e57]
+              - generic [ref=e58]:
+                - button "🔺 Driehoeksconflict" [ref=e59] [cursor=pointer]
+                - button "📅 Weken Overzicht" [ref=e60] [cursor=pointer]
+                - button "📋 Analyse Opdrachten" [ref=e61] [cursor=pointer]:
+                  - generic [ref=e62] [cursor=pointer]: 📋 Analyse Opdrachten
+                - button "📄 Templates" [ref=e63] [cursor=pointer]
+      - region "Het Driehoeksconflict" [ref=e64]:
+        - heading "Het Driehoeksconflict" [level=2] [ref=e65]
+        - generic [ref=e66]:
+          - img [ref=e67]:
+            - generic [ref=e71] [cursor=pointer]:
+              - generic: EXPLOIT
+              - generic: COO
+            - generic [ref=e73] [cursor=pointer]:
+              - generic: EXPLORE
+              - generic: CIO
+            - generic [ref=e75] [cursor=pointer]:
+              - generic: BUYBACK
+              - generic: CFO
+            - generic [ref=e77] [cursor=pointer]:
+              - generic: CEO
+          - generic [ref=e79]:
+            - generic [ref=e80]:
+              - generic [ref=e81]:
+                - heading "🎯 Exploit Strategy" [level=3] [ref=e82]
+                - paragraph [ref=e83]:
+                  - strong [ref=e84]: "Champion:"
+                  - text: COO (Chief Operating Officer)
+                - paragraph [ref=e85]:
+                  - strong [ref=e86]: "Focus:"
+                  - text: Operationele excellentie, kostenreductie, procesoptimalisatie
+                - paragraph [ref=e87]:
+                  - strong [ref=e88]: "Tijdshorizon:"
+                  - text: Kort termijn (1-2 jaar)
+                - paragraph [ref=e89]:
+                  - strong [ref=e90]: "KPI's:"
+                  - text: EBITDA marge, kostenbesparing, efficiëntie ratio's
+              - generic [ref=e91]:
+                - heading "🚀 Explore Strategy" [level=3] [ref=e92]
+                - paragraph [ref=e93]:
+                  - strong [ref=e94]: "Champion:"
+                  - text: CIO (Chief Innovation Officer)
+                - paragraph [ref=e95]:
+                  - strong [ref=e96]: "Focus:"
+                  - text: Innovatie, nieuwe markten, disruptieve technologieën
+                - paragraph [ref=e97]:
+                  - strong [ref=e98]: "Tijdshorizon:"
+                  - text: Lang termijn (3-5 jaar)
+                - paragraph [ref=e99]:
+                  - strong [ref=e100]: "KPI's:"
+                  - text: R&D investering, nieuwe producten, marktaandeel groei
+              - generic [ref=e101]:
+                - heading "💰 Buyback Strategy" [level=3] [ref=e102]
+                - paragraph [ref=e103]:
+                  - strong [ref=e104]: "Champion:"
+                  - text: CFO (Chief Financial Officer)
+                - paragraph [ref=e105]:
+                  - strong [ref=e106]: "Focus:"
+                  - text: Kapitaalrendement, dividend, aandeleninkoop
+                - paragraph [ref=e107]:
+                  - strong [ref=e108]: "Tijdshorizon:"
+                  - text: Middellang termijn (2-3 jaar)
+                - paragraph [ref=e109]:
+                  - strong [ref=e110]: "KPI's:"
+                  - text: ROE, dividend yield, share price performance
+            - generic [ref=e111]:
+              - 'heading "⚖️ CEO: De Balanskunstenaar" [level=3] [ref=e112]'
+              - paragraph [ref=e113]: "Als CEO moet je de spanning tussen deze drie strategieën managen. Geen enkele strategie mag domineren, maar ze kunnen ook niet gelijk gewogen worden. Je succes hangt af van:"
+              - list [ref=e114]:
+                - listitem [ref=e115]: Marktcontext en timing
+                - listitem [ref=e116]: Stakeholder verwachtingen
+                - listitem [ref=e117]: Organisatie capaciteiten
+                - listitem [ref=e118]: Competitieve dynamiek
+              - paragraph [ref=e119]: "\"De kunst is niet om te kiezen, maar om te integreren.\""
+      - region "7 Weken Programma" [ref=e120]:
+        - heading "7 Weken Programma" [level=2] [ref=e121]
+        - generic [ref=e122]:
+          - article [ref=e123]:
+            - generic [ref=e124]:
+              - generic [ref=e125]: Week 1
+              - generic [ref=e126]: Voltooid
+            - heading "Strategische Analyse" [level=3] [ref=e127]
+            - paragraph [ref=e128]: Analyseer de huidige marktsituatie en identificeer kernuitdagingen
+            - generic [ref=e129]:
+              - generic [ref=e130]: "Deadline: 2 sept"
+              - button "Bekijk Resultaten" [ref=e131] [cursor=pointer]
+          - article [ref=e132]:
+            - generic [ref=e133]:
+              - generic [ref=e134]: Week 2
+              - generic [ref=e135]: Voltooid
+            - heading "Marktpositionering" [level=3] [ref=e136]
+            - paragraph [ref=e137]: Bepaal jullie unieke waardepropositie en concurrentievoordeel
+            - generic [ref=e138]:
+              - generic [ref=e139]: "Deadline: 9 sept"
+              - button "Bekijk Resultaten" [ref=e140] [cursor=pointer]
+          - article [ref=e141]:
+            - generic [ref=e142]:
+              - generic [ref=e143]: Week 3
+              - generic [ref=e144]: Voltooid
+            - heading "Innovatie vs Optimalisatie" [level=3] [ref=e145]
+            - paragraph [ref=e146]: "Eerste driehoeksconflict: balanceer tussen exploit en explore"
+            - generic [ref=e147]:
+              - generic [ref=e148]: "Deadline: 16 sept"
+              - button "Bekijk Resultaten" [ref=e149] [cursor=pointer]
+          - article [ref=e150]:
+            - generic [ref=e151]:
+              - generic [ref=e152]: Week 4
+              - generic [ref=e153]: Voltooid
+            - heading "Financiële Strategie" [level=3] [ref=e154]
+            - paragraph [ref=e155]: "Kapitaalallocatie: investeren of terugkopen?"
+            - generic [ref=e156]:
+              - generic [ref=e157]: "Deadline: 23 sept"
+              - button "Bekijk Resultaten" [ref=e158] [cursor=pointer]
+          - article [ref=e159]:
+            - generic [ref=e160]:
+              - generic [ref=e161]: Week 5
+              - generic [ref=e162]: Voltooid
+            - heading "Duurzaamheid & Groei" [level=3] [ref=e163]
+            - paragraph [ref=e164]: Lange termijn visie vs korte termijn resultaten
+            - generic [ref=e165]:
+              - generic [ref=e166]: "Deadline: 30 sept"
+              - button "Bekijk Resultaten" [ref=e167] [cursor=pointer]
+          - article [ref=e168]:
+            - generic [ref=e169]:
+              - generic [ref=e170]: Week 6
+              - generic [ref=e171]: Voltooid
+            - heading "Integratie & Synthese" [level=3] [ref=e172]
+            - paragraph [ref=e173]: Bouw je coherente strategie uit 5 pijlers
+            - generic [ref=e174]:
+              - generic [ref=e175]: "Deadline: 7 okt"
+              - button "Bekijk Resultaten" [ref=e176] [cursor=pointer]
+          - article [ref=e177]:
+            - generic [ref=e178]:
+              - generic [ref=e179]: Week 7
+              - generic [ref=e180]: Voltooid
+            - heading "Presentatie & Verdediging" [level=3] [ref=e181]
+            - paragraph [ref=e182]: Presenteer als RvB, evalueer als RvT
+            - generic [ref=e183]:
+              - generic [ref=e184]: "Deadline: 14 okt"
+              - button "Bekijk Resultaten" [ref=e185] [cursor=pointer]
+      - region "Jouw Rol in de Raad van Bestuur" [ref=e186]:
+        - heading "Jouw Rol in de Raad van Bestuur" [level=2] [ref=e187]
+        - generic [ref=e188]:
+          - article [ref=e189]:
+            - generic [ref=e190]: 👔
+            - heading "CEO" [level=3] [ref=e191]
+            - paragraph [ref=e192]: De Balans-kunstenaar
+            - generic [ref=e193]:
+              - heading "Verantwoordelijkheden:" [level=4] [ref=e194]
+              - list [ref=e195]:
+                - listitem [ref=e196]: → Leidt boardroom discussies
+                - listitem [ref=e197]: → Bewaakt strategische coherentie
+                - listitem [ref=e198]: → Balanceert conflicterende belangen
+                - listitem [ref=e199]: → Neemt finale beslissingen
+              - heading "Focus:" [level=4] [ref=e200]
+              - paragraph [ref=e201]: Langetermijnvisie en stakeholder management
+          - article [ref=e202]:
+            - generic [ref=e203]: 💰
+            - heading "CFO" [level=3] [ref=e204]
+            - paragraph [ref=e205]: De Kapitaal-Allocateur
+            - generic [ref=e206]:
+              - heading "Verantwoordelijkheden:" [level=4] [ref=e207]
+              - list [ref=e208]:
+                - listitem [ref=e209]: → Beheer financiële resources
+                - listitem [ref=e210]: → Evalueer ROI van investeringen
+                - listitem [ref=e211]: → Champion voor buyback strategie
+                - listitem [ref=e212]: → Risk management
+              - heading "Focus:" [level=4] [ref=e213]
+              - paragraph [ref=e214]: Aandeelhouderswaarde en financiële discipline
+          - article [ref=e215]:
+            - generic [ref=e216]: ⚙️
+            - heading "COO" [level=3] [ref=e217]
+            - paragraph [ref=e218]: De Optimalisator
+            - generic [ref=e219]:
+              - heading "Verantwoordelijkheden:" [level=4] [ref=e220]
+              - list [ref=e221]:
+                - listitem [ref=e222]: → Operationele excellentie
+                - listitem [ref=e223]: → Procesoptimalisatie
+                - listitem [ref=e224]: → Champion voor exploit strategie
+                - listitem [ref=e225]: → Efficiëntie verhogen
+              - heading "Focus:" [level=4] [ref=e226]
+              - paragraph [ref=e227]: Huidige business maximaliseren
+          - article [ref=e228]:
+            - generic [ref=e229]: 💡
+            - heading "CIO" [level=3] [ref=e230]
+            - paragraph [ref=e231]: De Pionier
+            - generic [ref=e232]:
+              - heading "Verantwoordelijkheden:" [level=4] [ref=e233]
+              - list [ref=e234]:
+                - listitem [ref=e235]: → Digitale transformatie
+                - listitem [ref=e236]: → Innovatie initiatieven
+                - listitem [ref=e237]: → Champion voor explore strategie
+                - listitem [ref=e238]: → Nieuwe businessmodellen
+              - heading "Focus:" [level=4] [ref=e239]
+              - paragraph [ref=e240]: Toekomstige groei en disruptie
+      - region "Week Structuur" [ref=e241]:
+        - heading "Week Structuur" [level=2] [ref=e242]
+        - generic [ref=e243]:
+          - button "WAAROM" [ref=e244] [cursor=pointer]
+          - button "HOE" [ref=e245] [cursor=pointer]
+          - button "WAT" [ref=e246] [cursor=pointer]
+        - generic [ref=e248]:
+          - heading "WAAROM - Didactische Rationale" [level=3] [ref=e249]
+          - paragraph [ref=e250]: Elke week bouwt voort op de vorige, waarbij je strategische beslissingen elkaar beïnvloeden. Dit simuleert de realiteit van boardroom dynamics waar beslissingen consequenties hebben voor de lange termijn.
+          - list [ref=e251]:
+            - listitem [ref=e252]:
+              - strong [ref=e253]: "Week 1-2:"
+              - text: Fundament leggen met analyse en positionering
+            - listitem [ref=e254]:
+              - strong [ref=e255]: "Week 3-5:"
+              - text: Navigeren door conflicten en trade-offs
+            - listitem [ref=e256]:
+              - strong [ref=e257]: "Week 6-7:"
+              - text: Integreren en verdedigen van coherente strategie
+      - region "Analyse Templates & Richtlijnen" [ref=e258]:
+        - heading "Analyse Templates & Richtlijnen" [level=2] [ref=e259]:
+          - generic [ref=e260]: Analyse Templates & Richtlijnen
+        - generic [ref=e262]:
+          - generic [ref=e263]:
+            - 'heading "Week 1: Strategische Analyse Framework" [level=3] [ref=e264]'
+            - generic [ref=e266]: "Structuur voor handmatige economische analyse voor [BEDRIJFSNAAM] in de [SECTOR]: 1. EXTERNE ANALYSE - Economische trends identificatie (3-5 punten) - Concurrentieanalyse (top 3 spelers) - PESTLE factoren (politiek, economisch, sociaal, technologisch, legaal, milieu) 2. INTERNE ANALYSE - Sterktes en zwaktes inventarisatie - Resource audit (financieel, human capital, assets) - Core competencies identificatie 3. STRATEGISCHE DILEMMA'S - Exploit vs Explore spanning - Buyback vs investeren beslissingen - Korte vs lange termijn afwegingen DELIVERABLE: Executive briefing (2 A4), Nederlandse samenvatting stijl"
+            - button "📋 Kopieer Framework" [ref=e267] [cursor=pointer]
+          - generic [ref=e268]:
+            - heading "💡 Tips voor handmatige analyse:" [level=4] [ref=e269]
+            - list [ref=e270]:
+              - listitem [ref=e271]: 💡 Gebruik betrouwbare databronnen (CBS, sector rapporten)
+              - listitem [ref=e272]: 💡 Interview stakeholders waar mogelijk
+              - listitem [ref=e273]: 💡 Trianguleer bevindingen uit meerdere bronnen
+              - listitem [ref=e274]: 💡 Documenteer aannames en limitaties
+        - text: 💡 💡 💡 💡 💡 💡 💡 💡
+      - region "Project Continuïteit" [ref=e275]:
+        - heading "Project Continuïteit" [level=2] [ref=e276]
+        - generic [ref=e279]:
+          - generic [ref=e282]:
+            - 'heading "Week 1: Fundament" [level=4] [ref=e283]'
+            - paragraph [ref=e284]: Strategische uitgangspunten
+          - generic [ref=e287]:
+            - 'heading "Week 2: Positionering" [level=4] [ref=e288]'
+            - paragraph [ref=e289]: Marktpositie bepalen
+          - generic [ref=e292]:
+            - 'heading "Week 3: Eerste Conflict" [level=4] [ref=e293]'
+            - paragraph [ref=e294]: Exploit vs Explore
+          - generic [ref=e297]:
+            - 'heading "Week 4: Kapitaal" [level=4] [ref=e298]'
+            - paragraph [ref=e299]: Investeren vs Buyback
+          - generic [ref=e302]:
+            - 'heading "Week 5: Balans" [level=4] [ref=e303]'
+            - paragraph [ref=e304]: Duurzaamheid vs Groei
+          - generic [ref=e307]:
+            - 'heading "Week 6: Synthese" [level=4] [ref=e308]'
+            - paragraph [ref=e309]: Coherente strategie
+          - generic [ref=e312]:
+            - 'heading "Week 7: Presentatie" [level=4] [ref=e313]'
+            - paragraph [ref=e314]: Verdediging & Evaluatie
+        - paragraph [ref=e316]:
+          - strong [ref=e317]: "Belangrijk:"
+          - text: Elke beslissing bouwt voort op de vorige. Je kunt niet zomaar van koers veranderen zonder consequenties. Dit simuleert de werkelijkheid waarin strategische beslissingen langetermijneffecten hebben.
+      - region "Volgende Deadline" [ref=e318]:
+        - heading "Volgende Deadline" [level=2] [ref=e319]
+        - generic [ref=e320]:
+          - generic [ref=e321]:
+            - generic [ref=e322]:
+              - generic [ref=e323]: "06"
+              - generic [ref=e324]: Dagen
+            - generic [ref=e325]:
+              - generic [ref=e326]: "07"
+              - generic [ref=e327]: Uren
+            - generic [ref=e328]:
+              - generic [ref=e329]: "10"
+              - generic [ref=e330]: Minuten
+            - generic [ref=e331]:
+              - generic [ref=e332]: "54"
+              - generic [ref=e333]: Seconden
+          - generic [ref=e334]:
+            - 'heading "Week 1: Strategische Analyse" [level=3] [ref=e335]'
+            - paragraph [ref=e336]: "Deadline: Maandag 2 september 2024, 23:59"
+      - region "Resources & Templates" [ref=e337]:
+        - heading "Resources & Templates" [level=2] [ref=e338]
+        - generic [ref=e339]:
+          - generic [ref=e340]:
+            - generic [ref=e341]: 📄
+            - heading "Strategische Analyse Template" [level=3] [ref=e342]
+            - paragraph [ref=e343]: Word template voor je wekelijkse individuele analyse
+            - button "⬇️ Download Template" [ref=e344] [cursor=pointer]
+          - generic [ref=e345]:
+            - generic [ref=e346]: 📊
+            - heading "Boardroom Besluit Format" [level=3] [ref=e347]
+            - paragraph [ref=e348]: PowerPoint template voor team besluitvorming
+            - button "⬇️ Download Template" [ref=e349] [cursor=pointer]
+          - generic [ref=e350]:
+            - generic [ref=e351]: 🎯
+            - heading "Strategische Pijler Canvas" [level=3] [ref=e352]
+            - paragraph [ref=e353]: Canvas voor het documenteren van strategische pijlers
+            - button "⬇️ Download Canvas" [ref=e354] [cursor=pointer]
+          - generic [ref=e355]:
+            - generic [ref=e356]: 📈
+            - heading "Project Continuïteit Tracker" [level=3] [ref=e357]
+            - paragraph [ref=e358]: Excel sheet voor het bijhouden van beslissingen
+            - button "⬇️ Download Tracker" [ref=e359] [cursor=pointer]
+          - generic [ref=e360]:
+            - generic [ref=e361]: 📚
+            - heading "Leeslijst & Artikelen" [level=3] [ref=e362]
+            - paragraph [ref=e363]: Achtergrondliteratuur over boardroom dynamics
+            - button "⬇️ Download Lijst" [ref=e364] [cursor=pointer]
+          - generic [ref=e365]:
+            - generic [ref=e366]: 🎥
+            - heading "Video Tutorials" [level=3] [ref=e367]
+            - paragraph [ref=e368]: Instructievideo's voor AI-gebruik en presentaties
+            - button "▶️ Bekijk Video's" [ref=e369] [cursor=pointer]
+      - region "Feedback & Beoordelingsflow" [ref=e370]:
+        - heading "Feedback & Beoordelingsflow" [level=2] [ref=e371]
+        - generic [ref=e372]:
+          - img [ref=e373]:
+            - generic [ref=e375]: 1. Individuele
+            - generic [ref=e376]: Analyse
+            - generic [ref=e378]: 2. Boardroom
+            - generic [ref=e379]: Simulatie
+            - generic [ref=e381]: 3. Team
+            - generic [ref=e382]: Besluit
+            - generic [ref=e384]: 4. Pijler
+            - generic [ref=e385]: Documentatie
+            - generic [ref=e387]: Peer Review
+            - generic [ref=e389]: Docentobservatie
+            - generic [ref=e391]: Groepsfeedback
+            - generic [ref=e393]: Eindbeordeling
+            - generic [ref=e394]: Maandag
+            - generic [ref=e395]: Donderdag
+            - generic [ref=e396]: Vrijdag
+            - generic [ref=e397]: Zondag
+          - generic [ref=e400]:
+            - heading "Feedback Momenten" [level=3] [ref=e401]
+            - generic [ref=e402]:
+              - generic [ref=e403]:
+                - generic [ref=e404]: Peer
+                - strong [ref=e405]: "Maandag:"
+                - text: Upload individuele analyse → Peer review binnen team
+              - generic [ref=e406]:
+                - generic [ref=e407]: Docent
+                - strong [ref=e408]: "Donderdag:"
+                - text: Boardroom simulatie → Directe observatie en interventies
+              - generic [ref=e409]:
+                - generic [ref=e410]: Groep
+                - strong [ref=e411]: "Vrijdag:"
+                - text: Team besluit → Cross-team feedback sessie
+              - generic [ref=e412]:
+                - generic [ref=e413]: Finaal
+                - strong [ref=e414]: "Zondag:"
+                - text: Pijler documentatie → Formatieve beoordeling
+            - heading "Beoordelingscriteria" [level=3] [ref=e415]
+            - list [ref=e416]:
+              - listitem [ref=e417]:
+                - strong [ref=e418]: "Individueel (25%):"
+                - text: Kwaliteit analyse, rol-perspectief, onderbouwing
+              - listitem [ref=e419]:
+                - strong [ref=e420]: "Team (25%):"
+                - text: Samenwerking, conflicthantering, consensusvorming
+              - listitem [ref=e421]:
+                - strong [ref=e422]: "Besluit (25%):"
+                - text: Coherentie, realisme, link naar driehoeksconflict
+              - listitem [ref=e423]:
+                - strong [ref=e424]: "Continuïteit (25%):"
+                - text: Verbinding met vorige weken, strategische lijn
+  - contentinfo [ref=e425]:
+    - generic [ref=e426]:
+      - generic [ref=e427]:
+        - generic [ref=e428]:
+          - heading "Quick Links" [level=4] [ref=e429]
+          - list [ref=e430]:
+            - listitem [ref=e431]:
+              - link "Home" [ref=e432] [cursor=pointer]:
+                - /url: index.html
+            - listitem [ref=e433]:
+              - link "Docenten Portal" [ref=e434] [cursor=pointer]:
+                - /url: docenten.html
+            - listitem [ref=e435]:
+              - link "Curriculum Commissie" [ref=e436] [cursor=pointer]:
+                - /url: commissie.html
+        - generic [ref=e437]:
+          - heading "Support" [level=4] [ref=e438]
+          - paragraph [ref=e439]:
+            - text: "Voor vragen:"
+            - link "aec@hanbk.nl" [ref=e440] [cursor=pointer]:
+              - /url: mailto:aec@hanbk.nl
+      - paragraph [ref=e441]: © 2024 HANBK - AEC Module
+```

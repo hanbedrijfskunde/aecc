@@ -46,7 +46,9 @@ aecc/
 ├── DEPLOYMENT.md          # Production deployment guide  
 ├── TESTING.md            # Testing strategy and procedures
 ├── CLAUDE.md             # AI assistant development guide
+├── mental-notes.md       # Educational framework notes
 ├── package.json          # NPM scripts and dependencies
+├── playwright.config.js  # Test configuration
 ├── .github/              # GitHub Actions and templates
 │   ├── workflows/        # CI/CD pipelines
 │   └── ISSUE_TEMPLATE/   # Issue reporting templates
@@ -65,9 +67,13 @@ aecc/
 ├── tests/                # Test suites
 │   ├── *.spec.js        # Playwright E2E tests
 │   └── manual/          # Manual verification scripts
+├── issues/               # GitHub issues templates
 ├── scripts/             # Automation scripts
 ├── course-docs/         # Educational content
-└── screenshots/         # Documentation images
+└── dev/                 # Development artifacts
+    ├── archived/        # Historical files
+    ├── test-artifacts/  # Test outputs
+    └── prototypes/      # Experimental code
 ```
 
 ## 🎯 Educational Innovation
@@ -261,6 +267,6 @@ npm run dev
 ---
 
 **Last Updated:** 2024-08-26  
-**Version:** 2.0.1  
-**Recent Fixes:** Quick Access buttons, Dutch language corrections
+**Version:** 2.1.0  
+**Recent Changes:** Filesystem cleanup, organized structure, mental notes processing
 © 2024 HANBK - Hogeschool Arnhem en Nijmegen Business School
