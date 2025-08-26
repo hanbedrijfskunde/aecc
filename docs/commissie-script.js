@@ -102,12 +102,20 @@ function initializeRiskMatrix() {
     });
     
     // Add click handlers for risk details
-    document.querySelectorAll('.grid-cell').forEach(cell => {
+    document.querySelectorAll('.matrix-cell').forEach(cell => {
         cell.addEventListener('click', function() {
             const risks = this.querySelectorAll('.risk-item');
             if (risks.length > 0) {
                 showRiskDetails(risks);
             }
+        });
+    });
+    
+    // Also add handlers for individual risk items
+    document.querySelectorAll('.risk-item').forEach(item => {
+        item.addEventListener('click', function(e) {
+            e.stopPropagation();
+            showRiskItemDetails(this);
         });
     });
 }
@@ -705,28 +713,123 @@ function initializeTooltips() {
     });
 }
 
-// Show Risk Details
+// Show Risk Details in the risk details section
 function showRiskDetails(risks) {
-    const modal = document.getElementById('riskModal') || createRiskModal();
-    const modalBody = modal.querySelector('.modal-body');
+    const riskDetailsSection = document.getElementById('riskDetails');
+    if (!riskDetailsSection) return;
     
-    let content = '<div class="risk-details">';
+    let content = '<h3>Risk Details</h3>';
     risks.forEach(risk => {
         const riskText = risk.textContent.trim();
-        const score = risk.querySelector('.risk-score')?.textContent || 'N/A';
+        const riskData = getRiskData(risk.getAttribute('data-risk'));
         
         content += `
-            <div class="risk-detail-item">
-                <h4>${riskText.replace(score, '').trim()}</h4>
-                <p>Risk Score: <strong>${score}</strong></p>
-                <p>Mitigatie strategieën worden geladen...</p>
+            <div class="risk-detail-item" style="margin-bottom: 1.5rem; padding: 1rem; border: 1px solid #ddd; border-radius: 8px;">
+                <h4 style="margin: 0 0 0.5rem 0; color: var(--committee-primary);">${riskText}</h4>
+                <p><strong>Impact:</strong> ${riskData.impact}</p>
+                <p><strong>Waarschijnlijkheid:</strong> ${riskData.probability}</p>
+                <p><strong>Beschrijving:</strong> ${riskData.description}</p>
+                <p><strong>Mitigatie:</strong> ${riskData.mitigation}</p>
             </div>
         `;
     });
-    content += '</div>';
     
-    modalBody.innerHTML = content;
-    modal.classList.add('active');
+    riskDetailsSection.innerHTML = content;
+}
+
+// Show individual risk item details
+function showRiskItemDetails(riskItem) {
+    const riskDetailsSection = document.getElementById('riskDetails');
+    if (!riskDetailsSection) return;
+    
+    const riskText = riskItem.textContent.trim();
+    const riskData = getRiskData(riskItem.getAttribute('data-risk'));
+    
+    const content = `
+        <h3>Risk Details</h3>
+        <div class="risk-detail-item" style="padding: 1.5rem; border: 1px solid #ddd; border-radius: 8px;">
+            <h4 style="margin: 0 0 0.5rem 0; color: var(--committee-primary);">${riskText}</h4>
+            <p><strong>Impact:</strong> ${riskData.impact}</p>
+            <p><strong>Waarschijnlijkheid:</strong> ${riskData.probability}</p>
+            <p><strong>Beschrijving:</strong> ${riskData.description}</p>
+            <p><strong>Mitigatie:</strong> ${riskData.mitigation}</p>
+        </div>
+    `;
+    
+    riskDetailsSection.innerHTML = content;
+}
+
+// Get risk data based on risk identifier
+function getRiskData(riskId) {
+    const riskDatabase = {
+        'tech-failure': {
+            impact: 'Hoog',
+            probability: 'Laag',
+            description: 'Platform storing kan onderwijsproces volledig onderbreken.',
+            mitigation: 'GitHub Pages hosting (99.9% uptime), offline fallback via downloads, printbare lesson plans backup.'
+        },
+        'ai-dependency': {
+            impact: 'Hoog', 
+            probability: 'Medium',
+            description: 'Studenten worden te afhankelijk van AI-output zonder kritische evaluatie.',
+            mitigation: 'AI output als startpunt niet eindpunt, focus op kritische evaluatie, rolgebonden interpretatie vereist.'
+        },
+        'quality': {
+            impact: 'Hoog',
+            probability: 'Medium', 
+            description: 'Kwaliteit van onderwijs kan afnemen door te veel focus op technologie.',
+            mitigation: 'Gestandaardiseerde rubrics, peer review systeem, continue monitoring via dashboard.'
+        },
+        'staff': {
+            impact: 'Medium',
+            probability: 'Laag',
+            description: 'Uitval van getrainde docenten kan continuïteit bedreigen.',
+            mitigation: 'Backup docenten trainen, documentatie compleet houden, knowledge sharing sessies.'
+        },
+        'engagement': {
+            impact: 'Medium',
+            probability: 'Medium',
+            description: 'Student engagement kan afnemen door complexiteit van de simulatie.',
+            mitigation: 'Competitief element via teams, weekly nieuwe scenarios, event cards voor dynamiek.'
+        },
+        'confusion': {
+            impact: 'Medium',
+            probability: 'Medium',
+            description: 'Rol verwarring kan effectiviteit van simulatie verminderen.',
+            mitigation: 'Duidelijke rolbeschrijvingen, onboarding proces, regelmatige check-ins.'
+        },
+        'time': {
+            impact: 'Medium',
+            probability: 'Hoog',
+            description: 'Tijdsdruk tijdens 90-minuten sessies kan kwaliteit beïnvloeden.',
+            mitigation: 'Timer widget met fase-indicatie, duidelijke 90-minuten structuur, interventie momenten gepland.'
+        },
+        'plagiarism': {
+            impact: 'Laag',
+            probability: 'Laag',
+            description: 'Traditionele plagiaat risico\'s zijn minder relevant in simulatie context.',
+            mitigation: 'Focus op proces beoordeling, peer evaluation, unieke rol-specifieke opdrachten.'
+        },
+        'absence': {
+            impact: 'Laag',
+            probability: 'Medium',
+            description: 'Student afwezigheid kan team dynamiek verstoren.',
+            mitigation: 'Backup rollen, flexibele team grootte, opname van sessies voor inhaal.'
+        },
+        'initial-confusion': {
+            impact: 'Laag',
+            probability: 'Hoog',
+            description: 'Initiële verwarring over nieuwe onderwijsmethode is normaal.',
+            mitigation: 'Uitgebreide onboarding, FAQ sectie, proactive support eerste weken.'
+        }
+    };
+    
+    return riskDatabase[riskId] || {
+        impact: 'Onbekend',
+        probability: 'Onbekend', 
+        description: 'Geen gedetailleerde informatie beschikbaar.',
+        mitigation: 'Nader te bepalen.'
+    };
 }
 
 function createRiskModal() {

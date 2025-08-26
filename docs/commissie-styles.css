@@ -370,6 +370,12 @@ body {
     box-shadow: var(--committee-shadow);
 }
 
+.risk-matrix {
+    position: relative;
+    margin: 2rem 0;
+    padding: 2rem;
+}
+
 .matrix-header {
     display: flex;
     justify-content: space-between;
@@ -409,6 +415,156 @@ body {
 
 .legend-color.critical {
     background: var(--risk-critical);
+}
+
+/* Risk Matrix Grid Layout */
+.matrix-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 10px;
+    margin-top: 1rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+}
+
+.matrix-labels {
+    position: absolute;
+    top: -30px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--committee-primary);
+}
+
+.matrix-labels .y-axis-label {
+    position: absolute;
+    left: -120px;
+    top: 50%;
+    transform: rotate(-90deg);
+    transform-origin: center;
+    white-space: nowrap;
+}
+
+.matrix-labels .x-axis-label {
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+}
+
+.matrix-cell {
+    background: white;
+    border-radius: 8px;
+    padding: 1rem;
+    min-height: 120px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.matrix-cell:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+.matrix-cell h4 {
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin: 0 0 0.5rem 0;
+    text-align: center;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    background: rgba(0, 0, 0, 0.1);
+}
+
+/* Risk level colors for matrix cells */
+.matrix-cell.high-high {
+    border-left: 4px solid var(--risk-critical);
+    background: linear-gradient(135deg, #fff 0%, #ffebee 100%);
+}
+
+.matrix-cell.high-medium {
+    border-left: 4px solid var(--risk-high);
+    background: linear-gradient(135deg, #fff 0%, #fff3e0 100%);
+}
+
+.matrix-cell.high-low {
+    border-left: 4px solid var(--risk-medium);
+    background: linear-gradient(135deg, #fff 0%, #f3e5f5 100%);
+}
+
+.matrix-cell.medium-high {
+    border-left: 4px solid var(--risk-high);
+    background: linear-gradient(135deg, #fff 0%, #fff8e1 100%);
+}
+
+.matrix-cell.medium-medium {
+    border-left: 4px solid var(--risk-medium);
+    background: linear-gradient(135deg, #fff 0%, #f1f8e9 100%);
+}
+
+.matrix-cell.medium-low {
+    border-left: 4px solid var(--risk-low);
+    background: linear-gradient(135deg, #fff 0%, #e8f5e8 100%);
+}
+
+.matrix-cell.low-high,
+.matrix-cell.low-medium,
+.matrix-cell.low-low {
+    border-left: 4px solid var(--risk-low);
+    background: linear-gradient(135deg, #fff 0%, #e8f5e8 100%);
+}
+
+.risk-item {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 0.5rem;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.risk-item:hover {
+    background: white;
+    transform: scale(1.02);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.empty {
+    color: #999;
+    font-style: italic;
+    text-align: center;
+    padding: 1rem;
+}
+
+/* Risk Details Section */
+.risk-details {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 12px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.risk-details h3 {
+    margin: 0 0 1rem 0;
+    color: var(--committee-primary);
+    font-size: 1.2rem;
+}
+
+.select-prompt {
+    color: #666;
+    font-style: italic;
 }
 
 .risk-grid {

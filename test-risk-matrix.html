@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Risk Matrix Test</title>
+    <link rel="stylesheet" href="docs/design-system.css">
+    <link rel="stylesheet" href="docs/styles.css">
+    <link rel="stylesheet" href="docs/commissie-styles.css">
+    <style>
+        body {
+            padding: 2rem;
+            background: #f5f5f5;
+        }
+        .test-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>Risk Matrix Test</h1>
+        <p>Test de risk management matrix functionaliteit:</p>
+        
+        <!-- Risk Management Matrix -->
+        <section class="risk-management" aria-labelledby="risk-heading">
+            <h2 id="risk-heading" class="section-title">⚠️ Risk Management Matrix</h2>
+            
+            <div class="risk-matrix-container">
+                <div class="risk-matrix">
+                    <div class="matrix-labels">
+                        <div class="y-axis-label">Impact →</div>
+                        <div class="x-axis-label">Waarschijnlijkheid →</div>
+                    </div>
+                    
+                    <div class="matrix-grid">
+                        <!-- High Impact / Low Probability -->
+                        <div class="matrix-cell high-low">
+                            <h4>Hoog/Laag</h4>
+                            <div class="risk-item" data-risk="tech-failure">
+                                💻 Platform Storing
+                            </div>
+                        </div>
+                        
+                        <!-- High Impact / Medium Probability -->
+                        <div class="matrix-cell high-medium">
+                            <h4>Hoog/Medium</h4>
+                            <div class="risk-item" data-risk="ai-dependency">
+                                🤖 AI Over-afhankelijkheid
+                            </div>
+                            <div class="risk-item" data-risk="quality">
+                                📉 Kwaliteitsdaling
+                            </div>
+                        </div>
+                        
+                        <!-- High Impact / High Probability -->
+                        <div class="matrix-cell high-high">
+                            <h4>Hoog/Hoog</h4>
+                            <span class="empty">Geen geïdentificeerd</span>
+                        </div>
+                        
+                        <!-- Medium Impact / Low Probability -->
+                        <div class="matrix-cell medium-low">
+                            <h4>Medium/Laag</h4>
+                            <div class="risk-item" data-risk="staff">
+                                👥 Docent Uitval
+                            </div>
+                        </div>
+                        
+                        <!-- Medium Impact / Medium Probability -->
+                        <div class="matrix-cell medium-medium">
+                            <h4>Medium/Medium</h4>
+                            <div class="risk-item" data-risk="engagement">
+                                😴 Student Engagement
+                            </div>
+                            <div class="risk-item" data-risk="confusion">
+                                ❓ Rol Verwarring
+                            </div>
+                        </div>
+                        
+                        <!-- Medium Impact / High Probability -->
+                        <div class="matrix-cell medium-high">
+                            <h4>Medium/Hoog</h4>
+                            <div class="risk-item" data-risk="time">
+                                ⏰ Tijdsdruk
+                            </div>
+                        </div>
+                        
+                        <!-- Low Impact / Low Probability -->
+                        <div class="matrix-cell low-low">
+                            <h4>Laag/Laag</h4>
+                            <div class="risk-item" data-risk="plagiarism">
+                                📝 Plagiaat
+                            </div>
+                        </div>
+                        
+                        <!-- Low Impact / Medium Probability -->
+                        <div class="matrix-cell low-medium">
+                            <h4>Laag/Medium</h4>
+                            <div class="risk-item" data-risk="absence">
+                                🚫 Afwezigheid
+                            </div>
+                        </div>
+                        
+                        <!-- Low Impact / High Probability -->
+                        <div class="matrix-cell low-high">
+                            <h4>Laag/Hoog</h4>
+                            <div class="risk-item" data-risk="initial-confusion">
+                                🌀 Initiële Verwarring
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Risk Details -->
+                    <div class="risk-details" id="riskDetails">
+                        <h3>Risk Details</h3>
+                        <p class="select-prompt">Klik op een risico in de matrix voor details</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <script src="docs/script.js"></script>
+    <script src="docs/commissie-script.js"></script>
+</body>
+</html>
