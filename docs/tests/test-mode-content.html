@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <title>Mode Content Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .test-result { margin: 10px 0; padding: 10px; border-radius: 5px; }
+        .success { background: #d4edda; color: #155724; }
+        .error { background: #f8d7da; color: #721c24; }
+        .test-section { margin: 20px 0; border: 1px solid #ccc; padding: 15px; }
+        button { margin: 5px; padding: 10px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <h1>Mode Content System Test</h1>
+    
+    <div class="test-section">
+        <h2>JSON Structure Test</h2>
+        <div id="json-test-results"></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>Mode Content Test</h2>
+        <p>Test text: <span data-mode-text="onboardingCheck">Default text</span></p>
+        <p>Quick link: <span data-mode-text="quickLinkAnalyse">Default link</span></p>
+        <p>Work time: <span data-mode-text="workProcessTime">Default time</span></p>
+        
+        <div>
+            <button onclick="testMode('traditioneel')">Test Traditioneel</button>
+            <button onclick="testMode('ondersteund')">Test AI-Ondersteund</button>
+            <button onclick="testMode('geintegreerd')">Test AI-Geïntegreerd</button>
+        </div>
+        
+        <div id="mode-test-results"></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>LocalStorage Test</h2>
+        <div id="storage-test-results"></div>
+        <button onclick="testLocalStorage()">Test Storage</button>
+    </div>
+
+    <script>
+        // Test 1: Check JSON loads correctly
+        async function testJSON() {
+            const resultDiv = document.getElementById('json-test-results');
+            try {
+                const response = await fetch('../content.json');
+                const data = await response.json();
+                
+                if (data.modeContent && 
+                    data.modeContent.traditioneel && 
+                    data.modeContent.ondersteund && 
+                    data.modeContent.geintegreerd) {
+                    resultDiv.innerHTML = '<div class="test-result success">✅ JSON structure is correct</div>';
+                    console.log('Mode content structure:', Object.keys(data.modeContent));
+                    return data.modeContent;
+                } else {
+                    resultDiv.innerHTML = '<div class="test-result error">❌ JSON structure missing modeContent</div>';
+                    return null;
+                }
+            } catch (error) {
+                resultDiv.innerHTML = `<div class="test-result error">❌ JSON load failed: ${error.message}</div>`;
+                return null;
+            }
+        }
+        
+        // Test 2: Test mode content updates
+        let modeContent = null;
+        
+        async function testMode(mode) {
+            if (!modeContent) {
+                modeContent = await testJSON();
+            }
+            
+            const resultDiv = document.getElementById('mode-test-results');
+            
+            if (!modeContent || !modeContent[mode]) {
+                resultDiv.innerHTML = `<div class="test-result error">❌ Mode ${mode} not found in content</div>`;
+                return;
+            }
+            
+            const selectedModeContent = modeContent[mode];
+            
+            // Update all elements with data-mode-text attribute
+            document.querySelectorAll('[data-mode-text]').forEach(element => {
+                const contentKey = element.dataset.modeText;
+                if (selectedModeContent[contentKey]) {
+                    element.textContent = selectedModeContent[contentKey];
+                } else {
+                    console.warn(`Missing content key: ${contentKey} for mode: ${mode}`);
+                }
+            });
+            
+            resultDiv.innerHTML = `<div class="test-result success">✅ Content updated for mode: ${mode}</div>`;
+        }
+        
+        // Test 3: LocalStorage functionality
+        function testLocalStorage() {
+            const resultDiv = document.getElementById('storage-test-results');
+            try {
+                // Test setting and getting
+                localStorage.setItem('testMode', 'traditioneel');
+                const retrieved = localStorage.getItem('testMode');
+                
+                if (retrieved === 'traditioneel') {
+                    resultDiv.innerHTML = '<div class="test-result success">✅ LocalStorage working correctly</div>';
+                } else {
+                    resultDiv.innerHTML = '<div class="test-result error">❌ LocalStorage not working</div>';
+                }
+                
+                // Clean up
+                localStorage.removeItem('testMode');
+            } catch (error) {
+                resultDiv.innerHTML = `<div class="test-result error">❌ LocalStorage error: ${error.message}</div>`;
+            }
+        }
+        
+        // Initialize tests
+        document.addEventListener('DOMContentLoaded', function() {
+            testJSON();
+            testLocalStorage();
+        });
+    </script>
+</body>
+</html>

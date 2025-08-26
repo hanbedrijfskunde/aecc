@@ -1,0 +1,926 @@
+{
+  "metadata": {
+    "version": "1.0.0",
+    "lastUpdated": "2024-08-25",
+    "course": "Algemene Economie C-cluster",
+    "abbreviation": "AEC",
+    "language": "nl"
+  },
+  
+  "course": {
+    "name": "Algemene Economie C-cluster",
+    "abbreviation": "AEC",
+    "description": "Een innovatief onderwijsconcept waarbij studenten als Raad van Bestuur strategische beslissingen nemen op basis van intelligence briefings en economische analyses.",
+    "duration": "7 weken",
+    "format": "Boardroom Simulatie",
+    "learningGoals": [
+      {
+        "id": "lg1",
+        "title": "Analyse naar Actie",
+        "description": "Studenten leren om data uit analyses niet te reproduceren, maar te gebruiken voor strategische besluitvorming."
+      },
+      {
+        "id": "lg2",
+        "title": "Cognitieve Flexibiliteit",
+        "description": "Studenten trainen het vermogen om vanuit verschillende, vaak conflicterende, professionele rollen te redeneren."
+      },
+      {
+        "id": "lg3",
+        "title": "Synthese & Storytelling",
+        "description": "Studenten bouwen week na week aan één coherente strategie en leren dit als een logisch verhaal te presenteren."
+      },
+      {
+        "id": "lg4",
+        "title": "Kritische Bevraging",
+        "description": "Studenten leren om de strategie van anderen te analyseren en te bevragen vanuit een breder, maatschappelijk perspectief."
+      }
+    ]
+  },
+  
+  "triangleConflict": {
+    "title": "Het Driehoeksconflict",
+    "description": "De fundamentele spanning tussen drie strategische richtingen die elke organisatie moet balanceren.",
+    "vertices": [
+      {
+        "id": "exploit",
+        "name": "Exploit",
+        "champion": "COO",
+        "description": "Optimalisatie van bestaande business",
+        "focus": "Efficiëntie, kostenbesparing, procesverbetering",
+        "shortTerm": true,
+        "color": "#8FD14F"
+      },
+      {
+        "id": "explore",
+        "name": "Explore",
+        "champion": "CIO",
+        "description": "Ontdekken van nieuwe businessmodellen",
+        "focus": "Innovatie, disruptie, nieuwe markten",
+        "longTerm": true,
+        "color": "#3498DB"
+      },
+      {
+        "id": "buyback",
+        "name": "Buyback",
+        "champion": "CFO",
+        "description": "Teruggeven van kapitaal aan aandeelhouders",
+        "focus": "Aandeleninkoop, dividend, financiële discipline",
+        "shortTerm": true,
+        "color": "#E63946"
+      }
+    ]
+  },
+  
+  "roles": {
+    "rvb": [
+      {
+        "id": "ceo",
+        "title": "CEO",
+        "name": "De Balans-kunstenaar",
+        "icon": "👤",
+        "description": "Leidt de vergaderingen, bewaakt de visie, en zorgt voor balans tussen de verschillende belangen.",
+        "responsibilities": [
+          "Leiden van boardroom vergaderingen",
+          "Bewaken van strategische coherentie",
+          "Finale besluitvorming bij impasses",
+          "Communicatie met stakeholders"
+        ],
+        "conflictsWith": ["cfo", "coo", "cio"],
+        "keyMetrics": ["Strategische coherentie", "Stakeholder tevredenheid", "Lange termijn waardecreatie"],
+        "weeklyFocus": "Zorgen dat alle stemmen gehoord worden en tot een besluit komen dat de organisatie vooruit helpt."
+      },
+      {
+        "id": "cfo",
+        "title": "CFO",
+        "name": "De Kapitaal-Allocateur",
+        "icon": "💰",
+        "description": "Focust op risico, rendement en aandeelhouderswaarde. Pleit vaak voor financiële discipline en buyback programma's.",
+        "responsibilities": [
+          "Financiële analyse en risicobeoordeling",
+          "ROI calculaties voor investeringen",
+          "Aandeelhouderswaarde maximalisatie",
+          "Kapitaalallocatie beslissingen"
+        ],
+        "conflictsWith": ["cio"],
+        "supportsBuyback": true,
+        "keyMetrics": ["ROI", "EBITDA", "Share price", "Dividend yield"],
+        "weeklyFocus": "Evalueren van financiële implicaties en pleiten voor disciplined capital allocation."
+      },
+      {
+        "id": "coo",
+        "title": "COO",
+        "name": "De Optimalisator",
+        "icon": "🛠️",
+        "description": "Focust op operationele excellentie, efficiëntie, en het maximaliseren van de huidige business (Exploit).",
+        "responsibilities": [
+          "Procesoptimalisatie",
+          "Kostenbeheer en efficiëntie",
+          "Operationele KPI's bewaken",
+          "Supply chain management"
+        ],
+        "conflictsWith": ["cio"],
+        "supportsExploit": true,
+        "keyMetrics": ["Operational efficiency", "Cost per unit", "Productivity", "Quality metrics"],
+        "weeklyFocus": "Identificeren van quick wins en efficiëntieverbeteringen in bestaande processen."
+      },
+      {
+        "id": "cio",
+        "title": "CIO",
+        "name": "De Pionier",
+        "icon": "💡",
+        "description": "Focust op innovatie, disruptie, en het ontdekken van nieuwe businessmodellen (Explore).",
+        "responsibilities": [
+          "Innovatiestrategie ontwikkelen",
+          "Nieuwe technologieën evalueren",
+          "Digitale transformatie leiden",
+          "R&D investeringen beheren"
+        ],
+        "conflictsWith": ["cfo", "coo"],
+        "supportsExplore": true,
+        "keyMetrics": ["Innovation index", "Time to market", "R&D spend", "New revenue streams"],
+        "weeklyFocus": "Identificeren van disruptieve kansen en pleiten voor innovatie-investeringen."
+      }
+    ],
+    
+    "rvt": [
+      {
+        "id": "productivity",
+        "title": "De Productiviteitscommissaris",
+        "theme": "De achterblijvende productiviteitsgroei in Europa",
+        "persona": "U bent bezorgd over de concurrentiekracht van Europa. U gelooft heilig in R&D en structurele investeringen in technologie en menselijk kapitaal.",
+        "coreQuestion": "Hoe draagt uw strategie concreet bij aan het dichten van de innovatiekloof met de VS en China?",
+        "exampleQuestions": [
+          "Welk percentage van uw budget is gereserveerd voor fundamentele R&D?",
+          "Hoe voorkomt u dat efficiëntiefocus leidt tot innovatiestilstand?",
+          "Welke investeringen doet u in vaardigheden van personeel?"
+        ]
+      },
+      {
+        "id": "sustainability",
+        "title": "De Duurzaamheidsadvocaat",
+        "theme": "Greenwashing",
+        "persona": "U bent sceptisch en doorziet marketingpraatjes. U wilt harde, meetbare data over werkelijke impact.",
+        "coreQuestion": "Hoe bewijst u dat uw duurzaamheidsstrategie een kernactiviteit is, niet slechts marketing?",
+        "exampleQuestions": [
+          "Is het budget voor True Price in verhouding tot het probleem?",
+          "Welke externe audits verifieren uw duurzaamheidsclaims?",
+          "Wat gebeurt met CEO bonus bij missen CO2-doelen?"
+        ]
+      },
+      {
+        "id": "geopolitical",
+        "title": "De Geopolitieke Strateeg",
+        "theme": "Geopolitieke ontwikkelingen",
+        "persona": "U ziet de wereld als schaakbord vol risico's: handelsoorlogen, instabiliteit, protectionisme.",
+        "coreQuestion": "Hoe robuust is uw strategie tegen plotselinge geopolitieke schokken?",
+        "exampleQuestions": [
+          "Wat is plan B als grenzen sluiten of tarieven stijgen?",
+          "Hoe beïnvloedt polarisatie de vraag naar producten?",
+          "Is impact van oorlog op energie/grondstoffen doorgerekend?"
+        ]
+      },
+      {
+        "id": "humanCapital",
+        "title": "De Human Capital Wachter",
+        "theme": "Vergrijzing en War for Talent",
+        "persona": "U weet dat een bedrijf niets is zonder de juiste mensen. Talent aantrekken is de grootste uitdaging.",
+        "coreQuestion": "Waarom zou de volgende generatie talent voor uw bedrijf willen werken?",
+        "exampleQuestions": [
+          "Hoe borgt u kennisoverdracht van oude naar jonge generatie?",
+          "Hoe blijft u aantrekkelijk ondanks efficiëntiefocus?",
+          "Hoe investeert u in continue ontwikkeling personeel?"
+        ]
+      },
+      {
+        "id": "technology",
+        "title": "De Technologie Auditor",
+        "theme": "Automatisering en digitale transformatie",
+        "persona": "U begrijpt technologie diep en tolereert geen buzzword bingo. U wilt concrete implementatieplannen.",
+        "coreQuestion": "Hoe zorgt u dat automatisering leidt tot echte waardecreatie, niet tot hype?",
+        "exampleQuestions": [
+          "Wat is uw data governance strategie?",
+          "Hoe meet u ROI van automatisering-investeringen?",
+          "Welke ethische richtlijnen hanteert u voor automatisering?"
+        ]
+      },
+      {
+        "id": "consumer",
+        "title": "De Consumentenvertegenwoordiger",
+        "theme": "Veranderende consumentenvoorkeuren",
+        "persona": "U vertegenwoordigt de eindgebruiker en vraagt scherp door op klantwaarde en experience.",
+        "coreQuestion": "Hoe blijft u relevant voor de consument van morgen?",
+        "exampleQuestions": [
+          "Hoe integreert u Gen Z voorkeuren in productontwikkeling?",
+          "Wat is uw omnichannel strategie?",
+          "Hoe balanceert u personalisatie met privacy?"
+        ]
+      },
+      {
+        "id": "financial",
+        "title": "De Financiële Waakhond",
+        "theme": "Financiële stabiliteit en risicobeheer",
+        "persona": "U bent de klassieke financiële toezichthouder met oog voor risico's en financiële discipline.",
+        "coreQuestion": "Hoe solide is uw financiële fundament voor de komende economische storm?",
+        "exampleQuestions": [
+          "Wat is uw schuld/eigen vermogen ratio?",
+          "Hoe stress-test u verschillende scenario's?",
+          "Welke buffers heeft u voor tegenvallers?"
+        ]
+      }
+    ]
+  },
+  
+  "weeks": [
+    {
+      "number": 1,
+      "title": "De Aftrap - Waar zetten we ons geld op in?",
+      "theme": "Kapitaalallocatie",
+      "icon": "🚀",
+      "description": "Teams vormen hun Raad van Bestuur en maken hun eerste strategische kapitaalallocatie beslissing.",
+      
+      "waarom": "We beginnen met kapitaalallocatie omdat dit de fundamentele strategische keuze is: waar zet je je schaarse resources op in? Dit forceert teams direct tot het maken van trade-offs tussen Exploit, Explore en Buyback.",
+      
+      "hoe": {
+        "zelfstudie": [
+          "Genereer als team een macro-economische analyse",
+          "Bestudeer individueel de analyse vanuit je rol (CEO/CFO/COO/CIO)",
+          "Bereid een pitch voor: hoeveel van €100M claim jij voor jouw prioriteit?",
+          "CEO bereidt zich voor om de meeting te leiden"
+        ],
+        "werkcollege": [
+          "15 min: Introductie Project Continuïteit en rollen",
+          "75 min: Boardroom simulatie - De Kapitaalallocatie-Strijd",
+          "30 min: Besluit & vastlegging op Strategyzer-model",
+          "15 min: Inleveren Pijler 1 van strategie"
+        ]
+      },
+      
+      "wat": {
+        "deliverables": [
+          "Macro-economische analyse",
+          "Kapitaalallocatie besluit (€100M verdeling)",
+          "Strategyzer plot met 3 initiatieven",
+          "Pijler 1: Strategisch fundament"
+        ],
+        "assessment": "Kwaliteit van onderbouwing, realisme van allocatie, teamdynamiek"
+      },
+      
+      "analyseOpdracht": "Analyseer de huidige macro-economische situatie in Nederland/Europa. Focus op: rentestanden, inflatie, consumentenvertrouwen, arbeidsmarkt, en geopolitieke risico's. Geef concrete implicaties voor strategische besluitvorming in een middelgroot bedrijf.",
+      
+      "analyseOpdracht_traditioneel": "Voer handmatig uit:\n\n1. Wat is de plaats van de sector in de bedrijfskolom?\n2. Breng de relevante macro-economische variabelen van Nederland in kaart.\n   • Bijvoorbeeld: BBP, bestedingen van consumenten, bedrijven, overheid, export - import, werkgelegenheid, inflatie, conjunctuur, consumenten/producentenvertrouwen, etc. En wat zijn de relevante ontwikkelingen hierin.\n3. Beschrijf duidelijk wat de invloeden van macro-economische variabelen zijn op de gekozen sector.\n   • Denk aan rente, kapitaalintensiteit, vertrouwensindicatoren, grondstofprijzen, wisselkoersen, wereldhandel, conjunctuur, werkgelegenheid, inflatie, etc.\n4. Bepaal de conjunctuurgevoeligheid van de **sector** en geef een conclusie op basis van de volgende criteria:\n   • Mogelijke invloeden: kapitaalintensiteit, grondstofprijzen, wisselkoersen, wereldhandel, werkgelegenheid, inflatie, aard van producten, positie in de bedrijfskolom, etc.\n5. Bepaal voor de gekozen **bedrijven** uit de sector de conjunctuurgevoeligheid en geef een conclusie op basis van de criteria:\n   • Wat is de mate van geografische spreiding omzet?\n   • Wat is de mate van productdiversificatie?\n   • Wat is de mate van marktmacht?\n\nConclusie",
+      
+      "analyseOpdracht_ondersteund": "Opdracht voor AI junior analist:\n\n1. Wat is de plaats van de sector in de bedrijfskolom?\n2. Breng de relevante macro-economische variabelen van Nederland in kaart.\n   • Bijvoorbeeld: BBP, bestedingen van consumenten, bedrijven, overheid, export - import, werkgelegenheid, inflatie, conjunctuur, consumenten/producentenvertrouwen, etc. En wat zijn de relevante ontwikkelingen hierin.\n3. Beschrijf duidelijk wat de invloeden van macro-economische variabelen zijn op de gekozen sector.\n   • Denk aan rente, kapitaalintensiteit, vertrouwensindicatoren, grondstofprijzen, wisselkoersen, wereldhandel, conjunctuur, werkgelegenheid, inflatie, etc.\n4. Bepaal de conjunctuurgevoeligheid van de **sector** en geef een conclusie op basis van de volgende criteria:\n   • Mogelijke invloeden: kapitaalintensiteit, grondstofprijzen, wisselkoersen, wereldhandel, werkgelegenheid, inflatie, aard van producten, positie in de bedrijfskolom, etc.\n5. Bepaal voor de gekozen **bedrijven** uit de sector de conjunctuurgevoeligheid en geef een conclusie op basis van de criteria:\n   • Wat is de mate van geografische spreiding omzet?\n   • Wat is de mate van productdiversificatie?\n   • Wat is de mate van marktmacht?\n\nConclusie\n\nJij maakt op basis van deze analyse een executive briefing voor de Raad van Bestuur.",
+      
+      "analyseOpdracht_geintegreerd": "Opdracht voor AI junior analist:\n\n1. Wat is de plaats van de sector in de bedrijfskolom?\n2. Breng de relevante macro-economische variabelen van Nederland in kaart.\n   • Bijvoorbeeld: BBP, bestedingen van consumenten, bedrijven, overheid, export - import, werkgelegenheid, inflatie, conjunctuur, consumenten/producentenvertrouwen, etc. En wat zijn de relevante ontwikkelingen hierin.\n3. Beschrijf duidelijk wat de invloeden van macro-economische variabelen zijn op de gekozen sector.\n   • Denk aan rente, kapitaalintensiteit, vertrouwensindicatoren, grondstofprijzen, wisselkoersen, wereldhandel, conjunctuur, werkgelegenheid, inflatie, etc.\n4. Bepaal de conjunctuurgevoeligheid van de **sector** en geef een conclusie op basis van de volgende criteria:\n   • Mogelijke invloeden: kapitaalintensiteit, grondstofprijzen, wisselkoersen, wereldhandel, werkgelegenheid, inflatie, aard van producten, positie in de bedrijfskolom, etc.\n5. Bepaal voor de gekozen **bedrijven** uit de sector de conjunctuurgevoeligheid en geef een conclusie op basis van de criteria:\n   • Wat is de mate van geografische spreiding omzet?\n   • Wat is de mate van productdiversificatie?\n   • Wat is de mate van marktmacht?\n\nConclusie\n\nMaak ook een executive briefing voor de Raad van Bestuur met strategische implicaties en aanbevelingen.",
+      
+      "buttonText": {
+        "traditioneel": "📋 Kopieer Framework",
+        "ondersteund": "📋 Kopieer Analyse Prompt", 
+        "geintegreerd": "📋 Kopieer Volledige Prompt"
+      },
+      
+      "docentNotes": [
+        "Let op rolvastheid - corrigeer als studenten uit rol vallen",
+        "Stimuleer conflict tussen Exploit (COO) en Explore (CIO)",
+        "CFO moet buyback optie serieus overwegen",
+        "CEO moet echt leiderschap tonen, niet alleen modereren"
+      ]
+    },
+    
+    {
+      "number": 2,
+      "title": "De Productiviteitsuitdaging",
+      "theme": "Europa's Achterstand",
+      "icon": "📊",
+      "description": "Het Draghi-rapport onthult Europa's productiviteitscrisis. Hoe gaan we dit aanpakken?",
+      
+      "waarom": "Het Draghi-rapport is actueel en dwingt teams na te denken over fundamentele economische uitdagingen. Het creëert spanning tussen kortetermijn resultaten (Exploit) en langetermijn investeringen (Explore).",
+      
+      "hoe": {
+        "zelfstudie": [
+          "Lees samenvatting Draghi-rapport (provided)",
+          "Genereer een analyse van productiviteitsuitdagingen in jullie sector",
+          "Bereid vanuit je rol voor: wat betekent dit voor onze strategie?",
+          "Identificeer 3 concrete productiviteitsverbeteringen"
+        ],
+        "werkcollege": [
+          "10 min: Terugblik week 1 beslissingen",
+          "20 min: Mini-presentaties productiviteitsanalyse per rol",
+          "60 min: Boardroom debat - Efficiency vs Innovation",
+          "30 min: Besluit vastleggen als Pijler 2"
+        ]
+      },
+      
+      "wat": {
+        "deliverables": [
+          "Sector-specifieke productiviteitsanalyse",
+          "3 concrete verbeterinitiatieven",
+          "Trade-off matrix Efficiency vs Innovation",
+          "Pijler 2: Productiviteitsstrategie"
+        ],
+        "assessment": "Diepgang analyse, creativiteit oplossingen, consistentie met week 1"
+      },
+      
+      "analyseOpdracht": "Analyseer de productiviteitsuitdagingen in de [SECTOR] sector, gebaseerd op het Draghi-rapport. Wat zijn de 5 belangrijkste oorzaken van productiviteitsachterstand? Geef concrete, implementeerbare oplossingen.",
+      
+      "analyseOpdracht_traditioneel": "Voer handmatig uit:\n\n1. Beargumenteer de marktvorm in de sector.\n2. Analyseer de bijbehorende structuur, gedrag en resultaatkenmerken bij de gekozen marktvorm.\n3. Beschrijf welke vormen van overheidsregulering aankomend zijn en geef aan hoe die vormend kunnen zijn voor deze sector.\n4. Beschrijf de markt:\n   • Tot welk soort consumptiegoederen (convenience, shopping, specialty of unsought goods & basis-goederen of luxegoederen) behoren de eindproducten van de gekozen bedrijven in de bedrijfstak?\n   • Aan wie levert de sector?\n     Maak hierbij gebruik van definities zoals: consumenten- (B2C) en/of producentenmarkten (B2B);\n   • Wat is de mate van prijsgevoeligheid?\n     Denk hierbij bijv. aan prijselasticiteit, inkomenselasticiteit en kruislingse elasticiteit\n\nConclusie",
+      
+      "analyseOpdracht_ondersteund": "Opdracht voor AI junior analist:\n\n1. Beargumenteer de marktvorm in de sector.\n2. Analyseer de bijbehorende structuur, gedrag en resultaatkenmerken bij de gekozen marktvorm.\n3. Beschrijf welke vormen van overheidsregulering aankomend zijn en geef aan hoe die vormend kunnen zijn voor deze sector.\n4. Beschrijf de markt:\n   • Tot welk soort consumptiegoederen (convenience, shopping, specialty of unsought goods & basis-goederen of luxegoederen) behoren de eindproducten van de gekozen bedrijven in de bedrijfstak?\n   • Aan wie levert de sector?\n     Maak hierbij gebruik van definities zoals: consumenten- (B2C) en/of producentenmarkten (B2B);\n   • Wat is de mate van prijsgevoeligheid?\n     Denk hierbij bijv. aan prijselasticiteit, inkomenselasticiteit en kruislingse elasticiteit\n\nConclusie\n\nJij maakt op basis van deze analyse een executive briefing voor de Raad van Bestuur.",
+      
+      "analyseOpdracht_geintegreerd": "Opdracht voor AI junior analist:\n\n1. Beargumenteer de marktvorm in de sector.\n2. Analyseer de bijbehorende structuur, gedrag en resultaatkenmerken bij de gekozen marktvorm.\n3. Beschrijf welke vormen van overheidsregulering aankomend zijn en geef aan hoe die vormend kunnen zijn voor deze sector.\n4. Beschrijf de markt:\n   • Tot welk soort consumptiegoederen (convenience, shopping, specialty of unsought goods & basis-goederen of luxegoederen) behoren de eindproducten van de gekozen bedrijven in de bedrijfstak?\n   • Aan wie levert de sector?\n     Maak hierbij gebruik van definities zoals: consumenten- (B2C) en/of producentenmarkten (B2B);\n   • Wat is de mate van prijsgevoeligheid?\n     Denk hierbij bijv. aan prijselasticiteit, inkomenselasticiteit en kruislingse elasticiteit\n\nConclusie\n\nMaak ook een executive briefing voor de Raad van Bestuur met strategische implicaties en aanbevelingen.",
+      
+      "buttonText": {
+        "traditioneel": "📋 Kopieer Framework",
+        "ondersteund": "📋 Kopieer Analyse Prompt", 
+        "geintegreerd": "📋 Kopieer Volledige Prompt"
+      },
+      
+      "eventCard": {
+        "title": "Breaking: Concurrent kondigt mega-investering in automatisering aan",
+        "description": "Uw grootste concurrent heeft zojuist €500M automatisering-investering aangekondigd. De markt reageert positief, aandeel +15%.",
+        "dilemma": "Volgen met eigen automatisering-investering (Explore) of focus op huidige superieure operatie (Exploit)?"
+      },
+      
+      "docentNotes": [
+        "Gebruik concurrent aankondiging om druk op te voeren",
+        "COO zal efficiency willen prioriteren",
+        "CIO moet pleiten voor technologie-investeringen",
+        "Link terug naar week 1 kapitaalallocatie"
+      ]
+    },
+    
+    {
+      "number": 3,
+      "title": "De Duurzaamheidsparadox",
+      "theme": "Profit vs Planet",
+      "icon": "🌍",
+      "description": "True Price methodiek dwingt tot heroverwegen van het businessmodel. Groene transitie of groene washing?",
+      
+      "waarom": "Duurzaamheid is niet langer optioneel maar creëert fundamentele spanning tussen korte termijn kosten en lange termijn license to operate. Dit test of teams voorbij greenwashing kunnen denken.",
+      
+      "hoe": {
+        "zelfstudie": [
+          "Bestudeer True Price methodiek (provided materials)",
+          "Bereken de 'true cost' van jullie hoofdproduct",
+          "Analyseer impact op competitieve positie",
+          "Ontwikkel duurzaamheidsopties vanuit je rol"
+        ],
+        "werkcollege": [
+          "15 min: True Price uitleg en voorbeelden",
+          "30 min: Presentatie true cost calculaties",
+          "60 min: Boardroom crisis - Klant eist 50% CO2 reductie in 2 jaar",
+          "30 min: Strategisch besluit en Pijler 3"
+        ]
+      },
+      
+      "wat": {
+        "deliverables": [
+          "True Price berekening hoofdproduct",
+          "Impact analyse op winstgevendheid",
+          "Duurzaamheidsroadmap met milestones",
+          "Pijler 3: Duurzaamheidsstrategie"
+        ],
+        "assessment": "Realisme berekeningen, ambitieniveau, financiële onderbouwing"
+      },
+      
+      "analyseOpdracht": "Bereken de True Price voor [PRODUCT] inclusief CO2-uitstoot, watergebruik, sociale kosten, en afvalproductie. Vergelijk met conventionele kostprijs. Wat zijn realistische reductiemogelijkheden?",
+      
+      "analyseOpdracht_traditioneel": "Voer handmatig uit:\n\n1. Verklaar de impact van de constante en variabele kosten op het aanpassingsvermogen van de bedrijven.\n2. Welke vormen van innovatief gedrag komen voor en wat zijn de gevolgen hiervan voor het aanbod (tabel 3.6)?\n\nConclusie",
+      
+      "analyseOpdracht_ondersteund": "Opdracht voor AI junior analist:\n\n1. Verklaar de impact van de constante en variabele kosten op het aanpassingsvermogen van de bedrijven.\n2. Welke vormen van innovatief gedrag komen voor en wat zijn de gevolgen hiervan voor het aanbod (tabel 3.6)?\n\nConclusie\n\nJij maakt op basis van deze analyse een executive briefing voor de Raad van Bestuur.",
+      
+      "analyseOpdracht_geintegreerd": "Opdracht voor AI junior analist:\n\n1. Verklaar de impact van de constante en variabele kosten op het aanpassingsvermogen van de bedrijven.\n2. Welke vormen van innovatief gedrag komen voor en wat zijn de gevolgen hiervan voor het aanbod (tabel 3.6)?\n\nConclusie\n\nMaak ook een executive briefing voor de Raad van Bestuur met strategische implicaties en aanbevelingen.",
+      
+      "buttonText": {
+        "traditioneel": "📋 Kopieer Framework",
+        "ondersteund": "📋 Kopieer Analyse Prompt", 
+        "geintegreerd": "📋 Kopieer Volledige Prompt"
+      },
+      
+      "eventCard": {
+        "title": "Crisis: Grootste klant eist 50% CO2 reductie",
+        "description": "Jullie grootste klant (30% omzet) eist binnen 2 jaar 50% CO2 reductie of contract wordt beëindigd.",
+        "dilemma": "Radicale green transformation met hoge kosten of risico verliezen grootste klant?"
+      },
+      
+      "docentNotes": [
+        "CFO zal kosten benadrukken",
+        "CIO kan tech-oplossingen aandragen",
+        "COO vreest operationele disruption",
+        "CEO moet balanceren tussen stakeholders"
+      ]
+    },
+    
+    {
+      "number": 4,
+      "title": "De Menselijke Factor",
+      "theme": "War for Talent",
+      "icon": "👥",
+      "description": "Vergrijzing, automatiseringsangst, en Gen Z met nieuwe eisen. Hoe blijf je een aantrekkelijke werkgever?",
+      
+      "waarom": "Human capital is de grootste asset maar ook grootste uitdaging. Teams moeten balanceren tussen automatisering (efficiency) en menselijke ontwikkeling (innovation capacity).",
+      
+      "hoe": {
+        "zelfstudie": [
+          "Analyseer de demografische uitdagingen in jullie sector",
+          "Onderzoek Gen Z werkvoorkeuren",
+          "Bereid HR-strategie voor vanuit je rol",
+          "Identificeer 3 unieke employer brand proposities"
+        ],
+        "werkcollege": [
+          "20 min: Presentatie demografische analyse",
+          "30 min: Rollenspel - Millennial/Gen Z sollicitatiegesprek",
+          "60 min: Boardroom - Automatisering vs Humanisering",
+          "25 min: HR-strategie besluit en Pijler 4"
+        ]
+      },
+      
+      "wat": {
+        "deliverables": [
+          "Demografische impact analyse",
+          "Employer Value Proposition",
+          "Skill development roadmap",
+          "Pijler 4: Human Capital strategie"
+        ],
+        "assessment": "Originaliteit EVP, realisme, consistentie met eerdere pijlers"
+      },
+      
+      "analyseOpdracht": "Analyseer de 'War for Talent' in [SECTOR]. Wat willen Gen Z werknemers? Hoe balanceer je automatisering met human development? Geef 5 innovatieve HR-praktijken.",
+      
+      "analyseOpdracht_traditioneel": "Voer handmatig uit:\n\n1. Opdracht Maatschappelijke kosten\n• Analyseer jouw gekozen sector op de brede welvaart dimensies.\n• Kies de 4 belangrijkste onderdelen uit (van de 10) en werk dit uit met de sub-onderdelen.\n• Schenk hierbij aandacht aan de maatschappelijk kosten en maak een afweging of dit een bedreiging vormt voor de sector.\n\n2. Opdracht True Pricing\n• Maak middels desk research inzichtelijk of jouw bedrijf verborgen kosten heeft. Splits dit uit naar ecologische (milieu) en maatschappelijke (social) kosten. Verdiep de analyse met de 8 milieu-dimensies en 9 sociale dimensies. Zie hiervoor het rapport van de ABNAMRO de verborgen kosten van een spijkerbroek, \"het verkleinen van de true price gap\".\n\nConclusie",
+      
+      "analyseOpdracht_ondersteund": "Opdracht voor AI junior analist:\n\n1. Opdracht Maatschappelijke kosten\n• Analyseer jouw gekozen sector op de brede welvaart dimensies.\n• Kies de 4 belangrijkste onderdelen uit (van de 10) en werk dit uit met de sub-onderdelen.\n• Schenk hierbij aandacht aan de maatschappelijk kosten en maak een afweging of dit een bedreiging vormt voor de sector.\n\n2. Opdracht True Pricing\n• Maak middels desk research inzichtelijk of jouw bedrijf verborgen kosten heeft. Splits dit uit naar ecologische (milieu) en maatschappelijke (social) kosten. Verdiep de analyse met de 8 milieu-dimensies en 9 sociale dimensies. Zie hiervoor het rapport van de ABNAMRO de verborgen kosten van een spijkerbroek, \"het verkleinen van de true price gap\".\n\nConclusie\n\nJij maakt op basis van deze analyse een executive briefing voor de Raad van Bestuur.",
+      
+      "analyseOpdracht_geintegreerd": "Opdracht voor AI junior analist:\n\n1. Opdracht Maatschappelijke kosten\n• Analyseer jouw gekozen sector op de brede welvaart dimensies.\n• Kies de 4 belangrijkste onderdelen uit (van de 10) en werk dit uit met de sub-onderdelen.\n• Schenk hierbij aandacht aan de maatschappelijk kosten en maak een afweging of dit een bedreiging vormt voor de sector.\n\n2. Opdracht True Pricing\n• Maak middels desk research inzichtelijk of jouw bedrijf verborgen kosten heeft. Splits dit uit naar ecologische (milieu) en maatschappelijke (social) kosten. Verdiep de analyse met de 8 milieu-dimensies en 9 sociale dimensies. Zie hiervoor het rapport van de ABNAMRO de verborgen kosten van een spijkerbroek, \"het verkleinen van de true price gap\".\n\nConclusie\n\nMaak ook een executive briefing voor de Raad van Bestuur met strategische implicaties en aanbevelingen.",
+      
+      "buttonText": {
+        "traditioneel": "📋 Kopieer Framework",
+        "ondersteund": "📋 Kopieer Analyse Prompt", 
+        "geintegreerd": "📋 Kopieer Volledige Prompt"
+      },
+      
+      "eventCard": {
+        "title": "Schokkend: 40% medewerkers overweegt ontslag",
+        "description": "Intern onderzoek: 40% medewerkers zoekt ander werk. Top talent vertrekt naar tech-startups.",
+        "dilemma": "Salaris verhogen (impact profit) of cultuur transformatie (lange termijn)?"
+      },
+      
+      "docentNotes": [
+        "Link naar week 2 productiviteit - mensen vs machines",
+        "CFO zal salariskosten bewaken",
+        "CIO pleit voor skill development",
+        "COO vreest operationele continuïteit"
+      ]
+    },
+    
+    {
+      "number": 5,
+      "title": "De Geopolitieke Storm",
+      "theme": "Navigeren door chaos",
+      "icon": "🌐",
+      "description": "Handelsoorlogen, sancties, supply chain chaos. Hoe blijf je wendbaar in een gefragmenteerde wereld?",
+      
+      "waarom": "Geopolitiek is niet langer achtergrond maar actieve business disruptor. Teams leren scenario-planning en strategische flexibiliteit.",
+      
+      "hoe": {
+        "zelfstudie": [
+          "Creëer drie geopolitieke scenario's (best/realistic/worst case)",
+          "Analyseer impact op supply chain en markttoegang",
+          "Ontwikkel contingency plannen per scenario",
+          "Bereid 'war room' presentatie voor"
+        ],
+        "werkcollege": [
+          "20 min: Scenario presentaties",
+          "40 min: War Game simulatie - China/Taiwan crisis",
+          "50 min: Boardroom - Reshoring vs Efficiency",
+          "25 min: Resilience strategie en Pijler 5"
+        ]
+      },
+      
+      "wat": {
+        "deliverables": [
+          "3 Geopolitieke scenario's met kansen",
+          "Supply chain vulnerability assessment",
+          "Contingency planning matrix",
+          "Pijler 5: Geopolitieke strategie"
+        ],
+        "assessment": "Scenario realisme, contingency planning kwaliteit, decisiveness"
+      },
+      
+      "analyseOpdracht": "Ontwikkel 3 geopolitieke scenario's voor komende 5 jaar. Focus op: China-Taiwan, Rusland-Europa, Trump 2.0, klimaat-migratie. Wat betekent dit voor een [SECTOR] bedrijf?",
+      
+      "analyseOpdracht_traditioneel": "Voer handmatig uit:\n\n1. Opdracht ESG\n• Werk een ESG framework uit waarbij je kansen en bedreigingen detecteert met de 10 thematische (topical) standaarden voor milieu, social en governance. Aanvullend, reduceer de 10 thema's tot een shortlist van 4 thema's die volgens jou de meeste impact hebben als bedreiging of kans. Max 2 a4.\n\nConclusie",
+      
+      "analyseOpdracht_ondersteund": "Opdracht voor AI junior analist:\n\n1. Opdracht ESG\n• Werk een ESG framework uit waarbij je kansen en bedreigingen detecteert met de 10 thematische (topical) standaarden voor milieu, social en governance. Aanvullend, reduceer de 10 thema's tot een shortlist van 4 thema's die volgens jou de meeste impact hebben als bedreiging of kans. Max 2 a4.\n\nConclusie\n\nJij maakt op basis van deze analyse een executive briefing voor de Raad van Bestuur.",
+      
+      "analyseOpdracht_geintegreerd": "Opdracht voor AI junior analist:\n\n1. Opdracht ESG\n• Werk een ESG framework uit waarbij je kansen en bedreigingen detecteert met de 10 thematische (topical) standaarden voor milieu, social en governance. Aanvullend, reduceer de 10 thema's tot een shortlist van 4 thema's die volgens jou de meeste impact hebben als bedreiging of kans. Max 2 a4.\n\nConclusie\n\nMaak ook een executive briefing voor de Raad van Bestuur met strategische implicaties en aanbevelingen.",
+      
+      "buttonText": {
+        "traditioneel": "📋 Kopieer Framework",
+        "ondersteund": "📋 Kopieer Analyse Prompt", 
+        "geintegreerd": "📋 Kopieer Volledige Prompt"
+      },
+      
+      "eventCard": {
+        "title": "BREAKING: Taiwan Crisis - Chip shortage dreigt",
+        "description": "Spanningen Taiwan lopen op. ASML waarschuwt voor chiplevering. Uw product bevat 47 chips.",
+        "dilemma": "Nu massaal inkopen (kapitaal vast) of afwachten (risico stilstand)?"
+      },
+      
+      "docentNotes": [
+        "Real-time gebeurtenissen gebruiken indien relevant",
+        "COO paniek over supply chain",
+        "CFO bezorgd over working capital",
+        "CEO moet leiderschap tonen in crisis"
+      ]
+    },
+    
+    {
+      "number": 6,
+      "title": "De Grote Integratie",
+      "theme": "Samenhangend verhaal",
+      "icon": "🎯",
+      "description": "Vijf strategische pijlers worden één coherent verhaal. Teams presenteren hun complete strategie.",
+      
+      "waarom": "Synthese is de hoogste vorm van leren. Teams moeten laten zien dat hun 5 beslissingen een coherent geheel vormen, niet losstaande keuzes.",
+      
+      "hoe": {
+        "zelfstudie": [
+          "Integreer 5 pijlers tot coherent strategisch narratief",
+          "Creëer visuele strategie canvas",
+          "Bereid 10-minuten investor pitch voor",
+          "Oefen presentatie met feedback"
+        ],
+        "werkcollege": [
+          "60 min: Team presentaties (10 min per team)",
+          "30 min: Peer evaluatie als RvT commissaris",
+          "30 min: Docent feedback en 'investor' beslissing",
+          "15 min: Reflectie en lessons learned"
+        ]
+      },
+      
+      "wat": {
+        "deliverables": [
+          "Geïntegreerde strategie presentatie",
+          "Visual strategy canvas",
+          "Executive summary (1 pager)",
+          "Peer evaluatie formulieren"
+        ],
+        "assessment": "Coherentie, presentatie kwaliteit, overtuigingskracht, Q&A handling"
+      },
+      
+      "presentation": {
+        "structure": [
+          "Opening: Visie en ambitie (1 min)",
+          "Strategisch fundament uit week 1 (2 min)",
+          "Kern strategische keuzes week 2-5 (5 min)",
+          "Financiële projectie en risico's (1 min)",
+          "Call to action voor investeerders (1 min)"
+        ],
+        "tips": [
+          "Begin met een hook - waarom moet men luisteren?",
+          "Gebruik storytelling - maak het menselijk",
+          "Toon de rode draad door alle beslissingen",
+          "Wees eerlijk over trade-offs en risico's",
+          "Eindig met memorable call-to-action"
+        ]
+      },
+      
+      "docentNotes": [
+        "Streng op tijd - 10 minuten maximum",
+        "RvT rol activeren voor peer feedback",
+        "Best presentation krijgt symbolische 'investment'",
+        "Nadruk op leerproces, niet perfectie"
+      ]
+    },
+    
+    {
+      "number": 7,
+      "title": "De Kritische Bevraging",
+      "theme": "Van RvB naar RvT",
+      "icon": "🔍",
+      "description": "Rolwisseling: teams worden specialistische Raad van Toezicht en bevragen andere teams kritisch.",
+      
+      "waarom": "Door van bestuurder naar toezichthouder te switchen, leren studenten vanuit meerdere perspectieven naar strategie te kijken. Dit verdiept het begrip.",
+      
+      "hoe": {
+        "zelfstudie": [
+          "Bestudeer toegewezen RvT persona kaart",
+          "Analyseer andere team's strategie vanuit jouw specialisme",
+          "Bereid 3 kritische vragen voor",
+          "Oefen 'commissaris' houding"
+        ],
+        "werkcollege": [
+          "10 min: RvT briefing en persona uitleg",
+          "80 min: Formele RvT-RvB meetings (20 min per meeting)",
+          "30 min: Best practices en feedback",
+          "15 min: Cursus afsluiting en evaluatie"
+        ]
+      },
+      
+      "wat": {
+        "deliverables": [
+          "RvT bevraging rapport",
+          "Kritische vragen per specialisme",
+          "Aanbevelingen voor ander team",
+          "Zelfreflectie op eigen strategie"
+        ],
+        "assessment": "Kwaliteit vragen, professionele houding, constructieve feedback"
+      },
+      
+      "rvtGuidelines": {
+        "doQuestions": [
+          "Stel open, onderzoekende vragen",
+          "Vraag door bij vage antwoorden",
+          "Test consistentie tussen pijlers",
+          "Daag assumptions uit",
+          "Zoek naar blinde vlekken"
+        ],
+        "dontQuestions": [
+          "Geen ja/nee vragen",
+          "Niet aanvallend of persoonlijk",
+          "Geen eigen oplossingen pushen",
+          "Niet uit rol vallen",
+          "Geen inside jokes of informeel"
+        ]
+      },
+      
+      "docentNotes": [
+        "Rol als 'voorzitter RvT' aannemen",
+        "Ingrijpen bij uit-rol-vallen",
+        "Beste vragensteller belonen",
+        "Link naar real-world RvT praktijk",
+        "Afsluiten met overall lessons learned"
+      ]
+    }
+  ],
+  
+  "assessmentRubric": {
+    "components": [
+      {
+        "name": "Individuele Voorbereiding",
+        "weight": 0.25,
+        "criteria": [
+          "Analyse-opdrachten volledig en op tijd",
+          "Rolvastheid in voorbereiding",
+          "Kwaliteit van analyse",
+          "Originaliteit van inzichten"
+        ]
+      },
+      {
+        "name": "Team Boardroom Performance",
+        "weight": 0.25,
+        "criteria": [
+          "Actieve participatie",
+          "Rolvastheid tijdens simulatie",
+          "Constructieve conflicthantering",
+          "Besluitvaardigheid"
+        ]
+      },
+      {
+        "name": "Strategische Besluitvorming",
+        "weight": 0.25,
+        "criteria": [
+          "Onderbouwing van keuzes",
+          "Consistentie tussen weken",
+          "Realisme en haalbaarheid",
+          "Creativiteit binnen constraints"
+        ]
+      },
+      {
+        "name": "Presentatie & Bevraging",
+        "weight": 0.25,
+        "criteria": [
+          "Presentatie kwaliteit (week 6)",
+          "Storytelling en coherentie",
+          "RvT bevraging kwaliteit (week 7)",
+          "Professionele houding"
+        ]
+      }
+    ],
+    
+    "levels": {
+      "excellent": {
+        "score": "9-10",
+        "description": "Uitzonderlijke prestatie, toont diepe integratie van concepten, excellente roluitvoering, en professioneel niveau besluitvorming"
+      },
+      "good": {
+        "score": "7-8",
+        "description": "Goede prestatie, solide begrip van concepten, consistente roluitvoering, weloverwogen besluitvorming"
+      },
+      "sufficient": {
+        "score": "6",
+        "description": "Voldoende prestatie, basis begrip aanwezig, wisselende rolvastheid, besluitvorming soms onderbouwd"
+      },
+      "insufficient": {
+        "score": "1-5",
+        "description": "Onvoldoende prestatie, gebrekkig begrip, weinig rolvastheid, zwakke onderbouwing beslissingen"
+      }
+    }
+  },
+  
+  "risks": [
+    {
+      "id": "r1",
+      "category": "Onderwijskundig",
+      "title": "Studentenweerstand tegen nieuwe aanpak",
+      "probability": "high",
+      "impact": "medium",
+      "score": 6,
+      "mitigation": [
+        "Duidelijke uitleg waarom strategische analyse toekomstbestendig maakt",
+        "Benadruk focus op besluitvorming, niet analyse-output",
+        "Toon real-world relevantie met actuele voorbeelden"
+      ]
+    },
+    {
+      "id": "r2",
+      "category": "Organisatorisch",
+      "title": "Docentenworkload te hoog",
+      "probability": "high",
+      "impact": "high",
+      "score": 9,
+      "mitigation": [
+        "Gedetailleerde draaiboeken per week",
+        "Herbruikbare materialen en templates",
+        "Train-the-trainer sessie vooraf"
+      ]
+    },
+    {
+      "id": "r3",
+      "category": "Technisch",
+      "title": "Analyse-tool uitval of onbeschikbaarheid",
+      "probability": "medium",
+      "impact": "high",
+      "score": 6,
+      "mitigation": [
+        "Backup analyse-tools identificeren",
+        "Offline alternatieven voorbereiden",
+        "Buffer tijd inbouwen voor technische issues"
+      ]
+    },
+    {
+      "id": "r4",
+      "category": "Kwaliteit",
+      "title": "Oppervlakkige strategieën door tijdsdruk",
+      "probability": "medium",
+      "impact": "medium",
+      "score": 4,
+      "mitigation": [
+        "Duidelijke beoordelingscriteria vooraf",
+        "Tussentijdse feedback momenten",
+        "Best practices delen tussen teams"
+      ]
+    },
+    {
+      "id": "r5",
+      "category": "Accreditatie",
+      "title": "NVAO keurt innovatieve aanpak af",
+      "probability": "low",
+      "impact": "critical",
+      "score": 8,
+      "mitigation": [
+        "Grondige onderbouwing met onderwijskundige literatuur",
+        "Pilot met evaluatie vooraf",
+        "Fallback naar traditioneel curriculum mogelijk"
+      ]
+    }
+  ],
+  
+  "resources": {
+    "templates": [
+      {
+        "name": "Strategyzer Business Model Canvas",
+        "type": "PDF",
+        "description": "Template voor strategische planning",
+        "week": 1
+      },
+      {
+        "name": "Analyse Template Library",
+        "type": "Document",
+        "description": "Verzameling geteste analyse templates per week",
+        "week": "all"
+      },
+      {
+        "name": "Boardroom Agenda Template",
+        "type": "Word",
+        "description": "Structuur voor boardroom meetings",
+        "week": "all"
+      },
+      {
+        "name": "RvT Bevraging Checklist",
+        "type": "PDF",
+        "description": "Richtlijnen voor kritische vragen",
+        "week": 7
+      }
+    ],
+    
+    "readings": [
+      {
+        "title": "The Draghi Report Executive Summary",
+        "author": "Mario Draghi",
+        "type": "Report",
+        "pages": "15",
+        "week": 2,
+        "required": true
+      },
+      {
+        "title": "True Price Methodology",
+        "author": "True Price Foundation",
+        "type": "Whitepaper",
+        "pages": "20",
+        "week": 3,
+        "required": true
+      },
+      {
+        "title": "Competing in the Age of Automation",
+        "author": "Marco Iansiti & Karim Lakhani",
+        "type": "HBR Article",
+        "pages": "10",
+        "week": 1,
+        "required": false
+      }
+    ],
+    
+    "videos": [
+      {
+        "title": "Introduction to Boardroom Dynamics",
+        "duration": "12 min",
+        "platform": "YouTube",
+        "week": 1,
+        "description": "Basics of executive decision making"
+      },
+      {
+        "title": "The Innovation Dilemma",
+        "duration": "15 min",
+        "platform": "TED",
+        "week": 2,
+        "description": "Balancing exploitation and exploration"
+      }
+    ]
+  },
+  
+  "didacticInterventions": {
+    "levels": [
+      {
+        "level": 1,
+        "name": "Gentle Nudge",
+        "when": "Discussion is productive but slightly off-track",
+        "examples": [
+          "Interessant punt, maar hoe relates dit tot jullie rol?",
+          "Goed dat je dit noemt, wat zou de [ROL] hiervan vinden?",
+          "Laten we even terug naar de strategische vraag..."
+        ]
+      },
+      {
+        "level": 2,
+        "name": "Active Intervention",
+        "when": "Conflict avoiding or one person dominating",
+        "examples": [
+          "Time-out: ik hoor consensus, maar waar is het conflict?",
+          "CEO, je team heeft input nodig - wat zijn de opties?",
+          "CFO en CIO, jullie moeten het oneens zijn hier - waarom?"
+        ]
+      },
+      {
+        "level": 3,
+        "name": "Crisis Injection",
+        "when": "Team is stuck or too comfortable",
+        "examples": [
+          "Breaking news: Concurrent kondigt doorbraak aan!",
+          "De aandeelhouders bellen - ze willen nu een besluit",
+          "Plot twist: grootste klant dreigt te vertrekken"
+        ]
+      }
+    ]
+  },
+  
+  "settings": {
+    "defaults": {
+      "language": "nl",
+      "currency": "EUR",
+      "teamSize": 4,
+      "sessionDuration": 135,
+      "assessmentWeights": {
+        "individual": 0.25,
+        "team": 0.25,
+        "decisions": 0.25,
+        "presentation": 0.25
+      }
+    },
+    
+    "features": {
+      "aiIntegration": true,
+      "peerAssessment": true,
+      "realTimeEvents": true,
+      "adaptiveDifficulty": false,
+      "videoSubmissions": false
+    },
+    
+    "notifications": {
+      "deadlineReminders": true,
+      "weeklyUpdates": true,
+      "peerFeedbackAlerts": true
+    }
+  }
+}

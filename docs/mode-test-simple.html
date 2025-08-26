@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <title>Simple Mode Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .mode-selector { background: #f8f9fa; padding: 20px; border-radius: 8px; margin-bottom: 20px; }
+        .test-content { background: white; padding: 20px; border: 1px solid #ddd; border-radius: 8px; }
+        select { padding: 10px; font-size: 16px; }
+        button { padding: 10px 20px; margin-left: 10px; background: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; }
+        .role-card { background: #e7f3ff; padding: 15px; margin: 10px 0; border-radius: 8px; border-left: 4px solid #007bff; }
+        .hidden { display: none !important; }
+    </style>
+</head>
+<body>
+    <h1>🧪 Mode Switching Test</h1>
+    
+    <div class="mode-selector">
+        <label for="mode-select">Select Mode:</label>
+        <select id="mode-select">
+            <option value="traditional">Traditioneel</option>
+            <option value="ai-assisted">AI-Ondersteund</option>
+            <option value="ai-integrated">AI-Geïntegreerd</option>
+        </select>
+        <button onclick="switchMode()">Switch Mode</button>
+    </div>
+    
+    <div class="test-content">
+        <h2 data-mode-text="roleTabTitle">👥 Default Role Title</h2>
+        
+        <p data-mode-text="roleIntroText">Default intro text</p>
+        
+        <div id="primary-role-card" class="role-card hidden">
+            <h3 data-mode-text="primaryRoleTitle">🎯 Primary Role</h3>
+            <p data-mode-text="primaryRoleDesc">Primary role description</p>
+        </div>
+        
+        <div>
+            <h4 data-mode-text="secondaryRoleTitle" class="hidden">👔 Secondary Role</h4>
+            <label data-mode-text="roleSelectorLabel">Select role:</label>
+            <select>
+                <option>-- Choose --</option>
+                <option>CEO</option>
+                <option>CFO</option>
+                <option>COO</option>
+                <option>CIO</option>
+            </select>
+        </div>
+        
+        <hr>
+        
+        <h3>Work Process:</h3>
+        <p>Monday: <span data-mode-text="mondayStepTitle">Default Monday</span></p>
+        <p>Description: <span data-mode-text="mondayStepDesc">Default description</span></p>
+        <p>Time: <span data-mode-text="workProcessTime">Default time</span></p>
+        
+        <hr>
+        
+        <h3>Quick Link:</h3>
+        <p data-mode-text="quickLinkAnalyse">Default quick link</p>
+    </div>
+
+    <script>
+        let contentData = null;
+        
+        // Load content data
+        async function loadContent() {
+            try {
+                const response = await fetch('content.json');
+                contentData = await response.json();
+                console.log('✅ Content loaded:', contentData.modeContent);
+            } catch (error) {
+                console.error('❌ Failed to load content:', error);
+            }
+        }
+        
+        // Switch mode function
+        async function switchMode() {
+            const select = document.getElementById('mode-select');
+            const selectedMode = select.value;
+            
+            console.log('🔄 Switching to mode:', selectedMode);
+            
+            // Map HTML values to JSON keys
+            const modeMap = {
+                'traditional': 'traditioneel',
+                'ai-assisted': 'ondersteund',
+                'ai-integrated': 'geintegreerd'
+            };
+            
+            const jsonMode = modeMap[selectedMode];
+            console.log('📄 JSON mode key:', jsonMode);
+            
+            if (!contentData || !contentData.modeContent) {
+                console.error('❌ Content data not available');
+                return;
+            }
+            
+            const modeContent = contentData.modeContent[jsonMode];
+            if (!modeContent) {
+                console.error('❌ Mode content not found for:', jsonMode);
+                return;
+            }
+            
+            console.log('📋 Mode content keys:', Object.keys(modeContent));
+            
+            // Update all text elements
+            document.querySelectorAll('[data-mode-text]').forEach(element => {
+                const key = element.dataset.modeText;
+                if (modeContent[key]) {
+                    element.textContent = modeContent[key];
+                    console.log(`✅ Updated ${key}:`, modeContent[key]);
+                } else {
+                    console.warn(`⚠️  Missing key ${key} for mode ${jsonMode}`);
+                }
+            });
+            
+            // Handle dual role display
+            const primaryCard = document.getElementById('primary-role-card');
+            const secondaryTitle = document.querySelector('[data-mode-text="secondaryRoleTitle"]');
+            
+            if (modeContent.showDualRole) {
+                primaryCard.classList.remove('hidden');
+                secondaryTitle.classList.remove('hidden');
+                console.log('👥 Dual role mode activated');
+            } else {
+                primaryCard.classList.add('hidden');
+                secondaryTitle.classList.add('hidden');
+                console.log('👤 Single role mode activated');
+            }
+        }
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', async function() {
+            await loadContent();
+            // Default to traditioneel
+            document.getElementById('mode-select').value = 'traditional';
+            switchMode();
+        });
+    </script>
+</body>
+</html>

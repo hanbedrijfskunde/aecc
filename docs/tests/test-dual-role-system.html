@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <title>Dual Role System Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .test-result { margin: 10px 0; padding: 10px; border-radius: 5px; }
+        .success { background: #d4edda; color: #155724; }
+        .error { background: #f8d7da; color: #721c24; }
+        .test-section { margin: 20px 0; border: 1px solid #ccc; padding: 15px; }
+        button { margin: 5px; padding: 10px; cursor: pointer; }
+        .role-preview { border: 1px solid #ddd; padding: 10px; margin: 5px 0; }
+        .hidden { display: none; }
+    </style>
+</head>
+<body>
+    <h1>Dual Role System Test</h1>
+    
+    <div class="test-section">
+        <h2>Mode Content Test</h2>
+        <div>
+            <button onclick="testMode('traditioneel')">Test Traditioneel</button>
+            <button onclick="testMode('ondersteund')">Test AI-Ondersteund</button>
+            <button onclick="testMode('geintegreerd')">Test AI-Geïntegreerd</button>
+        </div>
+        <div id="mode-test-results"></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>Role Display Preview</h2>
+        
+        <!-- Simulate the role interface -->
+        <div class="role-preview">
+            <h3 id="preview-role-title">👥 Rol Uitleg</h3>
+            
+            <div class="role-intro" id="preview-role-intro">
+                <p id="preview-role-intro-text">Selecteer je rol om specifieke informatie te zien.</p>
+            </div>
+            
+            <div class="primary-role-card" id="preview-primary-role" style="display: none;">
+                <div class="role-card business-analyst" style="border: 2px solid #8fd14f; padding: 15px; margin: 10px 0; background: #f8fffa; border-radius: 8px;">
+                    <h4 id="preview-primary-title">🎯 Junior Business Analist</h4>
+                    <p id="preview-primary-desc">Je belangrijkste rol: voer zelfstandig economische analyses uit en bereid briefings voor voor de RvB leden.</p>
+                </div>
+            </div>
+            
+            <div class="secondary-role-section">
+                <h4 id="preview-secondary-title" style="display: none; color: #666;">👔 Raad van Bestuur Lid</h4>
+                <label id="preview-selector-label">Selecteer je rol:</label>
+                <select>
+                    <option>-- Kies je rol --</option>
+                    <option>CEO - De Balans-kunstenaar</option>
+                    <option>CFO - De Kapitaal-Allocateur</option>
+                    <option>COO - De Optimalisator</option>
+                    <option>CIO - De Pionier</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let modeContent = null;
+        
+        // Load mode content
+        async function loadModeContent() {
+            try {
+                const response = await fetch('../content.json');
+                const data = await response.json();
+                return data.modeContent || {};
+            } catch (error) {
+                console.error('Failed to load mode content:', error);
+                return {};
+            }
+        }
+        
+        // Test each mode
+        async function testMode(mode) {
+            if (!modeContent) {
+                modeContent = await loadModeContent();
+            }
+            
+            const resultDiv = document.getElementById('mode-test-results');
+            const selectedModeContent = modeContent[mode];
+            
+            if (!selectedModeContent) {
+                resultDiv.innerHTML = `<div class="test-result error">❌ Mode ${mode} not found</div>`;
+                return;
+            }
+            
+            // Update preview interface
+            updatePreview(selectedModeContent, mode);
+            
+            // Show test results
+            const dualRoleStatus = selectedModeContent.showDualRole ? 'Dual Role' : 'Single Role';
+            const hasRoleFields = selectedModeContent.roleTabTitle && selectedModeContent.roleSelectorLabel;
+            
+            resultDiv.innerHTML = `
+                <div class="test-result success">✅ Mode: ${mode}</div>
+                <div class="test-result success">✅ Role System: ${dualRoleStatus}</div>
+                <div class="test-result ${hasRoleFields ? 'success' : 'error'}">
+                    ${hasRoleFields ? '✅' : '❌'} Role Content Fields: ${hasRoleFields ? 'Present' : 'Missing'}
+                </div>
+            `;
+        }
+        
+        // Update preview interface
+        function updatePreview(modeContent, mode) {
+            // Update text content
+            document.getElementById('preview-role-title').textContent = modeContent.roleTabTitle || '👥 Rol Uitleg';
+            document.getElementById('preview-role-intro-text').textContent = modeContent.roleIntroText || 'Selecteer je rol om specifieke informatie te zien.';
+            document.getElementById('preview-selector-label').textContent = modeContent.roleSelectorLabel || 'Selecteer je rol:';
+            
+            // Update dual role content if available
+            if (modeContent.primaryRoleTitle) {
+                document.getElementById('preview-primary-title').textContent = modeContent.primaryRoleTitle;
+            }
+            if (modeContent.primaryRoleDesc) {
+                document.getElementById('preview-primary-desc').textContent = modeContent.primaryRoleDesc;
+            }
+            if (modeContent.secondaryRoleTitle) {
+                document.getElementById('preview-secondary-title').textContent = modeContent.secondaryRoleTitle;
+            }
+            
+            // Show/hide primary role based on showDualRole
+            const primaryRole = document.getElementById('preview-primary-role');
+            const secondaryTitle = document.getElementById('preview-secondary-title');
+            
+            if (modeContent.showDualRole) {
+                primaryRole.style.display = 'block';
+                secondaryTitle.style.display = 'block';
+                document.body.style.backgroundColor = '#f0f8ff'; // Light blue for traditioneel
+            } else {
+                primaryRole.style.display = 'none';
+                secondaryTitle.style.display = 'none';
+                document.body.style.backgroundColor = mode === 'ondersteund' ? '#fff8f0' : '#f8fff0'; // Different colors for AI modes
+            }
+        }
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            // Auto-test traditioneel mode on load
+            setTimeout(() => testMode('traditioneel'), 500);
+        });
+    </script>
+</body>
+</html>

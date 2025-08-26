@@ -250,53 +250,71 @@ function updateOverallQAStatus() {
  * Called from HTML onclick handlers in commissie.html
  */
 function showTemplate(templateType) {
+    console.log('showTemplate called with:', templateType);
+    
     // Stap 1: Verwijder 'active' class van alle tabs
     const allTabs = document.querySelectorAll('.template-tab');
     allTabs.forEach(tab => {
         tab.classList.remove('active');
     });
     
-    // Stap 2: Voeg 'active' class toe aan geklikte tab
-    const clickedTab = event.target;
-    if (clickedTab && clickedTab.classList.contains('template-tab')) {
-        clickedTab.classList.add('active');
+    // Stap 2: Voeg 'active' class toe aan geklikte tab via templateType
+    const targetTab = document.querySelector(`button[onclick*="${templateType}"]`);
+    if (targetTab) {
+        targetTab.classList.add('active');
     }
     
     // Stap 3: Verberg alle template panels
     const allPanels = document.querySelectorAll('.template-panel');
     allPanels.forEach(panel => {
         panel.classList.remove('active');
-        panel.style.display = 'none';
     });
     
     // Stap 4: Toon het geselecteerde panel
     const selectedPanel = document.getElementById(templateType + '-template');
     if (selectedPanel) {
         selectedPanel.classList.add('active');
-        selectedPanel.style.display = 'block';
+        console.log('Switched to template:', templateType);
+    } else {
+        console.error('Panel not found for template:', templateType);
     }
 }
 
 // Communication Templates
 function initializeCommunicationTemplates() {
-    // Initialize first tab as active on page load
+    console.log('Initializing Communication Templates...');
+    
+    // Ensure all panels are hidden first
+    const allPanels = document.querySelectorAll('.template-panel');
+    allPanels.forEach(panel => {
+        panel.classList.remove('active');
+    });
+    
+    // Remove active from all tabs
+    const allTabs = document.querySelectorAll('.template-tab');
+    allTabs.forEach(tab => {
+        tab.classList.remove('active');
+    });
+    
+    // Initialize first tab and panel as active
     const firstTab = document.querySelector('.template-tab');
     const firstPanel = document.querySelector('.template-panel');
     
     if (firstTab) {
         firstTab.classList.add('active');
+        console.log('First tab activated:', firstTab.textContent);
     }
     
     if (firstPanel) {
         firstPanel.classList.add('active');
-        firstPanel.style.display = 'block';
+        console.log('First panel activated:', firstPanel.id);
     }
     
-    // Hide all other panels initially
-    const allPanels = document.querySelectorAll('.template-panel:not(:first-child)');
-    allPanels.forEach(panel => {
-        panel.style.display = 'none';
-    });
+    console.log('Communication Templates initialization complete');
+}
+
+// Legacy template configuration (keeping for compatibility)
+function getLegacyTemplates() {
     const templates = {
         management: {
             subject: 'Update: AEC Innovatief Onderwijsproject',
@@ -774,8 +792,8 @@ function showNotification(message, type = 'info') {
 }
 
 // Add CSS animations
-const style = document.createElement('style');
-style.textContent = `
+const committeeStyle = document.createElement('style');
+committeeStyle.textContent = `
     @keyframes slideIn {
         from { transform: translateX(100%); opacity: 0; }
         to { transform: translateX(0); opacity: 1; }
@@ -795,7 +813,7 @@ style.textContent = `
         50% { background: rgba(52, 152, 219, 0.1); }
     }
 `;
-document.head.appendChild(style);
+document.head.appendChild(committeeStyle);
 
 // Data Persistence
 function saveChecklistState(itemId, checked) {
