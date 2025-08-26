@@ -895,6 +895,63 @@
     ]
   },
   
+  "modeContent": {
+    "traditioneel": {
+      "onboardingCheck": "Bereid je analyse voor Week 1 voor",
+      "quickLinkAnalyse": "📋 Analyse Opdrachten",
+      "mondayStepTitle": "Eigen Analyse",
+      "mondayStepDesc": "Begin met het uitvoeren van je eigen analyse volgens het template",
+      "tuesdayStepTitle": "Maak briefings voor RvB leden",
+      "tuesdayStepDesc": "Werk briefings uit voor CEO, CFO, COO en CIO op basis van je analyse",
+      "howStep1": "Voer op maandag zelf de analyse uit volgens het gegeven template",
+      "deliverable1": "Eigen economische analyse (500 woorden)",
+      "deliverable2": "4 rol-specifieke briefings (CEO, CFO, COO, CIO)",
+      "briefingToolTitle": "Analyse Templates & Richtlijnen",
+      "workProcessTime": "Verwachte tijd: 4 uur",
+      "roleTabTitle": "👥 Jouw Rollen",
+      "roleSelectorLabel": "Selecteer je RvB rol:",
+      "roleIntroText": "In de traditionele modus heb je twee rollen: Je werkt als Junior Business Analist voor de economische analyses én neemt deel als lid van de Raad van Bestuur.",
+      "primaryRoleTitle": "🎯 Junior Business Analist",
+      "primaryRoleDesc": "Je belangrijkste rol: voer zelfstandig economische analyses uit en bereid briefings voor voor de RvB leden.",
+      "secondaryRoleTitle": "👔 Raad van Bestuur Lid",
+      "showDualRole": true
+    },
+    "ondersteund": {
+      "onboardingCheck": "Test de AI analyse templates voor Week 1",
+      "quickLinkAnalyse": "🤖 AI Analyse Templates",
+      "mondayStepTitle": "AI Analyse",
+      "mondayStepDesc": "Gebruik AI voor het genereren van de economische analyse",
+      "tuesdayStepTitle": "Maak briefings voor RvB leden",
+      "tuesdayStepDesc": "Werk zelf briefings uit voor de RvB rollen op basis van AI analyse",
+      "howStep1": "Ontvang AI-gegenereerde analyse op maandag, maak zelf de briefings",
+      "deliverable1": "AI-gegenereerde analyse (geverifieerd)",
+      "deliverable2": "Eigen briefings voor 4 rollen",
+      "briefingToolTitle": "AI Analyse Generator",
+      "workProcessTime": "Verwachte tijd: 3 uur",
+      "roleTabTitle": "👥 Jouw Rol",
+      "roleSelectorLabel": "Selecteer je rol:",
+      "roleIntroText": "In de AI-ondersteunde modus focus je op je rol binnen de Raad van Bestuur. AI helpt met analyses, maar je maakt zelf de strategische briefings.",
+      "showDualRole": false
+    },
+    "geintegreerd": {
+      "onboardingCheck": "Test de AI briefing generator voor Week 1",
+      "quickLinkAnalyse": "🚀 AI Briefing Generator",
+      "mondayStepTitle": "AI Briefing",
+      "mondayStepDesc": "Ontvang volledig AI-gegenereerde intelligence briefing",
+      "tuesdayStepTitle": "Bestudeer AI briefings",
+      "tuesdayStepDesc": "Review de AI-gegenereerde briefings voor alle RvB rollen",
+      "howStep1": "Ontvang complete AI intelligence briefing inclusief rol-specifieke informatie",
+      "deliverable1": "AI-gegenereerde intelligence briefing",
+      "deliverable2": "AI rol-specifieke briefings (geverifieerd)",
+      "briefingToolTitle": "AI Intelligence Briefing System",
+      "workProcessTime": "Verwachte tijd: 2 uur",
+      "roleTabTitle": "👥 Jouw Rol",
+      "roleSelectorLabel": "Selecteer je rol:",
+      "roleIntroText": "In de AI-geïntegreerde modus focus je volledig op strategische besluitvorming binnen je rol als lid van de Raad van Bestuur. AI verzorgt zowel analyses als briefings.",
+      "showDualRole": false
+    }
+  },
+  
   "settings": {
     "defaults": {
       "language": "nl",

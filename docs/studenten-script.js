@@ -1625,3 +1625,120 @@ dynamicStyles.textContent = `
     }
 `;
 document.head.appendChild(dynamicStyles);
+
+// ==========================================
+// Mode-responsive content system
+// ==========================================
+
+// Mode content loading function
+async function loadModeContent() {
+    try {
+        // Wait for window.contentData to be available if it's still loading
+        let attempts = 0;
+        while (!window.contentData && attempts < 50) {
+            await new Promise(resolve => setTimeout(resolve, 100)); // Wait 100ms
+            attempts++;
+        }
+        
+        if (window.contentData && window.contentData.modeContent) {
+            return window.contentData.modeContent;
+        } else {
+            console.warn('window.contentData.modeContent not found, loading from fetch');
+            // Fallback: direct fetch if window.contentData is not available
+            const response = await fetch('content.json');
+            const data = await response.json();
+            return data.modeContent || {};
+        }
+    } catch (error) {
+        console.error('Failed to load mode content:', error);
+        return {};
+    }
+}
+
+// Update all mode-dependent text elements
+async function updateModeContent(mode) {
+    if (!mode) {
+        console.error('updateModeContent called without mode parameter');
+        return;
+    }
+    
+    console.log(`Updating content for mode: ${mode}`);
+    
+    // Get the content for the selected mode
+    const modeContent = await loadModeContent();
+    
+    if (!modeContent || Object.keys(modeContent).length === 0) {
+        console.error('No mode content data available');
+        return;
+    }
+    
+    console.log('Available modes:', Object.keys(modeContent));
+    
+    const selectedModeContent = modeContent[mode];
+    
+    if (!selectedModeContent) {
+        console.warn(`No content found for mode: ${mode}. Available modes:`, Object.keys(modeContent));
+        return;
+    }
+    
+    console.log(`Found content for mode ${mode}:`, Object.keys(selectedModeContent));
+    
+    // Update all elements with data-mode-text attribute
+    const elementsToUpdate = document.querySelectorAll('[data-mode-text]');
+    console.log(`Found ${elementsToUpdate.length} elements to update`);
+    
+    elementsToUpdate.forEach(element => {
+        const contentKey = element.dataset.modeText;
+        if (selectedModeContent[contentKey]) {
+            element.textContent = selectedModeContent[contentKey];
+            console.log(`Updated ${contentKey}: ${selectedModeContent[contentKey]}`);
+        } else {
+            console.warn(`Missing content key: ${contentKey} for mode: ${mode}`);
+            // Don't change the content if key is missing
+        }
+    });
+    
+    // Handle dual role display for Traditioneel mode
+    updateRoleDisplay(selectedModeContent);
+    
+    console.log(`✅ Content updated successfully for mode: ${mode}`);
+}
+
+// Handle role display based on mode content
+function updateRoleDisplay(modeContent) {
+    if (!modeContent) {
+        console.warn('updateRoleDisplay called without modeContent');
+        return;
+    }
+    
+    const primaryRoleCard = document.getElementById('primary-role-card');
+    const secondaryRoleTitle = document.querySelector('[data-mode-text="secondaryRoleTitle"]');
+    
+    if (!primaryRoleCard) {
+        console.warn('primary-role-card element not found');
+        return;
+    }
+    
+    console.log(`Role display: showDualRole = ${modeContent.showDualRole}`);
+    
+    // Show/hide primary role card based on showDualRole setting
+    if (modeContent.showDualRole) {
+        primaryRoleCard.style.display = 'block';
+        console.log('✅ Primary role card shown');
+        if (secondaryRoleTitle) {
+            secondaryRoleTitle.style.display = 'block';
+            console.log('✅ Secondary role title shown');
+        }
+    } else {
+        primaryRoleCard.style.display = 'none';
+        console.log('✅ Primary role card hidden');
+        if (secondaryRoleTitle) {
+            secondaryRoleTitle.style.display = 'none';
+            console.log('✅ Secondary role title hidden');
+        }
+    }
+}
+
+// Make functions globally available
+window.showOnboardingTab = showOnboardingTab;
+window.updateModeContent = updateModeContent;

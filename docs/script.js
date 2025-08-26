@@ -310,6 +310,17 @@ function initializeAIMode() {
     
     setAIMode(mode);
     
+    // Load mode-specific content if updateModeContent function exists
+    if (typeof updateModeContent === 'function') {
+        // Map HTML values to JSON keys
+        const modeMap = {
+            'traditional': 'traditioneel',
+            'ai-assisted': 'ondersteund', 
+            'ai-integrated': 'geintegreerd'
+        };
+        updateModeContent(modeMap[mode] || 'geintegreerd');
+    }
+    
     // Set the select value to match the valid mode
     const modeSelect = document.getElementById('mode-select');
     if (modeSelect) {
@@ -329,6 +340,17 @@ function switchMode() {
     
     // Save preference to localStorage
     localStorage.setItem('aiMode', selectedMode);
+    
+    // Update mode-specific content if updateModeContent function exists
+    if (typeof updateModeContent === 'function') {
+        // Map HTML values to JSON keys
+        const modeMap = {
+            'traditional': 'traditioneel',
+            'ai-assisted': 'ondersteund', 
+            'ai-integrated': 'geintegreerd'
+        };
+        updateModeContent(modeMap[selectedMode] || 'geintegreerd');
+    }
     
     // Broadcast mode change to other pages
     window.dispatchEvent(new CustomEvent('aiModeChanged', { 
