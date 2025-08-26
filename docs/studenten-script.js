@@ -1742,3 +1742,4 @@ function updateRoleDisplay(modeContent) {
 // Make functions globally available
 window.showOnboardingTab = showOnboardingTab;
 window.updateModeContent = updateModeContent;
+window.scrollToSection = scrollToSection;
